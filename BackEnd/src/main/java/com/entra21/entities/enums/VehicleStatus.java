@@ -4,7 +4,8 @@ public enum VehicleStatus {
 
 	AVAILABLE(1),
 	UNAVAILABLE(2),
-	MAINTENANCE(3);
+	DISABLE(3),
+	MAINTENANCE(4);
 	
 	private int code;
 	
