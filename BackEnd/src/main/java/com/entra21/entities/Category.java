@@ -1,12 +1,14 @@
 package com.entra21.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Category implements Serializable{
@@ -21,9 +23,11 @@ public class Category implements Serializable{
 	
 	private Double dayPrice;
 	
-	private List<Vehicle> vehicles;
+	@OneToMany(mappedBy="category")
+	private List<Vehicle> vehicles = new ArrayList<>();
 	
-	private List<Booking> bookings;
+	@OneToMany(mappedBy="category")
+	private List<Booking> bookings = new ArrayList<>();
 	
 	public Category() {
 		

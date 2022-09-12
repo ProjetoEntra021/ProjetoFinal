@@ -2,12 +2,15 @@ package com.entra21.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.entra21.entities.enums.VehicleStatus;
 
@@ -28,13 +31,16 @@ public class Vehicle implements Serializable {
 	
 	private Instant vehicleYear;
 	
+	@ManyToOne
 	private Category category;
 	
 	private Integer vehicleStatus;
 	
-	private List<VehicleRevenue> revenues;
+	@OneToMany(mappedBy="vehicle")
+	private List<VehicleRevenue> revenues = new ArrayList<>();
 	
-	private List<VehicleExpense> expenses;
+	@OneToMany(mappedBy="vehicle")
+	private List<VehicleExpense> expenses = new ArrayList<>();
 
 	public Vehicle() {}
 
