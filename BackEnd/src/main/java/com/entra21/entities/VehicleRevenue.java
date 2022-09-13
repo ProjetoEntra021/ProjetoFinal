@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class VehicleRevenue implements Serializable{
 
@@ -60,6 +62,7 @@ public class VehicleRevenue implements Serializable{
 		this.value = value;
 	}
 
+	@JsonIgnore
 	public Vehicle getVehicle() {
 		return vehicle;
 	}

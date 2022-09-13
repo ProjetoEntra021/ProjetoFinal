@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.entra21.entities.enums.BookingStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Booking implements Serializable{
 
@@ -41,7 +44,7 @@ public class Booking implements Serializable{
 	public Booking() {}
 
 	public Booking(Long id, Client client, Instant pickUpDate, Instant dropOffDate, Double dayPrice, Double weekPrice,
-			Category category, Integer bookingStatus, Rental rental) {
+			Category category, BookingStatus bookingStatus, Rental rental) {
 		super();
 		this.id = id;
 		this.client = client;
@@ -50,7 +53,7 @@ public class Booking implements Serializable{
 		this.dayPrice = dayPrice;
 		this.weekPrice = weekPrice;
 		this.category = category;
-		this.bookingStatus = bookingStatus;
+		setBookingStatus(bookingStatus);
 		this.rental = rental;
 	}
 
@@ -62,6 +65,7 @@ public class Booking implements Serializable{
 		this.id = id;
 	}
 
+	@JsonIgnore
 	public Client getClient() {
 		return client;
 	}
@@ -102,6 +106,7 @@ public class Booking implements Serializable{
 		this.weekPrice = weekPrice;
 	}
 
+	@JsonIgnore
 	public Category getCategory() {
 		return category;
 	}
@@ -110,14 +115,15 @@ public class Booking implements Serializable{
 		this.category = category;
 	}
 
-	public Integer getBookingStatus() {
-		return bookingStatus;
+	public BookingStatus getBookingStatus() {
+		return BookingStatus.valueOf(bookingStatus);
 	}
 
-	public void setBookingStatus(Integer bookingStatus) {
-		this.bookingStatus = bookingStatus;
+	public void setBookingStatus(BookingStatus bookingStatus) {
+		this.bookingStatus = bookingStatus.getCode();
 	}
 
+	@JsonIgnore
 	public Rental getRental() {
 		return rental;
 	}

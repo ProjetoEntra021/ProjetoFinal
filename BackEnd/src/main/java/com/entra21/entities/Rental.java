@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.entra21.entities.enums.RentalStatus;
+
 @Entity
 public class Rental implements Serializable{
 
@@ -35,13 +37,13 @@ public class Rental implements Serializable{
 	
 	public Rental () {}
 
-	public Rental(Long id, Instant pickUpDate, Instant dropOffDate, Integer rentalStatus, Booking booking,
+	public Rental(Long id, Instant pickUpDate, Instant dropOffDate, RentalStatus rentalStatus, Booking booking,
 			Vehicle vehicle, Receipt receipt) {
 		super();
 		this.id = id;
 		this.pickUpDate = pickUpDate;
 		this.dropOffDate = dropOffDate;
-		this.rentalStatus = rentalStatus;
+		setRentalStatus(rentalStatus);
 		this.booking = booking;
 		this.vehicle = vehicle;
 		this.receipt = receipt;
@@ -71,12 +73,12 @@ public class Rental implements Serializable{
 		this.dropOffDate = dropOffDate;
 	}
 
-	public Integer getRentalStatus() {
-		return rentalStatus;
+	public RentalStatus getRentalStatus() {
+		return RentalStatus.valueOf(rentalStatus);
 	}
 
-	public void setRentalStatus(Integer rentalStatus) {
-		this.rentalStatus = rentalStatus;
+	public void setRentalStatus(RentalStatus rentalStatus) {
+		this.rentalStatus = rentalStatus.getCode();
 	}
 
 	public Booking getBooking() {

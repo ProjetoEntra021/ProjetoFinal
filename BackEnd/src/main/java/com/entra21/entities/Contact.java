@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.entra21.entities.enums.ContactType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Contact implements Serializable {
 
@@ -26,10 +29,10 @@ public class Contact implements Serializable {
 	
 	public Contact () {}
 
-	public Contact(Long id, Integer contactType, String description, Client client) {
+	public Contact(Long id, ContactType contactType, String description, Client client) {
 		super();
 		this.id = id;
-		this.contactType = contactType;
+		setContactType(contactType);
 		this.description = description;
 		this.client = client;
 	}
@@ -42,12 +45,12 @@ public class Contact implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getContactType() {
-		return contactType;
+	public ContactType getContactType() {
+		return ContactType.valueOf(contactType);
 	}
 
-	public void setContactType(Integer contactType) {
-		this.contactType = contactType;
+	public void setContactType(ContactType contactType) {
+		this.contactType = contactType.getCode();
 	}
 
 	public String getDescription() {
@@ -58,6 +61,7 @@ public class Contact implements Serializable {
 		this.description = description;
 	}
 
+	@JsonIgnore
 	public Client getClient() {
 		return client;
 	}
