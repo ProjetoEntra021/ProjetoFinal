@@ -1,0 +1,60 @@
+
+mat-drawer-container{
+  height: 100%;
+}
+
+mat-drawer{
+  width: 20%;
+  background-color: #008080;
+}
+
+.example-form-field {
+  font-size: 12px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+input{
+  padding: 0px;
+}
+
+figure{
+ border: 1px solid red;
+}
+
+#logoDivider{
+  margin-bottom: 10px;
+  border-top-width: 3px;
+  background-color: white;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#listItemLogo{
+  display: flex;
+  height: 15vh;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+
+
+#logoImage{
+  margin: 0px;
+  width: 60%;
+}
+
+#logoImage img{
+  width: 100%;
+}
+
+#logoText{
+  margin-left: 10px;
+
+}
+
+mat-toolbar{
+  justify-content: center;
+}
