@@ -11,7 +11,7 @@ export class MainViewComponent implements OnInit {
   value = '';
 
   constructor(
-    private router: Router,
+    public router: Router,
     private route: ActivatedRoute) {
   }
 

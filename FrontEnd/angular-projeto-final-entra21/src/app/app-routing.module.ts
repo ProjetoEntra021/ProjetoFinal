@@ -10,7 +10,6 @@ const routes: Routes = [
     path:'main',
     loadChildren:()=>import('./main-view/main-view.module').then(m=>m.MainViewModule)
   },
-  {path: 'vehicle', component: VehicleModule}
 ];
 
 @NgModule({

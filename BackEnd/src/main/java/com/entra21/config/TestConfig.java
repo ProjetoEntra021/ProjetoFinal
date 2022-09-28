@@ -1,6 +1,8 @@
 package com.entra21.config;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -67,10 +69,13 @@ public class TestConfig implements CommandLineRunner {
 
 		bookingRepository.save(bk1);
 
-		Vehicle v1 = new Vehicle(null, "ABC1234", "11222333333", 10000.00, Instant.parse("2000-10-10T00:00:00Z"), cat1,
+		Vehicle v1 = new Vehicle(null, "Corsa", "ABC1234", "11222333333", 10000.00, "120983190", LocalDate.parse("2000-10-10T00:00:00Z"), cat1,
 					VehicleStatus.AVAILABLE);
+		
+		Vehicle v2 = new Vehicle(null, "Sandero", "ABC1234", "11222333333", 10000.00, "120983190", LocalDate.parse("2000-10-10T00:00:00Z"), cat1,
+				VehicleStatus.AVAILABLE);
 
-		vehicleRepository.save(v1);
+		vehicleRepository.saveAll(Arrays.asList(v1,v2));
 
 		Rental r1 = new Rental(null, bk1.getPickUpDate(), bk1.getDropOffDate(), RentalStatus.PENDING, bk1, v1, null);
 

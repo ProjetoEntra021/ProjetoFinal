@@ -2,6 +2,7 @@ package com.entra21.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,13 +24,17 @@ public class Vehicle implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private String model;
+	
 	private String licensePlate;
 	
 	private String chassi;
 	
 	private Double mileage;
 	
-	private Instant vehicleYear;
+	private String  renavam;
+	
+	private LocalDate vehicleYear;
 	
 	@ManyToOne
 	private Category category;
@@ -44,15 +49,17 @@ public class Vehicle implements Serializable {
 
 	public Vehicle() {}
 
-	public Vehicle(Long id, String licensePlate, String chassi, Double mileage, Instant vehicleYear,
+	public Vehicle(Long id, String model,  String licensePlate, String chassi, Double mileage, String renavam, LocalDate vehicleYear,
 			Category category, VehicleStatus vehicleStatus) {
 		super();
 		this.id = id;
+		this.model = model;
 		this.licensePlate = licensePlate;
 		this.chassi = chassi;
 		this.mileage = mileage;
 		this.vehicleYear = vehicleYear;
 		this.category = category;
+		this.renavam = renavam;
 		setVehicleStatus(vehicleStatus);
 	}
 
@@ -62,6 +69,14 @@ public class Vehicle implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
 	}
 
 	public String getLicensePlate() {
@@ -79,6 +94,14 @@ public class Vehicle implements Serializable {
 	public void setChassi(String chassi) {
 		this.chassi = chassi;
 	}
+	
+	public String getRenavam() {
+		return renavam;
+	}
+
+	public void setRenavam(String renavam) {
+		this.renavam = renavam;
+	}
 
 	public Double getMileage() {
 		return mileage;
@@ -88,11 +111,11 @@ public class Vehicle implements Serializable {
 		this.mileage = mileage;
 	}
 
-	public Instant getVehicleYear() {
+	public LocalDate getVehicleYear() {
 		return vehicleYear;
 	}
 
-	public void setVehicleYear(Instant vehicleYear) {
+	public void setVehicleYear(LocalDate vehicleYear) {
 		this.vehicleYear = vehicleYear;
 	}
 

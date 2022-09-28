@@ -1,0 +1,23 @@
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+@Component({
+  selector: 'app-vehicle-menu',
+  templateUrl: './vehicle-menu.component.html',
+  styleUrls: ['./vehicle-menu.component.scss']
+})
+export class VehicleMenuComponent implements OnInit {
+
+  @Output() show = new EventEmitter(false);
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+  }
+
+  vehicleList() {
+   this.show.emit(true);
+  }
+}

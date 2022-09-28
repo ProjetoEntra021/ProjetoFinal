@@ -1,9 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
+import { VehicleMenuComponent } from './vehicle-menu/vehicle-menu.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
 
 const routes: Routes = [
-  {path:'', component: VehicleComponent}
+  {
+    path: '', component: VehicleComponent,
+    children: [
+      { path: '', component: VehicleMenuComponent },
+      { path: 'list', component: VehicleListComponent }
+    ]
+  }
 ];
 
 @NgModule({
