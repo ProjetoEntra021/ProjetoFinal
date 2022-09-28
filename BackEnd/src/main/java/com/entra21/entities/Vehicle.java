@@ -24,7 +24,7 @@ public class Vehicle implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String model;
+	private String vehicleModel;
 	
 	private String licensePlate;
 	
@@ -49,11 +49,11 @@ public class Vehicle implements Serializable {
 
 	public Vehicle() {}
 
-	public Vehicle(Long id, String model,  String licensePlate, String chassi, Double mileage, String renavam, LocalDate vehicleYear,
+	public Vehicle(Long id, String vehicleModel,  String licensePlate, String chassi, Double mileage, String renavam, LocalDate vehicleYear,
 			Category category, VehicleStatus vehicleStatus) {
 		super();
 		this.id = id;
-		this.model = model;
+		this.vehicleModel = vehicleModel;
 		this.licensePlate = licensePlate;
 		this.chassi = chassi;
 		this.mileage = mileage;
@@ -71,12 +71,12 @@ public class Vehicle implements Serializable {
 		this.id = id;
 	}
 
-	public String getModel() {
-		return model;
+	public String getVehicleModel() {
+		return vehicleModel;
 	}
 
-	public void setModel(String model) {
-		this.model = model;
+	public void setVehicleModel(String vehicleModel) {
+		this.vehicleModel = vehicleModel;
 	}
 
 	public String getLicensePlate() {
