@@ -69,10 +69,10 @@ public class TestConfig implements CommandLineRunner {
 
 		bookingRepository.save(bk1);
 
-		Vehicle v1 = new Vehicle(null, "Corsa", "ABC1234", "11222333333", 10000.00, "120983190", LocalDate.parse("2000-10-10T00:00:00Z"), cat1,
+		Vehicle v1 = new Vehicle(null, "Corsa", "ABC1234", "11222333333", 10000.00, "120983190", LocalDate.parse("2000-10-10"), cat1,
 					VehicleStatus.AVAILABLE);
 		
-		Vehicle v2 = new Vehicle(null, "Sandero", "ABC1234", "11222333333", 10000.00, "120983190", LocalDate.parse("2000-10-10T00:00:00Z"), cat1,
+		Vehicle v2 = new Vehicle(null, "Sandero", "ABC1234", "11222333333", 10000.00, "120983190", LocalDate.parse("2000-10-10"), cat1,
 				VehicleStatus.AVAILABLE);
 
 		vehicleRepository.saveAll(Arrays.asList(v1,v2));

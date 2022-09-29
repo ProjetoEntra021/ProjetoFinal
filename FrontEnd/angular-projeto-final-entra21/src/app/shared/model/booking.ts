@@ -1,0 +1,15 @@
+import { Category } from "./category";
+import { Rental } from './rental';
+import { Client } from './client';
+
+export interface Booking{
+  id: number,
+  client: Client,
+  pickUpDate: Date,
+  dropOffDate: Date,
+  dayPrice: number,
+  weekPrice: number,
+  category: Category,
+  bookingStatus: string,
+  rental: Rental
+}
