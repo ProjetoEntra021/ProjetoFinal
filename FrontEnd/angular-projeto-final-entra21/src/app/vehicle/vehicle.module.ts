@@ -6,13 +6,15 @@ import { VehicleComponent } from './vehicle/vehicle.component';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { VehicleMenuComponent } from './vehicle-menu/vehicle-menu.component';
+import { VehicleAddComponent } from './vehicle-add/vehicle-add.component';
 
 
 @NgModule({
   declarations: [
     VehicleComponent,
     VehicleListComponent,
-    VehicleMenuComponent
+    VehicleMenuComponent,
+    VehicleAddComponent
   ],
   imports: [
     CommonModule,

@@ -5,13 +5,8 @@ import { VehicleMenuComponent } from './vehicle-menu/vehicle-menu.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
 
 const routes: Routes = [
-  {
-    path: '', component: VehicleComponent,
-    children: [
-      { path: '', component: VehicleMenuComponent },
-      { path: 'list', component: VehicleListComponent }
-    ]
-  }
+  { path: '', component: VehicleMenuComponent },
+  { path: 'list', component: VehicleListComponent }
 ];
 
 @NgModule({

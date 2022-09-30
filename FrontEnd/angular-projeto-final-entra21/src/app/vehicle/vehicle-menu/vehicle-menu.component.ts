@@ -18,6 +18,6 @@ export class VehicleMenuComponent implements OnInit {
   }
 
   vehicleList() {
-   this.show.emit(true);
+   this.router.navigate(['list'], {relativeTo: this.route});
   }
 }

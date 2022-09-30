@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable, of } from 'rxjs';
 import { Vehicle } from '../../shared/model/vehicle';
 import { VehicleService } from '../vehicle.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort, Sort } from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 
 @Component({
@@ -12,19 +15,31 @@ import { VehicleService } from '../vehicle.service';
 })
 export class VehicleListComponent implements OnInit {
 
-  vehicles$: Observable<Vehicle[]>;
+  readonly displayedColumns: string[] = ['status', 'categoria', 'modelo', 'ano', 'actions'];
+
+  //vehicles$: Observable<Vehicle[]>;
+
+  dataSource!: MatTableDataSource<Vehicle>;
+
+  @ViewChild("sort") sort: MatSort = new MatSort();
 
   constructor(
     private vehicleService: VehicleService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _liveAnnouncer: LiveAnnouncer
   ) {
-    this.vehicles$ = this.vehicleService.list()
-      // .pipe(
-      //   catchError(error => {
-      //      this.onError('Erro ao carregar pedidos.')
-      //     return of([]) )
-      //   }
-      ;
+    this.vehicleService.list().subscribe(dados => this.dataSource = new MatTableDataSource<Vehicle>(dados));
+
+
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  ngAfterViewInit() {
+    this.sort.disableClear = true;
+    this.dataSource.sort = this.sort;
   }
 
 
@@ -34,8 +49,6 @@ export class VehicleListComponent implements OnInit {
   //   });
   // }
 
-  ngOnInit(): void {
-  }
 
-  readonly displayedColumns: string[] = ['status', 'categoria', 'modelo', 'ano', 'actions'];
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -19,7 +19,7 @@ export class MainViewComponent implements OnInit {
   }
 
   vehicles() {
-    this.router.navigate(['vehicles'], { relativeTo: this.route })
+    this.router.navigate(['vehicles', ''], { relativeTo: this.route })
   }
 
   homePage() {
