@@ -1,0 +1,103 @@
+.clientFormContainer {
+  margin-top: 20px;
+  justify-items: center;
+  align-content: center;
+  font-size: 17px;
+
+}
+mat-card{
+  width: 40%;
+  justify-content: center;
+  transform: translateX(65%);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+
+}
+.clientRegistrationForm{
+  width: 90%;
+  height: 90%;
+  background-color: rgba(255, 255, 255, 0.6);
+  transform: translateX(3%);
+  padding: 20px;
+  border-radius: 5px;
+}
+#name{
+  width: 55%;
+}
+#birthDate{
+  width: 15%;
+}
+#birthDateLabel, #cpfLabel, #cnhLabel, #cidadeLabel, #ufLabel, #emailLabel, #enderecoLabel, #numeroLabel{
+  margin-left: 5px;
+}
+#cpf {
+  width: 27%;
+}
+#cnh {
+  width: 27%;
+}
+#sexo {
+  width: 25%;
+}
+
+#firstLineFirstForm, #firstLineSecondForm{
+  margin-bottom: 15px;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+#secondLineFirstForm, #secondLineSecondForm{
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+#thirdLineSecondForm{
+  margin-left: 20px;
+  padding-top: 5px;
+  margin-bottom: 12px;
+}
+label {
+  margin-right: 3px;
+}
+#cep {
+  width: 12%;
+}
+#endereco{
+  width: 50%;
+}
+#numero {
+  width: 9.8%;
+}
+#uf{
+  width: 10%;
+}
+#complemento, #cidade {
+  width: 30%
+}
+#telefone{
+  width: 30%
+}
+#email{
+  width: 50%;
+}
+input{
+  height: 20px;
+  border-radius: 5px;
+}
+select{
+  height: 26px;
+  border-radius: 5px;
+}
+.buttonsClientForm{
+  text-align: right;
+  margin: 10px 2px 0px 0px;
+}
+button {
+  width: 10%
+}
+.enderecoContato{
+  margin-top: 10px;
+}
+
+
+
+
