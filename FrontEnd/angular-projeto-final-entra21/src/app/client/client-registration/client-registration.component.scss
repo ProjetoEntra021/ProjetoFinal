@@ -8,7 +8,7 @@
 mat-card{
   width: 40%;
   justify-content: center;
-  transform: translateX(65%);
+  margin: auto;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
@@ -18,7 +18,7 @@ mat-card{
   width: 90%;
   height: 90%;
   background-color: rgba(255, 255, 255, 0.6);
-  transform: translateX(3%);
+  margin: auto;
   padding: 20px;
   border-radius: 5px;
 }
@@ -42,18 +42,21 @@ mat-card{
 }
 
 #firstLineFirstForm, #firstLineSecondForm{
+  margin: auto;
   margin-bottom: 15px;
   margin-top: 5px;
-  margin-left: 20px;
+
 }
 #secondLineFirstForm, #secondLineSecondForm{
+  margin: auto;
   margin-bottom: 10px;
-  margin-left: 20px;
+
 }
 #thirdLineSecondForm{
-  margin-left: 20px;
+  margin: auto;
   padding-top: 5px;
   margin-bottom: 12px;
+
 }
 label {
   margin-right: 3px;
