@@ -20,4 +20,6 @@ export class ClientMenuComponent implements OnInit {
     this.router.navigate(['registration'], {relativeTo: this.route});
   }
 
+
+
 }

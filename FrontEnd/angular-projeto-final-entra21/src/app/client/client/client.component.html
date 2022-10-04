@@ -4,7 +4,7 @@
     <mat-radio-button value="cpf">CPF</mat-radio-button>
     <input type="text" name="searchBox" class = "clientSearchParamInput"/>
     <button mat-raised-button color="primary">Verificar</button>
-    <button mat-raised-button color="primary">Listar</button>
+    <button mat-raised-button color="primary" (click)="clientList()">Listar</button>
   </span>
 </mat-toolbar>
 <router-outlet></router-outlet>

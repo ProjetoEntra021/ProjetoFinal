@@ -6,12 +6,14 @@ import { ClientComponent } from './client/client.component';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { ClientMenuComponent } from './client-menu/client-menu.component';
 import { ClientRegistrationComponent } from './client-registration/client-registration.component';
+import { ClientListComponent } from './client-list/client-list.component';
 
 @NgModule({
   declarations: [
     ClientComponent,
     ClientMenuComponent,
-    ClientRegistrationComponent
+    ClientRegistrationComponent,
+    ClientListComponent
   ],
   imports: [
     CommonModule,

@@ -26,7 +26,7 @@ export class VehicleListComponent implements OnInit {
   constructor(
     private vehicleService: VehicleService,
     public dialog: MatDialog,
-    private _liveAnnouncer: LiveAnnouncer
+
   ) {
     this.vehicleService.list().subscribe(dados => this.dataSource = new MatTableDataSource<Vehicle>(dados));
 
