@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Client implements Serializable{
 
@@ -96,6 +98,7 @@ public class Client implements Serializable{
 		return contacts;
 	}
 
+	@JsonIgnore
 	public List<Booking> getBookings() {
 		return bookings;
 	}
