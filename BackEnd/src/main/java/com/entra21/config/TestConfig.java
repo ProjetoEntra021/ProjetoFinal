@@ -3,6 +3,7 @@ package com.entra21.config;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +29,8 @@ import com.entra21.repositories.VehicleRepository;
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
+	
+	
 
 	@Autowired
 	private ClientRepository clientRepository;

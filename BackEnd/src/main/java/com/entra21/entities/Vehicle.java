@@ -3,6 +3,7 @@ package com.entra21.entities;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import com.entra21.entities.enums.VehicleStatus;
 
 @Entity
 public class Vehicle implements Serializable {
+
 	
 	private static final long serialVersionUID = 1L;
 

@@ -32,7 +32,7 @@
       <mat-divider></mat-divider>
 
       <mat-list-item>
-        <button mat-button >Clientes</button>
+        <button mat-button [routerLink]="['/main/clients']"  >Clientes</button>
       </mat-list-item>
 
       <mat-divider></mat-divider>
@@ -60,15 +60,31 @@
 
   <mat-drawer-content>
     <mat-toolbar>
-      <div *ngIf="router.url === '/main'">
+      <div  class = "headerBar" *ngIf="router.url === '/main'">
         PÁGINA INICIAL
-       </div>
-       <div *ngIf="router.url === '/main/vehicles'">
+      </div>
+      <div class = "headerBar" *ngIf="router.url === '/main/vehicles'">
         MENU VEÍCULOS
-       </div>
-       <div *ngIf="router.url === '/main/bookings'">
+      </div>
+      <div class = "headerBar" *ngIf="router.url === '/main/vehicles/list'">
+        MENU VEÍCULOS
+      </div>
+      <div class = "headerBar" *ngIf="router.url === '/main/clients'">
+        MENU CLIENTES
+      </div>
+      <div class = "headerBar" *ngIf="router.url === '/main/clients/list'">
+        MENU CLIENTES
+      </div>
+      <div class = "headerBar" *ngIf="router.url === '/main/clients/registration'">
+        MENU CLIENTES
+      </div>
+      <div *ngIf="router.url === '/main/bookings'">
         MENU RESERVAS
-       </div>
+      </div>
+      <div id="userIcon">
+        <img src="../../../assets/userIcon.png" alt="User" />
+        <p>User</p>
+      </div>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-drawer-content>
