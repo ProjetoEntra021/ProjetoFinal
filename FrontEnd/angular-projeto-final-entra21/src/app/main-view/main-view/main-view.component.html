@@ -43,7 +43,10 @@
       <mat-divider></mat-divider>
 
       <mat-divider></mat-divider>
-      <mat-list-item>Reservas</mat-list-item>
+
+      <mat-list-item>
+        <button mat-button [routerLink]="['/main/bookings']"> Reservas</button>
+      </mat-list-item>
 
       <mat-divider></mat-divider>
       <mat-list-item>Locações</mat-list-item>
@@ -62,6 +65,9 @@
        </div>
        <div *ngIf="router.url === '/main/vehicles'">
         MENU VEÍCULOS
+       </div>
+       <div *ngIf="router.url === '/main/bookings'">
+        MENU RESERVAS
        </div>
     </mat-toolbar>
     <router-outlet></router-outlet>

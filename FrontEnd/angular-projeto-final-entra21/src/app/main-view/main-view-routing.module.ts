@@ -1,3 +1,4 @@
+import { BookingsModule } from './../bookings/bookings.module';
 import { MainTableComponent } from './../main-table/main-table.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,6 +15,10 @@ const routes: Routes = [
       {
         path: 'vehicles',
         loadChildren: () => import('../vehicle/vehicle.module').then(m => m.VehicleModule)
+      },
+      {
+        path: 'bookings',
+        loadChildren: () => import('../bookings/bookings.module').then(m => m.BookingsModule)
       }
     ]
   }
