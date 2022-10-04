@@ -1,0 +1,115 @@
+<div id="mainContent">
+  <div id="header">
+    <a id="arrowBack" [routerLink]="['/main']" >
+      <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
+    </a>
+    <div id="mainTextHeader">
+      <span>Listagem das Reservas</span>
+    </div>
+  </div>
+  <mat-card>
+    <section class="container">
+      <mat-table  [dataSource]="dataSource" class="mat-elevation-z8" #sort="matSort" matSort>
+        <!-- Position Column -->
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+          <mat-cell *matCellDef="let booking">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              class="{{booking.bookingStatus}} status"
+              fontIcon="circle"
+            ></mat-icon>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="dataRetirada">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Data Retirada </mat-header-cell>
+          <mat-cell *matCellDef="let booking">
+            {{ booking.pickUpDate | date: "dd-MM-YYYY" }}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="cliente">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </mat-header-cell>
+          <mat-cell *matCellDef="let booking">
+            {{ booking.client.name }}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="categoria">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Categoria </mat-header-cell>
+          <mat-cell *matCellDef="let booking">
+            {{ booking.category }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="detalhe">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>  Detalhes</mat-header-cell>
+          <mat-cell *matCellDef="let booking">
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="menu"
+              aria-label="Detalhes da Reserva"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <span>Detalhes</span>
+              </button>
+            </mat-menu>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+    </section>
+  </mat-card>
+  <footer>
+    <div id="rodapeLegenda">
+      <div class="legendaIndividual">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Ícone de legenda disponível"
+          class="legenda ACTIVE"
+          fontIcon="circle"
+        ></mat-icon>
+        <span>Ativa</span>
+      </div>
+      <div class="legendaIndividual">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Ícone de legenda indisponível"
+          class="legenda FINISHED"
+          fontIcon="circle"
+        ></mat-icon>
+        <span>Finalizada</span>
+      </div>
+      <div class="legendaIndividual">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Ícone de legenda em menutenção"
+          class="legenda PENDING"
+          fontIcon="circle"
+        ></mat-icon>
+        <span>Pendente</span>
+      </div>
+      <div class="legendaIndividual">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Ícone de legenda desabilitado"
+          class="legenda CANCELED"
+          fontIcon="circle"
+        ></mat-icon>
+        <span>Cancelada</span>
+      </div>
+    </div>
+  </footer>
+</div>

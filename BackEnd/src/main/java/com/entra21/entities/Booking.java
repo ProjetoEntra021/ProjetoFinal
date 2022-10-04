@@ -65,7 +65,7 @@ public class Booking implements Serializable{
 		this.id = id;
 	}
 
-	@JsonIgnore
+	//@JsonIgnore
 	public Client getClient() {
 		return client;
 	}
@@ -106,7 +106,7 @@ public class Booking implements Serializable{
 		this.weekPrice = weekPrice;
 	}
 
-	@JsonIgnore
+   //@JsonIgnore
 	public Category getCategory() {
 		return category;
 	}
