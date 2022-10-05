@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VehicleService } from '../vehicle.service';
+import { VehicleService } from '../../service/vehicle.service';
 import { NonNullableFormBuilder, Validators, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CategoryService } from '../category.service';
+import { CategoryService } from '../../service/category.service';
 import { Category } from '../../shared/model/category';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -21,7 +21,7 @@ export class VehicleDetailsComponent implements OnInit {
     mileage: [0, Validators.required],
     renavam: ['', Validators.required],
     vehicleYear: ['', Validators.required],
-    category: [<Category|undefined>(undefined), Validators.required] ,
+    category: [<Category | undefined>(undefined), Validators.required],
     vehicleStatus: ["AVAILABLE"]
   })
 
@@ -58,19 +58,19 @@ export class VehicleDetailsComponent implements OnInit {
   getVehicle() {
     this.vehicleService.getVehicleById(this.vehicleId).subscribe(
       resultado => {
-          console.log(resultado)
-          this.form.setValue({
-            vehicleModel: resultado.vehicleModel,
-            licensePlate: resultado.licensePlate,
-            chassi: resultado.chassi,
-            mileage: resultado.mileage,
-            renavam: resultado.renavam,
-            vehicleYear: resultado.vehicleYear,
-            category: resultado.category,
-            vehicleStatus: resultado.vehicleStatus
+        console.log(resultado)
+        this.form.setValue({
+          vehicleModel: resultado.vehicleModel,
+          licensePlate: resultado.licensePlate,
+          chassi: resultado.chassi,
+          mileage: resultado.mileage,
+          renavam: resultado.renavam,
+          vehicleYear: resultado.vehicleYear,
+          category: resultado.category,
+          vehicleStatus: resultado.vehicleStatus
         })
       })
-    }
+  }
 
   onCancel() {
     this.location.back();

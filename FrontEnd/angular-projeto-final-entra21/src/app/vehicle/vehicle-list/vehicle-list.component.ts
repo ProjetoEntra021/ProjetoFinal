@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable, of } from 'rxjs';
 import { Vehicle } from '../../shared/model/vehicle';
-import { VehicleService } from '../vehicle.service';
+import { VehicleService } from '../../service/vehicle.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
@@ -37,7 +37,7 @@ export class VehicleListComponent implements OnInit, AfterViewInit {
     this.vehicleService.list().subscribe((dados) => {
       this.dataSource = new MatTableDataSource(dados);
     }
-      );
+    );
   }
 
   ngAfterViewInit() {

@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Category } from 'src/app/shared/model/category';
-import { VehicleService } from '../vehicle.service';
-import { CategoryService } from '../category.service';
+import { VehicleService } from '../../service/vehicle.service';
+import { CategoryService } from '../../service/category.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -21,7 +21,7 @@ export class VehicleAddComponent implements OnInit {
     mileage: [, Validators.required],
     renavam: ['', Validators.required],
     vehicleYear: [, Validators.required],
-    category: [ , Validators.required],
+    category: [, Validators.required],
     vehicleStatus: ["AVAILABLE"]
   })
 
@@ -34,12 +34,13 @@ export class VehicleAddComponent implements OnInit {
     private snackBar: MatSnackBar,
     private categoryService: CategoryService) {
 
-       }
+  }
 
   ngOnInit(): void {
-    this.categoryService.list().subscribe((dados) =>{
-      this.categories = dados});
-      console.log(this.categories)
+    this.categoryService.list().subscribe((dados) => {
+      this.categories = dados
+    });
+    console.log(this.categories)
   }
 
   onCancel() {
