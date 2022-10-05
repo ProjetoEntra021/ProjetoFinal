@@ -1,19 +1,21 @@
-import { VehicleModule } from './../vehicle/vehicle.module';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
 import { AppMaterialModule } from './app-material/app-material.module';
-import { VehiclePipe } from './pipes/vehicle.pipe';
+import { HeaderComponent } from './header/header.component';
 
 
 
 @NgModule({
   declarations: [
-    VehiclePipe
+    HeaderComponent,
   ],
   imports: [
     CommonModule,
-    AppMaterialModule,
-    VehicleModule
+    AppMaterialModule
+  ],
+  exports: [
+    HeaderComponent
   ]
 })
 export class SharedModule { }

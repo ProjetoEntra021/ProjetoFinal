@@ -7,6 +7,9 @@ import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { VehicleMenuComponent } from './vehicle-menu/vehicle-menu.component';
 import { VehicleAddComponent } from './vehicle-add/vehicle-add.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
+import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
 
 
 @NgModule({
@@ -14,12 +17,15 @@ import { VehicleAddComponent } from './vehicle-add/vehicle-add.component';
     VehicleComponent,
     VehicleListComponent,
     VehicleMenuComponent,
-    VehicleAddComponent
+    VehicleAddComponent,
+    VehicleDetailsComponent
   ],
   imports: [
     CommonModule,
     VehicleRoutingModule,
-    AppMaterialModule
+    AppMaterialModule,
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class VehicleModule { }

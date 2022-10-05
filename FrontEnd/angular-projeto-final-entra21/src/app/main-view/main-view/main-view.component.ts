@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class MainViewComponent implements OnInit {
 
   value = '';
+  title: string = '';
 
   constructor(
     public router: Router,
@@ -25,4 +26,18 @@ export class MainViewComponent implements OnInit {
   homePage() {
     this.router.navigate([''], { relativeTo: this.route })
   }
+
+  setHeader(){
+    let path = this.router.url.split('/');
+    if(path.length <= 2){
+      this.title = "PÁGINA INICIAL";
+    } else{
+      let answer = decodeURIComponent(path[2]);
+      if(answer == "vehicles"){
+        this.title = "MENU VEÍCULOS";
+    }
+  }
+}
+
+
 }

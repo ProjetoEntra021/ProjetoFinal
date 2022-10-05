@@ -17,4 +17,13 @@ export class VehicleService {
     .pipe(tap(data => console.log(data)),
       first());
     }
+
+    save(record: Partial<Vehicle>){
+      return this.httpClient.post<Vehicle>(this.API, record).pipe(first());
+    }
+
+    getVehicleById(id: number){
+     return this.httpClient.get<Vehicle>(this.API + '/'+ id).pipe(tap(data => console.log(data)),
+     first());
+    }
 }
