@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
@@ -33,7 +34,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatDialogModule,
     MatSortModule,
     MatSnackBarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule
   ]
 })
 export class AppMaterialModule { }

@@ -49,6 +49,11 @@ figure {
 #logoText {
   margin-left: 10px;
 }
+mat-drawer-content{
+  background-color: #4f5355;
+}
+
+//
 
 mat-toolbar {
   justify-content: center;
@@ -58,4 +63,29 @@ mat-toolbar {
 app-header {
   color: white;
   font-style: italic;
+  
+//
+
+//mat-toolbar{
+//  display: grid;
+//  grid-template-columns: 85% 15%;
+//  background-color: #696969;
+//  color: #ffffff;
+//}
+
+.headerBar {
+  text-align: center;
+  padding-left: 10%;
+  justify-content: center;
+  font-family: sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 30px;
+  line-height: 75px;
+}
+#userIcon {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  font-style: normal;
+  font-size: 20px;
 }

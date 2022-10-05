@@ -1,0 +1,58 @@
+<div class="clientFormContainer">
+  <mat-card>Novo Cliente</mat-card>
+  <div class="clientRegistrationForm">
+    <fieldset class="dadosPessoais">
+      <legend>Dados Pessoais</legend>
+      <div id="firstLineFirstForm">
+        <label from="name" id="nameLabel">Nome:</label>
+        <input id="name" type="text" placeholder="Digite o nome do cliente">
+        <label from="birthDate" id="birthDateLabel">Data de Nascimento:</label>
+        <input id="birthDate" type="text" placeholder="DD/MM/YYYY">
+      </div>
+      <div id="secondLineFirstForm">
+        <label from="sexo" id="sexoLabel">Sexo:</label>
+        <select name="sexo" id="sexo">
+          <option value="Selecione"> -- </option>
+          <option value="masculino">Masculino</option>
+          <option value="feminino">Feminino</option>
+          <option value="naoDesejoInformar">Não informado</option>
+        </select>
+        <label from="cpf" id="cpfLabel">CPF:</label>
+        <input id="cpf" type="text" placeholder="Digite o CPF do cliente">
+        <label from="cnh" id="cnhLabel">CNH:</label>
+        <input id="cnh" type="text" placeholder="Digite a CNH do cliente">
+      </div>
+    </fieldset>
+    <fieldset class="enderecoContato">
+      <legend>Endereço</legend>
+      <div id="firstLineSecondForm">
+        <label from="cep" id="cepLabel">CEP:</label>
+        <input id="cep" type="text" placeholder="Digite o CEP">
+        <label from="endereco" id="enderecoLabel">Endereço:</label>
+        <input id="endereco" type="text" placeholder="Endereco">
+        <label from="numero" id="numeroLabel">Número:</label>
+        <input id="numero" type="text" placeholder="Numero">
+      </div>
+      <div id="secondLineSecondForm">
+        <label from="complemento" id="complementoLabel">Complemento:</label>
+        <input id="complemento" type="text" placeholder="Complemento">
+        <label from="cidade" id="cidadeLabel">Cidade:</label>
+        <input id="cidade" type="text" placeholder="Cidade">
+        <label from="uf" id="ufLabel">UF:</label>
+        <input id="uf" type="text" placeholder="UF">
+      </div>
+      <div id="thirdLineSecondForm">
+        <label from="telefone" id="telefoneLabel">Telefone:</label>
+        <input id="telefone" type="text" placeholder="Informe o telefone">
+        <label from="email" id="emailLabel">Email:</label>
+        <input id="email" type="text" placeholder="Informe o E-mail">
+        <!-- <label from="observacoes">Observações:</label>
+        <textarea name="observacoes" maxlength="255"></textarea> -->
+      </div>
+    </fieldset>
+    <div class="buttonsClientForm">
+      <button mat-raised-button color="primary">Salvar</button>
+    </div>
+  </div>
+</div>
+
