@@ -6,12 +6,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.entra21.entities.enums.VehicleStatus;
 
@@ -24,21 +27,35 @@ public class Vehicle implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
+	@NotEmpty
 	private String vehicleModel;
-	
+
+	@NotNull
+	@NotEmpty
+	@Column(length=7)
 	private String licensePlate;
-	
+
+	@NotNull
+	@NotEmpty
 	private String chassi;
 	
 	private Double mileage;
 	
+	@NotNull
+	@NotEmpty
 	private String  renavam;
 	
-	private LocalDate vehicleYear;
-	
+	@NotNull
+	@NotEmpty
+	private String vehicleYear;
+
+	//Not possible adding @NotEmpty annotation
 	@ManyToOne
 	private Category category;
 	
+	//Not possible adding @NotEmpty annotation
+	@NotNull
 	private Integer vehicleStatus;
 	
 	@OneToMany(mappedBy="vehicle")
@@ -49,7 +66,7 @@ public class Vehicle implements Serializable {
 
 	public Vehicle() {}
 
-	public Vehicle(Long id, String vehicleModel,  String licensePlate, String chassi, Double mileage, String renavam, LocalDate vehicleYear,
+	public Vehicle(Long id, String vehicleModel,  String licensePlate, String chassi, Double mileage, String renavam, String vehicleYear,
 			Category category, VehicleStatus vehicleStatus) {
 		super();
 		this.id = id;
@@ -70,6 +87,7 @@ public class Vehicle implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 
 	public String getVehicleModel() {
 		return vehicleModel;
@@ -111,11 +129,11 @@ public class Vehicle implements Serializable {
 		this.mileage = mileage;
 	}
 
-	public LocalDate getVehicleYear() {
+	public String getVehicleYear() {
 		return vehicleYear;
 	}
 
-	public void setVehicleYear(LocalDate vehicleYear) {
+	public void setVehicleYear(String vehicleYear) {
 		this.vehicleYear = vehicleYear;
 	}
 

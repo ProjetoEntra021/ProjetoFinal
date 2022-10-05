@@ -1,12 +1,12 @@
 <mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened>
+  <mat-drawer class="color-primary" mode="side" opened>
     <mat-list>
 
       <div id="listItemLogo">
         <div id="logoText">AlôCar</div>
-          <div id="logoImage">
-            <img src="../../../assets/aloCarSymbol.png" alt="Logo AloCar" />
-            </div>
+        <div id="logoImage">
+          <img src="../../../assets/aloCarSymbol.png" alt="Logo AloCar" />
+        </div>
       </div>
 
       <mat-divider id="logoDivider"></mat-divider>
@@ -15,13 +15,7 @@
         <mat-form-field class="example-form-field" appearance="fill">
           <mat-label>Pesquisar</mat-label>
           <input matInput type="text" [(ngModel)]="value" />
-          <button
-            *ngIf="value"
-            matSuffix
-            mat-icon-button
-            aria-label="Clear"
-            (click)="value = ''"
-          >
+          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value = ''">
             <mat-icon>search</mat-icon>
           </button>
         </mat-form-field>
@@ -32,13 +26,13 @@
       <mat-divider></mat-divider>
 
       <mat-list-item>
-        <button mat-button >Clientes</button>
+        <button mat-button>Clientes</button>
       </mat-list-item>
 
       <mat-divider></mat-divider>
 
       <mat-list-item>
-        <button mat-button [routerLink]="['/main/vehicles']"   > Carros</button>
+        <button mat-button [routerLink]="['/main/vehicles']"> Carros</button>
       </mat-list-item>
       <mat-divider></mat-divider>
 
@@ -56,14 +50,10 @@
   </mat-drawer>
 
   <mat-drawer-content>
-    <mat-toolbar>
-      <div *ngIf="router.url === '/main'">
-        PÁGINA INICIAL
-       </div>
-       <div *ngIf="router.url === '/main/vehicles'">
-        MENU VEÍCULOS
-       </div>
+
+    <mat-toolbar class="color-primary">
+      <app-header [title]="title"></app-header>
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <router-outlet (activate)="setHeader()"></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>

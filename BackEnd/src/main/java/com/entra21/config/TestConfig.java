@@ -59,9 +59,13 @@ public class TestConfig implements CommandLineRunner {
 
 		addressRepository.save(ad1);
 
-		Category cat1 = new Category(null, 700.00, 150.00);
+		Category cat1 = new Category(null, "Hatch-Back", 450.00, 70.00);
+		
+		Category cat2 = new Category(null, "Sedã", 550.00, 90.00);
+		
+		Category cat3 = new Category(null, "Sedã Luxo", 700.00, 110.00);
 
-		categoryRepository.save(cat1);
+		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
 		Booking bk1 = new Booking(null, c1, Instant.parse("2005-10-20T00:00:00Z"),
 				Instant.parse("2005-10-30T00:00:00Z"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
@@ -70,46 +74,46 @@ public class TestConfig implements CommandLineRunner {
 		bookingRepository.save(bk1);
 
 		Vehicle v1 = new Vehicle(null, "Corsa", "ABC1234", "11222333333", 10000.00, "120983190",
-				LocalDate.parse("2000-10-10"), cat1, VehicleStatus.AVAILABLE);
+				"2010", cat1, VehicleStatus.AVAILABLE);
 
 		Vehicle v2 = new Vehicle(null, "Sandero", "DEF5678", "11222333333", 10000.00, "120983190",
-				LocalDate.parse("2000-10-10"), cat1, VehicleStatus.AVAILABLE);
+				"2011", cat1, VehicleStatus.AVAILABLE);
 
 		Vehicle v3 = new Vehicle(null, "Ka", "ABC1234", "11222333333", 10000.00, "120983190",
-				LocalDate.parse("2000-10-10"), cat1, VehicleStatus.AVAILABLE);
+				"2012", cat1, VehicleStatus.AVAILABLE);
 
 		Vehicle v4 = new Vehicle(null, "Kwid", "ABC1234", "11222333333", 10000.00, "120983190",
-				LocalDate.parse("2000-10-10"), cat1, VehicleStatus.AVAILABLE);
+				"2013", cat1, VehicleStatus.AVAILABLE);
 
 		Vehicle v5 = new Vehicle(null, "Palio", "DEF5678", "11222333333", 10000.00, "120983190",
-				LocalDate.parse("2000-10-10"), cat1, VehicleStatus.DISABLE);
+				"2014", cat1, VehicleStatus.DISABLE);
 
 		Vehicle v6 = new Vehicle(null, "Vectra", "ABC1234", "11222333333", 10000.00, "120983190",
-				LocalDate.parse("2000-10-10"), cat1, VehicleStatus.UNAVAILABLE);
+				"2009", cat1, VehicleStatus.UNAVAILABLE);
 
 		Vehicle v7 = new Vehicle(null, "Gol", "DEF5678", "11222333333", 10000.00, "120983190",
-				LocalDate.parse("2000-10-10"), cat1, VehicleStatus.MAINTENANCE);
+				"2010", cat1, VehicleStatus.MAINTENANCE);
 
 		Vehicle v8 = new Vehicle(null, "Corsa", "ABC1234", "11222333333", 10000.00, "120983190",
-				LocalDate.parse("2000-10-10"), cat1, VehicleStatus.AVAILABLE);
+				"2010", cat1, VehicleStatus.AVAILABLE);
 
 		Vehicle v9 = new Vehicle(null, "Sandero", "DEF5678", "11222333333", 10000.00, "120983190",
-				LocalDate.parse("2000-10-10"), cat1, VehicleStatus.AVAILABLE);
+				"2010", cat1, VehicleStatus.AVAILABLE);
 
 		Vehicle v10 = new Vehicle(null, "Ka", "ABC1234", "11222333333", 10000.00, "120983190",
-				LocalDate.parse("2000-10-10"), cat1, VehicleStatus.AVAILABLE);
+				"2010", cat1, VehicleStatus.AVAILABLE);
 
 		Vehicle v11 = new Vehicle(null, "Kwid", "ABC1234", "11222333333", 10000.00, "120983190",
-				LocalDate.parse("2000-10-10"), cat1, VehicleStatus.AVAILABLE);
+				"2010", cat1, VehicleStatus.AVAILABLE);
 
 		Vehicle v12 = new Vehicle(null, "Palio", "DEF5678", "11222333333", 10000.00, "120983190",
-				LocalDate.parse("2000-10-10"), cat1, VehicleStatus.DISABLE);
+				"2010", cat1, VehicleStatus.DISABLE);
 
 		Vehicle v13 = new Vehicle(null, "Vectra", "ABC1234", "11222333333", 10000.00, "120983190",
-				LocalDate.parse("2000-10-10"), cat1, VehicleStatus.UNAVAILABLE);
+				"2010", cat1, VehicleStatus.UNAVAILABLE);
 
 		Vehicle v14 = new Vehicle(null, "Gol", "DEF5678", "11222333333", 10000.00, "120983190",
-				LocalDate.parse("2000-10-10"), cat1, VehicleStatus.MAINTENANCE);
+				"2010", cat1, VehicleStatus.MAINTENANCE);
 
 		vehicleRepository.saveAll(Arrays.asList(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14));
 

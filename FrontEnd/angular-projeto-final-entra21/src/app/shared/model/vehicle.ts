@@ -9,7 +9,7 @@ export interface Vehicle{
   chassi: string,
   mileage: number,
   renavam: string,
-  vehicleYear: Date,
+  vehicleYear: string,
   category: Category,
   vehicleStatus: string,
   revenues: VehicleRevenue[],

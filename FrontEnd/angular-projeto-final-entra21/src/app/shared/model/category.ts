@@ -3,6 +3,7 @@ import { Booking } from './booking';
 
 export interface Category{
   id: number,
+  name: string,
   dayPrice: number,
   weekPrice: number,
   vehicles: Vehicle[],
