@@ -18,65 +18,86 @@
                     placeholder="DD/MM/YYYY" />
             </mat-form-field>
           </div>
-          <!-- <mat-form-field appearance="fill">
-            <mat-label>Data de Início da Pesquisa</mat-label>
-            <input matInput id="model" [matDatepicker]="picker" [(ngModel)] = "client.birthDate">
-            <mat-hint>DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field class="formField" appearance="fill">
-            <mat-label>Sexo: </mat-label>
-            <mat-select id="model" formControlName="gender">
-              <mat-option >
-                options
-              </mat-option>
-            </mat-select>
-          </mat-form-field> -->
-
-          <mat-form-field class="formField" appearance="fill">
-            <mat-label>CPF: </mat-label>
-            <input matInput id="cpf" formControlName="cpf" type="text"
-                   placeholder="Digite o CPF do cliente" />
-          </mat-form-field>
-
-          <mat-form-field class="formField" appearance="fill">
-            <mat-label>CNH: </mat-label>
-            <input matInput id="cnh" formControlName="cnh" type="text" placeholder="Digite a cnh do cliente" />
-          </mat-form-field>
-
-          <mat-form-field class="formField" appearance="fill">
-            <mat-label>CEP: </mat-label>
-            <input matInput id="cep" formControlName="cep" type="text" placeholder="Digite o CEP" />
-          </mat-form-field>
-
-          <mat-form-field class="formField" appearance="fill">
-            <mat-label>Endereço: </mat-label>
-            <input matInput id="street" formControlName="street" type="text" placeholder="Endereço" />
-          </mat-form-field>
-
-          <mat-form-field class="formField" appearance="fill">
-            <mat-label>Número: </mat-label>
-            <input matInput id="number" formControlName="number" type="text" placeholder="Nro." />
-          </mat-form-field>
-
-          <mat-form-field class="formField" appearance="fill">
-            <mat-label>Complemento: </mat-label>
-            <input matInput id="complement" formControlName="complement" type="text" placeholder="complemento" />
-          </mat-form-field>
-
-          <mat-form-field class="formField" appearance="fill">
-            <mat-label>Cidade: </mat-label>
-            <input matInput id="district" formControlName="district" type="text" placeholder="cidade" />
-          </mat-form-field>
-
-          <mat-form-field class="formField" appearance="fill">
-            <mat-label>UF: </mat-label>
-            <input matInput id="uf" formControlName="uf" type="text" placeholder="uf" />
-          </mat-form-field>
 
 
+          <div id="secondLine">
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Sexo:</mat-label>
+              <select matNativeControl required placeholder="Selecione">
+                <option value="SELECIONE">Selecione</option>
+                <option value="MASCULINO">Masculino</option>
+                <option value="FEMININO">Feminino</option>
+                <option value="NAOINFORMADO">Não desejo informar</option>
+              </select>
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>CPF: </mat-label>
+              <input matInput id="cpf" formControlName="cpf" type="text"
+                    placeholder="Digite o CPF do cliente" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>CNH: </mat-label>
+              <input matInput id="cnh" formControlName="cnh" type="text" placeholder="Digite a cnh do cliente" />
+            </mat-form-field>
+          </div>
+          <div id="thirdLine">
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>CEP: </mat-label>
+              <input matInput id="cep" formControlName="cep" type="text" placeholder="Digite o CEP" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Endereço: </mat-label>
+              <input matInput id="street" formControlName="street" type="text" placeholder="Endereço" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Número: </mat-label>
+              <input matInput id="number" formControlName="number" type="text" placeholder="Nro." />
+            </mat-form-field>
+          </div>
+          <div id="fourthLine">
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Complemento: </mat-label>
+              <input matInput id="complement" formControlName="complement" type="text" placeholder="complemento" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Bairro: </mat-label>
+              <input matInput id="district" formControlName="district" type="text" placeholder="bairro" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Cidade: </mat-label>
+              <input matInput id="city" formControlName="city" type="text" placeholder="cidade" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>UF: </mat-label>
+              <input matInput id="uf" formControlName="uf" type="text" placeholder="uf" />
+            </mat-form-field>
+          </div>
+          <div id="fifthLine">
+            <mat-form-field class="formField" color="warn" appearance="fill">
+              <mat-label>E-mail:</mat-label>
+              <input matInput id="email" formControlName="email" type="text"
+                    placeholder="Informe um email válido" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Telefone: </mat-label>
+              <input matInput id="phone" formControlName="phone" type="text"
+                    placeholder="Informe um telefone válido" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Telefone: </mat-label>
+              <input matInput id="phone" formControlName="phone" type="text"
+                    placeholder="Informe um telefone válido" />
+            </mat-form-field>
+          </div>
         </div>
 
         <mat-card-actions>

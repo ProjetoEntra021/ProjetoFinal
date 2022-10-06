@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.entra21.entities.enums.GenderType;
+import com.entra21.entities.enums.GenderType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -30,6 +32,8 @@ public class Client implements Serializable{
 	
 	private Instant birthDate;
 	
+	private GenderType gender;
+	
 	@OneToMany(mappedBy = "client")
 	private List<Address> adresses = new ArrayList<>();
 	
@@ -40,15 +44,19 @@ public class Client implements Serializable{
 	private List<Booking> bookings = new ArrayList<>();
 	
 	public Client() {}
-
-	public Client(Long id, String name, String cpf, String cnh, Instant birthDate) {
+	
+	public Client(Long id, String name, String cpf, String cnh, Instant birthDate, GenderType gender) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
 		this.cnh = cnh;
 		this.birthDate = birthDate;
+		this.gender = gender;
+		
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -88,6 +96,14 @@ public class Client implements Serializable{
 
 	public void setBirthDate(Instant birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	public GenderType getGender() {
+		return gender;
+	}
+
+	public void setGender(GenderType gender) {
+		this.gender = gender;
 	}
 
 	public List<Address> getAdresses() {

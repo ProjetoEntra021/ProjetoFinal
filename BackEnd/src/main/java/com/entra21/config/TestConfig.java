@@ -17,6 +17,7 @@ import com.entra21.entities.Client;
 import com.entra21.entities.Rental;
 import com.entra21.entities.Vehicle;
 import com.entra21.entities.enums.BookingStatus;
+import com.entra21.entities.enums.GenderType;
 import com.entra21.entities.enums.RentalStatus;
 import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.repositories.AddressRepository;
@@ -54,11 +55,11 @@ public class TestConfig implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		// create test registration client Mateus
-		Client c1 = new Client(null, "Mateus", "12312312312", "1233456", Instant.now());
+		Client c1 = new Client(null, "Mateus", "12312312312", "1233456", Instant.now(), GenderType.MASCULINO);
 
 		clientRepository.save(c1);
 
-		Address ad1 = new Address(null, "88040425", "Servidão Maria R", "Trinda", "186", "Casa 163", c1);
+		Address ad1 = new Address(null, "88040425", "Servidão Maria R", "Trinda", "186", "Casa 163", "Florianopolis", "SC", c1);
 
 		addressRepository.save(ad1);
 
@@ -125,12 +126,12 @@ public class TestConfig implements CommandLineRunner {
 		rentalRepository.save(r1);
 
 		// create test registration client Pablo
-		Client c2 = new Client(null, "Pablo", "00443990905", "386985233", Instant.now());
+		Client c2 = new Client(null, "Pablo", "00443990905", "386985233", Instant.now(), GenderType.MASCULINO);
 
 		clientRepository.save(c2);
 
 		Address ad2 = new Address(null, "88095000", "Av Marinheiro Max Schramm", "Estreito", "2428", "Bloco 4 Apto 301",
-				c2);
+				"Florianopolis", "SC", c2);
 
 		addressRepository.save(ad2);
 
