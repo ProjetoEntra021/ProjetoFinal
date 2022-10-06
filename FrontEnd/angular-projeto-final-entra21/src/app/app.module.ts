@@ -6,10 +6,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CreatBookingComponent } from './booking/creat-booking/creat-booking.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CreatBookingComponent,
 
   ],
   imports: [
