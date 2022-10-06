@@ -1,0 +1,97 @@
+#cardHeader {
+  width: 100%;
+  justify-content: flex-start;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  // border: 1px solid red;
+  margin: auto;
+  height: 50px;
+  color: #00796b;
+}
+
+#cardForm {
+  width: 70%;
+  height: fit-content;
+  color: black;
+  border: 1px solid black;
+  margin: auto;
+}
+
+#mainContent {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+
+fieldset {
+  // border: 1px solid red;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 30px 10px 30px;
+}
+
+.formBlocks {
+  width: 100%;
+  // border: 1px solid red;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.formField {
+  width: 48%;
+}
+
+input {
+  height: 20px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+label {
+  // border: 1px solid black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+select {
+  height: 26px;
+  border-radius: 5px;
+}
+
+mat-card-actions {
+  width: 99%;
+  margin: auto;
+  margin-top: 5px;
+  height: fit-content;
+  padding: 0px;
+  text-align: center;
+}
+
+legend,
+input {
+  color: black;
+}
+
+mat-label {
+  color: black;
+}
+
+.mat-input-element::placeholder {
+  color: gray;
+}
+
+#formHeader {
+  height: 50px;
+  font-size: 20px;
+  margin: auto;
+  border: 1px solid black;
+  width: 100%;
+}

@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class MainViewComponent implements OnInit {
 
   value = '';
+  title: string = '';
 
   constructor(
     public router: Router,
@@ -25,4 +26,31 @@ export class MainViewComponent implements OnInit {
   homePage() {
     this.router.navigate([''], { relativeTo: this.route })
   }
+
+  setHeader(){
+    let path = this.router.url.split('/');
+    if(path.length <= 3){
+      this.title = "PÁGINA INICIAL";
+    } else{
+      let answer = decodeURIComponent(path[2]);
+      if(answer == "vehicles"){
+        this.title = "MENU VEÍCULOS";
+      }
+      if(answer == "clients") {
+        this.title = "MENU CLIENTES";
+      }
+      if(answer == "bookings") {
+        this.title = "MENU RESERVAS"
+      }
+   }
+  //   if(path.length <= 3) {
+  //     let answer = decodeURIComponent(path[3]);
+  //     if(answer == "registration") {
+  //       this.title = "MENU CLIENTES";
+  //     }
+
+  // }
+}
+
+
 }

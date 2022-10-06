@@ -6,7 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreatBookingComponent } from './booking/creat-booking/creat-booking.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreatBookingComponent } from './bookings/creat-booking/creat-booking.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { CreatBookingComponent } from './booking/creat-booking/creat-booking.com
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

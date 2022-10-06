@@ -1,1 +1,62 @@
-<p>vehicle-add works!</p>
+<div id="mainContent">
+  <mat-card id="cardForm">
+    <div id="cardHeader">Novo Veículo</div>
+    <mat-card-content>
+      <form [formGroup]="form" class="min-width">
+
+        <div class="formBlocks">
+          <mat-form-field class="form-group formField" color="warn" appearance="fill">
+            <mat-label>Modelo:</mat-label>
+            <input matInput id="model" formControlName="vehicleModel" type="text"
+                   placeholder="Digite o modelo do veículo" />
+          </mat-form-field>
+
+          <mat-form-field class="formField" appearance="fill">
+            <mat-label>Ano:</mat-label>
+            <input matInput id="model" formControlName="vehicleYear" type="text"
+                   placeholder="Digite o ano do veículo" />
+          </mat-form-field>
+
+          <mat-form-field class="formField" appearance="fill">
+            <mat-label>Renavam:</mat-label>
+            <input matInput id="model" formControlName="renavam" type="text"
+                   placeholder="Digite o Renavam do veículo" />
+          </mat-form-field>
+
+          <mat-form-field class="formField" appearance="fill">
+            <mat-label>Placa:</mat-label>
+            <input matInput formControlName="licensePlate" type="text" placeholder="Digite o placa do veículo" />
+          </mat-form-field>
+
+          <mat-form-field class="formField" appearance="fill">
+            <mat-label>Chassi:</mat-label>
+            <input matInput formControlName="chassi" type="text" placeholder="Digite o Chassi do veículo" />
+          </mat-form-field>
+
+          <mat-form-field class="formField" appearance="fill">
+            <mat-label>Quilometragem:</mat-label>
+            <input matInput formControlName="mileage" type="text" placeholder="Digite o Chassi do veículo" />
+          </mat-form-field>
+
+          <mat-form-field class="formField" appearance="fill">
+            <mat-label>Categoria:</mat-label>
+            <mat-select [ngModel]="categories" formControlName="category">
+              <mat-option *ngFor="let category of categories" [value]="category">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <mat-card-actions>
+          <button class="formButton" mat-raised-button color="primary" (click)="onSubmit()">
+            Salvar
+          </button>
+          <button class="formButton" mat-raised-button color="secondary" (click)="onCancel()">
+            Cancelar
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

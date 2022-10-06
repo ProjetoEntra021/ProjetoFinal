@@ -21,6 +21,8 @@ public class Category implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private String name;
+	
 	private Double weekPrice;
 	
 	private Double dayPrice;
@@ -35,9 +37,10 @@ public class Category implements Serializable{
 		
 	}
 
-	public Category(Long id, Double weekPrice, Double dayPrice) {
+	public Category(Long id, String name, Double weekPrice, Double dayPrice) {
 		super();
 		this.id = id;
+		this.name = name;
 		this.weekPrice = weekPrice;
 		this.dayPrice = dayPrice;
 	}
@@ -48,6 +51,14 @@ public class Category implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Double getWeekPrice() {

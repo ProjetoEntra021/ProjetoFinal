@@ -1,11 +1,14 @@
+* {
+  color: white;
+}
 
-mat-drawer-container{
+mat-drawer-container {
   height: 100%;
 }
 
-mat-drawer{
+mat-drawer {
   width: 20%;
-  background-color: #008080;
+  color: white;
 }
 
 .example-form-field {
@@ -14,15 +17,15 @@ mat-drawer{
   margin-top: 10px;
 }
 
-input{
+input {
   padding: 0px;
 }
 
-figure{
- border: 1px solid red;
+figure {
+  border: 1px solid red;
 }
 
-#logoDivider{
+#logoDivider {
   margin-bottom: 10px;
   border-top-width: 3px;
   background-color: white;
@@ -31,7 +34,7 @@ figure{
   margin-right: auto;
 }
 
-#listItemLogo{
+#listItemLogo {
   display: flex;
   height: 15vh;
   align-items: center;
@@ -39,33 +42,43 @@ figure{
   gap: 10px;
 }
 
-
-
-#logoImage{
+#logoImage {
   margin: 0px;
   width: 60%;
 }
 
-#logoImage img{
+#logoImage img {
   width: 100%;
 }
 
-#logoText{
+#logoText {
   margin-left: 10px;
+}
+mat-drawer-content {
+  background-color: rgba(180, 180, 180);
+}
 
+//
+
+mat-toolbar {
+  justify-content: center;
 }
-mat-drawer-content{
-  background-color: #4f5355;
+
+app-header {
+  color: white;
+  font-style: italic;
+  text-align: center;
 }
+//
 
 mat-toolbar{
-  display: grid;
-  grid-template-columns: 85% 15%;
-  background-color: #696969;
-  color: #ffffff;
-
-
+ justify-content: center;
+ display: grid;
+ grid-template-columns: 85% 15%;
+//  background-color: rgba(180, 180, 180);
+ color: #ffffff;
 }
+
 .headerBar {
   text-align: center;
   padding-left: 10%;
@@ -76,7 +89,6 @@ mat-toolbar{
   font-size: 30px;
   line-height: 75px;
 }
-
 #userIcon {
   display: grid;
   grid-template-columns: 30% 70%;

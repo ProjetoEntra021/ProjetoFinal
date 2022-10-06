@@ -1,12 +1,12 @@
 <mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened>
+  <mat-drawer class="color-primary" mode="side" opened>
     <mat-list>
 
       <div id="listItemLogo">
         <div id="logoText">AlôCar</div>
-          <div id="logoImage">
-            <img src="../../../assets/aloCarSymbol.png" alt="Logo AloCar" />
-            </div>
+        <div id="logoImage">
+          <img src="../../../assets/aloCarSymbol.png" alt="Logo AloCar" />
+        </div>
       </div>
 
       <mat-divider id="logoDivider"></mat-divider>
@@ -15,13 +15,7 @@
         <mat-form-field class="example-form-field" appearance="fill">
           <mat-label>Pesquisar</mat-label>
           <input matInput type="text" [(ngModel)]="value" />
-          <button
-            *ngIf="value"
-            matSuffix
-            mat-icon-button
-            aria-label="Clear"
-            (click)="value = ''"
-          >
+          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value = ''">
             <mat-icon>search</mat-icon>
           </button>
         </mat-form-field>
@@ -32,13 +26,13 @@
       <mat-divider></mat-divider>
 
       <mat-list-item>
-        <button mat-button [routerLink]="['/main/clients']"  >Clientes</button>
+        <button mat-button [routerLink]="['/main/clients']">Clientes</button>
       </mat-list-item>
 
       <mat-divider></mat-divider>
 
       <mat-list-item>
-        <button mat-button [routerLink]="['/main/vehicles']"   > Carros</button>
+        <button mat-button [routerLink]="['/main/vehicles']"> Carros</button>
       </mat-list-item>
       <mat-divider></mat-divider>
 
@@ -49,18 +43,25 @@
       </mat-list-item>
 
       <mat-divider></mat-divider>
-      <mat-list-item>Locações</mat-list-item>
+      <mat-list-item>
+        <button mat-button> Locações</button>
+      </mat-list-item>
 
       <mat-divider></mat-divider>
-      <mat-list-item>Sair</mat-list-item>
+      <mat-list-item>
+        <button mat-button> Sair</button>
+      </mat-list-item>
 
       <mat-divider></mat-divider>
     </mat-list>
   </mat-drawer>
 
   <mat-drawer-content>
-    <mat-toolbar>
-      <div  class = "headerBar" *ngIf="router.url === '/main'">
+
+    <mat-toolbar class="color-primary">
+      <app-header [title]="title"></app-header>
+         <!-- <mat-toolbar> -->
+      <!-- <div  class = "headerBar" *ngIf="router.url === '/main'">
         PÁGINA INICIAL
       </div>
       <div class = "headerBar" *ngIf="router.url === '/main/vehicles'">
@@ -68,8 +69,8 @@
       </div>
       <div class = "headerBar" *ngIf="router.url === '/main/vehicles/list'">
         MENU VEÍCULOS
-      </div>
-      <div class = "headerBar" *ngIf="router.url === '/main/clients'">
+      </div> -->
+      <!-- <div class = "headerBar" *ngIf="router.url === '/main/clients'">
         MENU CLIENTES
       </div>
       <div class = "headerBar" *ngIf="router.url === '/main/clients/list'">
@@ -80,12 +81,13 @@
       </div>
       <div class = "headerBar" *ngIf="router.url === '/main/bookings'">
         MENU RESERVAS
-      </div>
+      </div> -->
       <div id="userIcon">
         <img src="../../../assets/userIcon.png" alt="User" />
         <p>User</p>
       </div>
+
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <router-outlet (activate)="setHeader()"></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>
