@@ -12,7 +12,6 @@ import { CreatBookingComponent } from './bookings/creat-booking/creat-booking.co
 @NgModule({
   declarations: [
     AppComponent,
-    CreatBookingComponent,
 
   ],
   imports: [
