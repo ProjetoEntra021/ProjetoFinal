@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Client } from '../../shared/model/client';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
+
 import { ClientService } from '../../service/client.service';
+import { Client } from '../../shared/model/client';
 
 @Component({
   selector: 'app-client-registration',
@@ -9,8 +11,21 @@ import { ClientService } from '../../service/client.service';
 })
 export class ClientRegistrationComponent implements OnInit {
 
+  clientForm = this.formBuilder.group({
+    name: ['', Validators.required],
+    birthDate: ['', Validators.required],
+    cpf: ['', Validators.required],
+    cnh: ['', Validators.required],
+    gender: ['', Validators.required],
+  })
+
   public client!: Client;
-  constructor(private clientService: ClientService) { }
+
+  constructor(
+    private clientService: ClientService,
+    private formBuilder: NonNullableFormBuilder,
+
+    ) { }
 
   ngOnInit(): void {
   }

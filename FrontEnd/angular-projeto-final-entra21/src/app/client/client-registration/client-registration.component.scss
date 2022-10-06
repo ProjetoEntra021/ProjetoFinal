@@ -1,104 +1,97 @@
-.clientFormContainer {
-  margin-top: 20px;
-  justify-items: center;
-  align-content: center;
-  font-size: 17px;
-
-}
-mat-card{
-  width: 40%;
-  justify-content: center;
-  margin: auto;
+#cardHeader {
+  width: 100%;
+  justify-content: flex-start;
   font-size: 20px;
   font-weight: bold;
-  text-align: center;
-
+  text-align: left;
+  // border: 1px solid red;
+  margin: auto;
+  height: 50px;
+  color: #00796b;
 }
-.clientRegistrationForm{
+
+#cardForm {
   width: 90%;
-  height: 90%;
-  background-color: rgba(255, 255, 255, 0.6);
+  height: fit-content;
+  color: black;
+  border: 1px solid black;
   margin: auto;
-  padding: 20px;
-  border-radius: 5px;
-}
-#name{
-  width: 55%;
-}
-#birthDate{
-  width: 15%;
-}
-#birthDateLabel, #cpfLabel, #cnhLabel, #cidadeLabel, #ufLabel, #emailLabel, #enderecoLabel, #numeroLabel{
-  margin-left: 5px;
-}
-#cpf {
-  width: 27%;
-}
-#cnh {
-  width: 27%;
-}
-#sexo {
-  width: 25%;
 }
 
-#firstLineFirstForm, #firstLineSecondForm{
+#mainContent {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
   margin: auto;
-  margin-bottom: 15px;
-  margin-top: 5px;
+}
+#firstLine {
+  display: grid;
+  grid-template-columns: 500px auto;
+}
 
+.formBlocks {
+  width: 100%;
+  // border: 1px solid red;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-#secondLineFirstForm, #secondLineSecondForm{
-  margin: auto;
-  margin-bottom: 10px;
 
+.formField {
+  width: 48%;
 }
-#thirdLineSecondForm{
-  margin: auto;
-  padding-top: 5px;
-  margin-bottom: 12px;
 
-}
-label {
-  margin-right: 3px;
-}
-#cep {
-  width: 12%;
-}
-#endereco{
-  width: 50%;
-}
-#numero {
-  width: 9.8%;
-}
-#uf{
-  width: 10%;
-}
-#complemento, #cidade {
-  width: 30%
-}
-#telefone{
-  width: 30%
-}
-#email{
-  width: 50%;
-}
-input{
+input {
   height: 20px;
   border-radius: 5px;
+  width: 100%;
 }
-select{
+
+label {
+  // border: 1px solid black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+select {
   height: 26px;
   border-radius: 5px;
 }
-.buttonsClientForm{
-  text-align: right;
-  margin: 10px 2px 0px 0px;
+
+mat-card-actions {
+  width: 99%;
+  margin: auto;
+  margin-top: 5px;
+  height: fit-content;
+  padding: 0px;
+  text-align: center;
 }
-button {
-  width: 10%
+
+legend,
+input {
+  color: black;
 }
-.enderecoContato{
-  margin-top: 10px;
+
+mat-label {
+  color: black;
+}
+
+.mat-input-element::placeholder {
+  color: gray;
+}
+
+#formHeader {
+  height: 50px;
+  font-size: 20px;
+  margin: auto;
+  border: 1px solid black;
+  width: 100%;
 }
 
 

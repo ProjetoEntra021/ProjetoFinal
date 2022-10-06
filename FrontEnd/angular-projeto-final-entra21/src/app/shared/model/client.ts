@@ -5,9 +5,10 @@ import { Contact } from './contact';
 export interface Client{
   id: number,
   name: string,
+  birthDate: Date,
+  gender: string,
   cpf: string,
   cnh: string,
-  birthDate: Date,
   addresses: Address[],
   contacts: Contact[],
   bookings: Booking[]

@@ -7,7 +7,7 @@ import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { ClientMenuComponent } from './client-menu/client-menu.component';
 import { ClientRegistrationComponent } from './client-registration/client-registration.component';
 import { ClientListComponent } from './client-list/client-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     ClientRoutingModule,
     AppMaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ClientModule { }

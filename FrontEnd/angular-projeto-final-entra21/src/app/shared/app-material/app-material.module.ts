@@ -15,6 +15,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -35,6 +37,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatSnackBarModule,
     MatSelectModule,
     MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     ]
 })
 export class AppMaterialModule { }
