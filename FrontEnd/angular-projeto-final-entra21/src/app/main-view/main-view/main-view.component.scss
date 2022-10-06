@@ -67,15 +67,17 @@ mat-toolbar {
 app-header {
   color: white;
   font-style: italic;
+  text-align: center;
 }
 //
 
-//mat-toolbar{
-//  display: grid;
-//  grid-template-columns: 85% 15%;
-//  background-color: #696969;
-//  color: #ffffff;
-//}
+mat-toolbar{
+ justify-content: center;
+ display: grid;
+ grid-template-columns: 85% 15%;
+//  background-color: rgba(180, 180, 180);
+ color: #ffffff;
+}
 
 .headerBar {
   text-align: center;

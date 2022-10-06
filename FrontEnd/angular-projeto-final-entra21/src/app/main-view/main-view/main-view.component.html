@@ -60,8 +60,8 @@
 
     <mat-toolbar class="color-primary">
       <app-header [title]="title"></app-header>
-      <!--    <mat-toolbar>
-      <div  class = "headerBar" *ngIf="router.url === '/main'">
+         <!-- <mat-toolbar> -->
+      <!-- <div  class = "headerBar" *ngIf="router.url === '/main'">
         PÁGINA INICIAL
       </div>
       <div class = "headerBar" *ngIf="router.url === '/main/vehicles'">
@@ -69,8 +69,8 @@
       </div>
       <div class = "headerBar" *ngIf="router.url === '/main/vehicles/list'">
         MENU VEÍCULOS
-      </div>
-      <div class = "headerBar" *ngIf="router.url === '/main/clients'">
+      </div> -->
+      <!-- <div class = "headerBar" *ngIf="router.url === '/main/clients'">
         MENU CLIENTES
       </div>
       <div class = "headerBar" *ngIf="router.url === '/main/clients/list'">
@@ -81,12 +81,12 @@
       </div>
       <div *ngIf="router.url === '/main/bookings'">
         MENU RESERVAS
-      </div>
+      </div> -->
       <div id="userIcon">
         <img src="../../../assets/userIcon.png" alt="User" />
         <p>User</p>
       </div>
--->
+
     </mat-toolbar>
     <router-outlet (activate)="setHeader()"></router-outlet>
   </mat-drawer-content>
