@@ -14,7 +14,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-
 @NgModule({
   declarations: [],
   exports: [
@@ -31,7 +30,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatButtonModule,
     MatDialogModule,
     MatSortModule,
-    MatRadioModule
-  ]
+    MatRadioModule,
+    ]
 })
 export class AppMaterialModule { }

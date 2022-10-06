@@ -13,7 +13,7 @@ import { VehiclePipe } from './pipes/vehicle.pipe';
   imports: [
     CommonModule,
     AppMaterialModule,
-    VehicleModule
+    VehicleModule,
   ]
 })
 export class SharedModule { }

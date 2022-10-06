@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Client } from '../../shared/model/client';
+import { ClientService } from '../../service/client.service';
 
 @Component({
   selector: 'app-client-registration',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientRegistrationComponent implements OnInit {
 
-  constructor() { }
+  public client!: Client;
+  constructor(private clientService: ClientService) { }
 
   ngOnInit(): void {
   }
 
+  addClient() {
+    this.clientService.addClient(this.client).subscribe(
+      resultado => {
+        this.client = resultado;
+        alert("Cliente salvo!");
+
+      }
+    )
+  }
 }

@@ -5,9 +5,9 @@
       <legend>Dados Pessoais</legend>
       <div id="firstLineFirstForm">
         <label from="name" id="nameLabel">Nome:</label>
-        <input id="name" type="text" placeholder="Digite o nome do cliente">
+        <input id="name" type="text" placeholder="Digite o nome do cliente" [(ngModel)]="client.name">
         <label from="birthDate" id="birthDateLabel">Data de Nascimento:</label>
-        <input id="birthDate" type="text" placeholder="DD/MM/YYYY">
+        <input id="birthDate" type="text" placeholder="DD/MM/YYYY" [(ngModel)]="client.birthDate">
       </div>
       <div id="secondLineFirstForm">
         <label from="sexo" id="sexoLabel">Sexo:</label>
@@ -18,9 +18,9 @@
           <option value="naoDesejoInformar">Não informado</option>
         </select>
         <label from="cpf" id="cpfLabel">CPF:</label>
-        <input id="cpf" type="text" placeholder="Digite o CPF do cliente">
+        <input id="cpf" type="text" placeholder="Digite o CPF do cliente" [(ngModel)]="client.cpf">
         <label from="cnh" id="cnhLabel">CNH:</label>
-        <input id="cnh" type="text" placeholder="Digite a CNH do cliente">
+        <input id="cnh" type="text" placeholder="Digite a CNH do cliente" [(ngModel)]="client.cnh">
       </div>
     </fieldset>
     <fieldset class="enderecoContato">
@@ -51,8 +51,10 @@
       </div>
     </fieldset>
     <div class="buttonsClientForm">
-      <button mat-raised-button color="primary">Salvar</button>
+      <button mat-raised-button color="primary" (click)="addClient()">Salvar</button>
     </div>
   </div>
 </div>
+
+
 
