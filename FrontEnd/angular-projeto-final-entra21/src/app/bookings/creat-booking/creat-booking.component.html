@@ -14,19 +14,19 @@
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Data retirada: </mat-label>
-              <input matInput id="pickUpDate" formControlName="pickUpDate" type="date"
+              <input matInput id="pickUpDate" formControlName="pickUpDate" type="Date"
                     placeholder="DD/MM/YYYY" />
             </mat-form-field>
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Data entrega: </mat-label>
-              <input matInput id="dropOffDate" formControlName="dropOffDate" type="date"
+              <input matInput id="dropOffDate" formControlName="dropOffDate" type="Date"
                     placeholder="DD/MM/YYYY" />
             </mat-form-field>
           </div>
         </div>
         <div id="secondLine">
-          <mat-form-field appearance="fill">
+          <!-- <mat-form-field appearance="fill">
             <mat-label>Categoria do Carro</mat-label>
             <mat-select required formControlName="category">
               <mat-option>--</mat-option>
@@ -35,7 +35,7 @@
                 {{category.name}}
               </mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field> -->
         </div>
         <mat-card-actions>
           <button class="formButton" mat-raised-button color="primary" (click)="addBooking()">
@@ -52,4 +52,4 @@
     </mat-card-content>
   </mat-card>
 </div>
-<pre>{{booking | json}}</pre>
+<pre>{{bookingForm | json}}</pre>

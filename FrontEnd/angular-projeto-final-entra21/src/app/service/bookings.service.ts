@@ -19,8 +19,8 @@ export class BookingsService {
       first());
     }
 
-  addBooking(booking: any): Observable<Booking> {
-    return this.httpClient.post<Booking>(this.API, booking);
+  addBooking(record: Partial<Booking>){
+    return this.httpClient.post<Booking>(this.API, record).pipe(first());
   }
 
 }
