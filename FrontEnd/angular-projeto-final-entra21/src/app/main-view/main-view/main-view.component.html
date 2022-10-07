@@ -60,10 +60,29 @@
 
     <mat-toolbar class="color-primary">
       <app-header [title]="title"></app-header>
-      <div id="userIcon">
-        <img src="../../../assets/userIcon.png" alt="User" />
-        <p>User</p>
+
+         <!-- <mat-toolbar> -->
+      <!-- <div  class = "headerBar" *ngIf="router.url === '/main'">
+        PÁGINA INICIAL
       </div>
+      <div class = "headerBar" *ngIf="router.url === '/main/vehicles'">
+        MENU VEÍCULOS
+      </div>
+      <div class = "headerBar" *ngIf="router.url === '/main/vehicles/list'">
+        MENU VEÍCULOS
+      </div> -->
+      <!-- <div class = "headerBar" *ngIf="router.url === '/main/clients'">
+        MENU CLIENTES
+      </div>
+      <div class = "headerBar" *ngIf="router.url === '/main/clients/list'">
+        MENU CLIENTES
+      </div>
+      <div class = "headerBar" *ngIf="router.url === '/main/clients/registration'">
+        MENU CLIENTES
+      </div>
+      <div class = "headerBar" *ngIf="router.url === '/main/bookings'">
+        MENU RESERVAS
+      </div> -->
 
     </mat-toolbar>
     <router-outlet (activate)="setHeader()"></router-outlet>
