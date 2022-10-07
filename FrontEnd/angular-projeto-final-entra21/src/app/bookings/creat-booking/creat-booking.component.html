@@ -14,28 +14,29 @@
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Data retirada: </mat-label>
-              <input matInput id="pickUpDate" formControlName="pickUpDate" [(ngModel)]="booking.pickUpDate" type="date"
+              <input matInput id="pickUpDate" formControlName="pickUpDate" type="date"
                     placeholder="DD/MM/YYYY" />
             </mat-form-field>
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Data entrega: </mat-label>
-              <input matInput id="dropOffDate" formControlName="dropOffDate" type="text"
+              <input matInput id="dropOffDate" formControlName="dropOffDate" type="date"
                     placeholder="DD/MM/YYYY" />
             </mat-form-field>
           </div>
         </div>
-        <mat-form-field appearance="fill">
-          <mat-label>Categoria do Carro</mat-label>
-          <mat-select required [(ngModel)]="booking.category">
-            <mat-option>--</mat-option>
-            <mat-option *ngFor="let categoria of categories"
-                        [value]="categoria">
-              {{categoria.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
+        <div id="secondLine">
+          <mat-form-field appearance="fill">
+            <mat-label>Categoria do Carro</mat-label>
+            <mat-select required formControlName="category">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let category of categories"
+                          [value]="category">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
         <mat-card-actions>
           <button class="formButton" mat-raised-button color="primary" (click)="addBooking()">
             Salvar
@@ -44,7 +45,11 @@
             Cancelar
           </button>
         </mat-card-actions>
+
+
+
       </form>
     </mat-card-content>
   </mat-card>
 </div>
+<pre>{{booking | json}}</pre>

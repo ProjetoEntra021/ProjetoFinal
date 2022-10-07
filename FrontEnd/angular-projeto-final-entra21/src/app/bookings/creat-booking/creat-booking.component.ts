@@ -1,3 +1,4 @@
+import { Category } from './../../shared/model/category';
 import { CategoryService } from './../../service/category.service';
 import { Booking, CreateBookingInput } from './../../shared/model/booking';
 import { BookingsService } from './../../service/bookings.service';
@@ -5,7 +6,7 @@ import { BookingsService } from './../../service/bookings.service';
 
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import { Category } from 'src/app/shared/model/category';
+
 
 @Component({
   selector: 'app-creat-booking',
@@ -29,17 +30,8 @@ export class CreatBookingComponent implements OnInit {
     "client": {
         "id": 1,
     },
-    "dropOffDate": new Date("2010-10-10T00:00:00Z"),
     // "dayPrice": 70.0,
     // "weekPrice": 450.0,
-    "category": {
-        "id": 1,
-        "name": "Hatch-Back",
-        "weekPrice": 450.0,
-        "dayPrice": 70.0,
-        "vehicles": [],
-        bookings: []
-    },
     "bookingStatus": "ACTIVE"
   } as any;
 
@@ -50,18 +42,22 @@ export class CreatBookingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log("estou no ngOnInit", this.booking)
     this.searchCategory();
   }
 
   addBooking(){
     this.booking.pickUpDate = new Date (this.booking.pickUpDate);
+    this.booking.dropOffDate = new Date (this.booking.dropOffDate);
+    this.booking.category.dayPrice = this.booking.dayPrice;
+    this.booking.catefory.weekPrice = this.booking.weekPrice;
+
     this.bookingsService.addBooking(this.booking).subscribe(
       resultado => {
         this.booking = resultado;
         alert("Reserva realizada!");
       }
     )
+
   }
 
   searchCategory(){
@@ -74,8 +70,8 @@ export class CreatBookingComponent implements OnInit {
         console.log("DEU ERRO. Causa: " + erro);
       }
     );
-
     console.log("estou no searchCategory", this.booking)
   }
+
 }
 
