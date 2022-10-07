@@ -1,3 +1,6 @@
+import { Category } from 'src/app/shared/model/category';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreatBookingComponent } from './creat-booking/creat-booking.component';
 import { AppMaterialModule } from './../shared/app-material/app-material.module';
 import { NgModule } from '@angular/core';
@@ -15,7 +18,10 @@ import { BookingListComponent } from './booking-list/booking-list.component';
   imports: [
     CommonModule,
     BookingsRoutingModule,
-    AppMaterialModule
+    AppMaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
   ]
 })
 export class BookingsModule { }
