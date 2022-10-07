@@ -14,16 +14,20 @@ export class VehicleService {
 
   list() {
     return this.httpClient.get<Vehicle[]>(this.API)
-    .pipe(tap(data => console.log(data)),
+      .pipe(tap(data => console.log(data)),
+        first());
+  }
+
+  save(record: Partial<Vehicle>) {
+    return this.httpClient.post<Partial<Vehicle>>(this.API, record).pipe(first());
+  }
+
+  getVehicleById(id: number) {
+    return this.httpClient.get<Vehicle>(this.API + '/' + id).pipe(tap(data => console.log(data)),
       first());
-    }
+  }
 
-    save(record: Partial<Vehicle>){
-      return this.httpClient.post<Vehicle>(this.API, record).pipe(first());
-    }
-
-    getVehicleById(id: number){
-     return this.httpClient.get<Vehicle>(this.API + '/'+ id).pipe(tap(data => console.log(data)),
-     first());
-    }
+  update(record: Partial<Vehicle>) {
+    return this.httpClient.put<Partial<Vehicle>>(this.API + '/' + record.id, record).pipe(first());
+  }
 }

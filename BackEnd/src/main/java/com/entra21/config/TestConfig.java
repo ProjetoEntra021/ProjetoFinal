@@ -86,13 +86,13 @@ public class TestConfig implements CommandLineRunner {
 				"2012", cat1, VehicleStatus.AVAILABLE);
 
 		Vehicle v4 = new Vehicle(null, "Kwid", "ABC1234", "11222333333", 10000.00, "120983190",
-				"2013", cat1, VehicleStatus.AVAILABLE);
+				"2013", cat3, VehicleStatus.AVAILABLE);
 
 		Vehicle v5 = new Vehicle(null, "Palio", "DEF5678", "11222333333", 10000.00, "120983190",
 				"2014", cat1, VehicleStatus.DISABLE);
 
 		Vehicle v6 = new Vehicle(null, "Vectra", "ABC1234", "11222333333", 10000.00, "120983190",
-				"2009", cat1, VehicleStatus.UNAVAILABLE);
+				"2009", cat2, VehicleStatus.UNAVAILABLE);
 
 		Vehicle v7 = new Vehicle(null, "Gol", "DEF5678", "11222333333", 10000.00, "120983190",
 				"2010", cat1, VehicleStatus.MAINTENANCE);

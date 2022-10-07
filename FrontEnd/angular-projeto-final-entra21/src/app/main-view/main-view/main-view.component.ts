@@ -27,30 +27,30 @@ export class MainViewComponent implements OnInit {
     this.router.navigate([''], { relativeTo: this.route })
   }
 
-  setHeader(){
+  setHeader() {
     let path = this.router.url.split('/');
-    if(path.length <= 3){
+    if (path.length < 3) {
       this.title = "PÁGINA INICIAL";
-    } else{
+    } else {
       let answer = decodeURIComponent(path[2]);
-      if(answer == "vehicles"){
+      if (answer == "vehicles") {
         this.title = "MENU VEÍCULOS";
       }
-      if(answer == "clients") {
+      if (answer == "clients") {
         this.title = "MENU CLIENTES";
       }
-      if(answer == "bookings") {
+      if (answer == "bookings") {
         this.title = "MENU RESERVAS"
       }
-   }
-  //   if(path.length <= 3) {
-  //     let answer = decodeURIComponent(path[3]);
-  //     if(answer == "registration") {
-  //       this.title = "MENU CLIENTES";
-  //     }
+    }
+    //   if(path.length <= 3) {
+    //     let answer = decodeURIComponent(path[3]);
+    //     if(answer == "registration") {
+    //       this.title = "MENU CLIENTES";
+    //     }
 
-  // }
-}
+    // }
+  }
 
 
 }

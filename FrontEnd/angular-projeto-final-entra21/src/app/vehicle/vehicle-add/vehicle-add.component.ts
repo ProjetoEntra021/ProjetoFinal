@@ -21,8 +21,8 @@ export class VehicleAddComponent implements OnInit {
     mileage: [, Validators.required],
     renavam: ['', Validators.required],
     vehicleYear: [, Validators.required],
+    vehicleStatus: ["AVAILABLE"],
     category: [, Validators.required],
-    vehicleStatus: ["AVAILABLE"]
   })
 
   categories: Category[] = [];
