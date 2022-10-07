@@ -5,7 +5,7 @@ import { Contact } from './contact';
 export interface Client{
   id: number,
   name: string,
-  birthDate: Date,
+  birthDate: string,
   gender: string,
   cpf: string,
   cnh: string,

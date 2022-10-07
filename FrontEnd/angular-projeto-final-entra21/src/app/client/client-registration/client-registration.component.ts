@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClientService } from '../../service/client.service';
 import { Client } from '../../shared/model/client';
+import { Location } from '@angular/common';
+import { Address } from '../../shared/model/address';
+import { Contact } from '../../shared/model/contact';
 
 @Component({
   selector: 'app-client-registration',
@@ -17,13 +20,28 @@ export class ClientRegistrationComponent implements OnInit {
     cpf: ['', Validators.required],
     cnh: ['', Validators.required],
     gender: ['', Validators.required],
+    cep: ['', Validators.required],
+    street: ['', Validators.required],
+    number: ['', Validators.required],
+    complement: ['', Validators.required],
+    district: ['', Validators.required],
+    city: ['', Validators.required],
+    uf: ['', Validators.required],
+
+
+
   })
 
-  public client!: Client;
+  // public client!: Client;
+  public address!: Address;
+  public contact!: Contact;
 
   constructor(
     private clientService: ClientService,
     private formBuilder: NonNullableFormBuilder,
+    private snackBar: MatSnackBar,
+    private location: Location,
+
 
     ) { }
 
@@ -31,12 +49,27 @@ export class ClientRegistrationComponent implements OnInit {
   }
 
   addClient() {
-    this.clientService.addClient(this.client).subscribe(
-      resultado => {
-        this.client = resultado;
-        alert("Cliente salvo!");
+    this.clientService.save(this.clientForm.value).subscribe(
+       {
+        next: () => this.onSuccess(),
+        error: (e) => this.onError()
 
       }
     )
   }
+
+  private onSuccess() {
+    this.snackBar.open('Veículo cadastrado com sucesso!', '', { duration: 3000 })
+    this.onCancel();
+  }
+
+  onCancel() {
+    this.location.back();
+  }
+
+  private onError() {
+    this.snackBar.open('Erro ao cadastrar veículo.', '', { duration: 3000 })
+  }
+
+
 }
