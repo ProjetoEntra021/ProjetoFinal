@@ -1,11 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Category } from 'src/app/shared/model/category';
-import { VehicleService } from '../../service/vehicle.service';
+
 import { CategoryService } from '../../service/category.service';
-import { Observable } from 'rxjs';
+import { VehicleService } from '../../service/vehicle.service';
 
 @Component({
   selector: 'app-vehicle-add',

@@ -29,27 +29,36 @@
 }
 #firstLine {
   display: grid;
-  grid-template-columns: 500px auto;
+  grid-template-columns: 70% auto;
+}
+#secondLine {
+  display: grid;
+  grid-template-columns: auto 30% 30%;
+}
+
+#thirdLine {
+  display: grid;
+  grid-template-columns: 15% auto 15%;
+}
+#fourthLine {
+  display: grid;
+  grid-template-columns: 25% 25% auto 10%;
+}
+#fifthLine {
+  display: grid;
+  grid-template-columns: auto 20% 20%;
 }
 
 .formBlocks {
   width: 100%;
   // border: 1px solid red;
   display: flex;
+  flex-direction: column;
   gap: 20px;
-  flex-wrap: wrap;
+
   justify-content: center;
 }
 
-.formField {
-  width: 48%;
-}
-
-input {
-  height: 20px;
-  border-radius: 5px;
-  width: 100%;
-}
 
 label {
   // border: 1px solid black;
@@ -59,10 +68,7 @@ label {
   gap: 5px;
 }
 
-select {
-  height: 26px;
-  border-radius: 5px;
-}
+
 
 mat-card-actions {
   width: 99%;

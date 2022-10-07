@@ -7,6 +7,7 @@ export interface Address {
   number: string,
   complement: string,
   district: string,
+  city: string,
   uf: string,
   client: Client
 }

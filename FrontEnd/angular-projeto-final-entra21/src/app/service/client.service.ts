@@ -19,7 +19,7 @@ export class ClientService {
       first());
     }
 
-  addClient(client: Client): Observable<Client> {
-      return this.httpClient.post<Client>(this.API, client);
+    save(record: Partial<Client>){
+      return this.httpClient.post<Client>(this.API, record).pipe(first());
     }
 }
