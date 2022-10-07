@@ -38,7 +38,6 @@ public class Client implements Serializable{
 	private GenderType gender;
 	
 	@OneToMany(mappedBy = "client")
-	@Cascade({ CascadeType.ALL })
 	private List<Address> adresses = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "client")
