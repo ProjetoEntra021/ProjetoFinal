@@ -14,7 +14,7 @@
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Data de nascimento: </mat-label>
-              <input matInput id="birthDate" formControlName="birthDate" type="text"
+              <input matInput id="birthDate" formControlName="birthDate" type="date"
                     placeholder="DD/MM/YYYY" />
             </mat-form-field>
           </div>
@@ -23,7 +23,7 @@
           <div id="secondLine">
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Sexo:</mat-label>
-              <select matNativeControl required placeholder="Selecione">
+              <select matNativeControl required formControlName="gender">
                 <option value="SELECIONE">Selecione</option>
                 <option value="MASCULINO">Masculino</option>
                 <option value="FEMININO">Feminino</option>
@@ -79,7 +79,7 @@
               <input matInput id="uf" formControlName="uf" type="text" placeholder="uf" />
             </mat-form-field>
           </div>
-          <div id="fifthLine">
+          <!-- <div id="fifthLine">
             <mat-form-field class="formField" color="warn" appearance="fill">
               <mat-label>E-mail:</mat-label>
               <input matInput id="email" formControlName="email" type="text"
@@ -97,11 +97,11 @@
               <input matInput id="phone" formControlName="phone" type="text"
                     placeholder="Informe um telefone válido" />
             </mat-form-field>
-          </div>
+          </div> -->
         </div>
 
         <mat-card-actions>
-          <button class="formButton" mat-raised-button color="primary" >
+          <button class="formButton" mat-raised-button color="primary" (click)="addClient()">
             Salvar
           </button>
           <button class="formButton" mat-raised-button color="secondary" >

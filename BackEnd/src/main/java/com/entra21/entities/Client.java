@@ -3,6 +3,7 @@ package com.entra21.entities;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,7 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.entra21.entities.enums.GenderType;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.entra21.entities.enums.GenderType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -30,11 +33,12 @@ public class Client implements Serializable{
 	
 	private String cnh;
 	
-	private Instant birthDate;
+	private Date birthDate;
 	
 	private GenderType gender;
 	
 	@OneToMany(mappedBy = "client")
+	@Cascade({ CascadeType.ALL })
 	private List<Address> adresses = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "client")
@@ -45,7 +49,7 @@ public class Client implements Serializable{
 	
 	public Client() {}
 	
-	public Client(Long id, String name, String cpf, String cnh, Instant birthDate, GenderType gender) {
+	public Client(Long id, String name, String cpf, String cnh, Date birthDate, GenderType gender) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -90,11 +94,11 @@ public class Client implements Serializable{
 		this.cnh = cnh;
 	}
 
-	public Instant getBirthDate() {
+	public Date getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Instant birthDate) {
+	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 
