@@ -42,8 +42,8 @@
               <input matInput id="cnh" formControlName="cnh" type="text" placeholder="Digite a cnh do cliente" />
             </mat-form-field>
           </div>
-          <form [formGroup]="addressForm" class="full-width">
-            <div id="thirdLine">
+          <form [formGroup] = "addressForm"  class="full-width">
+            <div id="thirdLine" formGroupName="addressGroup">
               <mat-form-field class="formField" appearance="fill">
                 <mat-label>CEP: </mat-label>
                 <input matInput id="cep" formControlName="cep" type="text" placeholder="Digite o CEP" />
@@ -114,5 +114,4 @@
     </mat-card-content>
   </mat-card>
 </div>
-
 
