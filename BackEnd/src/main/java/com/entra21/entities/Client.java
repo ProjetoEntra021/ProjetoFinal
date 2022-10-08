@@ -1,19 +1,16 @@
 package com.entra21.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 import com.entra21.entities.enums.GenderType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -37,8 +34,7 @@ public class Client implements Serializable{
 	
 	private GenderType gender;
 	
-	@OneToMany(mappedBy = "client")
-	@Cascade({ CascadeType.ALL })
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Address> adresses = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "client")
