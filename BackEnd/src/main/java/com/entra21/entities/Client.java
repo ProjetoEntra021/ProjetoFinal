@@ -35,7 +35,7 @@ public class Client implements Serializable{
 	private GenderType gender;
 	
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-	private List<Address> adresses = new ArrayList<>();
+	private List<Address> addresses = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "client")
 	private List<Contact> contacts = new ArrayList<>();
@@ -106,8 +106,8 @@ public class Client implements Serializable{
 		this.gender = gender;
 	}
 
-	public List<Address> getAdresses() {
-		return adresses;
+	public List<Address> getAddresses() {
+		return addresses;
 	}
 
 	public List<Contact> getContacts() {

@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { JsonPipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -17,16 +17,7 @@ import { Client } from './../../shared/model/client';
 })
 export class ClientRegistrationComponent implements OnInit {
 
-  addressForm = this.formBuilder.group ({
-    cep: ['', Validators.required],
-    street: ['', Validators.required],
-    number: ['', Validators.required],
-    complement: ['', Validators.required],
-    district: ['', Validators.required],
-    city: ['', Validators.required],
-    uf: ['', Validators.required],
 
-  })
 
   clientForm = this.formBuilder.group({
     name: ['', Validators.required],
@@ -35,13 +26,23 @@ export class ClientRegistrationComponent implements OnInit {
     cnh: ['', Validators.required],
     gender: ['', Validators.required],
     // addresses: [this.formBuilder.group(this.addressForm)]
-
+    addresses: this.formBuilder.array([
+      this.formBuilder.group({
+        cep: ['', Validators.required],
+        street: ['', Validators.required],
+        number: ['', Validators.required],
+        complement: ['', Validators.required],
+        district: ['', Validators.required],
+        city: ['', Validators.required],
+        uf: ['', Validators.required],
+      })
+    ])
   });
 
 
 
   public client!: Client;
-  public address: Partial<Address> = this.addressForm.value
+  // public address: Partial<Address> = this.addressForm.value
   public contact!: Contact;
 
 
@@ -53,14 +54,13 @@ export class ClientRegistrationComponent implements OnInit {
     private addressService: AddressService,
 
 
-    ) { }
+  ) { }
 
   ngOnInit(): void {
   }
 
 
   addClient() {
-    this.client.addresses.push(this.address)
     this.clientService.save(this.clientForm.value).subscribe({
       next: () => this.onSuccess(),
       error: (e) => this.onError()
