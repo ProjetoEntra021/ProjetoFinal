@@ -23,28 +23,39 @@ public class Address implements Serializable {
 	
 	private String street;
 	
-	private String district;
-	
 	private String number;
 	
 	private String complement;
+	
+	private String district;
+	
+	private String city;
+	
+	private String uf;
+	
 	
 	@ManyToOne
 	private Client client;
 	
 	public Address () {}
 
-	public Address(Long id, String cep, String street, String district, String number, String complement,
-			Client client) {
+	
+
+	public Address(Long id, String cep, String street, String district, String city, String uf, String number,
+			String complement, Client client) {
 		super();
 		this.id = id;
 		this.cep = cep;
 		this.street = street;
 		this.district = district;
+		this.city = city;
+		this.uf = uf;
 		this.number = number;
 		this.complement = complement;
 		this.client = client;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -93,6 +104,30 @@ public class Address implements Serializable {
 	public void setComplement(String complement) {
 		this.complement = complement;
 	}
+
+	public String getCity() {
+		return city;
+	}
+
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+
+	public String getUf() {
+		return uf;
+	}
+
+
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+
 
 	@JsonIgnore
 	public Client getClient() {

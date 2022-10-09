@@ -1,4 +1,4 @@
-import { BookingsService } from './../bookings.service';
+import { BookingsService } from '../../service/bookings.service';
 import { Booking } from './../../shared/model/booking';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -35,11 +35,4 @@ export class BookingListComponent implements OnInit {
 
     bookingsService: Observable <Booking[]>;
   }
-
-
-  //ngAfterViewInit() {
- //  this.sort.disableClear = true;
-   // this.dataSource.sort = this.sort;
-  //}
-
 }
