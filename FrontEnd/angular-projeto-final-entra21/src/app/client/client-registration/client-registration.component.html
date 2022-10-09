@@ -8,14 +8,12 @@
           <div id="firstLine">
             <mat-form-field class="formField" color="warn" appearance="fill">
               <mat-label>Nome:</mat-label>
-              <input matInput id="name" formControlName="name" type="text"
-                    placeholder="Digite o nome do cliente" />
+              <input matInput id="name" formControlName="name" type="text" placeholder="Digite o nome do cliente" />
             </mat-form-field>
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Data de nascimento: </mat-label>
-              <input matInput id="birthDate" formControlName="birthDate" type="date"
-                    placeholder="DD/MM/YYYY" />
+              <input matInput id="birthDate" formControlName="birthDate" type="date" placeholder="DD/MM/YYYY" />
             </mat-form-field>
           </div>
 
@@ -33,8 +31,7 @@
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>CPF: </mat-label>
-              <input matInput id="cpf" formControlName="cpf" type="text"
-                    placeholder="Digite o CPF do cliente" />
+              <input matInput id="cpf" formControlName="cpf" type="text" placeholder="Digite o CPF do cliente" />
             </mat-form-field>
 
             <mat-form-field class="formField" appearance="fill">
@@ -42,43 +39,46 @@
               <input matInput id="cnh" formControlName="cnh" type="text" placeholder="Digite a cnh do cliente" />
             </mat-form-field>
           </div>
-          <form [formGroup] = "addressForm"  class="full-width">
-            <div id="thirdLine" formGroupName="addressGroup">
-              <mat-form-field class="formField" appearance="fill">
-                <mat-label>CEP: </mat-label>
-                <input matInput id="cep" formControlName="cep" type="text" placeholder="Digite o CEP" />
-              </mat-form-field>
 
-              <mat-form-field class="formField" appearance="fill">
-                <mat-label>Endereço: </mat-label>
-                <input matInput id="street" formControlName="street" type="text" placeholder="Endereço" />
-              </mat-form-field>
+          <form formArrayName="addresses" class="full-width">
+            <div formGroupName=0>
+              <div id="thirdLine">
+                <mat-form-field class="formField" appearance="fill">
+                  <mat-label>CEP: </mat-label>
+                  <input matInput id="cep" formControlName="cep" type="text" placeholder="Digite o CEP" />
+                </mat-form-field>
 
-              <mat-form-field class="formField" appearance="fill">
-                <mat-label>Número: </mat-label>
-                <input matInput id="number" formControlName="number" type="text" placeholder="Nro." />
-              </mat-form-field>
-            </div>
-            <div id="fourthLine">
-              <mat-form-field class="formField" appearance="fill">
-                <mat-label>Complemento: </mat-label>
-                <input matInput id="complement" formControlName="complement" type="text" placeholder="complemento" />
-              </mat-form-field>
+                <mat-form-field class="formField" appearance="fill">
+                  <mat-label>Endereço: </mat-label>
+                  <input matInput id="street" formControlName="street" type="text" placeholder="Endereço" />
+                </mat-form-field>
 
-              <mat-form-field class="formField" appearance="fill">
-                <mat-label>Bairro: </mat-label>
-                <input matInput id="district" formControlName="district" type="text" placeholder="bairro" />
-              </mat-form-field>
+                <mat-form-field class="formField" appearance="fill">
+                  <mat-label>Número: </mat-label>
+                  <input matInput id="number" formControlName="number" type="text" placeholder="Nro." />
+                </mat-form-field>
+              </div>
+              <div id="fourthLine">
+                <mat-form-field class="formField" appearance="fill">
+                  <mat-label>Complemento: </mat-label>
+                  <input matInput id="complement" formControlName="complement" type="text" placeholder="complemento" />
+                </mat-form-field>
 
-              <mat-form-field class="formField" appearance="fill">
-                <mat-label>Cidade: </mat-label>
-                <input matInput id="city" formControlName="city" type="text" placeholder="cidade" />
-              </mat-form-field>
+                <mat-form-field class="formField" appearance="fill">
+                  <mat-label>Bairro: </mat-label>
+                  <input matInput id="district" formControlName="district" type="text" placeholder="bairro" />
+                </mat-form-field>
 
-              <mat-form-field class="formField" appearance="fill">
-                <mat-label>UF: </mat-label>
-                <input matInput id="uf" formControlName="uf" type="text" placeholder="uf" />
-              </mat-form-field>
+                <mat-form-field class="formField" appearance="fill">
+                  <mat-label>Cidade: </mat-label>
+                  <input matInput id="city" formControlName="city" type="text" placeholder="cidade" />
+                </mat-form-field>
+
+                <mat-form-field class="formField" appearance="fill">
+                  <mat-label>UF: </mat-label>
+                  <input matInput id="uf" formControlName="uf" type="text" placeholder="uf" />
+                </mat-form-field>
+              </div>
             </div>
           </form>
           <!-- <div id="fifthLine">
@@ -106,7 +106,7 @@
           <button class="formButton" mat-raised-button color="primary" (click)="addClient()">
             Salvar
           </button>
-          <button class="formButton" mat-raised-button color="secondary" >
+          <button class="formButton" mat-raised-button color="secondary">
             Cancelar
           </button>
         </mat-card-actions>
@@ -114,4 +114,3 @@
     </mat-card-content>
   </mat-card>
 </div>
-

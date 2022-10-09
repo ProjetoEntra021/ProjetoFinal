@@ -1,6 +1,7 @@
-import { Booking } from './../shared/model/booking';
+import { Booking, CreateBookingInput } from '../shared/model/booking';
 import { Injectable } from '@angular/core';
-import { first, tap } from 'rxjs';
+import { first, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -17,5 +18,9 @@ export class BookingsService {
     .pipe(tap(data => console.log(data)),
       first());
     }
+
+  addBooking(record: Partial<Booking>){
+    return this.httpClient.post<Booking>(this.API, record).pipe(first());
+  }
 
 }

@@ -2,7 +2,7 @@ import { Category } from "./category";
 import { VehicleRevenue } from './vehicleRevenue';
 import { VehicleExpense } from './vehicleExpense';
 
-export interface Vehicle{
+export interface Vehicle {
   id: number,
   vehicleModel: string,
   licensePlate: string,
@@ -10,7 +10,7 @@ export interface Vehicle{
   mileage: number,
   renavam: string,
   vehicleYear: string,
-  category: Category,
+  category: Category | Partial<Category>,
   vehicleStatus: string,
   revenues: VehicleRevenue[],
   expenses: VehicleExpense[]

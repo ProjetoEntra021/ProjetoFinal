@@ -11,12 +11,8 @@
     <section class="container">
       <div id="searchVehicle">
         <label>Buscar veículo
-        <input
-          (keyup)="applyFilter($event)"
-          placeholder="Ex. Corsa"
-          #input
-        />
-      </label>
+          <input (keyup)="applyFilter($event)" placeholder="Ex. Corsa" #input />
+        </label>
       </div>
       <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="status">
@@ -24,12 +20,8 @@
             Status
           </mat-header-cell>
           <mat-cell *matCellDef="let vehicle">
-            <mat-icon
-              aria-hidden="false"
-              aria-label="Example home icon"
-              class="{{ vehicle.vehicleStatus }} status"
-              fontIcon="circle"
-            ></mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Example home icon" class="{{ vehicle.vehicleStatus }} status"
+                      fontIcon="circle"></mat-icon>
           </mat-cell>
         </ng-container>
 
@@ -74,15 +66,11 @@
             Opções
           </mat-header-cell>
           <mat-cell *matCellDef="let vehicle">
-            <button
-              mat-icon-button
-              [matMenuTriggerFor]="menu"
-              aria-label="Menu do veículo"
-            >
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu do veículo">
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item>
+              <button mat-menu-item (click)="edit(vehicle.id)">
                 <mat-icon>edit</mat-icon>
                 <span>Editar</span>
               </button>
@@ -90,9 +78,7 @@
           </mat-cell>
         </ng-container>
 
-        <mat-header-row
-          *matHeaderRowDef="displayedColumns; sticky: true"
-        ></mat-header-row>
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
         <!-- Row shown when there is no matching data. -->
@@ -109,42 +95,26 @@
   <footer>
     <div id="rodapeLegenda">
       <div class="legendaIndividual">
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Ícone de legenda disponível"
-          class="legenda AVAILABLE"
-          fontIcon="circle"
-        ></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Ícone de legenda disponível" class="legenda AVAILABLE"
+                  fontIcon="circle"></mat-icon>
         <span>Disponível</span>
       </div>
 
       <div class="legendaIndividual">
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Ícone de legenda indisponível"
-          class="legenda UNAVAILABLE"
-          fontIcon="circle"
-        ></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Ícone de legenda indisponível" class="legenda UNAVAILABLE"
+                  fontIcon="circle"></mat-icon>
         <span>Indisponível</span>
       </div>
 
       <div class="legendaIndividual">
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Ícone de legenda em menutenção"
-          class="legenda MAINTENANCE"
-          fontIcon="circle"
-        ></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Ícone de legenda em menutenção" class="legenda MAINTENANCE"
+                  fontIcon="circle"></mat-icon>
         <span>Em manutenção</span>
       </div>
 
       <div class="legendaIndividual">
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Ícone de legenda desabilitado"
-          class="legenda DISABLE"
-          fontIcon="circle"
-        ></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Ícone de legenda desabilitado" class="legenda DISABLE"
+                  fontIcon="circle"></mat-icon>
         <span>Desabilitado</span>
       </div>
     </div>

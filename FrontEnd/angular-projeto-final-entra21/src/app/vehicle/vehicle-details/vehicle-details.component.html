@@ -1,57 +1,93 @@
 <div id="mainContent">
-  <mat-card id="cardHeader">Novo Veículo</mat-card>
   <mat-card id="cardForm">
+    <div id="cardHeader">
+      <p>Detalhes Veículo</p>
+    </div>
     <mat-card-content>
       <form [formGroup]="form" class="min-width">
-        <fieldset>
-          <legend>Dados do Veículo</legend>
-
-          <div class="formBlocks">
-          <label from="vehicleModel" > Modelo:
-            <input id="model" formControlName="vehicleModel" type="text" placeholder="Digite o modelo do veículo">
-          </label>
-
-          <label from="vehicleYear"> Ano:
-          <input id="model" formControlName="vehicleYear" type="text" placeholder="Digite o ano do veículo">
-          </label>
-
-          <label from="renavam" >Renavam:
-          <input id="model" formControlName="renavam" type="text" placeholder="Digite o Renavam do veículo">
-          </label>
-
-        </div>
 
         <div class="formBlocks">
-          <label from="licensePlate" >Placa:
-          <input id="model" formControlName="licensePlate" type="text" placeholder="Digite a placa do veículo">
-          </label>
-          <label from="chassi" >Chassi:
-          <input id="model" formControlName="chassi" type="text" placeholder="Digite a Chassi do veículo">
-          </label>
-          <label from="mileage" >Quilometragem:
-          <input id="model" formControlName="mileage" type="text" placeholder="Digite a quilometragem do veículo">
-        </label>
-        </div>
-        <div class="formBlocks">
-          <label from="category" >Categoria:
-          <select id="category" formControlName="category" [ngModel]="categories" type="text">
-          <option selected disabled value=""> Selecione a categoria do veículo</option>
-          <option *ngFor="let category of categories" [ngValue]="category"> {{ category.name }}</option>
+          <mat-radio-group formControlName="vehicleStatus" class="example-radio-group">
+            <mat-label>Status: </mat-label>
+            <mat-radio-button class="example-radio-button" *ngFor="let sts of status" [value]="sts">
+              {{sts | vehicleStatusPipe }}
+            </mat-radio-button>
+          </mat-radio-group>
 
-          </select>
-          </label>
-          <!-- <label from="category" > Valor diária:
-            <input id="category"  {{ category.dayPrice }} type="text" >
-          </label> -->
+          <div class="formLine">
+            <mat-form-field class="form-group formField" color="warn" appearance="fill">
+              <mat-label>Modelo:</mat-label>
+              <input matInput id="model" formControlName="vehicleModel" type="text"
+                     placeholder="Digite o modelo do veículo" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Ano:</mat-label>
+              <input matInput id="model" formControlName="vehicleYear" type="text"
+                     placeholder="Digite o ano do veículo" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Renavam:</mat-label>
+              <input matInput id="model" formControlName="renavam" type="text"
+                     placeholder="Digite o Renavam do veículo" />
+            </mat-form-field>
+          </div>
+
+          <div class="formLine">
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Placa:</mat-label>
+              <input matInput formControlName="licensePlate" type="text" placeholder="Digite o placa do veículo" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Chassi:</mat-label>
+              <input matInput formControlName="chassi" type="text" placeholder="Digite o Chassi do veículo" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Quilometragem:</mat-label>
+              <input matInput formControlName="mileage" type="text" placeholder="Digite o Chassi do veículo" />
+            </mat-form-field>
+          </div>
+
+          <div class="formLine" formGroupName="category">
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Categoria:</mat-label>
+              <mat-select formControlName="id">
+                <mat-option *ngFor="let category of categories" [value]="category.id" compareWith="compararObjetos">
+                  {{category.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Valor diária:</mat-label>
+              <input matInput id="model" formControlName="dayPrice" type="text" placeholder="Digite o ano do veículo" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Valor semanal:</mat-label>
+              <input matInput id="model" formControlName="weekPrice" type="text"
+                     placeholder="Digite o ano do veículo" />
+            </mat-form-field>
+          </div>
+          <div class="vehicleFinances">
+            <button mat-raised-button color="primary"> Ver Demonstrativo </button>
+            <button mat-raised-button color="primary"> Adicionar Despesa </button>
+          </div>
         </div>
-        </fieldset>
+
+
+
         <mat-card-actions>
           <button class="formButton" mat-raised-button color="primary" (click)="onSubmit()">
             Salvar
           </button>
-          <button  class="formButton" mat-raised-button (click)="onCancel()">Cancelar</button>
+          <button class="formButton" mat-raised-button (click)="onCancel()">Cancelar</button>
         </mat-card-actions>
       </form>
     </mat-card-content>
   </mat-card>
-  </div>
+</div>
