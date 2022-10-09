@@ -10,7 +10,7 @@ export interface Vehicle {
   mileage: number,
   renavam: string,
   vehicleYear: string,
-  category: Partial<Category>,
+  category: Category | Partial<Category>,
   vehicleStatus: string,
   revenues: VehicleRevenue[],
   expenses: VehicleExpense[]

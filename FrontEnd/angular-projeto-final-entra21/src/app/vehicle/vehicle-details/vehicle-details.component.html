@@ -54,8 +54,8 @@
           <div class="formLine" formGroupName="category">
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Categoria:</mat-label>
-              <mat-select formControlName="name">
-                <mat-option *ngFor="let category of categories" [value]="category.name">
+              <mat-select formControlName="id">
+                <mat-option *ngFor="let category of categories" [value]="category.id" compareWith="compararObjetos">
                   {{category.name}}
                 </mat-option>
               </mat-select>

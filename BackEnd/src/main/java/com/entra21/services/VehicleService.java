@@ -46,5 +46,6 @@ public class VehicleService {
 		entity.setVehicleYear(obj.getVehicleYear());
 		entity.setVehicleStatus(obj.getVehicleStatus());
 		entity.setCategory(obj.getCategory());
+		entity.setVehicleModel(obj.getVehicleModel());
 	}
 }
