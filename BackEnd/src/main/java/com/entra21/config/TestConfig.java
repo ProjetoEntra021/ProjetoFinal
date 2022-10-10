@@ -2,10 +2,7 @@ package com.entra21.config;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,6 +15,8 @@ import com.entra21.entities.Category;
 import com.entra21.entities.Client;
 import com.entra21.entities.Rental;
 import com.entra21.entities.Vehicle;
+import com.entra21.entities.VehicleExpense;
+import com.entra21.entities.VehicleRevenue;
 import com.entra21.entities.enums.BookingStatus;
 import com.entra21.entities.enums.GenderType;
 import com.entra21.entities.enums.RentalStatus;
@@ -27,7 +26,9 @@ import com.entra21.repositories.BookingRepository;
 import com.entra21.repositories.CategoryRepository;
 import com.entra21.repositories.ClientRepository;
 import com.entra21.repositories.RentalRepository;
+import com.entra21.repositories.VehicleExpenseRepository;
 import com.entra21.repositories.VehicleRepository;
+import com.entra21.repositories.VehicleRevenueRepository;
 
 @Configuration
 @Profile("test")
@@ -53,6 +54,12 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private RentalRepository rentalRepository;
 
+	@Autowired
+	private VehicleExpenseRepository vehicleERepository;
+	
+	@Autowired
+	private VehicleRevenueRepository vehicleRRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -122,7 +129,15 @@ public class TestConfig implements CommandLineRunner {
 				"2010", cat1, VehicleStatus.MAINTENANCE);
 
 		vehicleRepository.saveAll(Arrays.asList(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14));
-
+		
+		VehicleExpense ve1 = new VehicleExpense(null, "Revisão 5000km", 110.00 , v1);
+		
+		VehicleRevenue vr1 = new VehicleRevenue(null, "Aluguel 1 semana", 500.00 , v1);
+		
+		vehicleERepository.save(ve1);
+		
+		vehicleRRepository.save(vr1);
+		
 		Rental r1 = new Rental(null, bk1.getPickUpDate(), bk1.getDropOffDate(), RentalStatus.PENDING, bk1, v1, null);
 
 		rentalRepository.save(r1);

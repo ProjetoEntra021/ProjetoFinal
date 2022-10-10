@@ -32,7 +32,7 @@ export class VehicleDetailsComponent implements OnInit {
     renavam: ['', Validators.required],
     vehicleYear: ['', Validators.required],
     vehicleStatus: [''],
-    category: // [<Category | undefined>(undefined)]
+    category:
       this.formBuilder.group({
         id: 0,
         name: '',
@@ -59,13 +59,10 @@ export class VehicleDetailsComponent implements OnInit {
     this.categoryService.list().subscribe((dados) => {
       this.categories = dados;
       this.route.params.subscribe(params => {
-
         this.vehicleId = params['id'];
-
         if (this.vehicleId) {
           this.getVehicle();
         }
-
       })
     });
 
@@ -123,4 +120,22 @@ export class VehicleDetailsComponent implements OnInit {
     return o1.name === o2.name;
   }
 
+  updatePriceValue(event: any, id: number) {
+    if (event.isUserInput) {
+      let tempCat = {} as Category;
+      for (let cat of this.categories) {
+        if (cat.id == id) {
+          tempCat = cat;
+        }
+      }
+
+      this.form.patchValue({
+        category:
+        {
+          dayPrice: tempCat.dayPrice,
+          weekPrice: tempCat.weekPrice
+        },
+      })
+    }
+  }
 }

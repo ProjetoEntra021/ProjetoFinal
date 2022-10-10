@@ -8,6 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreatBookingComponent } from './bookings/creat-booking/creat-booking.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
+export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { CreatBookingComponent } from './bookings/creat-booking/creat-booking.co
     CommonModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

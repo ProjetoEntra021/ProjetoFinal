@@ -1,15 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { VehicleRoutingModule } from './vehicle-routing.module';
-import { VehicleComponent } from './vehicle/vehicle.component';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
+import { SharedModule } from '../shared/shared.module';
+import { VehicleAddComponent } from './vehicle-add/vehicle-add.component';
+import { VehicleBalanceComponent } from './vehicle-balance/vehicle-balance.component';
+import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { VehicleMenuComponent } from './vehicle-menu/vehicle-menu.component';
-import { VehicleAddComponent } from './vehicle-add/vehicle-add.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared.module';
-import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
+import { VehicleRoutingModule } from './vehicle-routing.module';
+import { VehicleComponent } from './vehicle/vehicle.component';
+
 
 
 @NgModule({
@@ -18,14 +20,15 @@ import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.compo
     VehicleListComponent,
     VehicleMenuComponent,
     VehicleAddComponent,
-    VehicleDetailsComponent
+    VehicleDetailsComponent,
+    VehicleBalanceComponent,
   ],
   imports: [
     CommonModule,
     VehicleRoutingModule,
     AppMaterialModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class VehicleModule { }

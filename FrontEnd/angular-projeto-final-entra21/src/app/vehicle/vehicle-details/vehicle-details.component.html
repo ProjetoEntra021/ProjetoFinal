@@ -47,7 +47,8 @@
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Quilometragem:</mat-label>
-              <input matInput formControlName="mileage" type="text" placeholder="Digite o Chassi do veículo" />
+              <input matInput suffix="km" mask="separator.1" thousandSeparator="." formControlName="mileage" type="text"
+                     placeholder="Digite o Chassi do veículo" />
             </mat-form-field>
           </div>
 
@@ -55,7 +56,8 @@
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Categoria:</mat-label>
               <mat-select formControlName="id">
-                <mat-option *ngFor="let category of categories" [value]="category.id" compareWith="compararObjetos">
+                <mat-option *ngFor="let category of categories" [value]="category.id"
+                            (onSelectionChange)="updatePriceValue($event, category.id)" compareWith="compararObjetos">
                   {{category.name}}
                 </mat-option>
               </mat-select>
@@ -64,12 +66,13 @@
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Valor diária:</mat-label>
-              <input matInput id="model" formControlName="dayPrice" type="text" placeholder="Digite o ano do veículo" />
+              <input matInput readonly prefix="R$" mask="separator.2" id="model" formControlName="dayPrice" type="text"
+                     placeholder="Digite o ano do veículo" />
             </mat-form-field>
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Valor semanal:</mat-label>
-              <input matInput id="model" formControlName="weekPrice" type="text"
+              <input matInput prefix="R$" mask="separator.2" id="model" formControlName="weekPrice" type="text"
                      placeholder="Digite o ano do veículo" />
             </mat-form-field>
           </div>
