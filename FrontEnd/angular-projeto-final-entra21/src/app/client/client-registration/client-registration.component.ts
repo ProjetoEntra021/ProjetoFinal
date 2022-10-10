@@ -39,11 +39,11 @@ export class ClientRegistrationComponent implements OnInit {
     ]),
     contacts: this.formBuilder.array([
       this.formBuilder.group({
-        contactType: '0',
+        contactType: 0,
         description: ['', Validators.required]
       }),
       this.formBuilder.group({
-        contactType: '1',
+        contactType: 1,
         description: ['', Validators.required]
       })
     ])
