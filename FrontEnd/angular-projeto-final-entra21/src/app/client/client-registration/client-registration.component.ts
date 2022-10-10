@@ -36,6 +36,16 @@ export class ClientRegistrationComponent implements OnInit {
         city: ['', Validators.required],
         uf: ['', Validators.required],
       })
+    ]),
+    contacts: this.formBuilder.array([
+      this.formBuilder.group({
+        contactType: 0,
+        description: ['', Validators.required]
+      }),
+      this.formBuilder.group({
+        contactType: 1,
+        description: ['', Validators.required]
+      })
     ])
   });
 

@@ -81,25 +81,29 @@
               </div>
             </div>
           </form>
-          <!-- <div id="fifthLine">
-            <mat-form-field class="formField" color="warn" appearance="fill">
-              <mat-label>E-mail:</mat-label>
-              <input matInput id="email" formControlName="email" type="text"
-                    placeholder="Informe um email válido" />
-            </mat-form-field>
 
-            <mat-form-field class="formField" appearance="fill">
-              <mat-label>Telefone: </mat-label>
-              <input matInput id="phone" formControlName="phone" type="text"
-                    placeholder="Informe um telefone válido" />
-            </mat-form-field>
-
-            <mat-form-field class="formField" appearance="fill">
-              <mat-label>Telefone: </mat-label>
-              <input matInput id="phone" formControlName="phone" type="text"
-                    placeholder="Informe um telefone válido" />
-            </mat-form-field>
-          </div> -->
+          <form formArrayName="contacts" class="full-width">
+            <div id="fifthLine">
+              <div id="email">
+                <div formGroupName=0>
+                  <mat-form-field class="formField" appearance="fill">
+                    <mat-label>E-mail:</mat-label>
+                    <input matInput id="email" formControlName="description" type="text"
+                          placeholder="Informe um email válido" />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div id="phone">
+                <div formGroupName=1>
+                  <mat-form-field class="formField" appearance="fill">
+                    <mat-label>Telefone: </mat-label>
+                    <input matInput id="phone" formControlName="description" type="text"
+                          placeholder="Informe um telefone válido" />
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
 
         <mat-card-actions>

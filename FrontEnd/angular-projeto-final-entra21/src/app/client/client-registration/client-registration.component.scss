@@ -46,7 +46,10 @@
 }
 #fifthLine {
   display: grid;
-  grid-template-columns: auto 20% 20%;
+  grid-template-columns: 60% auto;
+}
+mat-form-field {
+  width: 100%;
 }
 
 .formBlocks {

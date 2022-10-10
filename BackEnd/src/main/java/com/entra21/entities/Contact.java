@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.entra21.entities.enums.ContactType;
@@ -25,6 +26,7 @@ public class Contact implements Serializable {
 	private String description;
 	
 	@ManyToOne
+	@JoinColumn(name = "client_id")
 	private Client client;
 	
 	public Contact () {}
