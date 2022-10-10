@@ -26,6 +26,7 @@ public class ClientService {
 	}
 
 	public Client insert(Client obj) {
+		obj.getAddresses().forEach((address) -> address.setClient(obj));
 		return clientRepository.save(obj);
 	}
 

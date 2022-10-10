@@ -32,6 +32,7 @@ export class VehicleListComponent implements OnInit, AfterViewInit {
   ) {
 
     this.vehicleService.list().subscribe((dados) => {
+      console.log(dados);
       this.dataSource = new MatTableDataSource(dados);
     }
     );

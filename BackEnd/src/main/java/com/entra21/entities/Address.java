@@ -2,10 +2,12 @@ package com.entra21.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,6 +37,7 @@ public class Address implements Serializable {
 	
 	
 	@ManyToOne
+	@JoinColumn(name = "client_id")
 	private Client client;
 	
 	public Address () {}

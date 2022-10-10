@@ -15,15 +15,15 @@ export class ClientService {
 
     list() {
     return this.httpClient.get<Client[]>(this.API)
-    .pipe(tap(data => console.log(data)),
-      first());
-    }
+      .pipe(tap(data => console.log(data)),
+        first());
+  }
 
     getId(){
       return this.httpClient.get<Client>('api/clients/1');
     }
 
-    save(record: Partial<Client>){
-      return this.httpClient.post<Client>(this.API, record).pipe(first());
-    }
+  save(record: Partial<Client>) {
+    return this.httpClient.post<Partial<Client>>(this.API, record).pipe(first());
+  }
 }
