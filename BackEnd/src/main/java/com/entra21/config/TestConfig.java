@@ -1,7 +1,6 @@
 package com.entra21.config;
 
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -73,8 +72,8 @@ public class TestConfig implements CommandLineRunner {
 
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
-		Booking bk1 = new Booking(null, c1, Instant.parse("2005-10-20T00:00:00Z"),
-				Instant.parse("2005-10-30T00:00:00Z"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+		Booking bk1 = new Booking(null, c1, LocalDate.parse("2005-10-05"),
+				LocalDate.parse("2005-10-10"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
 				BookingStatus.ACTIVE, null);
 
 		bookingRepository.save(bk1);
@@ -137,8 +136,8 @@ public class TestConfig implements CommandLineRunner {
 
 		addressRepository.save(ad2);
 
-		Booking bk2 = new Booking(null, c2, Instant.parse("2005-10-20T00:00:00Z"),
-				Instant.parse("2005-10-30T00:00:00Z"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+		Booking bk2 = new Booking(null, c2, LocalDate.parse("2005-10-20"),
+				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
 				BookingStatus.ACTIVE, null);
 
 		bookingRepository.save(bk2);

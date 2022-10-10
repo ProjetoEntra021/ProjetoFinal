@@ -1,6 +1,9 @@
+import { Observable } from 'rxjs';
+import { ClientService } from './../../service/client.service';
+import { Client } from './../../shared/model/client';
 import { Category } from './../../shared/model/category';
 import { CategoryService } from './../../service/category.service';
-import { Booking, CreateBookingInput } from './../../shared/model/booking';
+import { Booking} from './../../shared/model/booking';
 import { BookingsService } from './../../service/bookings.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -15,55 +18,64 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 })
 export class CreatBookingComponent implements OnInit {
 
-  public categories: Category[] = new Array();
+    bookingForm = this.formBuilder.group({
+    client: [<Client|undefined> (undefined)],
+    pickUpDate: [, Validators.required],
+    dropOffDate: [, Validators.required],
+    bookingStatus: ["ACTIVE"],
+    category: [, Validators.required],
 
-  bookingForm = this.formBuilder.group({
-    pickUpDate: ['', Validators.required],
-    dropOffDate: ['', Validators.required],
-    // category: ['', Validators.required],
   })
 
-  public booking!: Booking | undefined;
+  categories: Category[] = [];
+  booking!: Observable <Booking>;
+  client!: Observable <Client>;
+
 
   constructor(
     private categoryService: CategoryService,
     private bookingsService: BookingsService,
+    private clientService: ClientService,
     private formBuilder: NonNullableFormBuilder,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
+
     this.searchCategory();
+    console.log(this.categories);
+    this.clientService.getId().subscribe(obs => this.bookingForm.patchValue({client: obs}))
   }
 
-  addBooking(){
-    // this.booking.bookingStatus = "ACTIVE"
-    // this.booking.pickUpDate = new Date (this.booking.pickUpDate);
-    // this.booking.dropOffDate = new Date (this.booking.dropOffDate);
 
-    // this.booking.category.dayPrice = this.booking.dayPrice;
-    // this.booking.catefory.weekPrice = this.booking.weekPrice;
+  onSubmit(){
+    console.log("aqui", this.bookingForm.value);
+    this.bookingsService.addBooking(this.bookingForm.value).subscribe({
+      next: () => this.onSuccess(),
+      error: (e) => this.onError()
+    });
+  }
 
-    // this.bookingsService.addBooking(this.bookingForm.value).subscribe(
-    //   resultado => {
-    //     this.booking = resultado;
-    //     alert("Reserva realizada!");
-    //   }
-    // )
+  private onSuccess() {
+    this.snackBar.open('Reserva realizada com sucesso!', '', { duration: 3000 })
+  }
 
+  private onError() {
+    this.snackBar.open('Erro ao realizar reserva', '', { duration: 3000 })
   }
 
   searchCategory(){
-    // this.categoryService.list().subscribe(
-    //   resultado => {
-    //     this.categories = resultado;
-    //   },
-    //   erro => {
-    //     //TODO evoluir para mostrar mensagem na tela
-    //     console.log("DEU ERRO. Causa: " + erro);
+      this.categoryService.list().subscribe(
+    resultado => {
+       this.categories = resultado;
+    },
+    erro => {
+       //TODO evoluir para mostrar mensagem na tela
+        console.log("DEU ERRO. Causa: " + erro);
       }
-    // );
+    );
 
   }
 
-// }
+}
 

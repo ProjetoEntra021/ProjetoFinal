@@ -1,4 +1,4 @@
-import { Booking, CreateBookingInput } from '../shared/model/booking';
+import { Booking } from '../shared/model/booking';
 import { Injectable } from '@angular/core';
 import { first, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';

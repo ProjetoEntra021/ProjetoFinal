@@ -13,10 +13,14 @@ export class ClientService {
 
   constructor(private httpClient: HttpClient) { }
 
-  list() {
+    list() {
     return this.httpClient.get<Client[]>(this.API)
     .pipe(tap(data => console.log(data)),
       first());
+    }
+
+    getId(){
+      return this.httpClient.get<Client>('api/clients/1');
     }
 
     save(record: Partial<Client>){
