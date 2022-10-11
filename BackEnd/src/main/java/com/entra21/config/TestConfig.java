@@ -32,8 +32,9 @@ import com.entra21.repositories.VehicleRepository;
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
+		
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
-	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	@Autowired
 	private ClientRepository clientRepository;
@@ -57,7 +58,7 @@ public class TestConfig implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		// create test registration client Mateus
-		Client c1 = new Client(null, "Mateus", "12312312312", "1233456", sdf.parse("01/10/1999"), GenderType.MASCULINO);
+		Client c1 = new Client(null, "Mateus", "12312312312", "1233456", LocalDate.parse("01/10/1999", formatter), GenderType.MASCULINO);
 
 		clientRepository.save(c1);
 
@@ -128,7 +129,7 @@ public class TestConfig implements CommandLineRunner {
 		rentalRepository.save(r1);
 
 		// create test registration client Pablo
-		Client c2 = new Client(null, "Pablo", "00443990905", "386985233", sdf.parse("24/07/1980"), GenderType.MASCULINO);
+		Client c2 = new Client(null, "Pablo", "00443990905", "386985233",  LocalDate.parse("24/07/1980", formatter), GenderType.MASCULINO);
 
 		clientRepository.save(c2);
 

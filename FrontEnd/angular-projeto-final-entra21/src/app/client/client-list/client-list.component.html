@@ -39,7 +39,7 @@
             </button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item>
-                <mat-icon>edit</mat-icon>
+                <mat-icon (click)="edit(client.id)" >edit</mat-icon>
                 <span>Editar</span>
               </button>
             </mat-menu>
