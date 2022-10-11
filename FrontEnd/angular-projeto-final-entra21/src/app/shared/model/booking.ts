@@ -4,7 +4,7 @@ import { Client } from './client';
 
 export interface Booking{
   id: number,
-  client: Client,
+  client: Client | Partial<Client>,
   pickUpDate: Date,
   dropOffDate: Date,
   dayPrice: number,

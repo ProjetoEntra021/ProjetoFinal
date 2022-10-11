@@ -19,17 +19,24 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 export class CreatBookingComponent implements OnInit {
 
     bookingForm = this.formBuilder.group({
-    client: [<Client|undefined> (undefined)],
+    client: this.formBuilder.group({
+      id: 0,
+      name:'',
+    }),
     pickUpDate: [, Validators.required],
     dropOffDate: [, Validators.required],
     bookingStatus: ["ACTIVE"],
-    category: [, Validators.required],
+    category: this.formBuilder.group({
+      id:0,
 
+    }),
+    dayPrice: 0,
+    weekPrice: 0,
   })
 
   categories: Category[] = [];
-  booking!: Observable <Booking>;
-  client!: Observable <Client>;
+  // booking!: Observable <Booking>;
+  // client!: Observable <Client>;
 
 
   constructor(
@@ -44,12 +51,19 @@ export class CreatBookingComponent implements OnInit {
 
     this.searchCategory();
     console.log(this.categories);
-    this.clientService.getId().subscribe(obs => this.bookingForm.patchValue({client: obs}))
+    this.clientService.getId().subscribe(obs =>
+      {this.bookingForm.patchValue(
+        {client: {
+          id: obs.id,
+          name: obs.name,
+        }});
+      console.log(this.bookingForm.value);
+    })
+
   }
 
 
   onSubmit(){
-    console.log("aqui", this.bookingForm.value);
     this.bookingsService.addBooking(this.bookingForm.value).subscribe({
       next: () => this.onSuccess(),
       error: (e) => this.onError()
@@ -75,6 +89,24 @@ export class CreatBookingComponent implements OnInit {
       }
     );
 
+  }
+
+  updatePriceValue(event: any, id: number) {
+    if (event.isUserInput) {
+      let tempCat = {} as Category;
+      for (let cat of this.categories) {
+        if (cat.id == id) {
+          tempCat = cat;
+        }
+      }
+
+      this.bookingForm.patchValue({
+
+          dayPrice: tempCat.dayPrice,
+          weekPrice: tempCat.weekPrice
+
+      })
+    }
   }
 
 }

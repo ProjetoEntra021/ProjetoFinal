@@ -5,7 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', component: BookingListComponent },
-  { path: 'create', component: CreatBookingComponent}
+  { path: 'create', component: CreatBookingComponent},
+  // { path: 'create/:id'}
 ];
 
 @NgModule({
