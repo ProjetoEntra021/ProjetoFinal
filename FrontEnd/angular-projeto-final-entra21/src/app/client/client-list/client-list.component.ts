@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { Client } from '../../shared/model/client';
 import { ClientService } from '../../service/client.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-list',
@@ -19,7 +20,9 @@ export class ClientListComponent implements OnInit {
 
   constructor(
     private clientService: ClientService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
 
     this.clientService.list().subscribe(dados => this.dataSource = new MatTableDataSource<Client>(dados));
@@ -28,6 +31,9 @@ export class ClientListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  edit(id: number) {
+    this.router.navigate(['registration/' + id], { relativeTo: this.route.parent })
+  }
 
 
 }

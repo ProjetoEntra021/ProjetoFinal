@@ -1,6 +1,7 @@
 package com.entra21.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +31,7 @@ public class Client implements Serializable{
 	
 	private String cnh;
 	
-	private Date birthDate;
+	private LocalDate birthDate;
 	
 	private GenderType gender;
 	
@@ -45,7 +46,7 @@ public class Client implements Serializable{
 	
 	public Client() {}
 	
-	public Client(Long id, String name, String cpf, String cnh, Date birthDate, GenderType gender) {
+	public Client(Long id, String name, String cpf, String cnh, LocalDate birthDate, GenderType gender) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -90,11 +91,11 @@ public class Client implements Serializable{
 		this.cnh = cnh;
 	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 

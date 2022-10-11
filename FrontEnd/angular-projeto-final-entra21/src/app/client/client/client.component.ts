@@ -20,4 +20,5 @@ export class ClientComponent implements OnInit {
     this.router.navigate(['list'], {relativeTo: this.route});
   }
 
+
 }
