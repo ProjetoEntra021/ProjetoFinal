@@ -27,4 +27,8 @@ export class ClientService {
     return this.httpClient.get<Client>(this.API + '/' + id).pipe(tap(data => console.log(data)),
       first());
   }
+
+  update(record: Partial<Client>) {
+    return this.httpClient.put<Partial<Client>>(this.API + '/' + record.id, record).pipe(first());
+  }
 }

@@ -84,9 +84,24 @@ export class ClientRegistrationComponent implements OnInit {
     })
   }
 
+  onClickSave() {
+    if(this.clientId) {
+      this.updateClient();
+    }
+    else {
+      this.addClient();
+    }
+  }
 
   addClient() {
     this.clientService.save(this.clientForm.value).subscribe({
+      next: () => this.onSuccess(),
+      error: (e) => this.onError()
+    });
+  }
+
+  updateClient() {
+    this.clientService.update(this.clientForm.value).subscribe({
       next: () => this.onSuccess(),
       error: (e) => this.onError()
     });

@@ -1,7 +1,6 @@
 <div id="mainContent">
   <mat-card id="cardForm">
-    <div id="cardHeader" >Novo Cliente</div>
-    <!-- <div id="cardHeader" *ngIf="router.url === 'main/clients/registration/:id'">Editar Cliente</div> -->
+    <div id="cardHeader"> {{clientId ? 'Editar' : 'Novo'}} Cliente</div>
     <mat-card-content>
       <form [formGroup]="clientForm" class="full-width">
 
@@ -108,7 +107,7 @@
         </div>
 
         <mat-card-actions>
-          <button class="formButton" mat-raised-button color="primary" (click)="addClient()">
+          <button class="formButton" mat-raised-button color="primary" (click)="onClickSave()">
             Salvar
           </button>
           <button class="formButton" mat-raised-button color="secondary">
