@@ -11,6 +11,7 @@ import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { VehicleMenuComponent } from './vehicle-menu/vehicle-menu.component';
 import { VehicleRoutingModule } from './vehicle-routing.module';
 import { VehicleComponent } from './vehicle/vehicle.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -28,7 +29,7 @@ import { VehicleComponent } from './vehicle/vehicle.component';
     VehicleRoutingModule,
     AppMaterialModule,
     ReactiveFormsModule,
-    SharedModule,
+    SharedModule
   ]
 })
 export class VehicleModule { }

@@ -1,14 +1,14 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { VehicleService } from '../../service/vehicle.service';
-import { NonNullableFormBuilder, Validators, FormBuilder } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { CategoryService } from '../../service/category.service';
-import { Category } from '../../shared/model/category';
 import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Vehicle } from '../../shared/model/vehicle';
-import { Booking } from '../../shared/model/booking';
-import { outputAst } from '@angular/compiler';
+
+import { CategoryService } from '../../service/category.service';
+import { VehicleService } from '../../service/vehicle.service';
+import { Category } from '../../shared/model/category';
+import { AddExpenseDialogComponent } from '../add-expense-dialog/add-expense-dialog.component';
 
 @Component({
   selector: 'app-vehicle-details',
@@ -53,7 +53,8 @@ export class VehicleDetailsComponent implements OnInit {
     private snackBar: MatSnackBar,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    public dialog: MatDialog) {
 
   }
 
@@ -141,5 +142,11 @@ export class VehicleDetailsComponent implements OnInit {
 
   vehicleBalance() {
     this.router.navigate(['balance'], { relativeTo: this.route });
+  }
+
+  onAddExpenseClick(errorMsg: string) {
+    this.dialog.open(AddExpenseDialogComponent, {
+      data: errorMsg
+    });
   }
 }

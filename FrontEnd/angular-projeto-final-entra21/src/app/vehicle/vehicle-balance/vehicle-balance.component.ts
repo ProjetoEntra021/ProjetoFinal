@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { VehicleExpense } from '../../shared/model/vehicleExpense';
 import { VehicleRevenue } from '../../shared/model/vehicleRevenue';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { AddExpenseDialogComponent } from '../add-expense-dialog/add-expense-dialog.component';
 
 @Component({
   selector: 'app-vehicle-balance',
@@ -65,4 +67,5 @@ export class VehicleBalanceComponent implements OnInit {
     }
     return sum;
   }
+
 }
