@@ -1,0 +1,50 @@
+.client-card {
+  width: 90%;
+  height: fit-content;
+  color: black;
+  border: 1px solid black;
+  margin: auto;
+}
+mat-card-header{
+  margin: 0;
+  padding-left: 0;
+}
+h1{
+  color: #00796b;
+}
+mat-card-subtitle {
+  margin: 0;
+}
+input {
+  border: none;
+  width: 100%;
+  font-size: 1.2em;
+}
+
+#firstLine {
+  display: grid;
+  grid-template-columns: 70% auto;
+}
+#secondLine {
+  display: grid;
+  grid-template-columns: auto 30% 30%;
+}
+#thirdLine {
+  display: grid;
+  grid-template-columns: 20% auto 10%;
+}
+#fourthLine {
+  display: grid;
+  grid-template-columns: 20% 25% auto 10%;
+}
+#fifthLine {
+  display: grid;
+  grid-template-columns: 45% auto;
+}
+button{
+  float:right;
+}
+mat-card-actions{
+  height: 30px;
+  padding-right: 20px;
+}

@@ -1,0 +1,92 @@
+<mat-card class="client-card">
+
+    <h1>Cadastro de Cliente</h1>
+
+ <mat-card-content>
+
+    <h2>Dados Pessoais</h2>
+
+    <div id="firstLine">
+      <mat-card-content >
+        <mat-card-subtitle >Nome:</mat-card-subtitle>
+        <input type="text" [(ngModel)] = "client.name">
+      </mat-card-content>
+      <mat-card-content >
+        <mat-card-subtitle >Data de Nascimento:</mat-card-subtitle>
+        <input [(ngModel)] = "client.birthDate">
+      </mat-card-content>
+    </div>
+
+    <div id="secondLine">
+      <mat-card-content >
+        <mat-card-subtitle >Sexo:</mat-card-subtitle>
+        <input type="text" [(ngModel)] = "client.gender">
+      </mat-card-content>
+      <mat-card-content >
+        <mat-card-subtitle >CPF:</mat-card-subtitle>
+        <input type="text" [(ngModel)] = "client.cpf">
+      </mat-card-content>
+      <mat-card-content >
+        <mat-card-subtitle  >CNH:</mat-card-subtitle>
+        <input type="text" [(ngModel)] = "client.cnh">
+      </mat-card-content>
+    </div>
+
+    <h2>Endereço</h2>
+    <div id="thirdLine">
+      <mat-card-content>
+        <mat-card-subtitle>CEP:</mat-card-subtitle>
+        <input type="text" [(ngModel)] = "client.addresses[0].cep">
+      </mat-card-content>
+      <mat-card-content>
+        <mat-card-subtitle>Endereço:</mat-card-subtitle>
+        <input type="text" [(ngModel)] = "client.addresses[0].street">
+      </mat-card-content>
+      <mat-card-content>
+        <mat-card-subtitle>Número:</mat-card-subtitle>
+        <input type="text" [(ngModel)] = "client.addresses[0].number">
+      </mat-card-content>
+    </div>
+
+    <div id="fourthLine">
+      <mat-card-content>
+        <mat-card-subtitle>Complemento:</mat-card-subtitle>
+        <input type="text" [(ngModel)] = "client.addresses[0].complement">
+      </mat-card-content>
+      <mat-card-content>
+        <mat-card-subtitle>Bairro:</mat-card-subtitle>
+        <input type="text" [(ngModel)] = "client.addresses[0].district">
+      </mat-card-content>
+      <mat-card-content>
+        <mat-card-subtitle>Cidade:</mat-card-subtitle>
+        <input type="text" [(ngModel)] = "client.addresses[0].city">
+      </mat-card-content>
+      <mat-card-content>
+        <mat-card-subtitle>UF:</mat-card-subtitle>
+        <input type="text" [(ngModel)] = "client.addresses[0].uf">
+      </mat-card-content>
+    </div>
+    <div id="fifthLine">
+      <mat-card-content>
+        <mat-card-subtitle>E-mail:</mat-card-subtitle>
+        <input type="text" [(ngModel)] = "client.contacts[0].description">
+      </mat-card-content>
+      <mat-card-content>
+        <mat-card-subtitle>Telefone:</mat-card-subtitle>
+        <input type="text" [(ngModel)] = "client.contacts[1].description">
+      </mat-card-content>
+    </div>
+    <mat-card-actions>
+      <button mat-raised-button color="primary">
+        Efetuar Reserva
+      </button>
+      <button  mat-raised-button color="secondary" (click)="edit(client.id)">
+        Editar
+      </button>
+      <button mat-raised-button color="secondary" (click)="onCancel()">
+        Cancelar
+      </button>
+    </mat-card-actions>
+  </mat-card-content>
+
+</mat-card>
