@@ -134,9 +134,13 @@ public class TestConfig implements CommandLineRunner {
 		
 		VehicleRevenue vr1 = new VehicleRevenue(null, "Aluguel 1 semana", 500.00 , v1);
 		
-		vehicleERepository.save(ve1);
+		VehicleExpense ve2 = new VehicleExpense(null, "Revisão 10000km", 130.00 , v1);
 		
-		vehicleRRepository.save(vr1);
+		VehicleRevenue vr2 = new VehicleRevenue(null, "Aluguel 2 semanas", 1000.00 , v1);
+		
+		vehicleERepository.saveAll(Arrays.asList(ve1, ve2));
+		
+		vehicleRRepository.saveAll(Arrays.asList(vr1, vr2));
 		
 		Rental r1 = new Rental(null, bk1.getPickUpDate(), bk1.getDropOffDate(), RentalStatus.PENDING, bk1, v1, null);
 

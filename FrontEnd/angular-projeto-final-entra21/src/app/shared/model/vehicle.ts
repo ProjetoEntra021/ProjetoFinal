@@ -13,5 +13,6 @@ export interface Vehicle {
   category: Category | Partial<Category>,
   vehicleStatus: string,
   revenues: VehicleRevenue[],
-  expenses: VehicleExpense[]
+  expenses: VehicleExpense[],
+  categoryName?: string
 }

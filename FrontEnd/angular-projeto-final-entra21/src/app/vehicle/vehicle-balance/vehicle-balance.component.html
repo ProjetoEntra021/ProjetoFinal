@@ -1,1 +1,72 @@
-<p>vehicle-balance works!</p>
+<div id="mainContent">
+  <mat-card>
+    <div id="cardHeader" *ngIf="vehicle$ | async as vehicle">
+      <p>Demonstrativo do {{ vehicle.vehicleModel }} - {{ vehicle.licensePlate }}</p>
+    </div>
+    <section class="container">
+      <mat-card-content>
+        <div id="tables">
+          <div id="revenuesTable" class="tables">
+            <div id="revenues" class="tableHeader">
+              <span>Receitas</span>
+            </div>
+            <mat-table [dataSource]="vehicleRevenues" class="mat-elevation-z8">
+              <ng-container matColumnDef="description">
+                <mat-header-cell *matHeaderCellDef>
+                  Descrição
+                </mat-header-cell>
+                <mat-cell *matCellDef="let revenue">{{ revenue.description }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="value">
+                <mat-header-cell *matHeaderCellDef>
+                  Valor
+                </mat-header-cell>
+                <mat-cell *matCellDef="let revenues">
+                  {{ revenues.value | currency }}
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+            </mat-table>
+          </div>
+          <div id="expensesTable" class="tables">
+            <div id="expenses" class="tableHeader">
+              <span>Despesas</span>
+            </div>
+            <mat-table [dataSource]="vehicleExpenses" class="mat-elevation-z8">
+              <ng-container matColumnDef="description">
+                <mat-header-cell *matHeaderCellDef>
+                  Descrição
+                </mat-header-cell>
+                <mat-cell *matCellDef="let revenue">{{ revenue.description }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="value">
+                <mat-header-cell *matHeaderCellDef>
+                  Valor
+                </mat-header-cell>
+                <mat-cell *matCellDef="let revenues">
+                  {{ revenues.value | currency }}
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+            </mat-table>
+          </div>
+
+        </div>
+        <div id="tableFooter">
+          <span id="footerText">Resultado:</span>
+          <span id="balanceValue">{{ vehicleBalance | currency }} </span>
+        </div>
+      </mat-card-content>
+    </section>
+  </mat-card>
+</div>
