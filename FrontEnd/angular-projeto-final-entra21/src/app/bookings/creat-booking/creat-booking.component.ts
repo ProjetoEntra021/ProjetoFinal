@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ClientService } from './../../service/client.service';
 import { Client } from './../../shared/model/client';
@@ -19,22 +20,26 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 export class CreatBookingComponent implements OnInit {
 
     bookingForm = this.formBuilder.group({
+    id: 0,
     client: this.formBuilder.group({
       id: 0,
       name:'',
     }),
-    pickUpDate: [, Validators.required],
-    dropOffDate: [, Validators.required],
+    pickUpDate: [new Date(), Validators.required],
+    dropOffDate: [new Date(), Validators.required],
     bookingStatus: ["ACTIVE"],
     category: this.formBuilder.group({
       id:0,
-
+      name: '',
     }),
     dayPrice: 0,
     weekPrice: 0,
   })
 
   categories: Category[] = [];
+
+  public bookingId!: number;
+  public clientId!: number;
   // booking!: Observable <Booking>;
   // client!: Observable <Client>;
 
@@ -45,23 +50,72 @@ export class CreatBookingComponent implements OnInit {
     private clientService: ClientService,
     private formBuilder: NonNullableFormBuilder,
     private snackBar: MatSnackBar,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
 
+    this.categoryService.list().subscribe((dados) => {
+      this.categories = dados;
+
+      })
+      this.route.params.subscribe(params => {
+        this.bookingId = params['id'];
+        if(this.bookingId){
+          this.getBooking();
+        }
+
+        this.route.params.subscribe(params => {
+          this.clientId = params ['idclient'];
+          if(this.clientId){
+            this.getBookingClient();
+          }
+        })
+
+
+    })
+
     this.searchCategory();
     console.log(this.categories);
-    this.clientService.getId().subscribe(obs =>
-      {this.bookingForm.patchValue(
-        {client: {
-          id: obs.id,
-          name: obs.name,
-        }});
-      console.log(this.bookingForm.value);
-    })
 
   }
 
+  getBooking(){
+    this.bookingsService.getBookingById(this.bookingId).subscribe(
+      resultado => {
+        console.log(resultado)
+        this.bookingForm.patchValue({
+          id: resultado.id,
+          client: {
+            id: resultado.client.id,
+            name: resultado.client.name,
+          },
+          pickUpDate: resultado.pickUpDate,
+          dropOffDate: resultado.dropOffDate,
+          bookingStatus: resultado.bookingStatus,
+          category: {
+            id: resultado.category.id,
+            name: resultado.category.name,
+          },
+          dayPrice: resultado.dayPrice,
+          weekPrice: resultado.weekPrice,
+        });
+      }
+    )
+  }
+
+  getBookingClient(){
+    this.clientService.getClientById(this.clientId).subscribe(
+      resultado => {
+        this.bookingForm.patchValue({
+          client: {
+            id: resultado.id,
+            name: resultado.name,
+          },
+        })
+      }
+    )
+  }
 
   onSubmit(){
     this.bookingsService.addBooking(this.bookingForm.value).subscribe({

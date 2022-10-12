@@ -4,7 +4,6 @@
   font-size: 20px;
   font-weight: bold;
   text-align: left;
-
   margin: auto;
   height: 50px;
   color: #00796b;
@@ -36,12 +35,12 @@
 }
 #secondLine {
   display: grid;
-  grid-template-columns: auto 30% 30%;
+  grid-template-columns: auto 33% 33%;
 }
 
 #thirdLine {
   display: grid;
-  grid-template-columns: 15% auto 15%;
+  grid-template-columns: auto 33% 33%;
 }
 
 .formBlocks {
