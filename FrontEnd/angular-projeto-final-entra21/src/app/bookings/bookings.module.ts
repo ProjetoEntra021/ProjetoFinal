@@ -1,7 +1,7 @@
 import { Category } from 'src/app/shared/model/category';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CreatBookingComponent } from './creat-booking/creat-booking.component';
+import { CreateBookingComponent } from './create-booking/create-booking.component';
 import { AppMaterialModule } from './../shared/app-material/app-material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,7 +13,7 @@ import { BookingListComponent } from './booking-list/booking-list.component';
 @NgModule({
   declarations: [
     BookingListComponent,
-    CreatBookingComponent
+    CreateBookingComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +21,7 @@ import { BookingListComponent } from './booking-list/booking-list.component';
     AppMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    
+
   ]
 })
 export class BookingsModule { }

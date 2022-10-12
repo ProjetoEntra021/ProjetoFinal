@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CreatBookingComponent } from './bookings/creat-booking/creat-booking.component';
+import { CreateBookingComponent } from './bookings/create-booking/create-booking.component';
 
 @NgModule({
   declarations: [

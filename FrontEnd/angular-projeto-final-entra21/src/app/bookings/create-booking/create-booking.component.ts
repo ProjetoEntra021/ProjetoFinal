@@ -1,11 +1,11 @@
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ClientService } from './../../service/client.service';
-import { Client } from './../../shared/model/client';
-import { Category } from './../../shared/model/category';
-import { CategoryService } from './../../service/category.service';
-import { Booking} from './../../shared/model/booking';
-import { BookingsService } from './../../service/bookings.service';
+import { ClientService } from '../../service/client.service';
+import { Client } from '../../shared/model/client';
+import { Category } from '../../shared/model/category';
+import { CategoryService } from '../../service/category.service';
+import { Booking} from '../../shared/model/booking';
+import { BookingsService } from '../../service/bookings.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Component, OnInit } from '@angular/core';
@@ -13,11 +13,11 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-creat-booking',
-  templateUrl: './creat-booking.component.html',
-  styleUrls: ['./creat-booking.component.scss']
+  selector: 'app-create-booking',
+  templateUrl: './create-booking.component.html',
+  styleUrls: ['./create-booking.component.scss']
 })
-export class CreatBookingComponent implements OnInit {
+export class CreateBookingComponent implements OnInit {
 
     bookingForm = this.formBuilder.group({
     id: 0,
