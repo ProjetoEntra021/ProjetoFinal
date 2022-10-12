@@ -69,6 +69,12 @@ export class VehicleListComponent implements OnInit, AfterViewInit {
 
   edit(id: number) {
     console.log("clicked")
+    this.router.navigate(['add/' + id], { relativeTo: this.route.parent })
+  }
+
+  details(id: number) {
+    console.log("clicked")
     this.router.navigate(['details/' + id], { relativeTo: this.route.parent })
   }
+
 }

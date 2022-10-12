@@ -45,9 +45,11 @@
               <mat-label>Chassi:</mat-label>
               <input matInput formControlName="chassi" type="text" placeholder="Digite o Chassi do veículo" />
             </mat-form-field>
+
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Quilometragem:</mat-label>
-              <input matInput formControlName="mileage" type="text" placeholder="Digite o Chassi do veículo" />
+              <input matInput suffix="km" mask="separator.1" thousandSeparator="." formControlName="mileage" type="text"
+                     placeholder="Digite o Chassi do veículo" />
             </mat-form-field>
           </div>
 
