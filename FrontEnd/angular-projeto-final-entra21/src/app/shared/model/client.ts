@@ -10,6 +10,6 @@ export interface Client {
   cpf: string,
   cnh: string,
   addresses: Address[] | Partial<Address>[],
-  contacts: Contact[],
+  contacts: Contact[] | Partial<Contact>[],
   bookings: Booking[]
 }

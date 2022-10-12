@@ -22,4 +22,13 @@ export class ClientService {
   save(record: Partial<Client>) {
     return this.httpClient.post<Partial<Client>>(this.API, record).pipe(first());
   }
+
+  getClientById(id: number) {
+    return this.httpClient.get<Client>(this.API + '/' + id).pipe(tap(data => console.log(data)),
+      first());
+  }
+
+  update(record: Partial<Client>) {
+    return this.httpClient.put<Partial<Client>>(this.API + '/' + record.id, record).pipe(first());
+  }
 }

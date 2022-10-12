@@ -1,10 +1,10 @@
-<mat-card>Listagem de Clientes</mat-card>
-  <mat-card>
+<mat-card>
+  <h1>Listagem de Clientes</h1>
     <section class="container">
       <mat-table  [dataSource]="dataSource" class="mat-elevation-z8" #sort="matSort" matSort>
 
         <!-- Name Column -->
-        <ng-container matColumnDef="id">
+        <ng-container id="idColumn" matColumnDef="id">
           <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
           <mat-cell *matCellDef="let client">
             {{ client.id }}
@@ -39,8 +39,12 @@
             </button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item>
-                <mat-icon>edit</mat-icon>
+                <mat-icon (click)="edit(client.id)" >edit</mat-icon>
                 <span>Editar</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon (click)="detail(client.id)" >details</mat-icon>
+                <span>Detalhar</span>
               </button>
             </mat-menu>
           </mat-cell>
@@ -51,6 +55,11 @@
         ></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
+      <button class="formButton" mat-raised-button color="primary" (click)="onCancel()">
+        Retornar
+      </button>
     </section>
-  </mat-card>
+
+
+</mat-card>
 
