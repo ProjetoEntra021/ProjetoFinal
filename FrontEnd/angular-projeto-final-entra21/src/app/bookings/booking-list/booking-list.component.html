@@ -1,6 +1,6 @@
 <div id="mainContent">
   <div id="header">
-    <a id="arrowBack" [routerLink]="['/main/bookings/create']" >
+    <a id="arrowBack" [routerLink]="['/main']" >
       <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
     </a>
     <div id="mainTextHeader">
@@ -59,7 +59,7 @@
             </button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item>
-                <span>Detalhes</span>
+                <span mat-menu-item (click)="details(booking.id)">Detalhes </span>
               </button>
             </mat-menu>
           </mat-cell>

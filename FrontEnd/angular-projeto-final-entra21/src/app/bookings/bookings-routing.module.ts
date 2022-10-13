@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', component: BookingListComponent },
-  { path: 'create', component: CreateBookingComponent},
   { path: 'create/:idclient', component: CreateBookingComponent},
   { path: 'details/:id',component: CreateBookingComponent }
 ];

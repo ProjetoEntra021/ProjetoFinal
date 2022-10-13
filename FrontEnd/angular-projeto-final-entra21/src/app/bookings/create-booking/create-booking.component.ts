@@ -34,12 +34,17 @@ export class CreateBookingComponent implements OnInit {
     }),
     dayPrice: 0,
     weekPrice: 0,
+    estimatedPrice: 0,
   })
 
   categories: Category[] = [];
 
   public bookingId!: number;
   public clientId!: number;
+  public difDays!: number;
+  public difWeeks!: number;
+
+
   // booking!: Observable <Booking>;
   // client!: Observable <Client>;
 
@@ -54,10 +59,8 @@ export class CreateBookingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.categoryService.list().subscribe((dados) => {
       this.categories = dados;
-
       })
       this.route.params.subscribe(params => {
         this.bookingId = params['id'];
@@ -71,10 +74,7 @@ export class CreateBookingComponent implements OnInit {
             this.getBookingClient();
           }
         })
-
-
     })
-
     this.searchCategory();
     console.log(this.categories);
 
@@ -100,6 +100,15 @@ export class CreateBookingComponent implements OnInit {
           dayPrice: resultado.dayPrice,
           weekPrice: resultado.weekPrice,
         });
+        this.estimatedDate();
+
+        if (resultado.category.dayPrice && resultado.category.weekPrice){
+          let estPrice = (this.difDays * (resultado.category.dayPrice)) +
+          (this.difWeeks * (resultado.category.weekPrice));
+          this.bookingForm.patchValue({
+              estimatedPrice: estPrice,
+          })
+        }
       }
     )
   }
@@ -153,15 +162,39 @@ export class CreateBookingComponent implements OnInit {
           tempCat = cat;
         }
       }
-
+    this.estimatedDate();
+     let estPrice = (this.difDays * (tempCat.dayPrice)) +
+      (this.difWeeks * (tempCat.weekPrice));
       this.bookingForm.patchValue({
-
           dayPrice: tempCat.dayPrice,
-          weekPrice: tempCat.weekPrice
-
+          weekPrice: tempCat.weekPrice,
+          estimatedPrice: estPrice,
       })
     }
   }
 
-}
+  // updatePickUpDate(event:any, date: Date){
+  //   if (event.isUserInput){
+  //     this.bookingForm.patchValue({
+  //       pickUpDate: date,
+  //     })
+  //   }
+  // }
+  estimatedDate(){
+      if(this.bookingForm.value.pickUpDate && this.bookingForm.value.dropOffDate){
+        const d1 = (Number(new Date(this.bookingForm.value.pickUpDate)));
+        const d2 = (Number(new Date (this.bookingForm.value.dropOffDate)));
+
+        const difDias = (d2 - d1)/ (1000 * 60 * 60 * 24);
+
+          let days = difDias % 7;
+          let weeks = Math. trunc(difDias/7);
+
+          this.difDays = days;
+          this.difWeeks = weeks;
+      }
+      console.log(this.difDays, this.difWeeks);
+    }
+  }
+
 
