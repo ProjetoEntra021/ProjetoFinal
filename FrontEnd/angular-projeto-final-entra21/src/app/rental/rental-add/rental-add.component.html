@@ -1,0 +1,64 @@
+<div id="mainContent">
+  <mat-card id="cardForm">
+    <div id="cardHeader">
+      <p> Veículo</p>
+    </div>
+    <mat-card-content>
+      <form [formGroup]="form" class="min-width">
+
+        <div class="formBlocks">
+
+          <div id="firstLine" class="formLines">
+            <mat-form-field formGroupName="category" class="formField" appearance="fill">
+              <mat-label>Categoria:</mat-label>
+              <mat-select formControlName="id">
+                <mat-option *ngFor="let category of categories" [value]="category.id" compareWith="compararObjetos">
+                  {{category.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Modelo:</mat-label>
+              <input matInput id="model" formControlName="vehicleModel" type="text"
+                     placeholder="Digite o modelo do veículo" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Data Inicial: </mat-label>
+              <input matInput id="model" formControlName="vehicleYear" type="text"
+                     placeholder="Digite o ano do veículo" />
+            </mat-form-field>
+          </div>
+
+          <div id="secondLine" class="formLines">
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Data Final: </mat-label>
+              <input matInput id="model" formControlName="renavam" type="text"
+                     placeholder="Digite o Renavam do veículo" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Valor previsto:</mat-label>
+              <input matInput formControlName="licensePlate" type="text" placeholder="Digite o placa do veículo" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Veículo:</mat-label>
+              <input matInput formControlName="chassi" type="text" placeholder="Digite o Chassi do veículo" />
+            </mat-form-field>
+          </div>
+
+          <mat-card-actions>
+            <button class="formButton" mat-raised-button color="primary" (click)="onSubmit()">
+              Salvar
+            </button>
+            <button class="formButton" mat-raised-button color="secondary" (click)="onCancel()">
+              Cancelar
+            </button>
+          </mat-card-actions>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
