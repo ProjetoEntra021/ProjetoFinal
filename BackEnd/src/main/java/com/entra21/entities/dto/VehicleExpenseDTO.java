@@ -1,48 +1,35 @@
-package com.entra21.entities;
+package com.entra21.entities.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-@Entity
-public class VehicleExpense implements Serializable{
+public class VehicleExpenseDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String description;
 	
 	private LocalDate date; 
 	
-	@Column(name = "exp_value")
 	private Double value;
-	
-	@ManyToOne
-	private Vehicle vehicle;
 
-	public VehicleExpense() {
+	private Long vehicleId;
+
+	
+	public VehicleExpenseDTO() {
+		super();
 	}
 
-	public VehicleExpense(Long id, String description, LocalDate date, Double value, Vehicle vehicle) {
+	public VehicleExpenseDTO(Long id, String description, LocalDate date, Double value, Long vehicleId) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.date = date;
 		this.value = value;
-		this.vehicle = vehicle;
+		this.vehicleId = vehicleId;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -76,13 +63,14 @@ public class VehicleExpense implements Serializable{
 		this.value = value;
 	}
 
-	@JsonIgnore
-	public Vehicle getVehicle() {
-		return vehicle;
+	public Long getVehicleId() {
+		return vehicleId;
 	}
 
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
+	public void setVehicleId(Long vehicleId) {
+		this.vehicleId = vehicleId;
 	}
+	
+	
 	
 }

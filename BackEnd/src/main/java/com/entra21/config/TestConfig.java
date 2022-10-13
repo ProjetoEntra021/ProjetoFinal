@@ -133,13 +133,13 @@ public class TestConfig implements CommandLineRunner {
 
 		vehicleRepository.saveAll(Arrays.asList(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14));
 		
-		VehicleExpense ve1 = new VehicleExpense(null, "Revisão 5000km", 110.00 , v1);
+		VehicleExpense ve1 = new VehicleExpense(null, "Revisão 5000km", LocalDate.now(), 110.00 , v1);
 		
-		VehicleRevenue vr1 = new VehicleRevenue(null, "Aluguel 1 semana", 500.00 , v1);
+		VehicleRevenue vr1 = new VehicleRevenue(null, "Aluguel 1 semana", LocalDate.now(), 500.00 , v1);
 		
-		VehicleExpense ve2 = new VehicleExpense(null, "Revisão 10000km", 130.00 , v1);
+		VehicleExpense ve2 = new VehicleExpense(null, "Revisão 10000km", LocalDate.now(), 130.00 , v1);
 		
-		VehicleRevenue vr2 = new VehicleRevenue(null, "Aluguel 2 semanas", 1000.00 , v1);
+		VehicleRevenue vr2 = new VehicleRevenue(null, "Aluguel 2 semanas", LocalDate.now(), 1000.00 , v1);
 		
 		vehicleERepository.saveAll(Arrays.asList(ve1, ve2));
 		

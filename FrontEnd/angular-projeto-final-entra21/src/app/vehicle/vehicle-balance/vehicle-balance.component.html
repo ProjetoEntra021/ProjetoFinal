@@ -11,6 +11,16 @@
               <span>Receitas</span>
             </div>
             <mat-table [dataSource]="vehicleRevenues" class="mat-elevation-z8">
+
+              <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef>
+                  Data
+                </mat-header-cell>
+                <mat-cell *matCellDef="let revenues">
+                  {{ revenues.date | date: "dd/MM/YYYY" }}
+                </mat-cell>
+              </ng-container>
+
               <ng-container matColumnDef="description">
                 <mat-header-cell *matHeaderCellDef>
                   Descrição
@@ -38,6 +48,16 @@
               <span>Despesas</span>
             </div>
             <mat-table [dataSource]="vehicleExpenses" class="mat-elevation-z8">
+
+              <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef>
+                  Data
+                </mat-header-cell>
+                <mat-cell *matCellDef="let expenses">
+                  {{ expenses.date | date: "dd/MM/YYYY" }}
+                </mat-cell>
+              </ng-container>
+
               <ng-container matColumnDef="description">
                 <mat-header-cell *matHeaderCellDef>
                   Descrição

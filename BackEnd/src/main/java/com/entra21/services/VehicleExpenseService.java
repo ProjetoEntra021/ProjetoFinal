@@ -6,15 +6,21 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.entra21.entities.Vehicle;
 import com.entra21.entities.VehicleExpense;
+import com.entra21.entities.dto.VehicleExpenseDTO;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.VehicleExpenseRepository;
+import com.entra21.repositories.VehicleRepository;
 
 @Service
 public class VehicleExpenseService {
 
 	@Autowired
 	private VehicleExpenseRepository vehicleExpenseRepository;
+	
+	@Autowired
+	private VehicleRepository vehicleRepository;
 
 	public List<VehicleExpense> findAll() {
 		return vehicleExpenseRepository.findAll();
@@ -25,8 +31,10 @@ public class VehicleExpenseService {
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
-	public VehicleExpense insert(VehicleExpense obj) {
-		return vehicleExpenseRepository.save(obj);
+	public VehicleExpense insert(VehicleExpenseDTO obj) {
+		Vehicle veh = vehicleRepository.findById(obj.getVehicleId()).get();
+		VehicleExpense ve = new VehicleExpense(null, obj.getDescription(), obj.getDate(), obj.getValue(), veh);
+		return vehicleExpenseRepository.save(ve);
 	}
 
 	public void delete(Long id) {

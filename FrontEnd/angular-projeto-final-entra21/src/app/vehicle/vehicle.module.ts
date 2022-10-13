@@ -12,6 +12,7 @@ import { VehicleMenuComponent } from './vehicle-menu/vehicle-menu.component';
 import { VehicleRoutingModule } from './vehicle-routing.module';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddExpenseDialogComponent } from './add-expense-dialog/add-expense-dialog.component';
 
 
 
@@ -23,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     VehicleAddComponent,
     VehicleDetailsComponent,
     VehicleBalanceComponent,
+    AddExpenseDialogComponent
   ],
   imports: [
     CommonModule,

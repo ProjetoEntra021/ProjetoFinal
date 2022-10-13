@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.entra21.entities.VehicleExpense;
+import com.entra21.entities.dto.VehicleExpenseDTO;
 import com.entra21.services.VehicleExpenseService;
 
 @RestController
@@ -39,10 +40,10 @@ public class VehicleExpenseController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<VehicleExpense> insert(@RequestBody VehicleExpense obj){
-		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).body(obj);
+	public ResponseEntity<VehicleExpense> insert(@RequestBody VehicleExpenseDTO obj){
+		VehicleExpense ve = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ve.getId()).toUri();
+		return ResponseEntity.created(uri).body(ve);
 	}
 	
 	@DeleteMapping(value = "/{id}")

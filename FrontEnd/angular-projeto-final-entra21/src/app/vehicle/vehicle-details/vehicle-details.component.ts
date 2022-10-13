@@ -144,9 +144,10 @@ export class VehicleDetailsComponent implements OnInit {
     this.router.navigate(['balance'], { relativeTo: this.route });
   }
 
-  onAddExpenseClick(errorMsg: string) {
+  onAddExpenseClick(id: number) {
     this.dialog.open(AddExpenseDialogComponent, {
-      data: errorMsg
-    });
+      data: id
+    }
+    );
   }
 }

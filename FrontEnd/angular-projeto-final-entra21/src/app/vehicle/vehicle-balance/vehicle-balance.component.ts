@@ -16,7 +16,7 @@ import { AddExpenseDialogComponent } from '../add-expense-dialog/add-expense-dia
 })
 export class VehicleBalanceComponent implements OnInit {
 
-  readonly displayedColumns: string[] = ['description', 'value'];
+  readonly displayedColumns: string[] = ['date', 'description', 'value'];
 
   public vehicleId!: number;
 
