@@ -6,6 +6,7 @@ import { catchError, Observable, of } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -25,6 +26,8 @@ export class BookingListComponent implements OnInit {
   constructor(
     private bookingsService: BookingsService,
     public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
     private _liveAnnouncer: LiveAnnouncer
   ) {
     this.bookingsService.list().subscribe(dados => this.dataSource = new MatTableDataSource<Booking>(dados));
@@ -35,4 +38,16 @@ export class BookingListComponent implements OnInit {
 
     bookingsService: Observable <Booking[]>;
   }
+
+  details(id: number) {
+    console.log("clicked")
+    this.router.navigate(['details/' + id], { relativeTo: this.route.parent })
+
+  }
+  edit(id: number) {
+    console.log("clicked")
+    this.router.navigate(['update/' + id], { relativeTo: this.route.parent })
+  }
+
+
 }
