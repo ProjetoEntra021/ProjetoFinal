@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ClientListComponent implements OnInit {
 
-  readonly displayedColumns: string[] = ['id','nome', 'cpf', 'actions'];
+  readonly displayedColumns: string[] = ['id','name', 'cpf', 'actions'];
   dataSource!: MatTableDataSource<Client>;
 
 

@@ -14,6 +14,7 @@ export class ClientDetailsComponent implements OnInit {
 
   public client!: Client;
   public clientId!: number;
+  public clientCpf!: string;
 
   constructor(
     private snackBar: MatSnackBar,
@@ -26,9 +27,22 @@ export class ClientDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.clientId = params['id'];
+      this.clientCpf = params['cpf'];
 
       if(this.clientId) {
         this.clientService.getClientById(this.clientId).subscribe(
+          resultado => {
+            if(resultado) {
+              this.client = resultado;
+            }
+            else {
+              this.snackBar.open('Erro ao consultar cliente.', '', { duration: 3000 })
+            }
+          }
+        )
+      }
+      else if(this.clientCpf) {
+        this.clientService.getClientByCpf(this.clientCpf).subscribe(
           resultado => {
             if(resultado) {
               this.client = resultado;

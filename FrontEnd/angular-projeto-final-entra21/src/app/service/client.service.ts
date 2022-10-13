@@ -28,6 +28,10 @@ export class ClientService {
       first());
   }
 
+  getClientByCpf(cpf: string) {
+    return this.httpClient.get<Client>(this.API + '/cpf/' + cpf).pipe(tap(data => console.log(data)),first())
+  }
+
   update(record: Partial<Client>) {
     return this.httpClient.put<Partial<Client>>(this.API + '/' + record.id, record).pipe(first());
   }
