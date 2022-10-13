@@ -16,7 +16,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class VehicleListComponent implements OnInit, AfterViewInit {
 
-  readonly displayedColumns: string[] = ['status', 'categoria', 'licensePlate', 'modelo', 'ano', 'actions'];
+  readonly displayedColumns: string[] = ['status', 'categoryName', 'licensePlate', 'vehicleModel', 'vehicleYear', 'actions'];
 
   //vehicles$: Observable<Vehicle[]>;
 
@@ -33,7 +33,14 @@ export class VehicleListComponent implements OnInit, AfterViewInit {
 
     this.vehicleService.list().subscribe((dados) => {
       console.log(dados);
+
+      for (let vehicle of dados) {
+        vehicle.categoryName = vehicle.category.name;
+      }
+
+
       this.dataSource = new MatTableDataSource(dados);
+      this.dataSource.sort = this.sort;
     }
     );
 
@@ -44,7 +51,7 @@ export class VehicleListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.dataSource.sort = this.sort;
+
   }
 
 
@@ -59,8 +66,15 @@ export class VehicleListComponent implements OnInit, AfterViewInit {
     this.dataSource!.filter = filterValue.trim().toLowerCase();
   }
 
+
   edit(id: number) {
+    console.log("clicked")
+    this.router.navigate(['add/' + id], { relativeTo: this.route.parent })
+  }
+
+  details(id: number) {
     console.log("clicked")
     this.router.navigate(['details/' + id], { relativeTo: this.route.parent })
   }
+
 }

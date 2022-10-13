@@ -6,7 +6,7 @@
   text-align: left;
   // border: 1px solid red;
   margin: auto;
-  height: 50px;
+  height: 30px;
   color: #00796b;
 }
 
@@ -22,7 +22,6 @@
   color: black;
   border: 1px solid black;
   margin: auto;
-  height: 80%;
 }
 
 #mainContent {
@@ -70,18 +69,17 @@ label {
   gap: 5px;
 }
 
-select {
-  height: 26px;
-  border-radius: 5px;
+mat-select {
+  height: 19px;
 }
 
 mat-card-actions {
   width: 99%;
   margin: auto;
-  margin-top: 10px;
   height: fit-content;
   padding: 0px;
   text-align: center;
+  // border: 1px solid red;
 }
 
 legend,
@@ -111,6 +109,7 @@ div.ng-tns-c106-2 {
 }
 
 mat-radio-button {
+  justify-content: center;
   margin-left: 16px;
 }
 
@@ -123,6 +122,8 @@ mat-radio-group {
   grid-template-columns: 33% 33% 33%;
   width: 100%;
   margin-left: 20px;
+  margin-bottom: 10px;
+  padding-top: 10px;
 }
 
 .vehicleFinances {
@@ -130,10 +131,32 @@ mat-radio-group {
   padding: 10px 0;
   width: 100%;
   margin: auto;
-  text-align: center;
+  text-align: left;
+  display: flex;
 }
 
 .vehicleFinances button {
   margin-left: 5px;
   margin-right: 5px;
+}
+
+#submit {
+  text-align: right;
+}
+
+#finances {
+  width: 100%;
+  text-align: center;
+}
+
+#firstLine {
+  padding: 10px;
+  // border: 1px solid red;
+  text-align: center;
+}
+
+.inputs {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 }

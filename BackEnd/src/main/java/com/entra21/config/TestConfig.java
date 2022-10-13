@@ -17,6 +17,8 @@ import com.entra21.entities.Client;
 import com.entra21.entities.Contact;
 import com.entra21.entities.Rental;
 import com.entra21.entities.Vehicle;
+import com.entra21.entities.VehicleExpense;
+import com.entra21.entities.VehicleRevenue;
 import com.entra21.entities.enums.BookingStatus;
 import com.entra21.entities.enums.ContactType;
 import com.entra21.entities.enums.GenderType;
@@ -28,7 +30,9 @@ import com.entra21.repositories.CategoryRepository;
 import com.entra21.repositories.ClientRepository;
 import com.entra21.repositories.ContactRepository;
 import com.entra21.repositories.RentalRepository;
+import com.entra21.repositories.VehicleExpenseRepository;
 import com.entra21.repositories.VehicleRepository;
+import com.entra21.repositories.VehicleRevenueRepository;
 
 @Configuration
 @Profile("test")
@@ -58,6 +62,12 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private RentalRepository rentalRepository;
 
+	@Autowired
+	private VehicleExpenseRepository vehicleERepository;
+	
+	@Autowired
+	private VehicleRevenueRepository vehicleRRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -132,7 +142,19 @@ public class TestConfig implements CommandLineRunner {
 				"2010", cat1, VehicleStatus.MAINTENANCE);
 
 		vehicleRepository.saveAll(Arrays.asList(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14));
-
+		
+		VehicleExpense ve1 = new VehicleExpense(null, "Revisão 5000km", LocalDate.now(), 110.00 , v1);
+		
+		VehicleRevenue vr1 = new VehicleRevenue(null, "Aluguel 1 semana", LocalDate.now(), 500.00 , v1);
+		
+		VehicleExpense ve2 = new VehicleExpense(null, "Revisão 10000km", LocalDate.now(), 130.00 , v1);
+		
+		VehicleRevenue vr2 = new VehicleRevenue(null, "Aluguel 2 semanas", LocalDate.now(), 1000.00 , v1);
+		
+		vehicleERepository.saveAll(Arrays.asList(ve1, ve2));
+		
+		vehicleRRepository.saveAll(Arrays.asList(vr1, vr2));
+		
 		Rental r1 = new Rental(null, bk1.getPickUpDate(), bk1.getDropOffDate(), RentalStatus.PENDING, bk1, v1, null);
 
 		rentalRepository.save(r1);

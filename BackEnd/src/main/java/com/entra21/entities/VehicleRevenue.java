@@ -1,6 +1,7 @@
 package com.entra21.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +23,8 @@ public class VehicleRevenue implements Serializable{
 	
 	private String description;
 	
+	private LocalDate date; 
+	
 	@Column(name = "rev_value")
 	private Double value;
 	
@@ -30,10 +33,11 @@ public class VehicleRevenue implements Serializable{
 	
 	public VehicleRevenue() {}
 
-	public VehicleRevenue(Long id, String description, Double value, Vehicle vehicle) {
+	public VehicleRevenue(Long id, String description, LocalDate date, Double value, Vehicle vehicle) {
 		super();
 		this.id = id;
 		this.description = description;
+		this.date = date;
 		this.value = value;
 		this.vehicle = vehicle;
 	}
@@ -48,6 +52,14 @@ public class VehicleRevenue implements Serializable{
 
 	public String getDescription() {
 		return description;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 
 	public void setDescription(String description) {

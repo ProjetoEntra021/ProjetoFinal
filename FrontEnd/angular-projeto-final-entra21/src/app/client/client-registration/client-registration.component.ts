@@ -18,7 +18,7 @@ export class ClientRegistrationComponent implements OnInit {
 
 
   clientForm = this.formBuilder.group({
-    id:0,
+    id: 0,
     name: ['', Validators.required],
     birthDate: ['', Validators.required],
     cpf: ['', Validators.required],
@@ -27,7 +27,7 @@ export class ClientRegistrationComponent implements OnInit {
     // addresses: [this.formBuilder.group(this.addressForm)]
     addresses: this.formBuilder.array([
       this.formBuilder.group({
-        id:0,
+        id: 0,
         cep: ['', Validators.required],
         street: ['', Validators.required],
         number: ['', Validators.required],
@@ -39,12 +39,12 @@ export class ClientRegistrationComponent implements OnInit {
     ]),
     contacts: this.formBuilder.array([
       this.formBuilder.group({
-        id:0,
+        id: [<number | undefined>(undefined)],
         contactType: 0,
         description: ['', Validators.required]
       }),
       this.formBuilder.group({
-        id:0,
+        id: [<number | undefined>(undefined)],
         contactType: 1,
         description: ['', Validators.required]
       })
@@ -52,7 +52,10 @@ export class ClientRegistrationComponent implements OnInit {
   });
 
 
-
+  public nullContact: Partial<Contact> = {
+    id: 0,
+    description: ''
+  }
 
 
   public client!: Client;
@@ -85,7 +88,7 @@ export class ClientRegistrationComponent implements OnInit {
   }
 
   onClickSave() {
-    if(this.clientId) {
+    if (this.clientId) {
       this.updateClient();
     }
     else {
@@ -110,6 +113,37 @@ export class ClientRegistrationComponent implements OnInit {
   getClient() {
     this.clientService.getClientById(this.clientId).subscribe(
       resultado => {
+
+        if (resultado.contacts.length != 0) {
+          this.clientForm.patchValue({
+            id: resultado.id,
+            name: resultado.name,
+            birthDate: resultado.birthDate,
+            cpf: resultado.cpf,
+            cnh: resultado.cnh,
+            gender: resultado.gender,
+            addresses: [{
+              id: resultado.addresses[0].id,
+              cep: resultado.addresses[0].cep,
+              street: resultado.addresses[0].street,
+              number: resultado.addresses[0].number,
+              complement: resultado.addresses[0].complement,
+              district: resultado.addresses[0].district,
+              city: resultado.addresses[0].city,
+              uf: resultado.addresses[0].uf
+            }],
+            contacts: [{
+              id: resultado.contacts[0].id,
+              description: resultado?.contacts[0].description
+            },
+            {
+              id: resultado.contacts[1].id,
+              description: resultado?.contacts[1].description
+            }]
+
+          })
+        }
+
         this.clientForm.patchValue({
           id: resultado.id,
           name: resultado.name,
@@ -126,17 +160,11 @@ export class ClientRegistrationComponent implements OnInit {
             district: resultado.addresses[0].district,
             city: resultado.addresses[0].city,
             uf: resultado.addresses[0].uf
-          }],
-          contacts: [{
-            id: resultado.contacts[0].id,
-            description: resultado.contacts[0].description
-          },
-          {
-            id: resultado.contacts[1].id,
-            description: resultado.contacts[1].description
           }]
-
         })
+
+
+
       }
     )
   }

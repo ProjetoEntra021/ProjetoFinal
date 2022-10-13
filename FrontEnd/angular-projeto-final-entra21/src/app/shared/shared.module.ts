@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppMaterialModule } from './app-material/app-material.module';
 import { HeaderComponent } from './header/header.component';
 import { VehicleStatusPipe } from './pipes/vehicle-status.pipe';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
+export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 
 
 @NgModule({
@@ -14,11 +16,13 @@ import { VehicleStatusPipe } from './pipes/vehicle-status.pipe';
   ],
   imports: [
     CommonModule,
-    AppMaterialModule
+    AppMaterialModule,
+    NgxMaskModule.forRoot()
   ],
   exports: [
     HeaderComponent,
-    VehicleStatusPipe
+    VehicleStatusPipe,
+    NgxMaskModule
   ]
 })
 export class SharedModule { }

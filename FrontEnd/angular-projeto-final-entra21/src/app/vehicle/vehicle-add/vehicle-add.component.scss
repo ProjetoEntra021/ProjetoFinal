@@ -22,7 +22,7 @@
   color: black;
   border: 1px solid black;
   margin: auto;
-  height: 80%;
+  height: 50%;
 }
 
 #mainContent {
@@ -53,7 +53,7 @@ fieldset {
 }
 
 .formField {
-  width: 45%;
+  width: 100%;
 }
 
 input {
@@ -81,7 +81,7 @@ mat-card-actions {
   margin-top: 5px;
   height: fit-content;
   padding: 0px;
-  text-align: center;
+  text-align: end;
 }
 
 legend,
@@ -108,4 +108,33 @@ mat-label {
 div.ng-tns-c106-2 {
   border: 1px solid black;
   border-radius: 5px;
+}
+
+.formLines {
+  width: 95%;
+  gap: 5px;
+}
+
+#firstLine {
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+}
+
+#secondLine {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  margin-bottom: 10px;
+}
+
+.ng-tns-c107-2 {
+  height: 20px;
+}
+
+mat-card-content {
+  height: 100%;
+  overflow: auto;
+}
+
+mat-select {
+  height: 19px;
 }

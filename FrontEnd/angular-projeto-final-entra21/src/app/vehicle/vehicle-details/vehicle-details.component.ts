@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { VehicleService } from '../../service/vehicle.service';
-import { NonNullableFormBuilder, Validators, FormBuilder } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { CategoryService } from '../../service/category.service';
-import { Category } from '../../shared/model/category';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { Vehicle } from '../../shared/model/vehicle';
-import { Booking } from '../../shared/model/booking';
+import { Component, OnInit } from '@angular/core';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { CategoryService } from '../../service/category.service';
+import { VehicleService } from '../../service/vehicle.service';
+import { Category } from '../../shared/model/category';
+import { AddExpenseDialogComponent } from '../add-expense-dialog/add-expense-dialog.component';
 
 @Component({
   selector: 'app-vehicle-details',
@@ -28,11 +29,11 @@ export class VehicleDetailsComponent implements OnInit {
     vehicleModel: ['', Validators.required],
     licensePlate: ['', Validators.required],
     chassi: ['', Validators.required],
-    mileage: [0, Validators.required],
+    mileage: [<number | undefined>(undefined), Validators.required],
     renavam: ['', Validators.required],
     vehicleYear: ['', Validators.required],
     vehicleStatus: [''],
-    category: // [<Category | undefined>(undefined)]
+    category:
       this.formBuilder.group({
         id: 0,
         name: '',
@@ -51,30 +52,30 @@ export class VehicleDetailsComponent implements OnInit {
     private formBuilder: NonNullableFormBuilder,
     private snackBar: MatSnackBar,
     private categoryService: CategoryService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router,
+    public dialog: MatDialog) {
 
   }
 
   ngOnInit(): void {
-    this.categoryService.list().subscribe((dados) => {
-      this.categories = dados;
-      this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
+      this.vehicleId = params['id'];
+      if (this.vehicleId) {
+        this.getVehicle(this.vehicleId);
+      }
+      this.categoryService.list().subscribe((dados) => {
+        this.categories = dados;
+      });
+    })
 
-        this.vehicleId = params['id'];
-
-        if (this.vehicleId) {
-          this.getVehicle();
-        }
-
-      })
-    });
 
   }
 
-  getVehicle() {
-    this.vehicleService.getVehicleById(this.vehicleId).subscribe(
+  getVehicle(id: number) {
+    this.vehicleService.getVehicleById(id).subscribe(
       resultado => {
-        console.log(resultado)
+        console.log(resultado);
         this.form.patchValue({
           id: resultado.id,
           vehicleModel: resultado.vehicleModel,
@@ -92,9 +93,7 @@ export class VehicleDetailsComponent implements OnInit {
           },
           vehicleStatus: resultado.vehicleStatus
         });
-
       })
-
   }
 
   onCancel() {
@@ -123,4 +122,32 @@ export class VehicleDetailsComponent implements OnInit {
     return o1.name === o2.name;
   }
 
+  updatePriceValue(event: any, id: number) {
+    if (event.isUserInput) {
+      let tempCat = {} as Category;
+      for (let cat of this.categories) {
+        if (cat.id == id) {
+          tempCat = cat;
+        }
+      }
+      this.form.patchValue({
+        category:
+        {
+          dayPrice: tempCat.dayPrice,
+          weekPrice: tempCat.weekPrice
+        },
+      })
+    }
+  }
+
+  vehicleBalance() {
+    this.router.navigate(['balance'], { relativeTo: this.route });
+  }
+
+  onAddExpenseClick(id: number) {
+    this.dialog.open(AddExpenseDialogComponent, {
+      data: id
+    }
+    );
+  }
 }

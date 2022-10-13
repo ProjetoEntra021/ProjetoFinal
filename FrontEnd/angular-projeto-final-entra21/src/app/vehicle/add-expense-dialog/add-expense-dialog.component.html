@@ -1,0 +1,32 @@
+<h1 mat-dialog-title color="primary">Adicione nova despesa</h1>
+<div id="contentDialog" mat-dialog-content>
+  <form [formGroup]="form" class="min-width">
+    <div>
+      <mat-form-field class="formField" appearance="fill">
+        <mat-label>Descrição:</mat-label>
+        <input matInput id="model" formControlName="description" type="text" placeholder="Descrição da despesa" />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="formField" appearance="fill">
+        <mat-label>Data:</mat-label>
+        <input matInput id="model" formControlName="date" mask="d0/M0/0000" type="text" placeholder="Data da despesa" />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="formField" appearance="fill">
+        <mat-label>Valor:</mat-label>
+        <input matInput id="model" mask="separator.2" [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$"
+               formControlName="value" type="text" placeholder="Valor da despesa" />
+      </mat-form-field>
+    </div>
+
+
+  </form>
+  <div mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" (click)="onSubmit()">Salvar</button>
+    <button mat-raised-button mat-dialog-close>Cancelar</button>
+  </div>
+</div>
