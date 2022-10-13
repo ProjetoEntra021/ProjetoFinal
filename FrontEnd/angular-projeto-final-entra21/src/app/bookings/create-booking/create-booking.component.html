@@ -61,10 +61,13 @@
         </div>
       </div>
         <mat-card-actions>
-          <button class="formButton" mat-raised-button color="primary" (click)="onSubmit()">
-            Salvar
+          <button class="formButton" mat-raised-button color="primary" (click)="onSubmit()" (click)="back()">
+            {{bookingId ? 'Atualizar' : 'Realizar Reserva'}}
           </button>
-          <button class="formButton" mat-raised-button color="secondary" >
+          <button *ngIf="!bookingId" class="formButton" mat-raised-button color="secondary" >
+            Realizar Locação
+          </button>
+          <button lass="formButton" mat-raised-button color="warn" (click)="back()" >
             Cancelar
           </button>
         </mat-card-actions>

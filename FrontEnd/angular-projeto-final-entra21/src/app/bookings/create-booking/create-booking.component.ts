@@ -7,6 +7,7 @@ import { CategoryService } from '../../service/category.service';
 import { Booking} from '../../shared/model/booking';
 import { BookingsService } from '../../service/bookings.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
 
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
@@ -55,7 +56,8 @@ export class CreateBookingComponent implements OnInit {
     private clientService: ClientService,
     private formBuilder: NonNullableFormBuilder,
     private snackBar: MatSnackBar,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location,
   ) { }
 
   ngOnInit(): void {
@@ -134,7 +136,12 @@ export class CreateBookingComponent implements OnInit {
   }
 
   private onSuccess() {
-    this.snackBar.open('Reserva realizada com sucesso!', '', { duration: 3000 })
+    if(this.bookingId){
+      this.snackBar.open('Reserva atualizada com sucesso!', '', { duration: 3000 })
+    }else{
+      this.snackBar.open('Reserva realizada com sucesso!', '', { duration: 3000 })
+
+    }
   }
 
   private onError() {
@@ -195,6 +202,10 @@ export class CreateBookingComponent implements OnInit {
       }
       console.log(this.difDays, this.difWeeks);
     }
+    back(){
+      this.location.back();
+    }
   }
+
 
 

@@ -44,4 +44,10 @@ export class BookingListComponent implements OnInit {
     this.router.navigate(['details/' + id], { relativeTo: this.route.parent })
 
   }
+  edit(id: number) {
+    console.log("clicked")
+    this.router.navigate(['update/' + id], { relativeTo: this.route.parent })
+  }
+
+
 }

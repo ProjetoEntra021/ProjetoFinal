@@ -1,0 +1,53 @@
+<mat-card class="client-card">
+
+  <h1>Cadastro de Cliente</h1>
+
+<mat-card-content>
+
+  <h2>Dados Pessoais</h2>
+
+  <div id="firstLine">
+    <mat-card-content >
+      <mat-card-subtitle >Cliente</mat-card-subtitle>
+      <input type="text" readonly name="name" [(ngModel)] = "booking.client.name">
+    </mat-card-content>
+    <mat-card-content >
+      <mat-card-subtitle >Data de retirada:</mat-card-subtitle>
+      <input type="date" readonly name="booking.pickUpDate" [(ngModel)] = "booking.pickUpDate">
+    </mat-card-content>
+    <mat-card-content >
+      <mat-card-subtitle >Data de entrega:</mat-card-subtitle>
+      <input type="date" readonly name="booking.dropOffDate" [(ngModel)] = "booking.dropOffDate">
+    </mat-card-content>
+  </div>
+
+  <div id="secondLine">
+    <mat-card-content >
+      <mat-card-subtitle>Categoria:</mat-card-subtitle>
+      <input type="text" readonly name="booking.category" [(ngModel)] = "booking.category.name">
+    </mat-card-content>
+    <mat-card-content >
+      <mat-card-subtitle>Status:</mat-card-subtitle>
+      <input type="text" readonly name="booking.status" [(ngModel)] = "booking.bookingStatus">
+    </mat-card-content>
+    <!-- <mat-card-content >
+      <mat-card-subtitle>Valor previsto</mat-card-subtitle>
+      <input type="text" readonly name="cnh" [(ngModel)] = "client.cnh">
+    </mat-card-content> -->
+  </div>
+
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary">
+      Efetuar Locação
+    </button>
+    <button  mat-raised-button color="secondary" (click)="edit(booking.id)">
+      Editar Reserva
+    </button>
+    <button mat-raised-button color="secondary" (click)="onCancel()">
+      Cancelar
+    </button>
+  </mat-card-actions>
+</mat-card-content>
+</mat-card>
+

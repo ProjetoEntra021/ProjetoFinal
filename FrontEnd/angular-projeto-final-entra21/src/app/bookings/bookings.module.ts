@@ -8,12 +8,14 @@ import { CommonModule } from '@angular/common';
 
 import { BookingsRoutingModule } from './bookings-routing.module';
 import { BookingListComponent } from './booking-list/booking-list.component';
+import { DetailsBookingComponent } from './details-booking/details-booking.component';
 
 
 @NgModule({
   declarations: [
     BookingListComponent,
-    CreateBookingComponent
+    CreateBookingComponent,
+    DetailsBookingComponent
   ],
   imports: [
     CommonModule,

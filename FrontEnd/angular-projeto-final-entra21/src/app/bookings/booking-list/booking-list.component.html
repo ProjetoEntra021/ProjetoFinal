@@ -58,8 +58,13 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item>
-                <span mat-menu-item (click)="details(booking.id)">Detalhes </span>
+              <button mat-menu-item (click)="edit(booking.id)">
+                <mat-icon>edit</mat-icon>
+                <span>Editar</span>
+              </button>
+              <button mat-menu-item (click)="details(booking.id)">
+                <mat-icon>info</mat-icon>
+                <span>Detalhes</span>
               </button>
             </mat-menu>
           </mat-cell>
