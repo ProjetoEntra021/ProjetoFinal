@@ -1,11 +1,9 @@
 package com.entra21.config;
 
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,9 +14,11 @@ import com.entra21.entities.Address;
 import com.entra21.entities.Booking;
 import com.entra21.entities.Category;
 import com.entra21.entities.Client;
+import com.entra21.entities.Contact;
 import com.entra21.entities.Rental;
 import com.entra21.entities.Vehicle;
 import com.entra21.entities.enums.BookingStatus;
+import com.entra21.entities.enums.ContactType;
 import com.entra21.entities.enums.GenderType;
 import com.entra21.entities.enums.RentalStatus;
 import com.entra21.entities.enums.VehicleStatus;
@@ -26,6 +26,7 @@ import com.entra21.repositories.AddressRepository;
 import com.entra21.repositories.BookingRepository;
 import com.entra21.repositories.CategoryRepository;
 import com.entra21.repositories.ClientRepository;
+import com.entra21.repositories.ContactRepository;
 import com.entra21.repositories.RentalRepository;
 import com.entra21.repositories.VehicleRepository;
 
@@ -41,6 +42,9 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private AddressRepository addressRepository;
+	
+	@Autowired
+	private ContactRepository contactRepository;
 
 	@Autowired
 	private CategoryRepository categoryRepository;
@@ -65,6 +69,11 @@ public class TestConfig implements CommandLineRunner {
 		Address ad1 = new Address(null, "88040425", "Servidão Maria R", "Trinda", "186", "Casa 163", "Florianopolis", "SC", c1);
 
 		addressRepository.save(ad1);
+		
+		Contact ct1 = new Contact(null, ContactType.EMAIL, "mateus@gmail.com", c1);
+		Contact ct2 = new Contact(null, ContactType.PHONE, "48988765432", c1);
+		
+		contactRepository.saveAll(Arrays.asList(ct1, ct2));
 
 		Category cat1 = new Category(null, "Hatch-Back", 450.00, 70.00);
 		
@@ -137,6 +146,11 @@ public class TestConfig implements CommandLineRunner {
 				"Florianopolis", "SC", c2);
 
 		addressRepository.save(ad2);
+		
+		Contact ct3 = new Contact(null, ContactType.EMAIL, "pablompamplona@gmail.com", c2);
+		Contact ct4 = new Contact(null, ContactType.PHONE, "48988328778", c2);
+		
+		contactRepository.saveAll(Arrays.asList(ct3, ct4));
 
 		Booking bk2 = new Booking(null, c2, Instant.parse("2005-10-20T00:00:00Z"),
 				Instant.parse("2005-10-30T00:00:00Z"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,

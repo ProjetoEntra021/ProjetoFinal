@@ -24,6 +24,11 @@ public class ClientService {
 		Optional<Client> obj = clientRepository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
+	
+	public Client findByCpf(String cpf) {
+		Optional<Client> obj = Optional.ofNullable(clientRepository.findByCpf(cpf));
+		return obj.orElseThrow(() -> new ResourceNotFoundException(cpf));
+	}
 
 	public Client insert(Client obj) {
 		obj.getAddresses().forEach((address) -> address.setClient(obj));

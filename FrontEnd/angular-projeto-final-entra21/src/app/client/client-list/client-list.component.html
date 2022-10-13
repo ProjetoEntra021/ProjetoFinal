@@ -5,14 +5,14 @@
 
         <!-- Name Column -->
         <ng-container id="idColumn" matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Cód Cliente </mat-header-cell>
           <mat-cell *matCellDef="let client">
             {{ client.id }}
           </mat-cell>
         </ng-container>
 
         <!-- Name Column -->
-        <ng-container matColumnDef="nome">
+        <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
           <mat-cell *matCellDef="let client">
             {{ client.name }}

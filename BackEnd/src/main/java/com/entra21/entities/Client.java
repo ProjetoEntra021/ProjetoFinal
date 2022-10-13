@@ -120,6 +120,9 @@ public class Client implements Serializable{
 		return bookings;
 	}
 
+
+	
+
 	
 
 }

@@ -38,6 +38,12 @@ public class ClientController {
 		return ResponseEntity.ok().body(obj);
 	}
 	
+	@GetMapping(value = "/cpf/{cpf}")
+	public ResponseEntity<Client> findByCpf(@PathVariable String cpf){
+		Client obj = service.findByCpf(cpf);
+		return ResponseEntity.ok().body(obj);
+	}
+	
 	@PostMapping
 	public ResponseEntity<Client> insert(@RequestBody Client obj){
 		obj = service.insert(obj);
