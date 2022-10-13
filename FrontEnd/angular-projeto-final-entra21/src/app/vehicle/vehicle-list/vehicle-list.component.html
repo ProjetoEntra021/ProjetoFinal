@@ -1,94 +1,105 @@
 <div id="mainContent">
   <div id="header">
-    <a id="arrowBack" [routerLink]="['/main/vehicles']">
-      <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
-    </a>
+
+    <div id="searchVehicle">
+      <div id="arrowBack">
+        <a [routerLink]="['/main/vehicles']">
+          <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
+        </a>
+      </div>
+      <div id="inputSearch">
+        <span> Buscar </span>
+        <input (keyup)="applyFilter($event)" placeholder="Ex. Corsa" #input class="clientSearchParamInput" />
+      </div>
+    </div>
+
+  </div>
+  <mat-card>
     <div id="mainTextHeader">
       <span>Listagem dos Carros</span>
     </div>
-  </div>
-  <mat-card>
     <section class="container">
-      <div id="searchVehicle">
-        <label>Buscar veículo
-          <input (keyup)="applyFilter($event)" placeholder="Ex. Corsa" #input />
-        </label>
-      </div>
-      <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="status">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            Status
-          </mat-header-cell>
-          <mat-cell *matCellDef="let vehicle">
-            <mat-icon aria-hidden="false" aria-label="Example home icon" class="{{ vehicle.vehicleStatus }} status"
-                      fontIcon="circle"></mat-icon>
-          </mat-cell>
-        </ng-container>
+      <mat-card-content>
+        <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Status
+            </mat-header-cell>
+            <mat-cell *matCellDef="let vehicle">
+              <mat-icon aria-hidden="false" aria-label="Example home icon" class="{{ vehicle.vehicleStatus }} status"
+                        fontIcon="circle"></mat-icon>
+            </mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="categoria">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            Categoria
-          </mat-header-cell>
-          <mat-cell *matCellDef="let vehicle">
-            {{ vehicle.category.name }}
-          </mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="categoryName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Categoria
+            </mat-header-cell>
+            <mat-cell *matCellDef="let vehicle">
+              {{ vehicle.categoryName }}
+            </mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="licensePlate">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            Placa
-          </mat-header-cell>
-          <mat-cell *matCellDef="let vehicle">
-            {{ vehicle.licensePlate }}
-          </mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="licensePlate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Placa
+            </mat-header-cell>
+            <mat-cell *matCellDef="let vehicle">
+              {{ vehicle.licensePlate }}
+            </mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="modelo">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            Modelo
-          </mat-header-cell>
-          <mat-cell *matCellDef="let vehicle">
-            {{ vehicle.vehicleModel }}
-          </mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="vehicleModel">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Modelo
+            </mat-header-cell>
+            <mat-cell *matCellDef="let vehicle">
+              {{ vehicle.vehicleModel }}
+            </mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="ano">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            Ano
-          </mat-header-cell>
-          <mat-cell *matCellDef="let vehicle">
-            {{ vehicle.vehicleYear }}
-          </mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="vehicleYear">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Ano
+            </mat-header-cell>
+            <mat-cell *matCellDef="let vehicle">
+              {{ vehicle.vehicleYear }}
+            </mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="actions">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            Opções
-          </mat-header-cell>
-          <mat-cell *matCellDef="let vehicle">
-            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu do veículo">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="edit(vehicle.id)">
-                <mat-icon>edit</mat-icon>
-                <span>Editar</span>
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Opções
+            </mat-header-cell>
+            <mat-cell *matCellDef="let vehicle">
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu do veículo">
+                <mat-icon>more_vert</mat-icon>
               </button>
-            </mat-menu>
-          </mat-cell>
-        </ng-container>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="edit(vehicle.id)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Editar</span>
+                </button>
+                <button mat-menu-item (click)="details(vehicle.id)">
+                  <mat-icon>info</mat-icon>
+                  <span>Detalhes</span>
+                </button>
+              </mat-menu>
+            </mat-cell>
+          </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
-        <!-- Row shown when there is no matching data. -->
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">
-            No data matching the filter "{{ input.value }}"
-          </td>
-        </tr>
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">
+              No data matching the filter "{{ input.value }}"
+            </td>
+          </tr>
 
-      </mat-table>
+        </mat-table>
+      </mat-card-content>
     </section>
   </mat-card>
 

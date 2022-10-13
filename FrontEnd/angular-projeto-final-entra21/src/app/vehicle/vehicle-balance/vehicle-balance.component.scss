@@ -1,0 +1,119 @@
+#tables {
+  border: 1px solid gray;
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  border-radius: 5px;
+}
+
+.tables {
+  width: 100%;
+}
+
+.tableHeader {
+  // border: 1px solid red;
+  font-size: 20px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-table {
+  // border: 1px solid blue;
+  height: 55vh;
+  max-height: 55vh;
+  overflow: auto;
+}
+
+#revenues {
+  background-color: rgba(green, 0.3);
+}
+
+#expenses {
+  background-color: rgba(red, 0.3);
+}
+
+#tableFooter {
+  font-size: 20px;
+  height: 30px;
+  min-height: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 2px solid gray;
+}
+
+mat-cell {
+  color: black;
+  background-color: white;
+}
+
+mat-header-cell {
+  color: white;
+  background-color: #a9a9a9;
+}
+
+mat-row,
+mat-header-row {
+  min-height: 40px;
+}
+
+mat-card {
+  width: 90%;
+  height: fit-content;
+  min-height: fit-content;
+  max-height: 70vh;
+  margin: auto;
+  // border: 1px solid red;
+}
+
+mat-card-content {
+  height: fit-content;
+
+  max-height: 70vh;
+}
+
+#mainContent {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+
+#cardHeader {
+  width: 100%;
+  justify-content: flex-start;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: left;
+  // border: 1px solid red;
+  margin: auto;
+  height: 30px;
+  color: #00796b;
+  margin-bottom: 5px;
+}
+
+#cardHeader p {
+  border-bottom: 1px solid;
+  width: 100%;
+  padding: 0 0 10px 5px;
+}
+
+#balanceValue {
+  // border: 1px solid red;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+#footerText {
+  // border: 1px solid red;
+  margin-left: 10px;
+}
+
+.mat-column-value {
+  text-align: right;
+  justify-content: flex-end;
+}

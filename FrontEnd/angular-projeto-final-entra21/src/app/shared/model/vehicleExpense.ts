@@ -1,8 +1,9 @@
 import { Vehicle } from './vehicle';
 
-export interface VehicleExpense{
+export interface VehicleExpense {
   id: number,
   description: string,
+  date: Date,
   value: number,
-  vehicle: Vehicle
+  vehicle: Vehicle | Partial<Vehicle>
 }

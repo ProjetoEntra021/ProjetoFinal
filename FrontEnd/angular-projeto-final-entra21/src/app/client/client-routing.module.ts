@@ -4,6 +4,7 @@ import { ClientComponent } from './client/client.component';
 import { ClientMenuComponent } from './client-menu/client-menu.component';
 import { ClientRegistrationComponent } from './client-registration/client-registration.component';
 import { ClientListComponent } from './client-list/client-list.component';
+import { ClientDetailsComponent } from './client-details/client-details.component';
 
 const routes: Routes = [
   {
@@ -11,8 +12,10 @@ const routes: Routes = [
     children: [
       {path: '', component: ClientMenuComponent},
       {path: 'list', component: ClientListComponent},
-      {path: 'registration', component: ClientRegistrationComponent}
-
+      {path: 'registration', component: ClientRegistrationComponent},
+      {path: 'registration/:id', component: ClientRegistrationComponent},
+      {path: 'details/:id', component: ClientDetailsComponent},
+      {path: 'details/cpf/:cpf', component: ClientDetailsComponent}
     ]
   },
 

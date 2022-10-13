@@ -8,13 +8,15 @@ import { ClientMenuComponent } from './client-menu/client-menu.component';
 import { ClientRegistrationComponent } from './client-registration/client-registration.component';
 import { ClientListComponent } from './client-list/client-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClientDetailsComponent } from './client-details/client-details.component';
 
 @NgModule({
   declarations: [
     ClientComponent,
     ClientMenuComponent,
     ClientRegistrationComponent,
-    ClientListComponent
+    ClientListComponent,
+    ClientDetailsComponent
   ],
   imports: [
     CommonModule,

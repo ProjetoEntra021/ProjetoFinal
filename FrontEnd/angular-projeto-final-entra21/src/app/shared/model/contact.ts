@@ -2,7 +2,7 @@ import { Client } from './client';
 
 export interface Contact {
   id: number,
-  contactType: string,
+  contactType: number,
   description: string,
   client: Client
 }
