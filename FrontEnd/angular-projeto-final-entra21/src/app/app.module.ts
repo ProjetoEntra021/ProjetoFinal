@@ -7,12 +7,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CreateBookingComponent } from './bookings/create-booking/create-booking.component';
 
 registerLocaleData(localePt, 'pt');
 
-export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
+// export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [

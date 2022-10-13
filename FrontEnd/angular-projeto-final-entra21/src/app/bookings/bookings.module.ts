@@ -1,19 +1,21 @@
 import { Category } from 'src/app/shared/model/category';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CreatBookingComponent } from './creat-booking/creat-booking.component';
+import { CreateBookingComponent } from './create-booking/create-booking.component';
 import { AppMaterialModule } from './../shared/app-material/app-material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BookingsRoutingModule } from './bookings-routing.module';
 import { BookingListComponent } from './booking-list/booking-list.component';
+import { DetailsBookingComponent } from './details-booking/details-booking.component';
 
 
 @NgModule({
   declarations: [
     BookingListComponent,
-    CreatBookingComponent
+    CreateBookingComponent,
+    DetailsBookingComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,7 @@ import { BookingListComponent } from './booking-list/booking-list.component';
     AppMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    
+
   ]
 })
 export class BookingsModule { }

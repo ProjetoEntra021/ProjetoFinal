@@ -1,7 +1,8 @@
 package com.entra21.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,9 +26,9 @@ public class Booking implements Serializable{
 	@ManyToOne
 	private Client client;
 	
-	private Instant pickUpDate;
+	private LocalDate pickUpDate;
 	
-	private Instant dropOffDate;
+	private LocalDate dropOffDate;
 	
 	private Double dayPrice;
 	
@@ -43,7 +44,7 @@ public class Booking implements Serializable{
 	
 	public Booking() {}
 
-	public Booking(Long id, Client client, Instant pickUpDate, Instant dropOffDate, Double dayPrice, Double weekPrice,
+	public Booking(Long id, Client client, LocalDate pickUpDate, LocalDate dropOffDate, Double dayPrice, Double weekPrice,
 			Category category, BookingStatus bookingStatus, Rental rental) {
 		super();
 		this.id = id;
@@ -74,19 +75,19 @@ public class Booking implements Serializable{
 		this.client = client;
 	}
 
-	public Instant getPickUpDate() {
+	public LocalDate getPickUpDate() {
 		return pickUpDate;
 	}
 
-	public void setPickUpDate(Instant pickUpDate) {
+	public void setPickUpDate(LocalDate pickUpDate) {
 		this.pickUpDate = pickUpDate;
 	}
 
-	public Instant getDropOffDate() {
+	public LocalDate getDropOffDate() {
 		return dropOffDate;
 	}
 
-	public void setDropOffDate(Instant dropOffDate) {
+	public void setDropOffDate(LocalDate dropOffDate) {
 		this.dropOffDate = dropOffDate;
 	}
 

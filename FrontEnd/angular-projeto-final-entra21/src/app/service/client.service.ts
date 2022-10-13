@@ -19,6 +19,11 @@ export class ClientService {
         first());
   }
 
+  getClientById(id: number) {
+    return this.httpClient.get<Client>(this.API + '/' + id).pipe(tap(data => console.log(data)),
+      first());
+  }
+
   save(record: Partial<Client>) {
     return this.httpClient.post<Partial<Client>>(this.API, record).pipe(first());
   }
