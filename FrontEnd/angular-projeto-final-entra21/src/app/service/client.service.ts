@@ -28,13 +28,8 @@ export class ClientService {
     return this.httpClient.post<Partial<Client>>(this.API, record).pipe(first());
   }
 
-  getClientById(id: number) {
-    return this.httpClient.get<Client>(this.API + '/' + id).pipe(tap(data => console.log(data)),
-      first());
-  }
-
   getClientByCpf(cpf: string) {
-    return this.httpClient.get<Client>(this.API + '/cpf/' + cpf).pipe(tap(data => console.log(data)),first())
+    return this.httpClient.get<Client>(this.API + '/cpf/' + cpf).pipe(tap(data => console.log(data)), first())
   }
 
   update(record: Partial<Client>) {

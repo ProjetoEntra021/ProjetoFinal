@@ -1,16 +1,13 @@
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { ClientService } from '../../service/client.service';
-import { Client } from '../../shared/model/client';
-import { Category } from '../../shared/model/category';
-import { CategoryService } from '../../service/category.service';
-import { Booking} from '../../shared/model/booking';
-import { BookingsService } from '../../service/bookings.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
-
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+
+import { BookingsService } from '../../service/bookings.service';
+import { CategoryService } from '../../service/category.service';
+import { ClientService } from '../../service/client.service';
+import { Category } from '../../shared/model/category';
 
 
 @Component({
@@ -20,17 +17,17 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 })
 export class CreateBookingComponent implements OnInit {
 
-    bookingForm = this.formBuilder.group({
+  bookingForm = this.formBuilder.group({
     id: 0,
     client: this.formBuilder.group({
       id: 0,
-      name:'',
+      name: '',
     }),
     pickUpDate: [new Date(), Validators.required],
     dropOffDate: [new Date(), Validators.required],
     bookingStatus: ["ACTIVE"],
     category: this.formBuilder.group({
-      id:0,
+      id: 0,
       name: '',
     }),
     dayPrice: 0,
@@ -46,10 +43,6 @@ export class CreateBookingComponent implements OnInit {
   public difWeeks!: number;
 
 
-  // booking!: Observable <Booking>;
-  // client!: Observable <Client>;
-
-
   constructor(
     private categoryService: CategoryService,
     private bookingsService: BookingsService,
@@ -63,26 +56,26 @@ export class CreateBookingComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.list().subscribe((dados) => {
       this.categories = dados;
-      })
-      this.route.params.subscribe(params => {
-        this.bookingId = params['id'];
-        if(this.bookingId){
-          this.getBooking();
-        }
+    })
+    this.route.params.subscribe(params => {
+      this.bookingId = params['id'];
+      if (this.bookingId) {
+        this.getBooking();
+      }
 
-        this.route.params.subscribe(params => {
-          this.clientId = params ['idclient'];
-          if(this.clientId){
-            this.getBookingClient();
-          }
-        })
+      this.route.params.subscribe(params => {
+        this.clientId = params['idclient'];
+        if (this.clientId) {
+          this.getBookingClient();
+        }
+      })
     })
     this.searchCategory();
     console.log(this.categories);
 
   }
 
-  getBooking(){
+  getBooking() {
     this.bookingsService.getBookingById(this.bookingId).subscribe(
       resultado => {
         console.log(resultado)
@@ -104,18 +97,18 @@ export class CreateBookingComponent implements OnInit {
         });
         this.estimatedDate();
 
-        if (resultado.category.dayPrice && resultado.category.weekPrice){
+        if (resultado.category.dayPrice && resultado.category.weekPrice) {
           let estPrice = (this.difDays * (resultado.category.dayPrice)) +
-          (this.difWeeks * (resultado.category.weekPrice));
+            (this.difWeeks * (resultado.category.weekPrice));
           this.bookingForm.patchValue({
-              estimatedPrice: estPrice,
+            estimatedPrice: estPrice,
           })
         }
       }
     )
   }
 
-  getBookingClient(){
+  getBookingClient() {
     this.clientService.getClientById(this.clientId).subscribe(
       resultado => {
         this.bookingForm.patchValue({
@@ -128,7 +121,7 @@ export class CreateBookingComponent implements OnInit {
     )
   }
 
-  onSubmit(){
+  onSubmit() {
     this.bookingsService.addBooking(this.bookingForm.value).subscribe({
       next: () => this.onSuccess(),
       error: (e) => this.onError()
@@ -136,25 +129,25 @@ export class CreateBookingComponent implements OnInit {
   }
 
   private onSuccess() {
-    if(this.bookingId){
+    if (this.bookingId) {
       this.snackBar.open('Reserva atualizada com sucesso!', '', { duration: 3000 })
-    }else{
+    } else {
       this.snackBar.open('Reserva realizada com sucesso!', '', { duration: 3000 })
-
     }
+    this.back();
   }
 
   private onError() {
     this.snackBar.open('Erro ao realizar reserva', '', { duration: 3000 })
   }
 
-  searchCategory(){
-      this.categoryService.list().subscribe(
-    resultado => {
-       this.categories = resultado;
-    },
-    erro => {
-       //TODO evoluir para mostrar mensagem na tela
+  searchCategory() {
+    this.categoryService.list().subscribe(
+      resultado => {
+        this.categories = resultado;
+      },
+      erro => {
+        //TODO evoluir para mostrar mensagem na tela
         console.log("DEU ERRO. Causa: " + erro);
       }
     );
@@ -169,13 +162,13 @@ export class CreateBookingComponent implements OnInit {
           tempCat = cat;
         }
       }
-    this.estimatedDate();
-     let estPrice = (this.difDays * (tempCat.dayPrice)) +
-      (this.difWeeks * (tempCat.weekPrice));
+      this.estimatedDate();
+      let estPrice = (this.difDays * (tempCat.dayPrice)) +
+        (this.difWeeks * (tempCat.weekPrice));
       this.bookingForm.patchValue({
-          dayPrice: tempCat.dayPrice,
-          weekPrice: tempCat.weekPrice,
-          estimatedPrice: estPrice,
+        dayPrice: tempCat.dayPrice,
+        weekPrice: tempCat.weekPrice,
+        estimatedPrice: estPrice,
       })
     }
   }
@@ -187,25 +180,26 @@ export class CreateBookingComponent implements OnInit {
   //     })
   //   }
   // }
-  estimatedDate(){
-      if(this.bookingForm.value.pickUpDate && this.bookingForm.value.dropOffDate){
-        const d1 = (Number(new Date(this.bookingForm.value.pickUpDate)));
-        const d2 = (Number(new Date (this.bookingForm.value.dropOffDate)));
+  estimatedDate() {
+    if (this.bookingForm.value.pickUpDate && this.bookingForm.value.dropOffDate) {
+      const d1 = (Number(new Date(this.bookingForm.value.pickUpDate)));
+      const d2 = (Number(new Date(this.bookingForm.value.dropOffDate)));
 
-        const difDias = (d2 - d1)/ (1000 * 60 * 60 * 24);
+      const difDias = (d2 - d1) / (1000 * 60 * 60 * 24);
 
-          let days = difDias % 7;
-          let weeks = Math. trunc(difDias/7);
+      let days = difDias % 7;
+      let weeks = Math.trunc(difDias / 7);
 
-          this.difDays = days;
-          this.difWeeks = weeks;
-      }
-      console.log(this.difDays, this.difWeeks);
+      this.difDays = days;
+      this.difWeeks = weeks;
     }
-    back(){
-      this.location.back();
-    }
+    console.log(this.difDays, this.difWeeks);
   }
+
+  back() {
+    this.location.back();
+  }
+}
 
 
 

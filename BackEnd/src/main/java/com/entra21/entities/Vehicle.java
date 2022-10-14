@@ -144,7 +144,7 @@ public class Vehicle implements Serializable {
 		this.vehicleYear = vehicleYear;
 	}
 
-	@JsonIgnore
+//	@JsonIgnore
 	public Category getCategory() {
 		return category;
 	}

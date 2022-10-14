@@ -1,4 +1,4 @@
-#vehiclesMenu{
+#vehiclesMenu {
   height: 90vh;
   width: 99%;
   // border: 1px solid red;
@@ -12,7 +12,7 @@
 //   //border: 1px solid red;
 // }
 
-.vehiclesImage{
+.vehiclesImage {
   width: 90%;
   height: 90%;
   margin: 0px;
@@ -22,7 +22,7 @@
   text-align: center;
 }
 
-.vehiclesImage{
+.vehiclesImage {
   margin: 0px;
   display: flex;
   flex-direction: column;
@@ -33,7 +33,7 @@
   align-items: center;
 }
 
-.vehiclesOptions{
+.vehiclesOptions {
   background-color: white;
   border-radius: 10px;
   display: flex;
@@ -45,13 +45,12 @@
   padding-bottom: 20px;
 }
 
-button{
+button {
   width: 90%;
 }
 
-img{
+img {
   max-width: 100%;
-  max-height: 85%;
+  height: 85%;
   //border: 1px solid blue;
 }
-
