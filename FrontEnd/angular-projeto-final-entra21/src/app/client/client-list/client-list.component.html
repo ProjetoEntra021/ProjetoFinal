@@ -23,7 +23,7 @@
         <ng-container matColumnDef="cpf">
           <mat-header-cell *matHeaderCellDef mat-sort-header> CPF </mat-header-cell>
           <mat-cell *matCellDef="let client">
-            {{ client.cpf }}
+            {{ client.cpf | mask: '000.000.000-00 '}}
           </mat-cell>
         </ng-container>
 
