@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { SharedModule } from '../shared/shared.module';
 import { RentalAddComponent } from './rental-add/rental-add.component';
+import { RentalRoutingModule } from './rental-routing.module';
 
 
 
@@ -14,6 +15,7 @@ import { RentalAddComponent } from './rental-add/rental-add.component';
   ],
   imports: [
     CommonModule,
+    RentalRoutingModule,
     SharedModule,
     AppMaterialModule,
     ReactiveFormsModule

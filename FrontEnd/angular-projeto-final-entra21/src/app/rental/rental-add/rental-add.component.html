@@ -8,25 +8,39 @@
 
         <div class="formBlocks">
 
+
+
+
           <div id="firstLine" class="formLines">
-            <mat-form-field formGroupName="category" class="formField" appearance="fill">
-              <mat-label>Categoria:</mat-label>
-              <mat-select formControlName="id">
-                <mat-option *ngFor="let category of categories" [value]="category.id" compareWith="compararObjetos">
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Cliente: </mat-label>
+              <input readonly matInput id="model" formControlName="client" type="text"
+                     placeholder="Digite o ano do veículo" />
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Selecione categoria:</mat-label>
+              <mat-select [disabled]="true" formControlName="categoryId">
+                <mat-option *ngFor="let category of categories" [value]="category.id"
+                            (onSelectionChange)="updateVehicles($event, category.id)" compareWith="compararObjetos">
                   {{category.name}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
 
             <mat-form-field class="formField" appearance="fill">
-              <mat-label>Modelo:</mat-label>
-              <input matInput id="model" formControlName="vehicleModel" type="text"
-                     placeholder="Digite o modelo do veículo" />
+              <mat-label>Selecione veículo:</mat-label>
+              <mat-select formControlName="vehicleId">
+                <mat-option *ngFor="let vehicle of vehicleByCategory" [value]="vehicle.id"
+                            compareWith="compararObjetos">
+                  {{vehicle.vehicleModel}} - {{vehicle.licensePlate}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Data Inicial: </mat-label>
-              <input matInput id="model" formControlName="vehicleYear" type="text"
+              <input matInput id="model" formControlName="pickUpDate" type="date"
                      placeholder="Digite o ano do veículo" />
             </mat-form-field>
           </div>
@@ -34,18 +48,14 @@
           <div id="secondLine" class="formLines">
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Data Final: </mat-label>
-              <input matInput id="model" formControlName="renavam" type="text"
+              <input matInput id="model" formControlName="dropOffDate" type="date"
                      placeholder="Digite o Renavam do veículo" />
             </mat-form-field>
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Valor previsto:</mat-label>
-              <input matInput formControlName="licensePlate" type="text" placeholder="Digite o placa do veículo" />
-            </mat-form-field>
-
-            <mat-form-field class="formField" appearance="fill">
-              <mat-label>Veículo:</mat-label>
-              <input matInput formControlName="chassi" type="text" placeholder="Digite o Chassi do veículo" />
+              <input matInput formControlName="bookingId" mask="separator.2" [thousandSeparator]="'.'"
+                     [decimalMarker]="','" prefix="R$" type="text" placeholder="Digite o valor previsto" />
             </mat-form-field>
           </div>
 

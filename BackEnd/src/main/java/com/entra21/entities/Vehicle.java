@@ -22,6 +22,7 @@ import javax.validation.constraints.NotNull;
 
 import com.entra21.entities.enums.VehicleStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Vehicle implements Serializable {
@@ -58,7 +59,7 @@ public class Vehicle implements Serializable {
 
 	//Not possible adding @NotEmpty annotation
 	@ManyToOne
-	@Basic(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties("vehicles")
 	private Category category;
 	
 	//Not possible adding @NotEmpty annotation
