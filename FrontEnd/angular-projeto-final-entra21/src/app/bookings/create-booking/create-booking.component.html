@@ -1,7 +1,7 @@
 <div id="mainContent">
   <mat-card id="cardForm">
     <div id="cardHeader"> {{bookingId ? 'Editar' : 'Nova'}} Reserva
-     </div>
+    </div>
     <mat-card-content>
       <form [formGroup]="bookingForm" class="full-width">
         <div class="formBlocks">
@@ -9,65 +9,59 @@
           <div id="firstLine">
             <mat-form-field formGroupName="client" class="formField" color="warn" appearance="fill">
               <mat-label>Cliente</mat-label>
-              <input readonly matInput id="client.name" formControlName="name" type="text"
-                    placeholder="Nome cliente"/>
+              <input readonly matInput id="client.name" formControlName="name" type="text" placeholder="Nome cliente" />
             </mat-form-field>
           </div>
           <div id="secondLine">
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Data retirada: </mat-label>
-              <input matInput id="pickUpDate" formControlName="pickUpDate" type="date"
-                    placeholder="DD/MM/YYYY"/>
+              <input matInput id="pickUpDate" formControlName="pickUpDate" type="date" placeholder="DD/MM/YYYY" />
             </mat-form-field>
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Data entrega: </mat-label>
-              <input matInput id="dropOffDate" formControlName="dropOffDate" type="date"
-                    placeholder="DD/MM/YYYY"
-                    />
+              <input matInput id="dropOffDate" formControlName="dropOffDate" type="date" placeholder="DD/MM/YYYY" />
             </mat-form-field>
 
-            <mat-form-field  formGroupName="category" class="formField" appearance="fill">
+            <mat-form-field formGroupName="category" class="formField" appearance="fill">
               <mat-label>Categoria:</mat-label>
               <mat-select formControlName="id">
                 <mat-option *ngFor="let category of categories" [value]="category.id"
-                (onSelectionChange)="updatePriceValue($event, category.id)">
+                            (onSelectionChange)="updatePriceValue($event, category.id)">
                   {{category.name}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
-        <div id="thirdLine">
-          <mat-form-field *ngIf="!bookingId" class="formField" color="warn" appearance="fill">
-            <mat-label>Preço da diária</mat-label>
-            <input matInput id="dayPrice" formControlName="dayPrice" type="text"
-                  placeholder="Preço diária"/>
-          </mat-form-field>
-          <mat-form-field *ngIf="!bookingId" class="formField" color="warn" appearance="fill">
-            <mat-label>Preço da semana</mat-label>
-            <input matInput id="weekPrice" formControlName="weekPrice" type="text"
-                  placeholder="Preço semana"/>
-          </mat-form-field>
-          <mat-form-field class="formField" color="warn" appearance="fill">
-            <mat-label>Preço previsto</mat-label>
-            <input readonly matInput id="weekPrice" formControlName="estimatedPrice" type="text"
-                  placeholder="Preço estimado"/>
-          </mat-form-field>
-          <mat-form-field *ngIf="bookingId" class="formField" color="warn" appearance="fill">
-            <mat-label >Status</mat-label>
-            <input readonly matInput id="weekPrice" formControlName="bookingStatus" type="text"
-                  placeholder="status"/>
-          </mat-form-field>
+          <div id="thirdLine">
+            <mat-form-field *ngIf="!bookingId" class="formField" color="warn" appearance="fill">
+              <mat-label>Preço da diária</mat-label>
+              <input matInput id="dayPrice" formControlName="dayPrice" type="text" placeholder="Preço diária" />
+            </mat-form-field>
+            <mat-form-field *ngIf="!bookingId" class="formField" color="warn" appearance="fill">
+              <mat-label>Preço da semana</mat-label>
+              <input matInput id="weekPrice" formControlName="weekPrice" type="text" placeholder="Preço semana" />
+            </mat-form-field>
+            <mat-form-field class="formField" color="warn" appearance="fill">
+              <mat-label>Preço previsto</mat-label>
+              <input readonly matInput id="weekPrice" formControlName="estimatedPrice" type="text"
+                     placeholder="Preço estimado" />
+            </mat-form-field>
+            <mat-form-field *ngIf="bookingId" class="formField" color="warn" appearance="fill">
+              <mat-label>Status</mat-label>
+              <input readonly matInput id="weekPrice" formControlName="bookingStatus" type="text"
+                     placeholder="status" />
+            </mat-form-field>
+          </div>
         </div>
-      </div>
         <mat-card-actions>
-          <button class="formButton" mat-raised-button color="primary" (click)="onSubmit()" (click)="back()">
+          <button class="formButton" mat-raised-button color="primary" (click)="onSubmit()">
             {{bookingId ? 'Atualizar' : 'Realizar Reserva'}}
           </button>
-          <button *ngIf="!bookingId" class="formButton" mat-raised-button color="secondary" >
+          <button *ngIf="!bookingId" class="formButton" mat-raised-button color="secondary">
             Realizar Locação
           </button>
-          <button lass="formButton" mat-raised-button color="warn" (click)="back()" >
+          <button lass="formButton" mat-raised-button color="warn" (click)="back()">
             Cancelar
           </button>
         </mat-card-actions>
@@ -76,4 +70,3 @@
     </mat-card-content>
   </mat-card>
 </div>
-

@@ -5,12 +5,11 @@ import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { IConfig, NgxMaskModule } from 'ngx-mask';
-import { MatButtonModule } from '@angular/material/button';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreateBookingComponent } from './bookings/create-booking/create-booking.component';
+
 
 registerLocaleData(localePt, 'pt');
 
@@ -19,7 +18,6 @@ registerLocaleData(localePt, 'pt');
 @NgModule({
   declarations: [
     AppComponent
-
   ],
   imports: [
     BrowserModule,
@@ -29,7 +27,7 @@ registerLocaleData(localePt, 'pt');
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    // NgxMaskModule.forRoot(),
+    NgxMaskModule.forRoot(),
   ],
   providers: [
     {

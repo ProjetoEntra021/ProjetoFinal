@@ -15,14 +15,15 @@ export class BookingsService {
 
   list() {
     return this.httpClient.get<Booking[]>(this.API)
-    .pipe(tap(data => console.log(data)),
-      first());
-    }
-  getBookingById(id: number) {
-      return this.httpClient.get<Booking>(this.API + '/' + id).pipe(tap(data => console.log(data)),
+      .pipe(tap(data => console.log(data)),
         first());
-    }
-  addBooking(record: Partial<Booking>){
+  }
+  getBookingById(id: number) {
+    return this.httpClient.get<Booking>(this.API + '/' + id).pipe(tap(data => console.log(data)),
+      first());
+  }
+
+  addBooking(record: Partial<Booking>) {
     return this.httpClient.post<Booking>(this.API, record).pipe(first());
   }
 

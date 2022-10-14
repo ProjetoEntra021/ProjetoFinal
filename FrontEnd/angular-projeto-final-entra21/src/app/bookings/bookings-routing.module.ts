@@ -7,9 +7,9 @@ import { DetailsBookingComponent } from './details-booking/details-booking.compo
 
 const routes: Routes = [
   { path: '', component: BookingListComponent },
-  { path: 'create/:idclient', component: CreateBookingComponent},
-  { path: 'update/:id',component: CreateBookingComponent },
-  { path: 'details/:id', component: DetailsBookingComponent}
+  { path: 'create/:idclient', component: CreateBookingComponent },
+  { path: 'update/:id', component: CreateBookingComponent },
+  { path: 'details/:id', component: DetailsBookingComponent }
 ];
 
 @NgModule({

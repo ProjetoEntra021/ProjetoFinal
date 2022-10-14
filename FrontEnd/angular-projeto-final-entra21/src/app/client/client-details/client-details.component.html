@@ -1,34 +1,34 @@
 <mat-card class="client-card">
 
-    <h1>Cadastro de Cliente</h1>
+  <h1>Cadastro de Cliente</h1>
 
- <mat-card-content>
+  <mat-card-content *ngIf="client$ | async as client">
 
     <h2>Dados Pessoais</h2>
 
     <div id="firstLine">
-      <mat-card-content >
-        <mat-card-subtitle >Nome:</mat-card-subtitle>
-        <input type="text" readonly name="name" [(ngModel)] = "client.name">
+      <mat-card-content>
+        <mat-card-subtitle>Nome:</mat-card-subtitle>
+        <input type="text" readonly name="name" [(ngModel)]="client.name">
       </mat-card-content>
-      <mat-card-content >
-        <mat-card-subtitle >Data de Nascimento:</mat-card-subtitle>
-        <input type="date" readonly name="birthDate" [(ngModel)] = "client.birthDate">
+      <mat-card-content>
+        <mat-card-subtitle>Data de Nascimento:</mat-card-subtitle>
+        <input type="date" readonly name="birthDate" [(ngModel)]="client.birthDate">
       </mat-card-content>
     </div>
 
     <div id="secondLine">
-      <mat-card-content >
-        <mat-card-subtitle >Sexo:</mat-card-subtitle>
-        <input type="text" readonly name="gender" [(ngModel)] = "client.gender">
+      <mat-card-content>
+        <mat-card-subtitle>Sexo:</mat-card-subtitle>
+        <input type="text" readonly name="gender" [(ngModel)]="client.gender">
       </mat-card-content>
       <mat-card-content >
         <mat-card-subtitle >CPF:</mat-card-subtitle>
         <input type="text" readonly name="cpf" mask="000.000.000-00" [(ngModel)] = "client.cpf">
       </mat-card-content>
-      <mat-card-content >
-        <mat-card-subtitle  >CNH:</mat-card-subtitle>
-        <input type="text" readonly name="cnh" [(ngModel)] = "client.cnh">
+      <mat-card-content>
+        <mat-card-subtitle>CNH:</mat-card-subtitle>
+        <input type="text" readonly name="cnh" [(ngModel)]="client.cnh">
       </mat-card-content>
     </div>
 
@@ -40,36 +40,36 @@
       </mat-card-content>
       <mat-card-content>
         <mat-card-subtitle>Endereço:</mat-card-subtitle>
-        <input type="text" readonly name="street" [(ngModel)] = "client.addresses[0].street">
+        <input type="text" readonly name="street" [(ngModel)]="client.addresses[0].street">
       </mat-card-content>
       <mat-card-content>
         <mat-card-subtitle>Número:</mat-card-subtitle>
-        <input type="text" readonly name="number" [(ngModel)] = "client.addresses[0].number">
+        <input type="text" readonly name="number" [(ngModel)]="client.addresses[0].number">
       </mat-card-content>
     </div>
 
     <div id="fourthLine">
       <mat-card-content>
         <mat-card-subtitle>Complemento:</mat-card-subtitle>
-        <input type="text" readonly name="complement" [(ngModel)] = "client.addresses[0].complement">
+        <input type="text" readonly name="complement" [(ngModel)]="client.addresses[0].complement">
       </mat-card-content>
       <mat-card-content>
         <mat-card-subtitle>Bairro:</mat-card-subtitle>
-        <input type="text" readonly name="district" [(ngModel)] = "client.addresses[0].district">
+        <input type="text" readonly name="district" [(ngModel)]="client.addresses[0].district">
       </mat-card-content>
       <mat-card-content>
         <mat-card-subtitle>Cidade:</mat-card-subtitle>
-        <input type="text" readonly name="city" [(ngModel)] = "client.addresses[0].city">
+        <input type="text" readonly name="city" [(ngModel)]="client.addresses[0].city">
       </mat-card-content>
       <mat-card-content>
         <mat-card-subtitle>UF:</mat-card-subtitle>
-        <input type="text" readonly name="uf" [(ngModel)] = "client.addresses[0].uf">
+        <input type="text" readonly name="uf" [(ngModel)]="client.addresses[0].uf">
       </mat-card-content>
     </div>
     <div id="fifthLine">
       <mat-card-content>
         <mat-card-subtitle>E-mail:</mat-card-subtitle>
-        <input type="text" readonly name="description" [(ngModel)] = "client.contacts[0].description">
+        <input type="text" readonly name="description" [(ngModel)]="client.contacts[0].description">
       </mat-card-content>
       <mat-card-content>
         <mat-card-subtitle>Telefone:</mat-card-subtitle>
@@ -80,7 +80,7 @@
       <button mat-raised-button color="primary" (click)="addBooking(client.id)">
         Efetuar Reserva
       </button>
-      <button  mat-raised-button color="secondary" (click)="edit(client.id)">
+      <button mat-raised-button color="secondary" (click)="edit(client.id)">
         Editar
       </button>
       <button mat-raised-button color="secondary" (click)="onCancel()">

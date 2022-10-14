@@ -1,11 +1,8 @@
-import { BookingsModule } from './../bookings/bookings.module';
-import { MainTableComponent } from './../main-table/main-table.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { VehicleComponent } from '../vehicle/vehicle/vehicle.component';
+import { MainTableComponent } from './../main-table/main-table.component';
 import { MainViewComponent } from './main-view/main-view.component';
-import { VehicleModule } from '../vehicle/vehicle.module';
 
 const routes: Routes = [
   {
@@ -23,6 +20,10 @@ const routes: Routes = [
       {
         path: 'bookings',
         loadChildren: () => import('../bookings/bookings.module').then(m => m.BookingsModule)
+      },
+      {
+        path: 'rentals',
+        loadChildren: () => import('../rental/rental.module').then(m => m.RentalModule)
       }
     ]
   }
