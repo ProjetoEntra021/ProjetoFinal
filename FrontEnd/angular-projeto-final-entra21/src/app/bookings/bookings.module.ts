@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { Category } from 'src/app/shared/model/category';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,6 +24,9 @@ import { DetailsBookingComponent } from './details-booking/details-booking.compo
     AppMaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
+
+
 
   ]
 })

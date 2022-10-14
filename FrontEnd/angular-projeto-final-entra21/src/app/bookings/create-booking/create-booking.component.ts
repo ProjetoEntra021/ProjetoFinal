@@ -44,6 +44,7 @@ export class CreateBookingComponent implements OnInit {
   public clientId!: number;
   public difDays!: number;
   public difWeeks!: number;
+  public status !: string;
 
 
   // booking!: Observable <Booking>;
@@ -102,6 +103,10 @@ export class CreateBookingComponent implements OnInit {
           dayPrice: resultado.dayPrice,
           weekPrice: resultado.weekPrice,
         });
+        if(this.bookingForm.value.bookingStatus) {
+          this.status = this.bookingForm.value.bookingStatus;
+        }
+
         this.estimatedDate();
 
         if (resultado.category.dayPrice && resultado.category.weekPrice){
@@ -180,13 +185,6 @@ export class CreateBookingComponent implements OnInit {
     }
   }
 
-  // updatePickUpDate(event:any, date: Date){
-  //   if (event.isUserInput){
-  //     this.bookingForm.patchValue({
-  //       pickUpDate: date,
-  //     })
-  //   }
-  // }
   estimatedDate(){
       if(this.bookingForm.value.pickUpDate && this.bookingForm.value.dropOffDate){
         const d1 = (Number(new Date(this.bookingForm.value.pickUpDate)));
@@ -200,11 +198,11 @@ export class CreateBookingComponent implements OnInit {
           this.difDays = days;
           this.difWeeks = weeks;
       }
-      console.log(this.difDays, this.difWeeks);
+
     }
-    back(){
+  back(){
       this.location.back();
-    }
+  }
   }
 
 

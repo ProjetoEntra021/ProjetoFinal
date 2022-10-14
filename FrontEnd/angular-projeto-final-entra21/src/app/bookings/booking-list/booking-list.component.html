@@ -1,13 +1,15 @@
 <div id="mainContent">
   <div id="header">
+
     <a id="arrowBack" [routerLink]="['/main']" >
       <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
     </a>
+
+  </div>
+  <mat-card>
     <div id="mainTextHeader">
       <span>Listagem de Reservas</span>
     </div>
-  </div>
-  <mat-card>
     <section class="container">
       <mat-table  [dataSource]="dataSource" class="mat-elevation-z8" #sort="matSort" matSort>
         <!-- Position Column -->
