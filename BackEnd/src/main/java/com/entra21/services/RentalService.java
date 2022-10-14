@@ -26,6 +26,7 @@ public class RentalService {
 	}
 
 	public Rental insert(Rental obj) {
+		
 		return rentalRepository.save(obj);
 	}
 

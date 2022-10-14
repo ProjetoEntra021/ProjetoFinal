@@ -77,7 +77,7 @@
       </mat-card-content>
     </div>
     <mat-card-actions>
-      <button mat-raised-button color="primary">
+      <button mat-raised-button color="primary" (click)="addBooking(client.id)">
         Efetuar Reserva
       </button>
       <button  mat-raised-button color="secondary" (click)="edit(client.id)">

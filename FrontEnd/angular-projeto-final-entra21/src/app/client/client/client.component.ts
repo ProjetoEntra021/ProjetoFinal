@@ -24,10 +24,10 @@ export class ClientComponent implements OnInit {
   public client!: Client;
   public clientParam!: string;
 
-  
+
   onSubmit() {
   return this.clientParam;
-}
+  }
 
   clientList() {
     this.router.navigate(['list'], {relativeTo: this.route});
@@ -37,6 +37,7 @@ export class ClientComponent implements OnInit {
     this.router.navigate(['details/cpf/' + this.onSubmit()], {relativeTo: this.route});
           console.log(this.onSubmit);
   }
+
 
 
 }

@@ -3,8 +3,6 @@ package com.entra21.config;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Locale;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +14,7 @@ import com.entra21.entities.Booking;
 import com.entra21.entities.Category;
 import com.entra21.entities.Client;
 import com.entra21.entities.Contact;
+import com.entra21.entities.Payment;
 import com.entra21.entities.Rental;
 import com.entra21.entities.Vehicle;
 import com.entra21.entities.VehicleExpense;
@@ -23,6 +22,7 @@ import com.entra21.entities.VehicleRevenue;
 import com.entra21.entities.enums.BookingStatus;
 import com.entra21.entities.enums.ContactType;
 import com.entra21.entities.enums.GenderType;
+import com.entra21.entities.enums.PaymentStatus;
 import com.entra21.entities.enums.RentalStatus;
 import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.repositories.AddressRepository;
@@ -30,6 +30,7 @@ import com.entra21.repositories.BookingRepository;
 import com.entra21.repositories.CategoryRepository;
 import com.entra21.repositories.ClientRepository;
 import com.entra21.repositories.ContactRepository;
+import com.entra21.repositories.PaymentRepository;
 import com.entra21.repositories.RentalRepository;
 import com.entra21.repositories.VehicleExpenseRepository;
 import com.entra21.repositories.VehicleRepository;
@@ -68,6 +69,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private VehicleRevenueRepository vehicleRRepository;
+	
+	@Autowired
+	private PaymentRepository paymentRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -156,9 +160,15 @@ public class TestConfig implements CommandLineRunner {
 		
 		vehicleRRepository.saveAll(Arrays.asList(vr1, vr2));
 		
-		Rental r1 = new Rental(null, bk1.getPickUpDate(), bk1.getDropOffDate(), RentalStatus.PENDING, bk1, v1, null);
-
+		Rental r1 = new Rental(null, bk1.getPickUpDate(), bk1.getDropOffDate(), RentalStatus.PENDING, bk1, v1, null, null);
 		rentalRepository.save(r1);
+		
+		Payment pay1 = new Payment(null, LocalDate.parse("15/11/2022", formatter), 700.00, 0.00, PaymentStatus.WAITINGPAYMENT, r1);
+		Payment pay2 = new Payment(null, LocalDate.parse("15/12/2022", formatter), 700.00, 0.00, PaymentStatus.WAITINGPAYMENT, r1);
+		Payment pay3 = new Payment(null, LocalDate.parse("15/01/2023", formatter), 700.00, 0.00, PaymentStatus.WAITINGPAYMENT, r1);
+		
+		paymentRepository.saveAll(Arrays.asList(pay1,pay2,pay3));
+		
 
 		// create test registration client Pablo
 		Client c2 = new Client(null, "Pablo", "00443990905", "386985233",  LocalDate.parse("24/07/1980", formatter), GenderType.MASCULINO);
