@@ -1,24 +1,25 @@
 <mat-card>
   <h1>Listagem de Clientes</h1>
-    <section class="container">
-      <mat-table  [dataSource]="dataSource" class="mat-elevation-z8" #sort="matSort" matSort>
+  <section class="container">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" #sort="matSort" matSort>
 
-        <!-- Name Column -->
-        <ng-container id="idColumn" matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Cód Cliente </mat-header-cell>
-          <mat-cell *matCellDef="let client">
-            {{ client.id }}
-          </mat-cell>
-        </ng-container>
+      <!-- Name Column -->
+      <ng-container id="idColumn" matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Cód Cliente </mat-header-cell>
+        <mat-cell *matCellDef="let client">
+          {{ client.id }}
+        </mat-cell>
+      </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
-          <mat-cell *matCellDef="let client">
-            {{ client.name }}
-          </mat-cell>
-        </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+        <mat-cell *matCellDef="let client">
+          {{ client.name }}
+        </mat-cell>
+      </ng-container>
 
+<<<<<<< HEAD
         <!-- Weight Column -->
         <ng-container matColumnDef="cpf">
           <mat-header-cell *matHeaderCellDef mat-sort-header> CPF </mat-header-cell>
@@ -26,40 +27,42 @@
             {{ client.cpf | mask: '000.000.000-00 '}}
           </mat-cell>
         </ng-container>
+=======
+      <!-- Weight Column -->
+      <ng-container matColumnDef="cpf">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> CPF </mat-header-cell>
+        <mat-cell *matCellDef="let client">
+          {{ client.cpf }}
+        </mat-cell>
+      </ng-container>
+>>>>>>> 1cbb6f2 (Started Rental. Fixed some bugs in client module.)
 
-        <ng-container matColumnDef="actions">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Opções </mat-header-cell>
-          <mat-cell *matCellDef="let client">
-            <button
-              mat-icon-button
-              [matMenuTriggerFor]="menu"
-              aria-label="Menu do Cliente"
-            >
-              <mat-icon>more_vert</mat-icon>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Opções </mat-header-cell>
+        <mat-cell *matCellDef="let client">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu do Cliente">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button (click)="edit(client.id)" mat-menu-item>
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
             </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item>
-                <mat-icon (click)="edit(client.id)" >edit</mat-icon>
-                <span>Editar</span>
-              </button>
-              <button mat-menu-item>
-                <mat-icon (click)="detail(client.id)" >details</mat-icon>
-                <span>Detalhar</span>
-              </button>
-            </mat-menu>
-          </mat-cell>
-        </ng-container>
+            <button (click)="detail(client.id)" mat-menu-item>
+              <mat-icon>details</mat-icon>
+              <span>Detalhar</span>
+            </button>
+          </mat-menu>
+        </mat-cell>
+      </ng-container>
 
-        <mat-header-row
-          *matHeaderRowDef="displayedColumns; sticky: true"
-        ></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-      </mat-table>
-      <button class="formButton" mat-raised-button color="primary" (click)="onCancel()">
-        Retornar
-      </button>
-    </section>
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <button class="formButton" mat-raised-button color="primary" (click)="onCancel()">
+      Retornar
+    </button>
+  </section>
 
 
 </mat-card>
-
