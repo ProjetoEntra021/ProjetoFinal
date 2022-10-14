@@ -9,7 +9,7 @@ import { IConfig, NgxMaskModule } from 'ngx-mask';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreateBookingComponent } from './bookings/create-booking/create-booking.component';
+
 
 registerLocaleData(localePt, 'pt');
 
