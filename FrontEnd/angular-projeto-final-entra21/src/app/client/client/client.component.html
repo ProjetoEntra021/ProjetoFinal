@@ -1,10 +1,15 @@
 <mat-toolbar id="clientSearchBar">
+  <div id="arrowBack">
+    <a [routerLink]="['/main/clients']">
+      <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
+    </a>
+  </div>
   <span >
-    <mat-radio-button value="nome">Nome</mat-radio-button>
-    <mat-radio-button value="cpf">CPF</mat-radio-button>
-    
-      <input type="text" class="clientSearchParamInput" (submit)="onSubmit()" [(ngModel)]="clientParam">
-    
+
+    <label>Buscar por CPF: </label>
+      <input type="text" name="clientSearchParamInput" mask="000.000.000-00" class="clientSearchParamInput"
+      (submit)="onSubmit()" [(ngModel)]="clientParam" placeholder="Informe apenas números">
+
     <button mat-raised-button color="primary" (click)="findClientByCpf()">Verificar</button>
     <button mat-raised-button color="primary" (click)="clientList()">Listar</button>
   </span>

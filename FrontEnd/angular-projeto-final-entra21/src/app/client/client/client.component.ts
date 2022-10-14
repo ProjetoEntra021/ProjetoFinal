@@ -1,3 +1,4 @@
+import { LiteralMapExpr } from '@angular/compiler';
 import { Component, OnInit, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,10 +25,13 @@ export class ClientComponent implements OnInit {
   public client!: Client;
   public clientParam!: string;
 
-  
+
   onSubmit() {
   return this.clientParam;
-}
+
+  }
+
+
 
   clientList() {
     this.router.navigate(['list'], {relativeTo: this.route});
@@ -35,8 +39,9 @@ export class ClientComponent implements OnInit {
 
   findClientByCpf() {
     this.router.navigate(['details/cpf/' + this.onSubmit()], {relativeTo: this.route});
-          console.log(this.onSubmit);
+
   }
+
 
 
 }

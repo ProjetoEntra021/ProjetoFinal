@@ -9,7 +9,5 @@ public interface ClientRepository extends JpaRepository<Client, Long>{
 
 	@Query(value = "select c from Client c where c.cpf = ?1")
 	Client findByCpf(String cpf);
-	
-//	@Query(value = "select f from Fabricante f where upper(trim(f.origem)) = ?1")
-//	List<Fabricante> findByOrigem(String origem);
+
 }
