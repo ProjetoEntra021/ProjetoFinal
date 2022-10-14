@@ -50,13 +50,13 @@
           </mat-form-field>
           <mat-form-field class="formField" color="warn" appearance="fill">
             <mat-label>Preço previsto</mat-label>
-            <input readonly matInput id="weekPrice" formControlName="estimatedPrice" type="text"
+            <input readonly matInput id="estimatedPrice" formControlName="estimatedPrice" type="text"
                   placeholder="Preço estimado"/>
           </mat-form-field>
           <mat-form-field *ngIf="bookingId" class="formField" color="warn" appearance="fill">
-            <mat-label >Status</mat-label>
-            <input readonly matInput id="weekPrice" formControlName="bookingStatus" type="text"
-                  placeholder="status"/>
+           <mat-label >Status</mat-label>
+            <input readonly matInput id="bookingStatus"  formControlName="bookingStatus" type="text"
+            placeholder="status"/>
           </mat-form-field>
         </div>
       </div>
@@ -71,7 +71,6 @@
             Cancelar
           </button>
         </mat-card-actions>
-
       </form>
     </mat-card-content>
   </mat-card>

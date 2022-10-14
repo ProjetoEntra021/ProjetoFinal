@@ -1,3 +1,4 @@
+import { Client } from './../../shared/model/client';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookingsService } from './../../service/bookings.service';
 import { Booking } from './../../shared/model/booking';
@@ -14,7 +15,9 @@ import { Location } from '@angular/common';
 export class DetailsBookingComponent implements OnInit {
 
   public booking!: Booking;
+  public client!: Client;
   public bookingId!: number;
+
 
   constructor(
     private bookingService: BookingsService,
@@ -26,6 +29,7 @@ export class DetailsBookingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.route.params.subscribe(params => {
       this.bookingId = params['id'];
 
@@ -43,6 +47,7 @@ export class DetailsBookingComponent implements OnInit {
       }
     }
     )
+
   }
   edit(id: number) {
     this.router.navigate(['update/' + id], {relativeTo: this.route.parent})

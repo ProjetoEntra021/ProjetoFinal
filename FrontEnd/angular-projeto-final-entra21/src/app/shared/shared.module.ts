@@ -5,6 +5,7 @@ import { AppMaterialModule } from './app-material/app-material.module';
 import { HeaderComponent } from './header/header.component';
 import { VehicleStatusPipe } from './pipes/vehicle-status.pipe';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { BookingStatusPipe } from './pipes/booking-status.pipe';
 
 export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 
@@ -12,7 +13,8 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 @NgModule({
   declarations: [
     HeaderComponent,
-    VehicleStatusPipe
+    VehicleStatusPipe,
+    BookingStatusPipe
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
   exports: [
     HeaderComponent,
     VehicleStatusPipe,
-    NgxMaskModule
+    NgxMaskModule,
+    BookingStatusPipe
   ]
 })
 export class SharedModule { }

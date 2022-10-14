@@ -171,9 +171,12 @@ public class TestConfig implements CommandLineRunner {
 		
 
 		// create test registration client Pablo
-		Client c2 = new Client(null, "Pablo", "00443990905", "386985233",  LocalDate.parse("24/07/1980", formatter), GenderType.MASCULINO);
+		Client c2 = new Client(null, "Pablo", "00443990905", "386985233",  LocalDate.parse("24/07/1980", formatter), GenderType.MASCULINO);	
+		Client c3 = new Client(null, "Tatiani Pereira Rodrigues", "08856272278", "999392428",  LocalDate.parse("30/10/1995", formatter), GenderType.FEMININO);
+	    Client c4 = new Client(null, "Victor", "12345678987", "234567854",  LocalDate.parse("03/08/1998", formatter), GenderType.MASCULINO);
 
-		clientRepository.save(c2);
+        clientRepository.saveAll(Arrays.asList(c2, c3, c4));
+        
 
 		Address ad2 = new Address(null, "88095000", "Av Marinheiro Max Schramm", "Estreito", "2428", "Bloco 4 Apto 301",
 				"Florianopolis", "SC", c2);
@@ -188,8 +191,61 @@ public class TestConfig implements CommandLineRunner {
 		Booking bk2 = new Booking(null, c2, LocalDate.parse("2005-10-20"),
 				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
 				BookingStatus.ACTIVE, null);
-
-		bookingRepository.save(bk2);
+		
+		Booking bk6 = new Booking(null, c3, LocalDate.parse("2005-10-20"),
+	                LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+	                BookingStatus.ACTIVE, null);
+		
+		Booking bk3 = new Booking(null, c2, LocalDate.parse("2005-10-20"),
+	                LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+	                BookingStatus.PENDING, null);
+		
+		Booking bk4 = new Booking(null, c1, LocalDate.parse("2005-09-20"),
+	                LocalDate.parse("2005-12-20"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+	                BookingStatus.CANCELED, null);
+		  
+		Booking bk5 = new Booking(null, c3, LocalDate.parse("2005-10-20"),
+	                LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+	                BookingStatus.FINISHED, null);
+		    
+		Booking bk7 = new Booking(null, c3, LocalDate.parse("2005-09-20"),
+	                LocalDate.parse("2005-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+	                BookingStatus.ACTIVE, null);
+		
+	    Booking bk8 = new Booking(null, c3, LocalDate.parse("2005-09-20"),
+                  LocalDate.parse("2005-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+                  BookingStatus.ACTIVE, null);
+	     
+	    Booking bk9 = new Booking(null, c3, LocalDate.parse("2005-09-20"),
+                  LocalDate.parse("2005-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+                  BookingStatus.PENDING, null);
+	    
+	    Booking bk10 = new Booking(null, c4, LocalDate.parse("2005-09-20"),
+                  LocalDate.parse("2005-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+                  BookingStatus.PENDING, null);
+	    
+	    Booking bk11 = new Booking(null, c3, LocalDate.parse("2005-09-20"),
+                  LocalDate.parse("2005-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+                  BookingStatus.ACTIVE, null);
+	    
+	    Booking bk12 = new Booking(null, c4, LocalDate.parse("2005-09-20"),
+                  LocalDate.parse("2005-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+                  BookingStatus.PENDING, null);
+	    
+	    Booking bk13 = new Booking(null, c4, LocalDate.parse("2005-09-20"),
+                  LocalDate.parse("2005-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+                  BookingStatus.ACTIVE, null);
+	    
+	    Booking bk14 = new Booking(null, c4, LocalDate.parse("2005-09-20"),
+                  LocalDate.parse("2005-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+                  BookingStatus.FINISHED, null);
+	    
+	    Booking bk15 = new Booking(null, c4, LocalDate.parse("2005-09-20"),
+                  LocalDate.parse("2005-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+                  BookingStatus.CANCELED, null);
+		
+	    bookingRepository.saveAll(Arrays.asList(bk2, bk3, bk4, bk5, bk6,bk7, bk8, bk9, bk10, 
+		        bk11, bk12, bk13, bk14, bk15));
 
 	}
 
