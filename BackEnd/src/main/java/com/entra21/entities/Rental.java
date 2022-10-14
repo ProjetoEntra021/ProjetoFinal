@@ -2,11 +2,15 @@ package com.entra21.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.entra21.entities.enums.RentalStatus;
@@ -26,11 +30,16 @@ public class Rental implements Serializable{
 	
 	private Integer rentalStatus;
 	
+	private Double totalValue;
+	
 	@OneToOne
 	private Booking booking;
 	
 	@OneToOne
 	private Vehicle vehicle;
+	
+	@OneToMany(mappedBy = "rental", cascade = CascadeType.ALL)
+	private List<Payment> payments = new ArrayList<>();
 	
 	@OneToOne
 	private Receipt receipt;
@@ -38,7 +47,7 @@ public class Rental implements Serializable{
 	public Rental () {}
 
 	public Rental(Long id, LocalDate pickUpDate, LocalDate dropOffDate, RentalStatus rentalStatus, Booking booking,
-			Vehicle vehicle, Receipt receipt) {
+			Vehicle vehicle, List<Payment> payments, Receipt receipt) {
 		super();
 		this.id = id;
 		this.pickUpDate = pickUpDate;
@@ -46,6 +55,7 @@ public class Rental implements Serializable{
 		setRentalStatus(rentalStatus);
 		this.booking = booking;
 		this.vehicle = vehicle;
+		this.payments = payments;
 		this.receipt = receipt;
 	}
 

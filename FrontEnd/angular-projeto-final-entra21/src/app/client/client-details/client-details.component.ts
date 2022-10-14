@@ -13,8 +13,8 @@ import { Location } from '@angular/common';
 export class ClientDetailsComponent implements OnInit {
 
   public client!: Client;
-  public clientId!: number;
-  public clientCpf!: string;
+  public clientId?: number;
+  public clientCpf?: string;
 
   constructor(
     private snackBar: MatSnackBar,
@@ -59,6 +59,10 @@ export class ClientDetailsComponent implements OnInit {
   edit(id: number) {
     this.router.navigate(['registration/' + id], {relativeTo: this.route.parent})
   }
+
+  addBooking(id: number) {
+    console.log(this.route.parent?.parent)
+    this.router.navigate(['../main/bookings/create/' + id]), {relativeTo: this.route}}
 
   onCancel() {
     this.location.back();
