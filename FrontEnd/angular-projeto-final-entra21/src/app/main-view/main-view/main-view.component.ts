@@ -32,7 +32,9 @@ export class MainViewComponent implements OnInit {
     if (path.length < 3) {
       this.title = "PÁGINA INICIAL";
     } else {
+
       let answer = decodeURIComponent(path[2]);
+      console.log(answer)
       if (answer == "vehicles") {
         this.title = "MENU VEÍCULOS";
       }
@@ -41,6 +43,9 @@ export class MainViewComponent implements OnInit {
       }
       if (answer == "bookings") {
         this.title = "MENU RESERVAS"
+      }
+      if (answer == "rentals") {
+        this.title = "MENU LOCAÇÕES"
       }
     }
     //   if(path.length <= 3) {

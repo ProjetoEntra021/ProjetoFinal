@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { Vehicle } from '../../shared/model/vehicle';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
 import { VehicleService } from '../../service/vehicle.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Vehicle } from '../../shared/model/vehicle';
 import { VehicleExpense } from '../../shared/model/vehicleExpense';
 import { VehicleRevenue } from '../../shared/model/vehicleRevenue';
-import { Observable } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { AddExpenseDialogComponent } from '../add-expense-dialog/add-expense-dialog.component';
 
 @Component({
   selector: 'app-vehicle-balance',

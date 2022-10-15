@@ -18,14 +18,11 @@ export class VehicleMenuComponent implements OnInit {
   }
 
   vehicleList() {
-   this.router.navigate(['list'], {relativeTo: this.route});
+    this.router.navigate(['list'], { relativeTo: this.route });
   }
 
   vehicleAdd() {
-    this.router.navigate(['add'], {relativeTo: this.route});
-   }
+    this.router.navigate(['add'], { relativeTo: this.route });
+  }
 
-   vehicleEdit() {
-    this.router.navigate(['details/2'], {relativeTo: this.route});
-   }
 }

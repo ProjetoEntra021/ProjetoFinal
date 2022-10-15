@@ -6,11 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
-import { MatButtonModule } from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreateBookingComponent } from './bookings/create-booking/create-booking.component';
+
 
 registerLocaleData(localePt, 'pt');
 
@@ -19,7 +18,6 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 @NgModule({
   declarations: [
     AppComponent
-
   ],
   imports: [
     BrowserModule,
@@ -29,7 +27,7 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    // NgxMaskModule.forRoot(),
+    NgxMaskModule.forRoot(),
   ],
   providers: [
     {

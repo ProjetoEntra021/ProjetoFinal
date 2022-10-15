@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from '../../shared/model/client';
@@ -12,7 +13,7 @@ import { Location } from '@angular/common';
 })
 export class ClientDetailsComponent implements OnInit {
 
-  public client!: Client;
+  public client$?: Observable<Client>;
   public clientId?: number;
   public clientCpf?: string;
 
@@ -29,40 +30,23 @@ export class ClientDetailsComponent implements OnInit {
       this.clientId = params['id'];
       this.clientCpf = params['cpf'];
 
-      if(this.clientId) {
-        this.clientService.getClientById(this.clientId).subscribe(
-          resultado => {
-            if(resultado) {
-              this.client = resultado;
-            }
-            else {
-              this.snackBar.open('Erro ao consultar cliente.', '', { duration: 3000 })
-            }
-          }
-        )
+      if (this.clientId) {
+        this.client$ = this.clientService.getClientById(this.clientId);
       }
-      else if(this.clientCpf) {
-        this.clientService.getClientByCpf(this.clientCpf).subscribe(
-          resultado => {
-            if(resultado) {
-              this.client = resultado;
-            }
-            else {
-              this.snackBar.open('Erro ao consultar cliente.', '', { duration: 3000 })
-            }
-          }
-        )
+      else if (this.clientCpf) {
+        this.client$ = this.clientService.getClientByCpf(this.clientCpf);
       }
     })
 
   }
   edit(id: number) {
-    this.router.navigate(['registration/' + id], {relativeTo: this.route.parent})
+    this.router.navigate(['registration/' + id], { relativeTo: this.route.parent })
   }
 
   addBooking(id: number) {
     console.log(this.route.parent?.parent)
-    this.router.navigate(['../main/bookings/create/' + id]), {relativeTo: this.route}}
+    this.router.navigate(['../main/bookings/create/' + id]), { relativeTo: this.route }
+  }
 
   onCancel() {
     this.location.back();

@@ -7,17 +7,22 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.entra21.entities.enums.VehicleStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Vehicle implements Serializable {
@@ -54,6 +59,7 @@ public class Vehicle implements Serializable {
 
 	//Not possible adding @NotEmpty annotation
 	@ManyToOne
+	@JsonIgnoreProperties("vehicles")
 	private Category category;
 	
 	//Not possible adding @NotEmpty annotation
@@ -139,6 +145,7 @@ public class Vehicle implements Serializable {
 		this.vehicleYear = vehicleYear;
 	}
 
+//	@JsonIgnore
 	public Category getCategory() {
 		return category;
 	}
