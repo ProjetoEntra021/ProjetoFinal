@@ -95,9 +95,9 @@ export class CreateBookingComponent implements OnInit {
           dayPrice: resultado.dayPrice,
           weekPrice: resultado.weekPrice,
         });
-        if(this.bookingForm.value.bookingStatus) {
-          this.status = this.bookingForm.value.bookingStatus;
-        }
+        // if(this.bookingForm.value.bookingStatus) {
+        //   this.status = this.bookingForm.value.bookingStatus;
+        // }
 
         this.estimatedDate();
 
