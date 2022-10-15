@@ -27,7 +27,7 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    // NgxMaskModule.forRoot(),
+    NgxMaskModule.forRoot(),
   ],
   providers: [
     {
