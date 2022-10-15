@@ -8,9 +8,6 @@
 
         <div class="formBlocks">
 
-
-
-
           <div id="firstLine" class="formLines">
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Cliente: </mat-label>
@@ -22,7 +19,7 @@
               <mat-label>Selecione categoria:</mat-label>
               <mat-select [disabled]="true" formControlName="categoryId">
                 <mat-option *ngFor="let category of categories" [value]="category.id"
-                            (onSelectionChange)="updateVehicles($event, category.id)" compareWith="compararObjetos">
+                            (onSelectionChange)="updateVehicles(category.id)" compareWith="compararObjetos">
                   {{category.name}}
                 </mat-option>
               </mat-select>
@@ -53,10 +50,21 @@
             </mat-form-field>
 
             <mat-form-field class="formField" appearance="fill">
-              <mat-label>Valor previsto:</mat-label>
-              <input matInput formControlName="bookingId" mask="separator.2" [thousandSeparator]="'.'"
+              <mat-label>Tipo de locação:</mat-label>
+              <mat-select formControlName="rentalType">
+                <mat-option (onSelectionChange)="updatePriceValue(rentalType, $event)"
+                            *ngFor="let rentalType of rentalTypes" [value]="rentalType">
+                  {{ rentalType | rentalType }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Valor total:</mat-label>
+              <input matInput formControlName="totalValue" mask="separator.2" [thousandSeparator]="'.'"
                      [decimalMarker]="','" prefix="R$" type="text" placeholder="Digite o valor previsto" />
             </mat-form-field>
+
           </div>
 
           <mat-card-actions>

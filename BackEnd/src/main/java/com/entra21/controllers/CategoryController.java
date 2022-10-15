@@ -56,13 +56,4 @@ public class CategoryController {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@GetMapping(value="/vehicles")
-	public ResponseEntity<List<Category>> findAllwithVehicles(){
-		List<Category> list = service.findAll();
-		for(Category category: list) {
-			category.getVehicles().addAll(category.getVehicles().stream().toList());
-		}
-		return ResponseEntity.ok().body(list);
-	}
-
 }
