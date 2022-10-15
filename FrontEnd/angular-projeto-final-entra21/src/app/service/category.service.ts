@@ -13,13 +13,6 @@ export class CategoryService {
 
   list() {
     return this.httpClient.get<Category[]>(this.API)
-      .pipe(tap(data => console.log(data)),
-        first());
-  }
-
-  listWithVehicles() {
-    return this.httpClient.get<Category[]>(this.API + "vehicles")
-      .pipe(tap(data => console.log(data)),
-        first());
+      .pipe(first());
   }
 }
