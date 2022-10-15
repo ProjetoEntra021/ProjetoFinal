@@ -1,0 +1,142 @@
+<div id="mainContent">
+  <div id="header">
+
+    <div id="searchVehicle">
+      <div id="arrowBack">
+        <a [routerLink]="['/main/vehicles']">
+          <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
+        </a>
+      </div>
+      <div id="inputSearch">
+        <span> Buscar </span>
+        <input (keyup)="applyFilter($event)" placeholder="Ex. Corsa" #input class="clientSearchParamInput" />
+      </div>
+    </div>
+
+  </div>
+  <mat-card>
+    <div id="mainTextHeader">
+      <span>Listagem dos Carros</span>
+    </div>
+    <section class="container">
+      <mat-card-content>
+        <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Status
+            </mat-header-cell>
+            <mat-cell *matCellDef="let rental">
+              <mat-icon aria-hidden="false" aria-label="Example home icon" class="{{ rental.rentalStatus }} status"
+                        fontIcon="circle"></mat-icon>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="rentalType">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Tipo de Locação:
+            </mat-header-cell>
+            <mat-cell *matCellDef="let rental">
+              {{ rental.rentalType }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="pickUpDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Data inicial:
+            </mat-header-cell>
+            <mat-cell *matCellDef="let rental">
+              {{ rental.pickUpDate }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="dropOffDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Data final:
+            </mat-header-cell>
+            <mat-cell *matCellDef="let rental">
+              {{ rental.dropOffDate }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="totalValue">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              ValorTotal
+            </mat-header-cell>
+            <mat-cell *matCellDef="let rental">
+              {{ rental.totalValue }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="vehicleModel">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Modelo veículo:
+            </mat-header-cell>
+            <mat-cell *matCellDef="let rental">
+              {{ rental.vehicle.vehicleModel }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Opções
+            </mat-header-cell>
+            <mat-cell *matCellDef="let rental">
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu do veículo">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="edit(rental.id)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Editar</span>
+                </button>
+                <button mat-menu-item (click)="details(rental.id)">
+                  <mat-icon>info</mat-icon>
+                  <span>Detalhes</span>
+                </button>
+              </mat-menu>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">
+              No data matching the filter "{{ input.value }}"
+            </td>
+          </tr>
+
+        </mat-table>
+      </mat-card-content>
+    </section>
+  </mat-card>
+
+  <footer>
+    <div id="rodapeLegenda">
+      <div class="legendaIndividual">
+        <mat-icon aria-hidden="false" aria-label="Ícone de legenda disponível" class="legenda AVAILABLE"
+                  fontIcon="circle"></mat-icon>
+        <span>Disponível</span>
+      </div>
+
+      <div class="legendaIndividual">
+        <mat-icon aria-hidden="false" aria-label="Ícone de legenda indisponível" class="legenda UNAVAILABLE"
+                  fontIcon="circle"></mat-icon>
+        <span>Indisponível</span>
+      </div>
+
+      <div class="legendaIndividual">
+        <mat-icon aria-hidden="false" aria-label="Ícone de legenda em menutenção" class="legenda MAINTENANCE"
+                  fontIcon="circle"></mat-icon>
+        <span>Em manutenção</span>
+      </div>
+
+      <div class="legendaIndividual">
+        <mat-icon aria-hidden="false" aria-label="Ícone de legenda desabilitado" class="legenda DISABLE"
+                  fontIcon="circle"></mat-icon>
+        <span>Desabilitado</span>
+      </div>
+    </div>
+  </footer>
+</div>

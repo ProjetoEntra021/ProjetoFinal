@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 
 import com.entra21.entities.enums.BookingStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Booking implements Serializable{
@@ -24,6 +25,7 @@ public class Booking implements Serializable{
 	private Long id;
 	
 	@ManyToOne
+	@JsonIgnoreProperties({"bookings", "contacts", "addresses"})
 	private Client client;
 	
 	private LocalDate pickUpDate;
@@ -40,6 +42,7 @@ public class Booking implements Serializable{
 	private Integer bookingStatus;
 	
 	@OneToOne
+	@JsonIgnoreProperties("booking")
 	private Rental rental;
 	
 	public Booking() {}

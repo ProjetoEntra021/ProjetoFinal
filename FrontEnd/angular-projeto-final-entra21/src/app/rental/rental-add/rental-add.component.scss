@@ -1,0 +1,138 @@
+#cardHeader {
+  width: 100%;
+  justify-content: flex-start;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: left;
+  // border: 1px solid red;
+  margin: auto;
+  height: 50px;
+  color: #00796b;
+}
+
+#cardHeader p {
+  border-bottom: 1px solid;
+  width: 100%;
+  padding: 0 0 10px 5px;
+}
+
+#cardForm {
+  width: 70%;
+  height: fit-content;
+  color: black;
+  border: 1px solid black;
+  margin: auto;
+  height: fit-content;
+}
+
+#mainContent {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+
+.formBlocks {
+  width: 100%;
+  // border: 1px solid red;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-bottom: 1px solid #00796b;
+  margin-bottom: 0px;
+}
+
+.formField {
+  width: 100%;
+}
+
+input {
+  height: 20px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+label {
+  // border: 1px solid black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+select {
+  height: 26px;
+  border-radius: 5px;
+}
+
+mat-card-actions {
+  width: 99%;
+  margin: auto;
+  margin-top: 5px;
+  height: fit-content;
+  padding: 0px;
+  text-align: end;
+}
+
+input {
+  color: black;
+}
+
+mat-label {
+  color: black;
+}
+
+.mat-input-element::placeholder {
+  color: gray;
+}
+
+#formHeader {
+  height: 50px;
+  font-size: 20px;
+  margin: auto;
+  border: 1px solid black;
+  width: 100%;
+}
+
+div.ng-tns-c106-2 {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.formLines {
+  // border: 1px solid red;
+  width: 95%;
+  gap: 5px;
+}
+
+#firstLine {
+  display: grid;
+  grid-template-columns: 66% auto;
+}
+
+#secondLine {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  margin-bottom: 10px;
+}
+
+.ng-tns-c107-2 {
+  height: 20px;
+}
+
+mat-card-content {
+  height: 100%;
+  overflow: auto;
+}
+
+mat-select {
+  height: 19px;
+}
+
+#optionalForm {
+  display: flex;
+  gap: 5px;
+}

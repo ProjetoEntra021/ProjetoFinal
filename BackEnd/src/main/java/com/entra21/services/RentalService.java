@@ -1,24 +1,37 @@
 package com.entra21.services;
 
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.entra21.entities.Booking;
 import com.entra21.entities.Payment;
 import com.entra21.entities.Rental;
+import com.entra21.entities.Vehicle;
+import com.entra21.entities.dto.RentalAddDTO;
 import com.entra21.entities.enums.PaymentStatus;
+import com.entra21.entities.enums.RentalStatus;
 import com.entra21.entities.enums.RentalType;
 import com.entra21.exceptions.ResourceNotFoundException;
+import com.entra21.repositories.BookingRepository;
 import com.entra21.repositories.RentalRepository;
+import com.entra21.repositories.VehicleRepository;
 
 @Service
 public class RentalService {
 
 	@Autowired
 	private RentalRepository rentalRepository;
+	
+	@Autowired
+	private BookingRepository bookingRepository;
+	
+	@Autowired
+	private VehicleRepository vehicleRepository;
 
 	public List<Rental> findAll() {
 		return rentalRepository.findAll();
@@ -29,14 +42,17 @@ public class RentalService {
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
-	public Rental insert(Rental obj) {
-		if(obj.getRentalType() == RentalType.APP_DRIVER) {
-			calculateAppPayments(obj);
+	public Rental insert(RentalAddDTO obj) {
+		Vehicle ve = vehicleRepository.findById(obj.getVehicleId()).get();
+		Booking bo = bookingRepository.findById(obj.getBookingId()).get();
+		Rental objRental = new Rental(0L, obj.getRentalType(), obj.getPickUpDate(), obj.getDropOffDate(), RentalStatus.ACTIVE, obj.getTotalValue(), bo, ve, new ArrayList<Payment>(), null);
+		if(objRental.getRentalType() == RentalType.APP_DRIVER) {
+			calculateAppPayments(objRental);
 		} 
 		else {
-			createPersonalPayment(obj);
+			createPersonalPayment(objRental);
 		}
-		return rentalRepository.save(obj);
+		return rentalRepository.save(objRental);
 	}
 
 	public void delete(Long id) {

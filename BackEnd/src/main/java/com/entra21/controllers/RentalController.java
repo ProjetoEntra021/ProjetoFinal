@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.entra21.entities.Rental;
+import com.entra21.entities.dto.RentalAddDTO;
 import com.entra21.services.RentalService;
 
 @RestController
@@ -39,10 +40,10 @@ public class RentalController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Rental> insert(@RequestBody Rental obj){
-		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).body(obj);
+	public ResponseEntity<Rental> insert(@RequestBody RentalAddDTO obj){
+		Rental objRental = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objRental.getId()).toUri();
+		return ResponseEntity.created(uri).body(objRental);
 	}
 	
 	@DeleteMapping(value = "/{id}")

@@ -47,7 +47,7 @@
 
       <mat-divider></mat-divider>
       <mat-list-item>
-        <button mat-button [routerLink]="['/home']" > Sair</button>
+        <button mat-button [routerLink]="['/home']"> Sair</button>
       </mat-list-item>
 
       <mat-divider></mat-divider>
@@ -58,7 +58,6 @@
 
     <mat-toolbar class="color-primary">
       <app-header [title]="title"></app-header>
-
     </mat-toolbar>
     <router-outlet (activate)="setHeader()"></router-outlet>
   </mat-drawer-content>

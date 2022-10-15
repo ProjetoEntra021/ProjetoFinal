@@ -4,6 +4,7 @@
 
 mat-drawer-container {
   height: 100%;
+  width: 100%;
 }
 
 mat-drawer {
@@ -22,7 +23,7 @@ input {
 }
 
 figure {
-  border: 1px solid red;
+  // border: 1px solid red;
 }
 
 #logoDivider {
@@ -56,12 +57,15 @@ figure {
 }
 mat-drawer-content {
   background-color: rgba(180, 180, 180);
+  width: 80%;
 }
 
 //
 
 mat-toolbar {
   justify-content: center;
+  margin: 0px;
+  padding: 0px;
 }
 
 app-header {
@@ -71,12 +75,12 @@ app-header {
 }
 //
 
-mat-toolbar{
- justify-content: center;
- display: grid;
- grid-template-columns: 85% 15%;
-//  background-color: rgba(180, 180, 180);
- color: #ffffff;
+mat-toolbar {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 85% 15%;
+  //  background-color: rgba(180, 180, 180);
+  color: #ffffff;
 }
 
 .headerBar {
