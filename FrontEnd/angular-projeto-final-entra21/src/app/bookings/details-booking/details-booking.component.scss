@@ -1,0 +1,74 @@
+
+#booking-card {
+
+  width: 90%;
+  height: fit-content;
+  color: black;
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#arrowBack {
+  margin-left: 0px;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  flex: 0;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+
+#header {
+  display: flex;
+  margin-top: 10px;
+  height: 50px;
+  width: 92.5%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#arrowBackIcon {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+}
+
+h1{
+  color: #00796b;
+}
+mat-card-subtitle {
+  margin: 0;
+}
+input, #status{
+  border: none;
+  width: 100%;
+  font-size: 1.2em;
+  outline: none;
+  font-family: sans-serif;
+}
+#firstLine {
+  display: grid;
+  grid-template-columns: 100%;
+}
+#secondLine {
+  display: grid;
+  grid-template-columns: 33% 33% auto;
+}
+#thirdLine {
+  display: grid;
+  grid-template-columns: 33% 33% auto;
+}
+button{
+  float:right;
+}
+mat-card-actions{
+  height: 30px;
+  padding-right: 20px;
+}

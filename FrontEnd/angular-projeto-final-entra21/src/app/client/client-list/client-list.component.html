@@ -19,6 +19,15 @@
         </mat-cell>
       </ng-container>
 
+<<<<<<< HEAD
+        <!-- Weight Column -->
+        <ng-container matColumnDef="cpf">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> CPF </mat-header-cell>
+          <mat-cell *matCellDef="let client">
+            {{ client.cpf | mask: '000.000.000-00 '}}
+          </mat-cell>
+        </ng-container>
+=======
       <!-- Weight Column -->
       <ng-container matColumnDef="cpf">
         <mat-header-cell *matHeaderCellDef mat-sort-header> CPF </mat-header-cell>
@@ -26,6 +35,7 @@
           {{ client.cpf }}
         </mat-cell>
       </ng-container>
+>>>>>>> 1cbb6f2 (Started Rental. Fixed some bugs in client module.)
 
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Opções </mat-header-cell>

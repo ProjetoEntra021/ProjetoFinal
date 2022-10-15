@@ -5,6 +5,7 @@ import { AppMaterialModule } from './app-material/app-material.module';
 import { HeaderComponent } from './header/header.component';
 import { VehicleStatusPipe } from './pipes/vehicle-status.pipe';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { BookingStatusPipe } from './pipes/booking-status.pipe';
 import { RentalTypePipe } from './pipes/rental-type.pipe';
 
 export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
@@ -14,6 +15,7 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
   declarations: [
     HeaderComponent,
     VehicleStatusPipe,
+    BookingStatusPipe,
     RentalTypePipe
   ],
   imports: [
@@ -25,6 +27,7 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
     HeaderComponent,
     VehicleStatusPipe,
     NgxMaskModule,
+    BookingStatusPipe,
     RentalTypePipe
   ]
 })

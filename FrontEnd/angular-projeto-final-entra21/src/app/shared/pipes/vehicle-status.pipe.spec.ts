@@ -1,8 +1,8 @@
-import { VehicleStatusPipePipe } from './vehicle-status.pipe';
+import { VehicleStatusPipe } from './vehicle-status.pipe';
 
 describe('VehicleStatusPipePipe', () => {
   it('create an instance', () => {
-    const pipe = new VehicleStatusPipePipe();
+    const pipe = new VehicleStatusPipe();
     expect(pipe).toBeTruthy();
   });
 });
