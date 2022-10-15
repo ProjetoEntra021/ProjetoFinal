@@ -1,10 +1,14 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import { Category } from '../../shared/model/category';
-import { CategoryService } from '../../service/category.service';
-import { Vehicle } from '../../shared/model/vehicle';
 import { ActivatedRoute } from '@angular/router';
+
 import { BookingsService } from '../../service/bookings.service';
+import { CategoryService } from '../../service/category.service';
+import { Category } from '../../shared/model/category';
+import { Vehicle } from '../../shared/model/vehicle';
+import { RentalService } from '../../service/rental.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-rental-add',
@@ -16,15 +20,19 @@ export class RentalAddComponent implements OnInit {
   rentalTypes = ["APP_DRIVER", "PERSONAL"]
 
   form = this.formBuilder.group({
-    categoryId: [<number | undefined>(undefined)],
-    client: [''],
     pickUpDate: [<Date | undefined>(undefined)],
     dropOffDate: [<Date | undefined>(undefined)],
-    bookingId: [<number | undefined>(undefined)],
-    vehicleId: [<number | undefined>(undefined)],
     totalValue: [<number | undefined>(undefined)],
-    rentalStatus: ["AVAILABLE"],
-    rentalType: ['']
+    rentalStatus: ["PENDING"],
+    rentalType: ['', Validators.required],
+
+    bookingId: [<number | undefined>(undefined)],
+    vehicleId: [<number | undefined>(undefined), Validators.required],
+  })
+
+  optionalForm = this.formBuilder.group({
+    clientName: [''],
+    categoryId: [<number | undefined>(undefined)],
   })
 
   categories: Category[] = [];
@@ -41,7 +49,10 @@ export class RentalAddComponent implements OnInit {
     private formBuilder: NonNullableFormBuilder,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
-    private bookingService: BookingsService
+    private bookingService: BookingsService,
+    private location: Location,
+    private rentalService: RentalService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -53,20 +64,30 @@ export class RentalAddComponent implements OnInit {
       this.bookingId = params['id'];
       if (this.bookingId) {
         this.getBooking(this.bookingId);
-
       }
-
     })
-
-
   }
 
   onSubmit() {
-    console.log(this.form.value)
+    // console.log(this.form.value)
+    this.rentalService.save(this.form.value).subscribe({
+      next: () => this.onSuccess(),
+      error: () => this.onError()
+    })
   }
 
-  onCancel() {
+  private onSuccess() {
+    this.snackBar.open('Locação cadastrada com sucesso!', '', { duration: 3000 })
+    this.onCancel();
+  }
 
+  private onError() {
+    this.snackBar.open('Erro ao cadastrar locação.', '', { duration: 3000 })
+  }
+
+
+  onCancel() {
+    this.location.back();
   }
 
   updateVehicles(id: number) {
@@ -86,21 +107,25 @@ export class RentalAddComponent implements OnInit {
   }
 
   getBooking(id: number) {
-    this.bookingService.getBookingById(id).subscribe((dados) =>
-      this.form.patchValue(
+    this.bookingService.getBookingById(id).subscribe((dados) => {
+      this.optionalForm.patchValue(
         {
-          categoryId: dados.category.id,
-          client: dados.client.name,
-          bookingId: dados.id,
-          pickUpDate: dados.pickUpDate,
-          dropOffDate: dados.dropOffDate
-        })
+          clientName: dados.client.name,
+          categoryId: dados.category.id
+        }),
+        this.form.patchValue(
+          {
+            bookingId: dados.id,
+            pickUpDate: dados.pickUpDate,
+            dropOffDate: dados.dropOffDate
+          })
+    }
     );
   }
 
   updatePriceValue(rentalType: string, event: any) {
     if (event.isUserInput) {
-      let id = this.form.value.categoryId;
+      let id = this.optionalForm.value.categoryId;
       let tempCat = {} as Category;
       for (let cat of this.categories) {
         if (cat.id == id) {

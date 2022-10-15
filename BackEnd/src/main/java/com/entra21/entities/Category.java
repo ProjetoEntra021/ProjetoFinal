@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Category implements Serializable{
@@ -29,6 +30,7 @@ public class Category implements Serializable{
 	private Double dayPrice;
 	
 	@OneToMany(mappedBy="category")
+	@JsonIgnoreProperties({"revenues", "expenses"})
 	private List<Vehicle> vehicles = new ArrayList<>();
 	
 	@OneToMany(mappedBy="category")

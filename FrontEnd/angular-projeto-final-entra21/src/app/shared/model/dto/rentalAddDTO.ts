@@ -1,9 +1,9 @@
 export interface RentalAddDTO {
-  id: number,
   pickUpDate: Date,
   dropOffDate: Date,
   rentalStatus: string,
+  rentalType: string,
+  totalValue: number,
   bookingId: number,
-  vehicleId: number,
-  totalValue: number
+  vehicleId: number
 }

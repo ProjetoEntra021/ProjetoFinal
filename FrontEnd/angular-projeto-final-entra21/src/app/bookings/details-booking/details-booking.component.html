@@ -1,52 +1,32 @@
 <div id="mainContent">
   <div id="header">
-    <a id="arrowBack" [routerLink]="['/main/bookings']" >
+    <a id="arrowBack" [routerLink]="['/main/bookings']">
       <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
     </a>
 
   </div>
-  <mat-card id="booking-card">
+  <mat-card *ngIf="booking$ | async as booking;" id="booking-card">
     <h1>Reserva de {{ booking.client.name }}</h1>
     <mat-card-content>
       <div id="firstLine">
         <mat-card-content>
           <mat-card-subtitle>Cliente</mat-card-subtitle>
-          <input
-            type="text"
-            readonly
-            name="name"
-            [(ngModel)]="booking.client.name"
-          />
+          <input type="text" readonly name="name" [(ngModel)]="booking.client.name" />
         </mat-card-content>
       </div>
 
       <div id="secondLine">
         <mat-card-content>
           <mat-card-subtitle>Data de retirada:</mat-card-subtitle>
-          <input
-            type="date"
-            readonly
-            name="booking.pickUpDate"
-            [(ngModel)]="booking.pickUpDate"
-          />
+          <input type="date" readonly name="booking.pickUpDate" [(ngModel)]="booking.pickUpDate" />
         </mat-card-content>
         <mat-card-content>
           <mat-card-subtitle>Data de entrega:</mat-card-subtitle>
-          <input
-            type="date"
-            readonly
-            name="booking.dropOffDate"
-            [(ngModel)]="booking.dropOffDate"
-          />
+          <input type="date" readonly name="booking.dropOffDate" [(ngModel)]="booking.dropOffDate" />
         </mat-card-content>
         <mat-card-content>
           <mat-card-subtitle>Categoria:</mat-card-subtitle>
-          <input
-            type="text"
-            readonly
-            name="booking.category"
-            [(ngModel)]="booking.category.name"
-          />
+          <input type="text" readonly name="booking.category" [(ngModel)]="booking.category.name" />
         </mat-card-content>
       </div>
       <div id="thirdLine">
@@ -61,7 +41,7 @@
       </div>
 
       <mat-card-actions>
-        <button mat-raised-button color="primary">Efetuar Locação</button>
+        <button mat-raised-button color="primary" (click)="createRental(booking.id)">Efetuar Locação</button>
         <button mat-raised-button color="secondary" (click)="edit(booking.id)">
           Editar
         </button>

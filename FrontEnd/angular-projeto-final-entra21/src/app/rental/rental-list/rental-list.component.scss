@@ -1,0 +1,151 @@
+.AVAILABLE {
+  color: green;
+}
+
+.UNAVAILABLE {
+  color: blue;
+}
+
+.DISABLE {
+  color: red;
+}
+
+.MAINTENANCE {
+  color: yellow;
+}
+
+.status {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-cell {
+  color: black;
+  background-color: white;
+}
+
+mat-header-cell {
+  color: white;
+  background-color: #a9a9a9;
+}
+
+mat-card {
+  width: 90%;
+  height: 70vh;
+  margin: auto;
+}
+
+mat-row,
+mat-header-row {
+  min-height: 40px;
+}
+
+.container {
+  height: 90%;
+  overflow: auto;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#rodapeLegenda {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  width: 90%;
+  margin: auto;
+}
+
+.legendaIndividual {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+}
+
+#mainTextHeader {
+  width: 100%;
+  justify-content: flex-start;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  // border: 1px solid red;
+  margin: auto;
+  height: 50px;
+  color: #00796b;
+}
+
+.legenda {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#arrowBack {
+  margin-left: 0px;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  flex: 0;
+}
+
+#header {
+  display: flex;
+  margin-top: 10px;
+  height: 50px;
+  width: 92.5%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#arrowBackIcon {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+#searchVehicle {
+  // border: 1px solid white;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  display: flex;
+  height: 40px;
+  align-items: center;
+  width: 100%;
+}
+
+input {
+  border-radius: 5px;
+
+  height: 25px;
+}
+
+mat-table {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.clientSearchParamInput {
+  width: 580px;
+  height: 30px;
+  border-radius: 5px;
+  margin-right: 8px;
+}
+
+#inputSearch {
+  flex: 2;
+  text-align: center;
+  font-size: 20px;
+}

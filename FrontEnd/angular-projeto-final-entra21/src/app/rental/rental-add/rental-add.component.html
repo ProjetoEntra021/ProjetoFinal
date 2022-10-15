@@ -1,29 +1,32 @@
 <div id="mainContent">
   <mat-card id="cardForm">
     <div id="cardHeader">
-      <p> Veículo</p>
+      <p> Locação </p>
     </div>
     <mat-card-content>
       <form [formGroup]="form" class="min-width">
 
         <div class="formBlocks">
 
-          <div id="firstLine" class="formLines">
-            <mat-form-field class="formField" appearance="fill">
-              <mat-label>Cliente: </mat-label>
-              <input readonly matInput id="model" formControlName="client" type="text"
-                     placeholder="Digite o ano do veículo" />
-            </mat-form-field>
+          <div class="formLines" id="firstLine">
+            <!-- Neste form as informações não são necessárias para criar locação -->
+            <form [formGroup]="optionalForm" id="optionalForm">
+              <mat-form-field class="formField" appearance="fill">
+                <mat-label>Cliente: </mat-label>
+                <input readonly matInput id="model" formControlName="clientName" type="text"
+                       placeholder="Digite o ano do veículo" />
+              </mat-form-field>
 
-            <mat-form-field class="formField" appearance="fill">
-              <mat-label>Selecione categoria:</mat-label>
-              <mat-select [disabled]="true" formControlName="categoryId">
-                <mat-option *ngFor="let category of categories" [value]="category.id"
-                            (onSelectionChange)="updateVehicles(category.id)" compareWith="compararObjetos">
-                  {{category.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+              <mat-form-field class="formField" appearance="fill">
+                <mat-label>Selecione categoria:</mat-label>
+                <mat-select [disabled]="true" formControlName="categoryId">
+                  <mat-option *ngFor="let category of categories" [value]="category.id"
+                              (onSelectionChange)="updateVehicles(category.id)" compareWith="compararObjetos">
+                    {{category.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </form>
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Selecione veículo:</mat-label>
@@ -34,19 +37,19 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
+          </div>
 
+          <div class="formLines" id="secondLine">
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Data Inicial: </mat-label>
               <input matInput id="model" formControlName="pickUpDate" type="date"
                      placeholder="Digite o ano do veículo" />
             </mat-form-field>
-          </div>
 
-          <div id="secondLine" class="formLines">
             <mat-form-field class="formField" appearance="fill">
               <mat-label>Data Final: </mat-label>
               <input matInput id="model" formControlName="dropOffDate" type="date"
-                     placeholder="Digite o Renavam do veículo" />
+                     placeholder="Digite a data de retirada" />
             </mat-form-field>
 
             <mat-form-field class="formField" appearance="fill">
@@ -66,16 +69,16 @@
             </mat-form-field>
 
           </div>
-
-          <mat-card-actions>
-            <button class="formButton" mat-raised-button color="primary" (click)="onSubmit()">
-              Salvar
-            </button>
-            <button class="formButton" mat-raised-button color="secondary" (click)="onCancel()">
-              Cancelar
-            </button>
-          </mat-card-actions>
         </div>
+        <mat-card-actions>
+          <button class="formButton" mat-raised-button color="primary" (click)="onSubmit()">
+            Salvar
+          </button>
+          <button class="formButton" mat-raised-button color="secondary" (click)="onCancel()">
+            Cancelar
+          </button>
+        </mat-card-actions>
+
       </form>
     </mat-card-content>
   </mat-card>

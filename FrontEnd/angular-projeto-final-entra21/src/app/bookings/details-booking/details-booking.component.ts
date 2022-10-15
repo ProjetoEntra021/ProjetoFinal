@@ -5,6 +5,7 @@ import { Booking } from './../../shared/model/booking';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { Location } from '@angular/common';
 })
 export class DetailsBookingComponent implements OnInit {
 
-  public booking!: Booking;
+  public booking$?: Observable<Booking>;
   public client!: Client;
   public bookingId!: number;
 
@@ -33,24 +34,28 @@ export class DetailsBookingComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.bookingId = params['id'];
 
-      if(this.bookingId) {
-        this.bookingService.getBookingById(this.bookingId).subscribe(
-          resultado => {
-            if(resultado) {
-              this.booking = resultado;
-            }
-            else {
-              this.snackBar.open('Erro ao consultar reserva.', '', { duration: 3000 })
-            }
-          }
-        )
+      if (this.bookingId) {
+        this.booking$ = this.bookingService.getBookingById(this.bookingId);
+        //   resultado => {
+        //     if (resultado) {
+        //       this.booking = resultado;
+        //     }
+        //     else {
+        //       this.snackBar.open('Erro ao consultar reserva.', '', { duration: 3000 })
+        //     }
+        //   }
+        // )
       }
     }
     )
 
   }
   edit(id: number) {
-    this.router.navigate(['update/' + id], {relativeTo: this.route.parent})
+    this.router.navigate(['update/' + id], { relativeTo: this.route.parent })
+  }
+
+  createRental(id: number) {
+    this.router.navigate(['../rentals/' + id + '/add'], { relativeTo: this.route.parent })
   }
 
   onCancel() {

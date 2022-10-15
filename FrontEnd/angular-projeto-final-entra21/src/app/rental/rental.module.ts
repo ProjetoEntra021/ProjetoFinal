@@ -6,12 +6,14 @@ import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { SharedModule } from '../shared/shared.module';
 import { RentalAddComponent } from './rental-add/rental-add.component';
 import { RentalRoutingModule } from './rental-routing.module';
+import { RentalListComponent } from './rental-list/rental-list.component';
 
 
 
 @NgModule({
   declarations: [
-    RentalAddComponent
+    RentalAddComponent,
+    RentalListComponent
   ],
   imports: [
     CommonModule,

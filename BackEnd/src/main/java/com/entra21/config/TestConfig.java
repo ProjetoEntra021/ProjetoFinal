@@ -20,6 +20,7 @@ import com.entra21.entities.Rental;
 import com.entra21.entities.Vehicle;
 import com.entra21.entities.VehicleExpense;
 import com.entra21.entities.VehicleRevenue;
+import com.entra21.entities.dto.RentalAddDTO;
 import com.entra21.entities.enums.BookingStatus;
 import com.entra21.entities.enums.ContactType;
 import com.entra21.entities.enums.GenderType;
@@ -166,8 +167,8 @@ public class TestConfig implements CommandLineRunner {
 		
 		vehicleRRepository.saveAll(Arrays.asList(vr1, vr2));
 		
-		Rental r1 = new Rental(null, RentalType.APP_DRIVER, bk1.getPickUpDate(), bk1.getDropOffDate(), 
-				RentalStatus.PENDING, 1350.0, bk1, v1, new ArrayList<>(), null);
+		RentalAddDTO r1 = new RentalAddDTO(bk1.getPickUpDate(), bk1.getDropOffDate(), 
+				 1350.0, RentalStatus.PENDING, RentalType.APP_DRIVER, bk1.getId(), v1.getId());
 		rentalService.insert(r1);
 		
 //		Payment pay1 = new Payment(null, LocalDate.parse("15/11/2022", formatter), 700.00, 0.00, PaymentStatus.WAITINGPAYMENT, r1);
@@ -201,8 +202,7 @@ public class TestConfig implements CommandLineRunner {
 
 		bookingRepository.save(bk2);
 		
-		Rental r2 = new Rental(null, RentalType.PERSONAL, bk1.getPickUpDate(), bk1.getDropOffDate(), 
-				RentalStatus.PENDING, 1400.0, bk2, v2, new ArrayList<>(), null);
+		RentalAddDTO r2 = new RentalAddDTO( bk1.getPickUpDate(), bk1.getDropOffDate(), 1400.0, RentalStatus.PENDING, RentalType.PERSONAL,  bk2.getId(), v2.getId());
 		rentalService.insert(r2);
 
 	}

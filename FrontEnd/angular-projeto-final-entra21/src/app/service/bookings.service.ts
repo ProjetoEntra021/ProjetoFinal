@@ -19,8 +19,7 @@ export class BookingsService {
         first());
   }
   getBookingById(id: number) {
-    return this.httpClient.get<Booking>(this.API + '/' + id).pipe(tap(data => console.log(data)),
-      first());
+    return this.httpClient.get<Booking>(this.API + '/' + id).pipe(first());
   }
 
   addBooking(record: Partial<Booking>) {

@@ -34,7 +34,6 @@ export class MainViewComponent implements OnInit {
     } else {
 
       let answer = decodeURIComponent(path[2]);
-      console.log(answer)
       if (answer == "vehicles") {
         this.title = "MENU VEÍCULOS";
       }
@@ -48,13 +47,6 @@ export class MainViewComponent implements OnInit {
         this.title = "MENU LOCAÇÕES"
       }
     }
-    //   if(path.length <= 3) {
-    //     let answer = decodeURIComponent(path[3]);
-    //     if(answer == "registration") {
-    //       this.title = "MENU CLIENTES";
-    //     }
-
-    // }
   }
 
 

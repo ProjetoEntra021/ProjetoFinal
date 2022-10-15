@@ -15,42 +15,50 @@ import javax.persistence.OneToOne;
 
 import com.entra21.entities.enums.RentalStatus;
 import com.entra21.entities.enums.RentalType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-public class Rental implements Serializable{
+public class Rental implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private RentalType rentalType;
-	
-	private LocalDate pickUpDate;
-	
-	private LocalDate dropOffDate;
-	
-	private Integer rentalStatus;
-	
-	private Double totalValue;
-	
-	@OneToOne
-	private Booking booking;
-	
-	@OneToOne
-	private Vehicle vehicle;
-	
-	@OneToMany(mappedBy = "rental", cascade = CascadeType.ALL)
-	private List<Payment> payments = new ArrayList<>();
-	
-	@OneToOne
-	private Receipt receipt;
-	
-	public Rental () {}
 
-	public Rental(Long id, RentalType rentalType, LocalDate pickUpDate, LocalDate dropOffDate, RentalStatus rentalStatus, Double totalValue ,Booking booking,
-			Vehicle vehicle, List<Payment> payments, Receipt receipt) {
+	private RentalType rentalType;
+
+	private LocalDate pickUpDate;
+
+	private LocalDate dropOffDate;
+
+	private Integer rentalStatus;
+
+	private Double totalValue;
+
+	@OneToOne
+	@JsonIgnoreProperties(value={"rental", "category"}, allowGetters= false)
+	private Booking booking;
+
+	@OneToOne
+	@JsonIgnoreProperties({ "chassi", "mileage", "renavam", "vehicleYear", "category",
+			"vehicleStatus", "revenues", "expenses" })
+	private Vehicle vehicle;	
+
+	@OneToMany(mappedBy = "rental", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("rental")
+	private List<Payment> payments = new ArrayList<>();
+
+	@OneToOne
+	@JsonIgnoreProperties("rental")
+	private Receipt receipt;
+
+	public Rental() {
+	}
+
+	public Rental(Long id, RentalType rentalType, LocalDate pickUpDate, LocalDate dropOffDate,
+			RentalStatus rentalStatus, Double totalValue, Booking booking, Vehicle vehicle, List<Payment> payments,
+			Receipt receipt) {
 		super();
 		this.id = id;
 		this.rentalType = rentalType;
@@ -143,6 +151,5 @@ public class Rental implements Serializable{
 	public void setPayments(List<Payment> payments) {
 		this.payments = payments;
 	}
-	
-	
+
 }
