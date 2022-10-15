@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.entra21.entities.enums.RentalStatus;
+import com.entra21.entities.enums.RentalType;
 
 @Entity
 public class Rental implements Serializable{
@@ -23,6 +24,8 @@ public class Rental implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	private RentalType rentalType;
 	
 	private LocalDate pickUpDate;
 	
@@ -46,13 +49,15 @@ public class Rental implements Serializable{
 	
 	public Rental () {}
 
-	public Rental(Long id, LocalDate pickUpDate, LocalDate dropOffDate, RentalStatus rentalStatus, Booking booking,
+	public Rental(Long id, RentalType rentalType, LocalDate pickUpDate, LocalDate dropOffDate, RentalStatus rentalStatus, Double totalValue ,Booking booking,
 			Vehicle vehicle, List<Payment> payments, Receipt receipt) {
 		super();
 		this.id = id;
+		this.rentalType = rentalType;
 		this.pickUpDate = pickUpDate;
 		this.dropOffDate = dropOffDate;
 		setRentalStatus(rentalStatus);
+		this.totalValue = totalValue;
 		this.booking = booking;
 		this.vehicle = vehicle;
 		this.payments = payments;
@@ -65,6 +70,14 @@ public class Rental implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public RentalType getRentalType() {
+		return rentalType;
+	}
+
+	public void setRentalType(RentalType rentalType) {
+		this.rentalType = rentalType;
 	}
 
 	public LocalDate getPickUpDate() {
@@ -113,6 +126,22 @@ public class Rental implements Serializable{
 
 	public void setReceipt(Receipt receipt) {
 		this.receipt = receipt;
+	}
+
+	public Double getTotalValue() {
+		return totalValue;
+	}
+
+	public void setTotalValue(Double totalValue) {
+		this.totalValue = totalValue;
+	}
+
+	public List<Payment> getPayments() {
+		return payments;
+	}
+
+	public void setPayments(List<Payment> payments) {
+		this.payments = payments;
 	}
 	
 	

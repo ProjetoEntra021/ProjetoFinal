@@ -2,6 +2,7 @@ package com.entra21.config;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import com.entra21.entities.enums.ContactType;
 import com.entra21.entities.enums.GenderType;
 import com.entra21.entities.enums.PaymentStatus;
 import com.entra21.entities.enums.RentalStatus;
+import com.entra21.entities.enums.RentalType;
 import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.repositories.AddressRepository;
 import com.entra21.repositories.BookingRepository;
@@ -35,6 +37,7 @@ import com.entra21.repositories.RentalRepository;
 import com.entra21.repositories.VehicleExpenseRepository;
 import com.entra21.repositories.VehicleRepository;
 import com.entra21.repositories.VehicleRevenueRepository;
+import com.entra21.services.RentalService;
 
 @Configuration
 @Profile("test")
@@ -63,7 +66,10 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private RentalRepository rentalRepository;
-
+	
+	@Autowired
+	private RentalService rentalService;
+	
 	@Autowired
 	private VehicleExpenseRepository vehicleERepository;
 	
@@ -98,8 +104,8 @@ public class TestConfig implements CommandLineRunner {
 
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
-		Booking bk1 = new Booking(null, c1, LocalDate.parse("2005-10-05"),
-				LocalDate.parse("2005-10-10"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+		Booking bk1 = new Booking(null, c1, LocalDate.parse("2022-10-05"),
+				LocalDate.parse("2022-10-26"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
 				BookingStatus.ACTIVE, null);
 
 		bookingRepository.save(bk1);
@@ -160,14 +166,15 @@ public class TestConfig implements CommandLineRunner {
 		
 		vehicleRRepository.saveAll(Arrays.asList(vr1, vr2));
 		
-		Rental r1 = new Rental(null, bk1.getPickUpDate(), bk1.getDropOffDate(), RentalStatus.PENDING, bk1, v1, null, null);
-		rentalRepository.save(r1);
+		Rental r1 = new Rental(null, RentalType.APP_DRIVER, bk1.getPickUpDate(), bk1.getDropOffDate(), 
+				RentalStatus.PENDING, 1350.0, bk1, v1, new ArrayList<>(), null);
+		rentalService.insert(r1);
 		
-		Payment pay1 = new Payment(null, LocalDate.parse("15/11/2022", formatter), 700.00, 0.00, PaymentStatus.WAITINGPAYMENT, r1);
-		Payment pay2 = new Payment(null, LocalDate.parse("15/12/2022", formatter), 700.00, 0.00, PaymentStatus.WAITINGPAYMENT, r1);
-		Payment pay3 = new Payment(null, LocalDate.parse("15/01/2023", formatter), 700.00, 0.00, PaymentStatus.WAITINGPAYMENT, r1);
-		
-		paymentRepository.saveAll(Arrays.asList(pay1,pay2,pay3));
+//		Payment pay1 = new Payment(null, LocalDate.parse("15/11/2022", formatter), 700.00, 0.00, PaymentStatus.WAITINGPAYMENT, r1);
+//		Payment pay2 = new Payment(null, LocalDate.parse("15/12/2022", formatter), 700.00, 0.00, PaymentStatus.WAITINGPAYMENT, r1);
+//		Payment pay3 = new Payment(null, LocalDate.parse("15/01/2023", formatter), 700.00, 0.00, PaymentStatus.WAITINGPAYMENT, r1);
+//		
+//		paymentRepository.saveAll(Arrays.asList(pay1,pay2,pay3));
 		
 
 		// create test registration client Pablo
@@ -190,6 +197,10 @@ public class TestConfig implements CommandLineRunner {
 				BookingStatus.ACTIVE, null);
 
 		bookingRepository.save(bk2);
+		
+		Rental r2 = new Rental(null, RentalType.PERSONAL, bk1.getPickUpDate(), bk1.getDropOffDate(), 
+				RentalStatus.PENDING, 1400.0, bk2, v2, new ArrayList<>(), null);
+		rentalService.insert(r2);
 
 	}
 
