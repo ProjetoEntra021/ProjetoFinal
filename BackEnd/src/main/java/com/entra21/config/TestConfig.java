@@ -84,11 +84,11 @@ public class TestConfig implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		// create test registration client Mateus
-		Client c1 = new Client(null, "Mateus", "12312312312", "1233456", LocalDate.parse("01/10/1999", formatter), GenderType.MASCULINO);
+		Client c1 = new Client(null, "Mateus Bruscato", "12312312312", "1233456", LocalDate.parse("01/10/1999", formatter), GenderType.MASCULINO);
 
 		clientRepository.save(c1);
 
-		Address ad1 = new Address(null, "88040425", "Servidão Maria R", "Trinda", "186", "Casa 163", "Florianopolis", "SC", c1);
+		Address ad1 = new Address(null, "88040425", "Servidão Maria R", "Trinda", "Florianopolis", "SC","186", "Casa 163", c1);
 
 		addressRepository.save(ad1);
 		
@@ -179,15 +179,15 @@ public class TestConfig implements CommandLineRunner {
 		
 
 		// create test registration client Pablo
-		Client c2 = new Client(null, "Pablo", "00443990905", "386985233",  LocalDate.parse("24/07/1980", formatter), GenderType.MASCULINO);	
+		Client c2 = new Client(null, "Pablo Alexandre M Pamplona", "00443990905", "386985233",  LocalDate.parse("24/07/1980", formatter), GenderType.MASCULINO);	
 		Client c3 = new Client(null, "Tatiani Pereira Rodrigues", "08856272278", "999392428",  LocalDate.parse("30/10/1995", formatter), GenderType.FEMININO);
-	    Client c4 = new Client(null, "Victor", "12345678987", "234567854",  LocalDate.parse("03/08/1998", formatter), GenderType.MASCULINO);
+	    Client c4 = new Client(null, "Victor Woleck", "12345678987", "234567854",  LocalDate.parse("03/08/1998", formatter), GenderType.MASCULINO);
 
         clientRepository.saveAll(Arrays.asList(c2, c3, c4));
         
 
-		Address ad2 = new Address(null, "88095000", "Av Marinheiro Max Schramm", "Estreito", "2428", "Bloco 4 Apto 301",
-				"Florianopolis", "SC", c2);
+		Address ad2 = new Address(null, "88095000", "Av Marinheiro Max Schramm", "Estreito", "Florianopolis", "SC", "2428", "Bloco 4 Apto 301",
+				 c2);
 
 		addressRepository.save(ad2);
 		

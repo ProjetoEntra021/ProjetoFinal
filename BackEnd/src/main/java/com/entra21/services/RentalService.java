@@ -16,6 +16,7 @@ import com.entra21.entities.dto.RentalAddDTO;
 import com.entra21.entities.enums.PaymentStatus;
 import com.entra21.entities.enums.RentalStatus;
 import com.entra21.entities.enums.RentalType;
+import com.entra21.exceptions.InvalidRentalPeriodException;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.BookingRepository;
 import com.entra21.repositories.RentalRepository;
@@ -78,12 +79,16 @@ public class RentalService {
 	private void calculateAppPayments(Rental obj) {
 		Payment payment;
 		Period rentalPeriod = Period.between(obj.getPickUpDate(), obj.getDropOffDate());
-		int totalPayments = rentalPeriod.getDays() / 7;
-		double paymentValue = obj.getTotalValue() / totalPayments;
-		for (int i = 1 ; i <= totalPayments; i++) {
-			payment = new Payment(null, obj.getPickUpDate().plusWeeks(i), paymentValue, 0.0, 
-					PaymentStatus.WAITINGPAYMENT, obj);
-			obj.getPayments().add(payment);
+		if (rentalPeriod.getDays() % 7 == 0) {
+			int totalPayments = rentalPeriod.getDays() / 7;
+			double paymentValue = obj.getTotalValue() / totalPayments;
+			for (int i = 0 ; i < totalPayments; i++) {
+				payment = new Payment(null, obj.getPickUpDate().plusWeeks(i), paymentValue, 0.0, 
+						PaymentStatus.WAITINGPAYMENT, obj);
+				obj.getPayments().add(payment);
+			}
+		} else {
+			throw new InvalidRentalPeriodException("Prazo de locação deve ser semanal");
 		}
 	}
 	

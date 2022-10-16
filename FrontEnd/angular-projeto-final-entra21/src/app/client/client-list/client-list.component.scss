@@ -1,7 +1,7 @@
 mat-card {
   width: 80%;
   margin: auto;
-  
+
 }
 .mat-column-id {
   word-wrap: break-word !important;
@@ -58,5 +58,21 @@ h1{
 }
 button {
   margin-top: 10px;
+}
+mat-table {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.container {
+  height: 90%;
+  overflow: auto;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+mat-header-cell {
+  color: white;
+  background-color: #a9a9a9;
 }
 
