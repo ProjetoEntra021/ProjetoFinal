@@ -38,6 +38,7 @@ import com.entra21.repositories.RentalRepository;
 import com.entra21.repositories.VehicleExpenseRepository;
 import com.entra21.repositories.VehicleRepository;
 import com.entra21.repositories.VehicleRevenueRepository;
+import com.entra21.services.PaymentService;
 import com.entra21.services.RentalService;
 
 @Configuration
@@ -70,6 +71,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private RentalService rentalService;
+	
+	@Autowired
+	private PaymentService paymentService;
 	
 	@Autowired
 	private VehicleExpenseRepository vehicleERepository;
@@ -204,6 +208,8 @@ public class TestConfig implements CommandLineRunner {
 		
 		RentalAddDTO r2 = new RentalAddDTO( bk1.getPickUpDate(), bk1.getDropOffDate(), 1400.0, RentalStatus.PENDING, RentalType.PERSONAL,  bk2.getId(), v2.getId());
 		rentalService.insert(r2);
+		
+		paymentService.updatePaymentStatus();
 
 	}
 

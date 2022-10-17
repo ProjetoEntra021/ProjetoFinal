@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
 
 import { AppMaterialModule } from './app-material/app-material.module';
 import { HeaderComponent } from './header/header.component';
-import { VehicleStatusPipe } from './pipes/vehicle-status.pipe';
-import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { BookingStatusPipe } from './pipes/booking-status.pipe';
+import { PaymentStatusPipe } from './pipes/payment-status.pipe';
 import { RentalTypePipe } from './pipes/rental-type.pipe';
+import { VehicleStatusPipe } from './pipes/vehicle-status.pipe';
 
 export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 
@@ -16,7 +17,8 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
     HeaderComponent,
     VehicleStatusPipe,
     BookingStatusPipe,
-    RentalTypePipe
+    RentalTypePipe,
+    PaymentStatusPipe,
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
     VehicleStatusPipe,
     NgxMaskModule,
     BookingStatusPipe,
-    RentalTypePipe
+    RentalTypePipe,
+    PaymentStatusPipe
   ]
 })
 export class SharedModule { }

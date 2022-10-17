@@ -7,13 +7,15 @@ import { SharedModule } from '../shared/shared.module';
 import { RentalAddComponent } from './rental-add/rental-add.component';
 import { RentalRoutingModule } from './rental-routing.module';
 import { RentalListComponent } from './rental-list/rental-list.component';
+import { PaymentsListComponent } from './payments-list/payments-list.component';
 
 
 
 @NgModule({
   declarations: [
     RentalAddComponent,
-    RentalListComponent
+    RentalListComponent,
+    PaymentsListComponent
   ],
   imports: [
     CommonModule,

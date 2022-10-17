@@ -5,9 +5,8 @@ import { RentalAddComponent } from './rental-add/rental-add.component';
 import { RentalListComponent } from './rental-list/rental-list.component';
 
 const routes: Routes = [
-  { path: '', component: RentalAddComponent },
-  { path: ':id/add', component: RentalAddComponent },
-  { path: 'list', component: RentalListComponent },
+  { path: '', component: RentalListComponent },
+  { path: ':id/add', component: RentalAddComponent }
 
 ];
 
