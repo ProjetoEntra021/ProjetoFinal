@@ -1,0 +1,40 @@
+<mat-table [dataSource]="payments">
+  <!-- Position Column -->
+  <ng-container matColumnDef="expirationDate">
+    <mat-header-cell *matHeaderCellDef>Data de vencimento</mat-header-cell>
+    <mat-cell *matCellDef="let payment">{{ payment.expirationDate | date: 'dd/MM/YYYY' }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="paymentValue">
+    <mat-header-cell *matHeaderCellDef>Valor da parcela</mat-header-cell>
+    <mat-cell *matCellDef="let payment">{{ payment.paymentValue | currency }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="discount">
+    <mat-header-cell *matHeaderCellDef>Desconto</mat-header-cell>
+    <mat-cell *matCellDef="let payment">{{ payment.discount | percent }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="paymentStatus">
+    <mat-header-cell *matHeaderCellDef>Status do Pagamento </mat-header-cell>
+    <mat-cell class="{{ payment.paymentStatus }}" *matCellDef="let payment">{{ payment.paymentStatus | paymentStatus }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef="" class="action-column-header">Ações</mat-header-cell>
+    <mat-cell *matCellDef="let payment" class="action-column">
+      <button (click)="confirmPayment(payment.id)" [disabled]="payment.paymentStatus == 'PAID'" mat-raised-button
+              color="primary" aria-label="Confirmar pagamento">
+        Confirmar pagamento
+      </button>
+
+      <button mat-icon-button color="warn" aria-label="Deletar um pedido">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
