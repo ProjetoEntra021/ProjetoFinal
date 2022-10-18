@@ -39,7 +39,7 @@
       </ng-container>
 
 
-        <!-- Weight Column -->
+      <!-- Weight Column -->
       <ng-container matColumnDef="cpf">
         <mat-header-cell *matHeaderCellDef mat-sort-header> CPF </mat-header-cell>
         <mat-cell *matCellDef="let client">
@@ -60,8 +60,8 @@
               <span>Editar</span>
             </button>
             <button (click)="detail(client.id)" mat-menu-item>
-              <mat-icon>details</mat-icon>
-              <span>Detalhar</span>
+              <mat-icon>info</mat-icon>
+              <span>Detalhes</span>
             </button>
           </mat-menu>
         </mat-cell>

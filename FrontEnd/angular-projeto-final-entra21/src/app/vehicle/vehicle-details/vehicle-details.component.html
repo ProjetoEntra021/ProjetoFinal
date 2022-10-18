@@ -87,14 +87,14 @@
         <mat-card-actions class="vehicleFinances">
 
           <div id="finances">
+
+            <button mat-raised-button (click)="onCancel()">Cancelar</button>
+
             <button (click)="vehicleBalance()" mat-raised-button color="primary"> Ver Demonstrativo </button>
             <button mat-raised-button (click)="onAddExpenseClick(vehicleId)" color="primary"> Adicionar Despesa
             </button>
+          </div>
 
-          </div>
-          <div id="submit">
-            <button class="formButton" mat-raised-button (click)="onCancel()">Cancelar</button>
-          </div>
         </mat-card-actions>
       </form>
     </mat-card-content>

@@ -1,11 +1,12 @@
-import { Client } from './../../shared/model/client';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BookingsService } from './../../service/bookings.service';
-import { Booking } from './../../shared/model/booking';
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+
+import { BookingsService } from './../../service/bookings.service';
+import { Booking } from './../../shared/model/booking';
+import { Client } from './../../shared/model/client';
 
 
 @Component({
@@ -61,4 +62,5 @@ export class DetailsBookingComponent implements OnInit {
   onCancel() {
     this.location.back();
   }
+
 }

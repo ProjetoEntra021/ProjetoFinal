@@ -1,0 +1,84 @@
+<div id="mainContent">
+  <mat-card id="cardForm">
+    <div id="cardHeader">
+      <p> Detalhes locação </p>
+    </div>
+    <mat-card-content>
+      <div *ngIf="rental$ | async as rental">
+
+        <div class="formBlocks">
+
+          <div class="formLine" id="firstLine">
+            <!-- Neste form as informações não são necessárias para criar locação -->
+
+            <div class="inputs">
+              <label>Cliente: </label>
+              <input readonly matInput readonly value="{{ rental.booking.client.name }}" formControlName="clientName"
+                     type="text" placeholder="Digite o ano do veículo" />
+            </div>
+
+            <div class="inputs">
+              <label>Data Inicial: </label>
+              <input readonly matInput readonly value="{{ rental.pickUpDate }}" type="date"
+                     placeholder="Digite o ano do veículo" />
+            </div>
+
+            <div class="inputs">
+              <label>Data Final: </label>
+              <input readonly matInput readonly value="{{ rental.dropOffDate }}" type="date"
+                     placeholder="Digite o ano do veículo" />
+            </div>
+          </div>
+
+          <div class="formLine" id="secondLine">
+            <div class="inputs">
+              <label>Categoria: </label>
+              <input readonly matInput readonly value="{{ rental.vehicle.category.name }}" type="text"
+                     placeholder="Digite o ano do veículo" />
+            </div>
+
+
+            <div class="inputs">
+              <label>Tipo de locação:</label>
+              <input readonly matInput readonly value="{{ rental.rentalType | rentalType }}" type="text"
+                     placeholder="Digite o ano do veículo" />
+            </div>
+
+            <div class="inputs">
+              <label>Status da locação:</label>
+              <input readonly matInput readonly value="{{ rental.rentalStatus | paymentStatus }}" type="text"
+                     placeholder="Digite o ano do veículo" />
+            </div>
+
+          </div>
+
+          <div class="formLine" id="bottomLine">
+            <div class="inputs">
+              <label>Veículo:</label>
+              <input readonly matInput readonly
+                     value="{{ rental.vehicle.vehicleModel }} - {{ rental.vehicle.licensePlate }}" type="text"
+                     placeholder="Digite o ano do veículo" />
+            </div>
+
+            <div class="inputs">
+              <label>Valor total:</label>
+              <input readonly matInput readonly value="{{ rental.totalValue | currency }}"
+                     placeholder="Digite o ano do veículo" />
+            </div>
+          </div>
+
+          <app-payments-list (add)="refreshComponent()" [payments]="rental.payments"></app-payments-list>
+        </div>
+        <mat-card-actions>
+          <button class="formButton" mat-raised-button color="secondary" (click)="onCancel()">
+            Cancelar
+          </button>
+          <button class="formButton" mat-raised-button color="warn" (click)="onSubmit()">
+            Encerrar Locação
+          </button>
+        </mat-card-actions>
+
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

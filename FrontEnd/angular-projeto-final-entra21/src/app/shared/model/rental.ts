@@ -9,6 +9,8 @@ export interface Rental {
   pickUpDate: Date,
   dropOffDate: Date,
   rentalStatus: string,
+  rentalType: string,
+  totalValue: number,
   booking: Booking,
   vehicle: Vehicle,
   receipt: Receipt,

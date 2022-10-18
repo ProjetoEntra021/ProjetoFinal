@@ -24,14 +24,11 @@
   <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef="" class="action-column-header">Ações</mat-header-cell>
     <mat-cell *matCellDef="let payment" class="action-column">
-      <button (click)="confirmPayment(payment.id)" [disabled]="payment.paymentStatus == 'PAID'" mat-raised-button
-              color="primary" aria-label="Confirmar pagamento">
+      <button (click)="confirmPayment(payment.id)" [disabled]="payment.paymentStatus == ('PAID' || 'CANCELED') "
+              mat-raised-button color="primary" aria-label="Confirmar pagamento">
         Confirmar pagamento
       </button>
 
-      <button mat-icon-button color="warn" aria-label="Deletar um pedido">
-        <mat-icon>delete</mat-icon>
-      </button>
     </mat-cell>
   </ng-container>
 

@@ -169,3 +169,39 @@ mat-cell #expandedCell {
 .mat-column-expandedDetail {
   padding: 0px;
 }
+
+.mat-column-expand {
+  flex: none;
+  width: 5%;
+}
+
+.mat-column-actions {
+  flex: none;
+  width: 10%;
+  justify-content: center;
+}
+
+.mat-column-status {
+  flex: none;
+  width: 5%;
+}
+
+.mat-column-rentalType {
+  flex: none;
+  width: 12%;
+  justify-content: center;
+}
+
+.mat-column-pickUpDate,
+.mat-column-dropOffDate,
+.mat-column-totalValue {
+  flex: none;
+  width: 12%;
+  justify-content: center;
+  // border: 1px solid red;
+}
+
+.mat-column-vehicleModel {
+  // border: 1px solid red;
+  justify-content: center;
+}
