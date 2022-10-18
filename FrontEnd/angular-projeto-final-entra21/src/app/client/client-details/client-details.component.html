@@ -7,36 +7,43 @@
     <h2>Dados Pessoais</h2>
 
     <div id="firstLine">
-      <mat-card-content>
-        <mat-card-subtitle>Nome:</mat-card-subtitle>
-        <input type="text" readonly name="name" [(ngModel)]="client.name">
-      </mat-card-content>
-      <mat-card-content>
-        <mat-card-subtitle>Data de Nascimento:</mat-card-subtitle>
-        <input type="date" readonly name="birthDate" [(ngModel)]="client.birthDate">
-      </mat-card-content>
+
+      <div class="inputs">
+        <label>Nome: </label>
+        <input matInput type="text" readonly name="name" [(ngModel)]="client.name" type="text">
+
+      </div>
+
+      <div class="inputs">
+        <label>Data de Nascimento: </label>
+        <input matInput type="date" readonly name="birthDate" [(ngModel)]="client.birthDate">
+      </div>
     </div>
 
     <div id="secondLine">
-      <mat-card-content>
-        <mat-card-subtitle>Sexo:</mat-card-subtitle>
-        <input type="text" readonly name="gender" [(ngModel)]="client.gender">
-      </mat-card-content>
-      <mat-card-content >
-        <mat-card-subtitle >CPF:</mat-card-subtitle>
-        <input type="text" readonly name="cpf" mask="000.000.000-00" [(ngModel)] = "client.cpf">
-      </mat-card-content>
-      <mat-card-content>
-        <mat-card-subtitle>CNH:</mat-card-subtitle>
-        <input type="text" readonly name="cnh" [(ngModel)]="client.cnh">
-      </mat-card-content>
+
+      <div class="inputs">
+        <label>Sexo:</label>
+        <input matInput type="text" readonly name="gender" [(ngModel)]="client.gender">
+      </div>
+
+      <div class="inputs">
+        <label>CPF:</label>
+        <input type="text" readonly name="cpf" mask="000.000.000-00" [(ngModel)]="client.cpf">
+      </div>
+
+      <div class="inputs">
+        <label>CNH:</label>
+        <input matInput type="text" readonly name="cnh" [(ngModel)]="client.cnh">
+      </div>
+
     </div>
 
     <h2>Endereço</h2>
     <div id="thirdLine">
       <mat-card-content>
         <mat-card-subtitle>CEP:</mat-card-subtitle>
-        <input type="text" readonly name="cep" mask="00000-000" [(ngModel)] = "client.addresses[0].cep">
+        <input type="text" readonly name="cep" mask="00000-000" [(ngModel)]="client.addresses[0].cep">
       </mat-card-content>
       <mat-card-content>
         <mat-card-subtitle>Endereço:</mat-card-subtitle>
@@ -73,7 +80,8 @@
       </mat-card-content>
       <mat-card-content>
         <mat-card-subtitle>Telefone:</mat-card-subtitle>
-        <input type="text" readonly name="description" prefix="+55" mask="(00) 0000-0000"  [(ngModel)] = "client.contacts[1].description">
+        <input type="text" readonly name="description" prefix="+55" mask="(00) 0000-0000"
+               [(ngModel)]="client.contacts[1].description">
       </mat-card-content>
     </div>
     <mat-card-actions>

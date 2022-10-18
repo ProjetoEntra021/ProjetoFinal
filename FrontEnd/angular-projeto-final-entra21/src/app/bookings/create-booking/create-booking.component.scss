@@ -27,7 +27,7 @@
   gap: 0px;
   margin-left: auto;
   margin-right: auto;
- /* margin: auto;*/
+  /* margin: auto;*/
 }
 #firstLine {
   display: grid;
@@ -53,7 +53,6 @@
   justify-content: center;
 }
 
-
 label {
   // border: 1px solid black;
   width: 100%;
@@ -62,15 +61,13 @@ label {
   gap: 5px;
 }
 
-
-
 mat-card-actions {
   width: 99%;
   margin: auto;
   margin-top: 5px;
   height: fit-content;
   padding: 0px;
-  text-align: center;
+  text-align: right;
 }
 
 legend,

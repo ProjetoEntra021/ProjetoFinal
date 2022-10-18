@@ -38,15 +38,18 @@
               <mat-label>Preço da diária</mat-label>
               <input matInput id="dayPrice" formControlName="dayPrice" type="text" placeholder="Preço diária" />
             </mat-form-field>
+
             <mat-form-field *ngIf="!bookingId" class="formField" color="warn" appearance="fill">
               <mat-label>Preço da semana</mat-label>
               <input matInput id="weekPrice" formControlName="weekPrice" type="text" placeholder="Preço semana" />
             </mat-form-field>
+
             <mat-form-field class="formField" color="warn" appearance="fill">
               <mat-label>Preço previsto</mat-label>
-              <input readonly matInput id="weekPrice" formControlName="estimatedPrice" type="text"
-                     placeholder="Preço estimado" />
+              <input readonly matInput id="weekPrice" mask="separator.2" [thousandSeparator]="'.'" [decimalMarker]="','"
+                     prefix="R$" formControlName="estimatedPrice" type="text" placeholder="Preço estimado" />
             </mat-form-field>
+
             <mat-form-field *ngIf="bookingId" class="formField" color="warn" appearance="fill">
               <mat-label>Status</mat-label>
               <input readonly matInput id="weekPrice" formControlName="bookingStatus" type="text"
@@ -55,14 +58,16 @@
           </div>
         </div>
         <mat-card-actions>
+          <button lass="formButton" mat-raised-button (click)="back()">
+            Cancelar
+          </button>
+
           <button class="formButton" mat-raised-button color="primary" (click)="onSubmit()">
             {{bookingId ? 'Atualizar' : 'Realizar Reserva'}}
           </button>
+
           <button *ngIf="!bookingId" class="formButton" mat-raised-button color="secondary">
             Realizar Locação
-          </button>
-          <button lass="formButton" mat-raised-button color="warn" (click)="back()">
-            Cancelar
           </button>
         </mat-card-actions>
       </form>

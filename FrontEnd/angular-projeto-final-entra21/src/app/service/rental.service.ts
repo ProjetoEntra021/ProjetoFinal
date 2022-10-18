@@ -21,4 +21,7 @@ export class RentalService {
     return this.httpClient.post<Partial<RentalAddDTO>>(this.API, record).pipe(first());
   }
 
+  findById(id: number) {
+    return this.httpClient.get<Rental>(this.API + '/' + id).pipe(first());
+  }
 }

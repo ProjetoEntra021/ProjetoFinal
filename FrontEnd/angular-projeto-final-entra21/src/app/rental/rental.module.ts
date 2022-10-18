@@ -8,6 +8,7 @@ import { RentalAddComponent } from './rental-add/rental-add.component';
 import { RentalRoutingModule } from './rental-routing.module';
 import { RentalListComponent } from './rental-list/rental-list.component';
 import { PaymentsListComponent } from './payments-list/payments-list.component';
+import { RentalDetailsComponent } from './rental-details/rental-details.component';
 
 
 
@@ -15,7 +16,8 @@ import { PaymentsListComponent } from './payments-list/payments-list.component';
   declarations: [
     RentalAddComponent,
     RentalListComponent,
-    PaymentsListComponent
+    PaymentsListComponent,
+    RentalDetailsComponent
   ],
   imports: [
     CommonModule,

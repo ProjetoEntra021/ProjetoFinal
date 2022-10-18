@@ -1,7 +1,5 @@
-
 #booking-card {
-
-  width: 90%;
+  width: 70%;
   height: fit-content;
   color: black;
   border: 1px solid black;
@@ -40,13 +38,15 @@ a {
   padding: 5px;
 }
 
-h1{
+h1 {
   color: #00796b;
+  border-bottom: 1px solid #00796b;
 }
 mat-card-subtitle {
   margin: 0;
 }
-input, #status{
+input,
+#status {
   border: none;
   width: 100%;
   font-size: 1.2em;
@@ -64,11 +64,12 @@ input, #status{
 #thirdLine {
   display: grid;
   grid-template-columns: 33% 33% auto;
+  border-bottom: 1px solid #00796b;
 }
-button{
-  float:right;
+button {
+  float: right;
 }
-mat-card-actions{
+mat-card-actions {
   height: 30px;
   padding-right: 20px;
 }

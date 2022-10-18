@@ -41,7 +41,7 @@ public class Rental implements Serializable {
 	private Booking booking;
 
 	@OneToOne
-	@JsonIgnoreProperties({ "chassi", "mileage", "renavam", "vehicleYear", "category",
+	@JsonIgnoreProperties({ "chassi", "mileage", "renavam", "vehicleYear",
 			"vehicleStatus", "revenues", "expenses" })
 	private Vehicle vehicle;	
 

@@ -4,32 +4,40 @@
   color: black;
   border: 1px solid black;
   margin: auto;
-
 }
-mat-card-header{
+mat-card-header {
   margin: 0;
   padding-left: 0;
 }
-h1{
+h1 {
   color: #00796b;
 }
+
+h2 {
+  border-bottom: #00796b 1px solid;
+}
+
 mat-card-subtitle {
   margin: 0;
 }
 input {
   border: none;
   width: 100%;
-  font-size: 1.2em;
+  font-size: 1.1em;
   outline: none;
 }
 
 #firstLine {
   display: grid;
   grid-template-columns: 70% auto;
+  margin-bottom: 10px;
 }
 #secondLine {
   display: grid;
   grid-template-columns: auto 30% 30%;
+
+  padding-bottom: 5px;
+  margin-bottom: 5px;
 }
 #thirdLine {
   display: grid;
@@ -42,11 +50,16 @@ input {
 #fifthLine {
   display: grid;
   grid-template-columns: 45% auto;
+  border-bottom: #00796b 1px solid;
 }
-button{
-  float:right;
+button {
+  float: right;
 }
-mat-card-actions{
+mat-card-actions {
   height: 30px;
   padding-right: 20px;
+}
+
+label {
+  color: grey;
 }
