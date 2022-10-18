@@ -11,6 +11,26 @@ mat-drawer {
   width: 20%;
   color: white;
 }
+.menuClient{
+  margin-top: 0;
+  position: relative;
+  float: right;
+  top: 0;
+  left: 0;
+  // border: 1px solid blue;
+}
+
+
+.sideMenu{
+  position: relative;
+  float: right;
+  top: 0;
+  right: 0;
+  left: 0;
+  // border: 1px solid red;
+  margin-left: 175px;
+  margin-bottom: 64px;
+}
 
 .example-form-field {
   font-size: 12px;
@@ -57,31 +77,34 @@ figure {
 }
 mat-drawer-content {
   background-color: rgba(180, 180, 180);
+  background-image: url(../../../assets/background.png) ;
+  background-size:cover;
+  background-repeat: no-repeat;
   width: 80%;
 }
 
-//
-
 mat-toolbar {
-  justify-content: center;
-  margin: 0px;
-  padding: 0px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 app-header {
   color: white;
   font-style: italic;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 //
 
-mat-toolbar {
-  justify-content: center;
-  display: grid;
-  grid-template-columns: 85% 15%;
-  //  background-color: rgba(180, 180, 180);
-  color: #ffffff;
-}
+// mat-toolbar {
+//   justify-content: center;
+//   display: grid;
+//   grid-template-columns: 85% 15%;
+//   //  background-color: rgba(180, 180, 180);
+//   color: #ffffff;
+// }
 
 .headerBar {
   text-align: center;

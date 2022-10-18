@@ -192,7 +192,8 @@ public class TestConfig implements CommandLineRunner {
 
 		Address ad2 = new Address(null, "88095000", "Av Marinheiro Max Schramm", "Estreito", "Florianopolis", "SC", "2428", "Bloco 4 Apto 301",
 				 c2);
-
+		
+		
 		addressRepository.save(ad2);
 		
 		Contact ct3 = new Contact(null, ContactType.EMAIL, "pablompamplona@gmail.com", c2);

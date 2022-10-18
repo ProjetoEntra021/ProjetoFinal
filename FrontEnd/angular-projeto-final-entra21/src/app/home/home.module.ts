@@ -5,7 +5,9 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HomeLoginComponent } from './home-login/home-login.component';
-
+import { AppMaterialModule } from '../shared/app-material/app-material.module';
+import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,10 @@ import { HomeLoginComponent } from './home-login/home-login.component';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    MainViewModule
+    MainViewModule,
+    AppMaterialModule,
+    FormsModule,
+    SharedModule
   ]
 })
 export class HomeModule { }
