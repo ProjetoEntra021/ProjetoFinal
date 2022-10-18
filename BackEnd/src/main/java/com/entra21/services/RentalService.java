@@ -25,6 +25,7 @@ import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.exceptions.InvalidRentalPeriodException;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.BookingRepository;
+import com.entra21.repositories.PaymentRepository;
 import com.entra21.repositories.RentalRepository;
 import com.entra21.repositories.VehicleRepository;
 
@@ -41,7 +42,7 @@ public class RentalService {
 	private VehicleRepository vehicleRepository;
 
 	@Autowired
-	private PaymentService paymentService;
+	private PaymentRepository paymentRepository;
 
 	public List<Rental> findAll() {
 		return rentalRepository.findAll();
@@ -92,7 +93,9 @@ public class RentalService {
 		entity.setRentalStatus(RentalStatus.CANCELED);
 		for (Payment p : entity.getPayments()) {
 			if (p.getExpirationDate().isAfter(hoje) && p.getPaymentStatus() == PaymentStatus.WAITINGPAYMENT) {
-				paymentService.cancelPayment(p.getId());
+				Payment obj = paymentRepository.getReferenceById(p.getId());
+				obj.setPaymentStatus(PaymentStatus.CANCELED);
+				paymentRepository.save(obj);
 			}
 		}
 		return rentalRepository.save(entity);

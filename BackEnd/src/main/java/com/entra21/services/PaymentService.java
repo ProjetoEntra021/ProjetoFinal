@@ -66,11 +66,6 @@ public class PaymentService {
 		return paymentRepository.save(entity);
 	}
 	
-	public Payment cancelPayment(Long id) {
-		Payment entity = paymentRepository.getReferenceById(id);
-		entity.setPaymentStatus(PaymentStatus.CANCELED);
-		return paymentRepository.save(entity);
-	}
 
 	private void updateData(Payment entity, Payment obj) {
 		entity.setExpirationDate(obj.getExpirationDate());
