@@ -1,5 +1,6 @@
 package com.entra21.services;
 
+import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,9 @@ public class RentalService {
 	
 	@Autowired
 	private VehicleRepository vehicleRepository;
+	
+	@Autowired
+	private PaymentService paymentService;
 
 	public List<Rental> findAll() {
 		return rentalRepository.findAll();
@@ -48,11 +52,17 @@ public class RentalService {
 		Booking bo = bookingRepository.findById(obj.getBookingId()).get();
 		Rental objRental = new Rental(0L, obj.getRentalType(), obj.getPickUpDate(), obj.getDropOffDate(), RentalStatus.ACTIVE, obj.getTotalValue(), bo, ve, new ArrayList<Payment>(), null);
 		if(objRental.getRentalType() == RentalType.APP_DRIVER) {
-			calculateAppPayments(objRental);
+			if(calculateRentalPeriod(objRental).getDays() % 7 == 0) {
+				calculateAppPayments(objRental);
+			}
+			else {
+				throw new InvalidRentalPeriodException();
+			}
 		} 
 		else {
 			createPersonalPayment(objRental);
 		}
+		
 		return rentalRepository.save(objRental);
 	}
 
@@ -63,6 +73,18 @@ public class RentalService {
 	public Rental update(Long id, Rental obj) {
 		Rental entity = rentalRepository.getReferenceById(id);
 		updateData(entity, obj);
+		return rentalRepository.save(entity);
+	}
+	
+	public Rental cancelRental(Long id) {
+		LocalDate hoje = LocalDate.now();
+		Rental entity = rentalRepository.getReferenceById(id);
+		entity.setRentalStatus(RentalStatus.CANCELED);
+		for (Payment p: entity.getPayments()) {
+			if(p.getExpirationDate().isAfter(hoje) && p.getPaymentStatus() == PaymentStatus.WAITINGPAYMENT) {
+				paymentService.cancelPayment(p.getId());
+			}	
+		}
 		return rentalRepository.save(entity);
 	}
 
@@ -76,20 +98,22 @@ public class RentalService {
 		//Rental receives the booking
 	}
 	
+	private Period calculateRentalPeriod(Rental obj) {
+		Period rentalPeriod = Period.between(obj.getPickUpDate(), obj.getDropOffDate());
+		return rentalPeriod;
+	}
+	
 	private void calculateAppPayments(Rental obj) {
 		Payment payment;
 		Period rentalPeriod = Period.between(obj.getPickUpDate(), obj.getDropOffDate());
-		if (rentalPeriod.getDays() % 7 == 0) {
-			int totalPayments = rentalPeriod.getDays() / 7;
-			double paymentValue = obj.getTotalValue() / totalPayments;
-			for (int i = 0 ; i < totalPayments; i++) {
-				payment = new Payment(null, obj.getPickUpDate().plusWeeks(i), paymentValue, 0.0, 
-						PaymentStatus.WAITINGPAYMENT, obj);
-				obj.getPayments().add(payment);
+		int totalPayments = rentalPeriod.getDays() / 7;
+		double paymentValue = obj.getTotalValue() / totalPayments;
+		for (int i = 0 ; i < totalPayments; i++) {
+			payment = new Payment(null, obj.getPickUpDate().plusWeeks(i), paymentValue, 0.0, 
+					PaymentStatus.WAITINGPAYMENT, obj);
+			obj.getPayments().add(payment);
 			}
-		} else {
-			throw new InvalidRentalPeriodException("Prazo de locação deve ser semanal");
-		}
+		
 	}
 	
 	private void createPersonalPayment(Rental obj) {

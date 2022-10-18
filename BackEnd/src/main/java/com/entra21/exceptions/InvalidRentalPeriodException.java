@@ -4,7 +4,7 @@ public class InvalidRentalPeriodException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	public InvalidRentalPeriodException(String msg) {
+	public InvalidRentalPeriodException() {
 		super("Prazo de locação inválido.");
 	}
 

@@ -114,14 +114,17 @@ export class ClientRegistrationComponent implements OnInit {
     this.clientService.getClientById(this.clientId).subscribe(
       resultado => {
 
-        if (resultado.contacts.length != 0) {
+        this.clientForm.patchValue({
+          id: resultado.id,
+          name: resultado.name,
+          birthDate: resultado.birthDate,
+          cpf: resultado.cpf,
+          cnh: resultado.cnh,
+          gender: resultado.gender,
+        })
+
+        if (resultado.addresses.length != 0) {
           this.clientForm.patchValue({
-            id: resultado.id,
-            name: resultado.name,
-            birthDate: resultado.birthDate,
-            cpf: resultado.cpf,
-            cnh: resultado.cnh,
-            gender: resultado.gender,
             addresses: [{
               id: resultado.addresses[0].id,
               cep: resultado.addresses[0].cep,
@@ -131,7 +134,13 @@ export class ClientRegistrationComponent implements OnInit {
               district: resultado.addresses[0].district,
               city: resultado.addresses[0].city,
               uf: resultado.addresses[0].uf
-            }],
+            }]
+
+          })
+        }
+
+        if (resultado.contacts.length != 0) {
+          this.clientForm.patchValue({
             contacts: [{
               id: resultado.contacts[0].id,
               description: resultado?.contacts[0].description
@@ -144,24 +153,8 @@ export class ClientRegistrationComponent implements OnInit {
           })
         }
 
-        this.clientForm.patchValue({
-          id: resultado.id,
-          name: resultado.name,
-          birthDate: resultado.birthDate,
-          cpf: resultado.cpf,
-          cnh: resultado.cnh,
-          gender: resultado.gender,
-          addresses: [{
-            id: resultado.addresses[0].id,
-            cep: resultado.addresses[0].cep,
-            street: resultado.addresses[0].street,
-            number: resultado.addresses[0].number,
-            complement: resultado.addresses[0].complement,
-            district: resultado.addresses[0].district,
-            city: resultado.addresses[0].city,
-            uf: resultado.addresses[0].uf
-          }]
-        })
+
+
 
 
 
