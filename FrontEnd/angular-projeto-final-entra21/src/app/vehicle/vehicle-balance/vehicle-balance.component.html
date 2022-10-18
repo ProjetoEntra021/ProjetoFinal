@@ -1,4 +1,11 @@
 <div id="mainContent">
+  <div id="searchVehicle">
+    <div id="arrowBack">
+      <a [routerLink]="['/main/vehicles']">
+        <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
+      </a>
+    </div>
+  </div>
   <mat-card>
     <div id="cardHeader" *ngIf="vehicle$ | async as vehicle">
       <p>Demonstrativo do {{ vehicle.vehicleModel }} - {{ vehicle.licensePlate }}</p>

@@ -183,25 +183,21 @@ mat-cell #expandedCell {
 
 .mat-column-status {
   flex: none;
-  width: 5%;
+  width: 8%;
 }
 
 .mat-column-rentalType {
   flex: none;
-  width: 12%;
-  justify-content: center;
+  width: 13%;
 }
 
 .mat-column-pickUpDate,
 .mat-column-dropOffDate,
 .mat-column-totalValue {
   flex: none;
-  width: 12%;
-  justify-content: center;
+  width: 14%;
   // border: 1px solid red;
 }
 
 .mat-column-vehicleModel {
-  // border: 1px solid red;
-  justify-content: center;
 }
