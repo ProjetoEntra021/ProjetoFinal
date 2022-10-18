@@ -24,4 +24,8 @@ export class RentalService {
   findById(id: number) {
     return this.httpClient.get<Rental>(this.API + '/' + id).pipe(first());
   }
+
+  cancelRental(id: number) {
+    return this.httpClient.patch<Rental>(this.API + '/' + id , undefined).pipe(first())
+  }
 }

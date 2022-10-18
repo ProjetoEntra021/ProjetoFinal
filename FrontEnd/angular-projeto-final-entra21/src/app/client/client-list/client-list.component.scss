@@ -8,62 +8,74 @@
   flex: 0;
 }
 
-#header {
-  display: flex;
-  margin-top: 10px;
-  height: 50px;
-  width: 92.5%;
-  margin-left: auto;
-  margin-right: auto;
+.container {
+  margin-top: 20px;
 }
 
-#arrowBackIcon {
-  display: flex;
-  border: 1px solid black;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 5px;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-#searchClient {
-  // border: 1px solid white;
-  border-radius: 5px;
-  margin-bottom: 5px;
-  padding: 5px;
-  display: flex;
-  height: 40px;
-  align-items: center;
+.mainTextHeader {
   width: 100%;
-}
-input {
-  border-radius: 5px;
-  height: 25px;
-}
-.clientInput{
-   margin-left: 10px;
-//   border: 1px solid red;
-}
-.clientSearchParamInput{
-  width: 300px;
-}
-#inputSearch {
-  flex: 2;
-  text-align: center;
+  justify-content: flex-start;
   font-size: 20px;
-  padding-left: 10px;
-  // border: 1px solid red;
-  margin-bottom: 10px;
-
-
+  font-weight: bold;
+  text-align: left;
+  margin: auto;
+  height: 50px;
+  color: #00796b;
+  
 }
+
+// #arrowBackIcon {
+//   display: flex;
+//   border: 1px solid black;
+//   border-radius: 10px;
+//   background-color: rgba(0, 0, 0, 0.5);
+//   padding: 5px;
+// }
+
+// a {
+//   text-decoration: none;
+//   color: white;
+// }
+// #searchClient {
+//   // border: 1px solid white;
+//   border-radius: 5px;
+//   margin-bottom: 5px;
+//   padding: 5px;
+//   display: flex;
+//   height: 40px;
+//   align-items: center;
+//   width: 100%;
+// }
+// input {
+//   border-radius: 5px;
+//   height: 25px;
+// }
+// .clientInput{
+//    margin-left: 10px;
+// //   border: 1px solid red;
+// }
+// .clientSearchParamInput{
+//   width: 300px;
+// }
+// #inputSearch {
+//   flex: 2;
+//   text-align: center;
+//   font-size: 20px;
+//   padding-left: 10px;
+//   // border: 1px solid red;
+//   margin-bottom: 10px;
+
+
+// }
 mat-card {
   width: 90%;
   height: 70vh;
   margin: auto;
+}
+
+mat-row,
+mat-header-row {
+  min-height: 40px;
 }
 .mat-column-id {
   word-wrap: break-word !important;
@@ -79,7 +91,7 @@ mat-card {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
-  font-size: 1.1em;
+
 }
 .mat-column-name {
   word-wrap: break-word !important;
@@ -95,7 +107,7 @@ mat-card {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
-  font-size: 1.1em;
+
 
 }
 .mat-column-cpf {
@@ -112,7 +124,7 @@ mat-card {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
-  font-size: 1.1em;
+
 
 }
 h1{

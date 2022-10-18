@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -20,7 +21,8 @@ export class RentalDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private rentalService: RentalService,
-    private location: Location
+    private location: Location,
+    private snackBar: MatSnackBar
 
   ) {
 
@@ -51,9 +53,21 @@ export class RentalDetailsComponent implements OnInit {
     //   })
   }
 
-  onSubmit() {
-
+  onSubmit(id: number) {
+    this.rentalService.cancelRental(id).subscribe({
+      next: () => this.onSuccess(),
+      error: (e) => this.onError()
+    });;
   }
+
+  private onSuccess() {
+    this.snackBar.open('Pagamento registrado com sucesso!', '', { duration: 3000 })
+  }
+
+  private onError() {
+    this.snackBar.open('Erro ao registrar pagamento.', '', { duration: 3000 })
+  }
+  
 
   onCancel() {
     this.location.back();
