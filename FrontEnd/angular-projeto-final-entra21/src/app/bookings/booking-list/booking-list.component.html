@@ -13,7 +13,7 @@
     <section class="container">
       <mat-table  [dataSource]="dataSource" class="mat-elevation-z8" #sort="matSort" matSort>
         <!-- Position Column -->
-        <ng-container matColumnDef="status">
+        <ng-container matColumnDef="bookingStatus">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
           <mat-cell *matCellDef="let booking">
             <mat-icon
@@ -26,7 +26,7 @@
         </ng-container>
 
         <!-- Name Column -->
-        <ng-container matColumnDef="dataRetirada">
+        <ng-container matColumnDef="pickUpDate">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Data Retirada </mat-header-cell>
           <mat-cell *matCellDef="let booking">
             {{ booking.pickUpDate | date: "dd-MM-YYYY" }}
@@ -34,7 +34,7 @@
         </ng-container>
 
         <!-- Name Column -->
-        <ng-container matColumnDef="cliente">
+        <ng-container matColumnDef="client.name">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </mat-header-cell>
           <mat-cell *matCellDef="let booking">
             {{ booking.client.name }}
@@ -42,7 +42,7 @@
         </ng-container>
 
         <!-- Weight Column -->
-        <ng-container matColumnDef="categoria">
+        <ng-container matColumnDef="category.name">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Categoria </mat-header-cell>
           <mat-cell *matCellDef="let booking">
             {{ booking.category.name }}
