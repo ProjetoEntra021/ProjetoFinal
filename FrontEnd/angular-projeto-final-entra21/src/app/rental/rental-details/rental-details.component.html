@@ -13,7 +13,7 @@
 
             <div class="inputs">
               <label>Cliente: </label>
-              <input readonly matInput readonly value="{{ rental.booking.client.name }}" formControlName="clientName"
+              <input readonly matInput readonly value="{{ rental.booking.client.name }}" 
                      type="text" placeholder="Digite o ano do veículo" />
             </div>
 
@@ -73,7 +73,7 @@
           <button class="formButton" mat-raised-button color="secondary" (click)="onCancel()">
             Cancelar
           </button>
-          <button class="formButton" mat-raised-button color="warn" (click)="onSubmit()">
+          <button class="formButton" mat-raised-button color="warn" (click)="onSubmit(rental.id)">
             Encerrar Locação
           </button>
         </mat-card-actions>
