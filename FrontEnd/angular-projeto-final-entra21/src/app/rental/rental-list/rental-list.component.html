@@ -33,7 +33,7 @@
 
           <ng-container matColumnDef="rentalType">
             <mat-header-cell *matHeaderCellDef mat-sort-header>
-              Tipo de Locação:
+              Tipo de Locação
             </mat-header-cell>
             <mat-cell *matCellDef="let rental">
               {{ rental.rentalType | rentalType }}
@@ -42,7 +42,7 @@
 
           <ng-container matColumnDef="pickUpDate">
             <mat-header-cell *matHeaderCellDef mat-sort-header>
-              Data inicial:
+              Data inicial
             </mat-header-cell>
             <mat-cell *matCellDef="let rental">
               {{ rental.pickUpDate | date: 'dd/MM/YYYY' }}
@@ -51,7 +51,7 @@
 
           <ng-container matColumnDef="dropOffDate">
             <mat-header-cell *matHeaderCellDef mat-sort-header>
-              Data final:
+              Data final
             </mat-header-cell>
             <mat-cell *matCellDef="let rental">
               {{ rental.dropOffDate | date: 'dd/MM/YYYY'}}
@@ -60,7 +60,7 @@
 
           <ng-container matColumnDef="totalValue">
             <mat-header-cell *matHeaderCellDef mat-sort-header>
-              ValorTotal
+              Valor Total
             </mat-header-cell>
             <mat-cell *matCellDef="let rental">
               {{ rental.totalValue | currency }}
@@ -69,7 +69,7 @@
 
           <ng-container matColumnDef="vehicleModel">
             <mat-header-cell *matHeaderCellDef mat-sort-header>
-              Modelo veículo:
+              Modelo veículo
             </mat-header-cell>
             <mat-cell *matCellDef="let rental">
               {{ rental.vehicle.vehicleModel }} - {{rental.vehicle.licensePlate}}

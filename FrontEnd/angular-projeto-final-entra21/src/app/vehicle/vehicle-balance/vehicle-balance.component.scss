@@ -65,17 +65,16 @@ mat-card {
   min-height: fit-content;
   max-height: 70vh;
   margin: auto;
-  // border: 1px solid red;
+  margin-top: 0px;
 }
 
 mat-card-content {
   height: fit-content;
-
   max-height: 70vh;
 }
 
 #mainContent {
-  height: 90vh;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -116,4 +115,35 @@ mat-card-content {
 .mat-column-value {
   text-align: right;
   justify-content: flex-end;
+}
+
+#arrowBackIcon {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+}
+
+#searchVehicle {
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  width: 92%;
+  height: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+#arrowBack {
+  margin-top: 10px;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
 }

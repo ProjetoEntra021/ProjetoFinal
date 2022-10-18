@@ -19,13 +19,13 @@
 
             <div class="inputs">
               <label>Data Inicial: </label>
-              <input readonly matInput readonly value="{{ rental.pickUpDate }}" type="date"
+              <input readonly matInput readonly value="{{ rental.pickUpDate | date: 'dd/MM/YYYY'}}" type="text"
                      placeholder="Digite o ano do veículo" />
             </div>
 
             <div class="inputs">
               <label>Data Final: </label>
-              <input readonly matInput readonly value="{{ rental.dropOffDate }}" type="date"
+              <input readonly matInput readonly value="{{ rental.dropOffDate | date: 'dd/MM/YYYY'}}" type="text"
                      placeholder="Digite o ano do veículo" />
             </div>
           </div>
@@ -74,7 +74,7 @@
             Cancelar
           </button>
           <button class="formButton" mat-raised-button color="warn" (click)="onSubmit()">
-            Encerrar Locação
+            Cancelar Locação
           </button>
         </mat-card-actions>
 
