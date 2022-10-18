@@ -59,7 +59,7 @@ public class RentalController {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@PatchMapping(value = "/{id")
+	@PatchMapping(value = "/{id}")
 	public ResponseEntity<Rental> cancelRental(Long id) {
 		Rental obj = service.cancelRental(id);
 		return  ResponseEntity.ok().body(obj);
