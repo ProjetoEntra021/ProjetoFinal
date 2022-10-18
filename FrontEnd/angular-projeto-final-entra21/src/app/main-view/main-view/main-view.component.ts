@@ -24,12 +24,19 @@ export class MainViewComponent implements OnInit {
   clientList() {
     this.router.navigate(['main/clients/list']);
   }
+  vehicleList() {
+    this.router.navigate(['main/vehicles/list']);
+  }
+
+  vehicleAdd() {
+    this.router.navigate(['main/vehicles/add']);
+  }
   vehicles() {
     this.router.navigate(['vehicles', ''], { relativeTo: this.route })
   }
 
   homePage() {
-    this.router.navigate([''], { relativeTo: this.route })
+    this.router.navigate(['/main'], { relativeTo: this.route })
   }
 
   setHeader() {

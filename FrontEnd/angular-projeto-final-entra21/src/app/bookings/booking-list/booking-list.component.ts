@@ -17,7 +17,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class BookingListComponent implements OnInit {
 
-  readonly displayedColumns: string[] = ['status', 'dataRetirada', 'cliente', 'categoria', 'detalhe'];
+  readonly displayedColumns: string[] = ['bookingStatus', 'pickUpDate', 'client.name', 'category.name', 'detalhe'];
 
   dataSource!: MatTableDataSource<Booking>;
 

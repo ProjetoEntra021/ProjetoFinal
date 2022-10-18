@@ -29,10 +29,10 @@
       <mat-divider></mat-divider>
 
       <mat-list-item >
-        <button mat-button [routerLink]="['/main/clients']" mat-button (click)="menuTrigger.openMenu()">Clientes
+        <button mat-button [routerLink]="['/main/clients']" (click)="menuTrigger.openMenu()">Clientes
         </button>
         <div class="sideMenu" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu" place ></div>
-        <mat-menu mat-button class="color-primary" #menu="matMenu" xPosition="after">
+        <mat-menu  mat-button class="color-primary" #menu="matMenu" xPosition="after">
           <button class="menuClient" (click)="clientRegistration()" mat-menu-item>Adicionar</button>
           <button class="menuClient" (click)="clientList()" mat-menu-item>Listar</button>
         </mat-menu>
@@ -41,7 +41,12 @@
       <mat-divider></mat-divider>
 
       <mat-list-item>
-        <button mat-button [routerLink]="['/main/vehicles']">Carros</button>
+        <button mat-button [routerLink]="['/main/vehicles']" (click)="menuCarTrigger.openMenu()" >Carros</button>
+        <div  class="sideMenu"  #menuCarTrigger="matMenuTrigger" [matMenuTriggerFor]="menuCar" place ></div>
+        <mat-menu  mat-button class="color-primary"  #menuCar="matMenu" xPosition="after">
+          <button class="menuClient"  (click)="vehicleAdd()" mat-menu-item>Adicionar</button>
+          <button  class="menuClient" (click)="vehicleList()" mat-menu-item>Listar</button>
+        </mat-menu>
       </mat-list-item>
       <mat-divider></mat-divider>
 
