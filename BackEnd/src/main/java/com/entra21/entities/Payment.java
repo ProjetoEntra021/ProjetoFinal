@@ -2,6 +2,8 @@ package com.entra21.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -12,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.entra21.entities.enums.PaymentStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Payment implements Serializable{
@@ -31,6 +35,8 @@ public class Payment implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "rental_id")
+	//@JsonIgnoreProperties("payments")
+	@JsonIgnore
 	private Rental rental;
 
 	public Payment() {
@@ -95,6 +101,26 @@ public class Payment implements Serializable{
 		this.rental = rental;
 	}
 	
+	public void updateStatus() {
+		LocalDate today = LocalDate.now();
+		LocalDate expirationDate = this.getExpirationDate();
+		
+		long diffDays = today.until(expirationDate, ChronoUnit.DAYS);
+		
+		if(diffDays < 0 && this.paymentStatus == paymentStatus.WAITINGPAYMENT){
+			setPaymentStatus(paymentStatus.PENDING);
+		}
+	}
 	
+	public void updateStatusTest() {
+		LocalDateTime today = LocalDateTime.now();
+		LocalDateTime expirationDate = LocalDateTime.of(2022, 10, 17, 12, 22);
+		
+		long diffDays = today.until(expirationDate, ChronoUnit.MINUTES);
+		
+		if(diffDays < 0 && this.paymentStatus == paymentStatus.WAITINGPAYMENT){
+			setPaymentStatus(paymentStatus.PENDING);
+		}
+	}
 
 }

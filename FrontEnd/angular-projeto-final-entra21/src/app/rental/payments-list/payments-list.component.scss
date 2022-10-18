@@ -1,17 +1,19 @@
-.ACTIVE {
+mat-table {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.PAID {
   color: green;
 }
 
-.FINISHED {
+.WAITINGPAYMENT {
   color: blue;
 }
 
 .PENDING {
   color: red;
-}
-
-.CANCELED {
-  color: yellow;
 }
 
 .status {
@@ -55,13 +57,6 @@ mat-header-row {
   gap: 20px;
   width: 90%;
   margin: auto;
-}
-
-.legendaIndividual {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  font-size: 11px;
 }
 
 #mainTextHeader {
@@ -132,40 +127,42 @@ input {
   height: 25px;
 }
 
-mat-table {
-  border: 1px solid black;
-  border-radius: 5px;
-}
-
-.clientSearchParamInput {
-  width: 580px;
-  height: 30px;
-  border-radius: 5px;
-  margin-right: 8px;
-}
-
 #inputSearch {
   flex: 2;
   text-align: center;
   font-size: 20px;
 }
 
-.example-element-detail {
-  overflow: hidden;
-  min-height: 0px;
+.mat-column-expirationDate {
+  flex: none;
+  width: 15%;
+}
+
+.mat-column-paymentValue {
+  flex: none;
+  width: 15%;
+  justify-content: center;
+}
+
+.mat-column-paymentStatus {
+  flex: none;
+  width: 30%;
+  justify-content: center;
+}
+
+.mat-column-discount {
+  flex: none;
+  width: 10%;
+  justify-content: center;
+}
+
+.mat-column-actions {
+  padding: 0px;
+  margin: 0px;
+  width: 30%;
+  justify-content: center;
   // border: 1px solid red;
-  width: 100%;
 }
 
-mat-row.example-detail-row {
-  flex-basis: 0;
-  min-height: initial;
-}
-
-mat-cell #expandedCell {
-  padding: 0px;
-}
-
-.mat-column-expandedDetail {
-  padding: 0px;
+.paid {
 }
