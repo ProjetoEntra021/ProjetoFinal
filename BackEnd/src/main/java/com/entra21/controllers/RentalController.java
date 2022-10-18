@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -56,5 +57,12 @@ public class RentalController {
 	public ResponseEntity<Rental> update(@PathVariable Long id, @RequestBody Rental obj) {
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
+	}
+	
+	@PatchMapping(value = "/{id")
+	public ResponseEntity<Rental> cancelRental(Long id) {
+		Rental obj = service.cancelRental(id);
+		return  ResponseEntity.ok().body(obj);
+		
 	}
 }

@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PatchMapping;
 
 import com.entra21.entities.Booking;
 import com.entra21.entities.Payment;
@@ -87,7 +88,7 @@ public class RentalService {
 		}
 		return rentalRepository.save(entity);
 	}
-
+	
 	private void updateData(Rental entity, Rental obj) {
 		entity.setPickUpDate(obj.getPickUpDate());
 		entity.setDropOffDate(obj.getDropOffDate());
