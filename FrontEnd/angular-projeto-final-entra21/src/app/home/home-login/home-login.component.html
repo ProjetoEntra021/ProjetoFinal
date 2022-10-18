@@ -1,2 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<button mat-button [routerLink]="['/main']" > Entrar</button>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Login</title>
+</head>
+
+<body class="container">
+  <mat-card-content class="login-view">
+
+      <mat-card id="upball"></mat-card>
+
+
+      <header class="main-header">
+        <a  class="brand-logo">
+          <div class="brand-logo-name">AlôCar</div>
+          <img src="../../../assets/logoAlo.png" alt="Logo AloCar"/>
+        </a>
+      </header>
+
+
+
+
+      <mat-card-content class="login-box">
+        <header class="loginheader"></header>
+        <form class="login-area">
+          <div class="input-group">
+            <label>Usuário:</label>
+          <input type="text">
+          </div>
+          <div class="input-group">
+            <label>Senha:</label>
+          <input type="password">
+
+          </div>
+          <button type="submit" class="btn"mat-button [routerLink]="['/main']"> Entrar</button>
+
+
+
+        </form>
+      </mat-card-content>
+
+      <mat-card id="downball"></mat-card>
+
+
+  </mat-card-content>
+
+
+
+
+
+
+
+</body>
+
+</html>
