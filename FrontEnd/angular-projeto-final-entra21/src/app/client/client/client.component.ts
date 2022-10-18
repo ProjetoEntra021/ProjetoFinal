@@ -33,9 +33,9 @@ export class ClientComponent implements OnInit {
 
 
 
-  clientList() {
-    this.router.navigate(['list'], {relativeTo: this.route});
-  }
+  // clientList() {
+  //   this.router.navigate(['list'], {relativeTo: this.route});
+  // }
 
   findClientByCpf() {
     this.router.navigate(['details/cpf/' + this.onSubmit()], {relativeTo: this.route});

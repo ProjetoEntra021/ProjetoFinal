@@ -31,6 +31,14 @@ export class ClientListComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  public client!: Client;
+  public clientParam!: string;
+
+
+  onSubmit() {
+  return this.clientParam;
+
+  }
 
   edit(id: number) {
     this.router.navigate(['registration/' + id], { relativeTo: this.route.parent })
@@ -43,6 +51,9 @@ export class ClientListComponent implements OnInit {
   onCancel() {
     this.location.back();
   }
+  findClientByCpf() {
+    this.router.navigate(['main/clients/details/cpf/' + this.onSubmit()],);
 
+  }
 
 }

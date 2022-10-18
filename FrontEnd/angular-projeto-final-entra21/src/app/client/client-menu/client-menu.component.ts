@@ -16,9 +16,9 @@ export class ClientMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  clientRegistration() {
-    this.router.navigate(['registration'], {relativeTo: this.route});
-  }
+  // clientRegistration() {
+  //   this.router.navigate(['registration'], {relativeTo: this.route});
+  // }
 
 
 

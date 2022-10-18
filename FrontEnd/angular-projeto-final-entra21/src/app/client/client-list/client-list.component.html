@@ -1,3 +1,22 @@
+<div id="header">
+
+  <div id="searchClient">
+    <div id="arrowBack">
+      <a [routerLink]="['/main/clients']">
+        <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
+      </a>
+    </div>
+    <div id="inputSearch">
+      <span> Buscar por CPF:</span>
+      <input  type="text" name="clientSearchParamInput" mask="000.000.000-00" class="clientSearchParamInput clientInput"
+      (submit)="onSubmit()" [(ngModel)]="clientParam" placeholder="Informe apenas números" #input  />
+      <button class="clientInput" mat-raised-button color="primary" (click)="findClientByCpf()">Verificar</button>
+    </div>
+
+  </div>
+
+</div>
+
 <mat-card>
   <h1>Listagem de Clientes</h1>
   <section class="container">

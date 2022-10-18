@@ -1,7 +1,6 @@
 <mat-drawer-container class="example-container">
   <mat-drawer class="color-primary" mode="side" opened>
     <mat-list>
-
       <div id="listItemLogo">
         <div id="logoText">AlôCar</div>
         <div id="logoImage">
@@ -11,7 +10,7 @@
 
       <mat-divider id="logoDivider"></mat-divider>
 
-      <mat-list-item id="listSearch">
+      <!-- <mat-list-item id="listSearch">
         <mat-form-field class="example-form-field" appearance="fill">
           <mat-label>Pesquisar</mat-label>
           <input matInput type="text" [(ngModel)]="value" />
@@ -19,35 +18,45 @@
             <mat-icon>search</mat-icon>
           </button>
         </mat-form-field>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-
-      <mat-list-item> <button mat-button (click)="homePage()"> Página Inicial</button></mat-list-item>
+      </mat-list-item> -->
       <mat-divider></mat-divider>
 
       <mat-list-item>
-        <button mat-button [routerLink]="['/main/clients']">Clientes</button>
+        <button mat-button (click)="homePage()">
+          Página Inicial
+        </button></mat-list-item
+      >
+      <mat-divider></mat-divider>
+
+      <mat-list-item >
+        <button mat-button [routerLink]="['/main/clients']" mat-button (click)="menuTrigger.openMenu()">Clientes
+        </button>
+        <div class="sideMenu" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu" place ></div>
+        <mat-menu mat-button class="color-primary" #menu="matMenu" xPosition="after">
+          <button class="menuClient" (click)="clientRegistration()" mat-menu-item>Adicionar</button>
+          <button class="menuClient" (click)="clientList()" mat-menu-item>Listar</button>
+        </mat-menu>
       </mat-list-item>
 
       <mat-divider></mat-divider>
 
       <mat-list-item>
-        <button mat-button [routerLink]="['/main/vehicles']"> Carros</button>
+        <button mat-button [routerLink]="['/main/vehicles']">Carros</button>
       </mat-list-item>
       <mat-divider></mat-divider>
 
       <mat-list-item>
-        <button mat-button [routerLink]="['/main/bookings']"> Reservas</button>
+        <button mat-button [routerLink]="['/main/bookings']">Reservas</button>
       </mat-list-item>
 
       <mat-divider></mat-divider>
       <mat-list-item>
-        <button mat-button [routerLink]="['/main/rentals']"> Locações</button>
+        <button mat-button [routerLink]="['/main/rentals']">Locações</button>
       </mat-list-item>
 
       <mat-divider></mat-divider>
       <mat-list-item>
-        <button mat-button [routerLink]="['/home']"> Sair</button>
+        <button mat-button [routerLink]="['/home']">Sair</button>
       </mat-list-item>
 
       <mat-divider></mat-divider>
@@ -55,7 +64,6 @@
   </mat-drawer>
 
   <mat-drawer-content>
-
     <mat-toolbar class="color-primary">
       <app-header [title]="title"></app-header>
     </mat-toolbar>

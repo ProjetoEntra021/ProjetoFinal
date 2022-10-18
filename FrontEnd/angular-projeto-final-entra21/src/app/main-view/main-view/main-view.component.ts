@@ -18,7 +18,12 @@ export class MainViewComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  clientRegistration() {
+    this.router.navigate(['main/clients/registration']);
+  }
+  clientList() {
+    this.router.navigate(['main/clients/list']);
+  }
   vehicles() {
     this.router.navigate(['vehicles', ''], { relativeTo: this.route })
   }
@@ -48,6 +53,5 @@ export class MainViewComponent implements OnInit {
       }
     }
   }
-
 
 }
