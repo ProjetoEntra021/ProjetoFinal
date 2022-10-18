@@ -125,11 +125,12 @@ mat-table {
   border-radius: 5px;
 }
 
-.mat-column-cliente {
+.mat-column-client-name {
   overflow: hidden;
   justify-content: center;
 }
-.mat-column-categoria,
+
+.mat-column-category-name,
 .mat-column-detalhe {
   justify-content: center;
 }
