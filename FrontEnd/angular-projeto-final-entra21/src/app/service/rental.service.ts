@@ -18,7 +18,7 @@ export class RentalService {
   }
 
   save(record: Partial<RentalAddDTO>) {
-    return this.httpClient.post<Partial<RentalAddDTO>>(this.API, record).pipe(first());
+    return this.httpClient.post<Partial<Rental>>(this.API, record).pipe(first());
   }
 
   findById(id: number) {
