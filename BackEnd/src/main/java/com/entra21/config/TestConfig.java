@@ -186,8 +186,18 @@ public class TestConfig implements CommandLineRunner {
 		Client c2 = new Client(null, "Pablo Alexandre M Pamplona", "00443990905", "386985233",  LocalDate.parse("24/07/1980", formatter), GenderType.MASCULINO);	
 		Client c3 = new Client(null, "Tatiani Pereira Rodrigues", "08856272278", "999392428",  LocalDate.parse("30/10/1995", formatter), GenderType.FEMININO);
 	    Client c4 = new Client(null, "Victor Woleck", "12345678987", "234567854",  LocalDate.parse("03/08/1998", formatter), GenderType.MASCULINO);
-
-        clientRepository.saveAll(Arrays.asList(c2, c3, c4));
+	    Client c5 = new Client (null, "Machado de Assis", "53647829304", "476395874", LocalDate.parse("21/06/1839", formatter), GenderType.MASCULINO);
+	    Client c6 = new Client (null, "Jorge Amado", "498374950684", "594038475",  LocalDate.parse("10/08/1912", formatter), GenderType.MASCULINO );
+	    Client c7 = new Client (null, "Carlos Drummond de Andrade", "94857364758", "456347524", LocalDate.parse("31/10/1902", formatter), GenderType.MASCULINO );
+	    Client c8 = new Client (null, "Clarice Lispector", "46374829374", "8495637484", LocalDate.parse("09/12/1977", formatter), GenderType.FEMININO);
+        Client c9 = new Client (null, "Cecília Meireles", "3457239865", "47927384591",  LocalDate.parse("01/11/1901", formatter), GenderType.FEMININO);
+        Client c10 = new Client (null, "Vinicius de Moraes", "403948726738", "849503728394", LocalDate.parse("19/10/1913", formatter), GenderType.MASCULINO);
+        Client c11 = new Client (null, "Lygia Fagundes Telles", "53643429304", "476378874", LocalDate.parse("19/04/1917", formatter), GenderType.FEMININO);
+	    Client c12 = new Client (null, "Moacyr Scliar", "498374950666", "594066475",  LocalDate.parse("23/03/1937", formatter), GenderType.MASCULINO );
+	    Client c13 = new Client (null, "Conceição Evaristo", "94857364754", "456347526", LocalDate.parse("30/10/1946", formatter), GenderType.FEMININO );
+	    Client c14 = new Client (null, "Lima Barreto", "46374829374", "8495637484", LocalDate.parse("09/12/1881", formatter), GenderType.MASCULINO);
+        Client c15 = new Client (null, "Lygia Fagundes Teles ", "3457239095", "47927544591",  LocalDate.parse("01/11/1923", formatter), GenderType.FEMININO);
+	    clientRepository.saveAll(Arrays.asList(c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15));
         
 
 		Address ad2 = new Address(null, "88095000", "Av Marinheiro Max Schramm", "Estreito", "Florianopolis", "SC", "2428", "Bloco 4 Apto 301",
@@ -198,31 +208,66 @@ public class TestConfig implements CommandLineRunner {
 		
 		Contact ct3 = new Contact(null, ContactType.EMAIL, "pablompamplona@gmail.com", c2);
 		Contact ct4 = new Contact(null, ContactType.PHONE, "48988328778", c2);
+		Contact ct5 = new Contact (null, ContactType.EMAIL,"rodriguespereiratatiani@gmail.com", c3);
 		
-		contactRepository.saveAll(Arrays.asList(ct3, ct4));
+		contactRepository.saveAll(Arrays.asList(ct3, ct4, ct5));
 
 		Booking bk2 = new Booking(null, c2, LocalDate.parse("2005-10-20"),
 				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
 				BookingStatus.ACTIVE, null);
-
-		Booking bk6 = new Booking(null, c2, LocalDate.parse("2005-10-20"),
+		Booking bk6 = new Booking(null, c2, LocalDate.parse("2022-03-13"),
+				LocalDate.parse("2022-07-13"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				BookingStatus.FINISHED, null);
+		Booking bk3 = new Booking(null, c3, LocalDate.parse("2022-10-30"),
+				LocalDate.parse("2022-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				BookingStatus.CANCELED, null);
+		Booking bk4 = new Booking(null, c3, LocalDate.parse("2022-10-22"),
+				LocalDate.parse("2022-11-22"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				BookingStatus.PENDING, null);
+		Booking bk5 = new Booking(null, c3, LocalDate.parse("2022-10-20"),
+				LocalDate.parse("2022-12-27"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				BookingStatus.PENDING, null);
+		Booking bk7 = new Booking(null, c4, LocalDate.parse("2022-11-20"),
+				LocalDate.parse("2023-11-20"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				BookingStatus.ACTIVE, null);
+		Booking bk8 = new Booking(null, c4, LocalDate.parse("2022-10-30"),
+				LocalDate.parse("2023-03-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				BookingStatus.ACTIVE, null);
+		Booking bk9 = new Booking(null, c5, LocalDate.parse("2005-10-20"),
 				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
 				BookingStatus.FINISHED, null);
-		Booking bk3 = new Booking(null, c3, LocalDate.parse("2024-10-30"),
-				LocalDate.parse("2024-04-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+		Booking bk10 = new Booking(null, c6, LocalDate.parse("2022-10-30"),
+				LocalDate.parse("2023-04-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
 				BookingStatus.CANCELED, null);
-		Booking bk4 = new Booking(null, c2, LocalDate.parse("2006-04-30"),
-				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+		Booking bk11 = new Booking(null, c7, LocalDate.parse("2022-10-20"),
+				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
 				BookingStatus.PENDING, null);
-		Booking bk5 = new Booking(null, c3, LocalDate.parse("2005-10-20"),
-				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+		Booking bk12 = new Booking(null, c8, LocalDate.parse("2022-10-20"),
+				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
 				BookingStatus.PENDING, null);
-		
-		Booking bk7 = new Booking(null, c3, LocalDate.parse("2023-10-20"),
+		Booking bk13 = new Booking(null, c9, LocalDate.parse("2023-01-20"),
+				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				BookingStatus.ACTIVE, null);
+		Booking bk14 = new Booking(null, c9, LocalDate.parse("2022-10-30"),
+				LocalDate.parse("2022-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				BookingStatus.ACTIVE, null);
+		Booking bk15 = new Booking(null, c9, LocalDate.parse("2023-02-20"),
+				LocalDate.parse("2023-10-20"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				BookingStatus.FINISHED, null);
+		Booking bk16 = new Booking(null, c10, LocalDate.parse("2022-11-03"),
+				LocalDate.parse("2022-11-07"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				BookingStatus.CANCELED, null);
+		Booking bk17 = new Booking(null, c11, LocalDate.parse("2022-10-14"),
+				LocalDate.parse("2022-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				BookingStatus.PENDING, null);
+		Booking bk18 = new Booking(null, c11, LocalDate.parse("2022-10-20"),
+				LocalDate.parse("2022-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				BookingStatus.PENDING, null);
+		Booking bk19 = new Booking(null, c12, LocalDate.parse("2023-02-20"),
 				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
 				BookingStatus.ACTIVE, null);
 		
-		bookingRepository.saveAll(Arrays.asList(bk6, bk5, bk4, bk3, bk2, bk7));
+		bookingRepository.saveAll(Arrays.asList(bk6, bk5, bk4, bk3, bk2, bk7,bk8, bk9, bk10, bk11, bk12, bk13, bk14, bk15, bk16, bk17, bk18, bk19));
 		
 		RentalAddDTO r2 = new RentalAddDTO( bk1.getPickUpDate(), bk1.getDropOffDate(), 1400.0, RentalStatus.PENDING, RentalType.PERSONAL,  bk2.getId(), v2.getId());
 		rentalService.insert(r2);
