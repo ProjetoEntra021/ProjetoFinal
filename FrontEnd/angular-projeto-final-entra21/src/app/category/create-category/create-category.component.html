@@ -1,0 +1,73 @@
+<div id="mainContent">
+  <div id="header">
+
+    <a id="arrowBack" [routerLink]="['/main/category']">
+      <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
+    </a>
+
+  </div>
+  <mat-card id="cardForm">
+    <div id="cardHeader">
+      <p> Categoria </p>
+    </div>
+    <mat-card-content>
+      <form [formGroup]="categoryForm" class="min-width">
+
+        <div class="formBlocks">
+
+          <div class="formLines" id="firstLine">
+            <!-- Neste form as informações não são necessárias para criar locação -->
+            <form [formGroup]="categoryForm" id="categoryForm">
+              <mat-form-field class="formField" appearance="fill">
+                <mat-label>Categoria: </mat-label>
+                <input matInput id="model" formControlName="name" type="text"
+                       placeholder="Digite o nome da categoria" />
+              </mat-form-field>
+
+            </form>
+
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Valor diária </mat-label>
+              <input matInput id="dayPrice" formControlName="dayPrice" mask="separator.2" [thousandSeparator]="'.'"
+              [decimalMarker]="','" prefix="R$" type="text" placeholder="Digite o valor previsto" />
+            </mat-form-field>
+            <mat-form-field class="formField" appearance="fill">
+              <mat-label>Valor semanal:</mat-label>
+              <input matInput id="weekPrice" formControlName="weekPrice" mask="separator.2" [thousandSeparator]="'.'"
+              [decimalMarker]="','" prefix="R$" type="text" placeholder="Digite o valor previsto" />
+            </mat-form-field>
+
+          </div>
+        </div>
+        <mat-card-actions>
+          <button class="formButton" mat-raised-button color="primary" (click)="onSubmit()">
+            {{categoryId ? 'Atualizar' : 'Salvar'}}
+          </button>
+        </mat-card-actions>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- <mat-form-field *ngIf="!categoryId" formGroupName="category" class="formField" appearance="fill">
+              <mat-label>Carros:</mat-label>
+              <mat-select formControlName="id">
+                <mat-option *ngFor="let category of categories" [value]="category.id"
+                            (onSelectionChange)="updatePriceValue($event, category.id)">
+                  {{category.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> -->
+

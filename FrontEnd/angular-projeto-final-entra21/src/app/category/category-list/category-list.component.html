@@ -1,0 +1,71 @@
+<div id="mainContent">
+  <div id="header">
+
+    <a id="arrowBack" [routerLink]="['/main']">
+      <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
+    </a>
+
+  </div>
+  <mat-card>
+    <div id="mainTextHeader">
+      <span>Listagem de Categorias</span>
+      <button class="botao" mat-raised-button color="primary" [routerLink]="['/main/category/create']">
+        Nova categoria
+      </button>
+
+    </div>
+    <section class="container">
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8" #sort="matSort" matSort>
+        <!-- Position Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+          <mat-cell *matCellDef="let category">
+            {{category.name}}
+
+          </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+
+        <ng-container matColumnDef="dayPrice">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Valor diária </mat-header-cell>
+          <mat-cell *matCellDef="let category">
+            {{category.dayPrice  | currency}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weekPrice">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Valor semanal </mat-header-cell>
+          <mat-cell *matCellDef="let category">
+            {{category.weekPrice  | currency }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="detalhe">
+          <mat-header-cell *matHeaderCellDef> Detalhes</mat-header-cell>
+          <mat-cell *matCellDef="let category">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Detalhes da Reserva">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="edit(category.id)">
+                <mat-icon>edit</mat-icon>
+                <span>Editar</span>
+              </button>
+              <button mat-menu-item (click)="details(category.id)">
+                <mat-icon>info</mat-icon>
+                <span>Detalhes</span>
+              </button>
+            </mat-menu>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+    </section>
+  </mat-card>
+</div>
+
+
