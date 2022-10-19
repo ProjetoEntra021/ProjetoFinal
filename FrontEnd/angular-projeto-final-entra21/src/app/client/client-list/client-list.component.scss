@@ -21,7 +21,7 @@
   margin: auto;
   height: 50px;
   color: #00796b;
-  
+
 }
 
 // #arrowBackIcon {
@@ -72,12 +72,16 @@ mat-card {
   height: 70vh;
   margin: auto;
 }
+.mat-cell-id {
+  justify-content: center;
+}
 
 mat-row,
 mat-header-row {
   min-height: 40px;
 }
 .mat-column-id {
+
   word-wrap: break-word !important;
   white-space: unset !important;
   flex: 0 0 15% !important;
