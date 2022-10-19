@@ -30,7 +30,11 @@ export class BookingListComponent implements OnInit {
     private route: ActivatedRoute,
     private _liveAnnouncer: LiveAnnouncer
   ) {
-    this.bookingsService.list().subscribe(dados => this.dataSource = new MatTableDataSource<Booking>(dados));
+    this.bookingsService.list().subscribe((data) => {
+      this.dataSource = new MatTableDataSource<Booking>(data),
+      this.dataSource.sort = this.sort;
+    }
+      );
 
   }
 
@@ -44,6 +48,12 @@ export class BookingListComponent implements OnInit {
     this.router.navigate(['details/' + id], { relativeTo: this.route.parent })
 
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource!.filter = filterValue.trim().toLowerCase();
+  }
+
   edit(id: number) {
     console.log("clicked")
     this.router.navigate(['update/' + id], { relativeTo: this.route.parent })
