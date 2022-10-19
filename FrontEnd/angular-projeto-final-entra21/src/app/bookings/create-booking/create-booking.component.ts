@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { BookingsService } from '../../service/bookings.service';
 import { CategoryService } from '../../service/category.service';
@@ -49,6 +49,7 @@ export class CreateBookingComponent implements OnInit {
     private clientService: ClientService,
     private formBuilder: NonNullableFormBuilder,
     private snackBar: MatSnackBar,
+    private router: Router,
     private route: ActivatedRoute,
     private location: Location,
   ) { }
@@ -127,18 +128,18 @@ export class CreateBookingComponent implements OnInit {
 
   onSubmit() {
     this.bookingsService.addBooking(this.bookingForm.value).subscribe({
-      next: () => this.onSuccess(),
+      next: (booking) => this.onSuccess(booking.id),
       error: (e) => this.onError()
     });
   }
 
-  private onSuccess() {
+  private onSuccess(id: number) {
     if (this.bookingId) {
       this.snackBar.open('Reserva atualizada com sucesso!', '', { duration: 3000 })
     } else {
       this.snackBar.open('Reserva realizada com sucesso!', '', { duration: 3000 })
     }
-    this.back();
+    this.router.navigate(['../main/bookings/details/' + id]), {relativeTo: this.route};
   }
 
   private onError() {

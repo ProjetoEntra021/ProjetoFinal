@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { BookingsService } from '../../service/bookings.service';
 import { CategoryService } from '../../service/category.service';
@@ -51,6 +51,7 @@ export class RentalAddComponent implements OnInit {
     private route: ActivatedRoute,
     private bookingService: BookingsService,
     private location: Location,
+    private router: Router,
     private rentalService: RentalService,
     private snackBar: MatSnackBar
   ) { }
