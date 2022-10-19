@@ -1,12 +1,20 @@
 package com.entra21.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.entra21.entities.Booking;
+import com.entra21.entities.Payment;
+import com.entra21.entities.Rental;
+import com.entra21.entities.enums.BookingStatus;
+import com.entra21.entities.enums.PaymentStatus;
+import com.entra21.entities.enums.RentalStatus;
+import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.BookingRepository;
 
@@ -48,5 +56,20 @@ public class BookingService {
 		entity.setCategory(obj.getCategory());
 		entity.setBookingStatus(obj.getBookingStatus());
 		//Rental receives the booking, so there's no need to add rental here
+	}
+	public Booking cancelBooking(Long id) {
+		Booking entity = bookingRepository.getReferenceById(id);
+		entity.setBookingStatus(BookingStatus.CANCELED);
+		
+		return bookingRepository.save(entity);
+	}
+	
+	@Scheduled(cron="0 0 0 * * *")
+	public void updateBookingStatus() {
+		List<Booking> bookings = bookingRepository.findAll();
+		for(Booking booking : bookings) {
+			booking.updateStatus();
+			bookingRepository.save(booking);
+		}
 	}
 }
