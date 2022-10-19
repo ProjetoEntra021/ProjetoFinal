@@ -98,14 +98,14 @@ export class ClientRegistrationComponent implements OnInit {
 
   addClient() {
     this.clientService.save(this.clientForm.value).subscribe({
-      next: () => this.onSuccess(),
+      next: (client) => this.onSuccess(client.id!),
       error: (e) => this.onError()
     });
   }
 
   updateClient() {
     this.clientService.update(this.clientForm.value).subscribe({
-      next: () => this.onSuccess(),
+      next: () => this.onSuccess(this.clientId),
       error: (e) => this.onError()
     });
   }
@@ -162,9 +162,9 @@ export class ClientRegistrationComponent implements OnInit {
     )
   }
 
-  private onSuccess() {
+  private onSuccess(id: number) {
     this.snackBar.open('Cliente cadastrado com sucesso!', '', { duration: 3000 })
-    this.onCancel();
+    this.router.navigate(['../main/clients/details/' + id]), {relativeTo: this.route};
   }
 
   onCancel() {

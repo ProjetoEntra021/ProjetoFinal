@@ -193,6 +193,10 @@ export class CreateBookingComponent implements OnInit {
   back() {
     this.location.back();
   }
+
+  createRental(id: number) {
+    this.router.navigate(['../rentals/' + id + '/add'], { relativeTo: this.route.parent })
+  }
 }
 
 

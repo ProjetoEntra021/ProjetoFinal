@@ -72,14 +72,14 @@ export class RentalAddComponent implements OnInit {
   onSubmit() {
     // console.log(this.form.value)
     this.rentalService.save(this.form.value).subscribe({
-      next: () => this.onSuccess(),
+      next: (rental) => this.onSuccess(rental.id!),
       error: () => this.onError()
     })
   }
 
-  private onSuccess() {
+  private onSuccess(id: number) {
     this.snackBar.open('Locação cadastrada com sucesso!', '', { duration: 3000 })
-    this.onCancel();
+    this.router.navigate(['../main/rentals/details/' + id]), {relativeTo: this.route};
   }
 
   private onError() {
