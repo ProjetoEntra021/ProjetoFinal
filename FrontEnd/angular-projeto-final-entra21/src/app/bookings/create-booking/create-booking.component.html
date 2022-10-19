@@ -7,7 +7,7 @@
         <div class="formBlocks">
 
           <div id="firstLine">
-            <mat-form-field formGroupName="client" class="formField" color="warn" appearance="fill">
+            <mat-form-field formGroupName="client" class="formField" appearance="fill">
               <mat-label>Cliente</mat-label>
               <input readonly matInput id="client.name" formControlName="name" type="text" placeholder="Nome cliente" />
             </mat-form-field>
@@ -27,30 +27,41 @@
               <mat-label>Categoria:</mat-label>
               <mat-select formControlName="id">
                 <mat-option *ngFor="let category of categories" [value]="category.id"
-                            (onSelectionChange)="updatePriceValue($event, category.id)">
+                            (onSelectionChange)="getSelectedCategory($event, category.id)">
                   {{category.name}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
+
           <div id="thirdLine">
-            <mat-form-field *ngIf="!bookingId" class="formField" color="warn" appearance="fill">
+            <mat-form-field formGroupName="category" class="formField" appearance="fill">
+              <mat-label>Tipo de reserva :</mat-label>
+              <mat-select formControlName="id">
+                <mat-option *ngFor="let type of rentalTypes" [value]="type"
+                            (onSelectionChange)="updatePriceValue($event, type)">
+                  {{type | rentalType}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="!bookingId" class="formField" appearance="fill">
               <mat-label>Preço da diária</mat-label>
               <input matInput id="dayPrice" formControlName="dayPrice" type="text" placeholder="Preço diária" />
             </mat-form-field>
 
-            <mat-form-field *ngIf="!bookingId" class="formField" color="warn" appearance="fill">
+            <mat-form-field *ngIf="!bookingId" class="formField" appearance="fill">
               <mat-label>Preço da semana</mat-label>
               <input matInput id="weekPrice" formControlName="weekPrice" type="text" placeholder="Preço semana" />
             </mat-form-field>
 
-            <mat-form-field class="formField" color="warn" appearance="fill">
+            <mat-form-field class="formField" appearance="fill">
               <mat-label>Preço previsto</mat-label>
               <input readonly matInput id="weekPrice" mask="separator.2" [thousandSeparator]="'.'" [decimalMarker]="','"
-                     prefix="R$" formControlName="estimatedPrice" type="text" placeholder="Preço estimado" />
+                     prefix="R$" formControlName="previewPrice" type="text" placeholder="Preço estimado" />
             </mat-form-field>
 
-            <mat-form-field *ngIf="bookingId" class="formField" color="warn" appearance="fill">
+            <mat-form-field *ngIf="bookingId" class="formField" appearance="fill">
               <mat-label>Status</mat-label>
               <input readonly matInput id="weekPrice" formControlName="bookingStatus" type="text"
                      placeholder="status" />

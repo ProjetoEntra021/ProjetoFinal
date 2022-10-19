@@ -36,6 +36,8 @@ public class Booking implements Serializable{
 	
 	private Double weekPrice;
 	
+	private Double previewPrice;
+	
 	@ManyToOne
 	private Category category;
 	
@@ -47,7 +49,7 @@ public class Booking implements Serializable{
 	
 	public Booking() {}
 
-	public Booking(Long id, Client client, LocalDate pickUpDate, LocalDate dropOffDate, Double dayPrice, Double weekPrice,
+	public Booking(Long id, Client client, LocalDate pickUpDate, LocalDate dropOffDate, Double dayPrice, Double weekPrice, Double previewPrice,
 			Category category, BookingStatus bookingStatus, Rental rental) {
 		super();
 		this.id = id;
@@ -59,7 +61,9 @@ public class Booking implements Serializable{
 		this.category = category;
 		setBookingStatus(bookingStatus);
 		this.rental = rental;
+		this.previewPrice = previewPrice;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -136,6 +140,13 @@ public class Booking implements Serializable{
 		this.rental = rental;
 	}
 	
-	
+	public Double getPreviewPrice() {
+		return previewPrice;
+	}
+
+	public void setPreviewPrice(Double previewPrice) {
+		this.previewPrice = previewPrice;
+	}
+
 	
 }

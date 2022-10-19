@@ -47,6 +47,7 @@ public class BookingService {
 		entity.setWeekPrice(obj.getWeekPrice());
 		entity.setCategory(obj.getCategory());
 		entity.setBookingStatus(obj.getBookingStatus());
+		entity.setPreviewPrice(obj.getPreviewPrice());
 		//Rental receives the booking, so there's no need to add rental here
 	}
 }

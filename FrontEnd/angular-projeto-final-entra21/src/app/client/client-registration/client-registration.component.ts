@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ClientService } from '../../service/client.service';
 import { Contact } from '../../shared/model/contact';
 import { Client } from './../../shared/model/client';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-client-registration',
@@ -69,8 +70,8 @@ export class ClientRegistrationComponent implements OnInit {
     private snackBar: MatSnackBar,
     private location: Location,
     private route: ActivatedRoute,
-    public router: Router
-
+    public router: Router,
+    private httpClient: HttpClient
 
 
   ) { }
@@ -153,11 +154,6 @@ export class ClientRegistrationComponent implements OnInit {
           })
         }
 
-
-
-
-
-
       }
     )
   }
@@ -176,4 +172,25 @@ export class ClientRegistrationComponent implements OnInit {
   }
 
 
+  consultaViaCep(cep: string) {
+    type ViaCepObject = {
+      logradouro: string,
+      complemento: string,
+      bairro: string,
+      localidade: string,
+      uf: string
+    }
+
+    this.httpClient.get<ViaCepObject>('https:viacep.com.br/ws/' + cep + '/json/').subscribe((dados) => {
+      this.clientForm.patchValue({
+        addresses: [{
+          street: dados.logradouro,
+          complement: dados.complemento,
+          district: dados.bairro,
+          city: dados.localidade,
+          uf: dados.uf
+        }]
+      })
+    })
+  }
 }

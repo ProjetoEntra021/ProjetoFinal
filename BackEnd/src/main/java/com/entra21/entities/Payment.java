@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.entra21.entities.enums.PaymentStatus;
+import com.entra21.entities.enums.RentalStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -33,10 +35,9 @@ public class Payment implements Serializable{
 	
 	private PaymentStatus paymentStatus;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "rental_id")
-	//@JsonIgnoreProperties("payments")
-	@JsonIgnore
+	@JsonIgnoreProperties("payments")
 	private Rental rental;
 
 	public Payment() {
@@ -110,17 +111,7 @@ public class Payment implements Serializable{
 		if(diffDays < 0 && this.paymentStatus == paymentStatus.WAITINGPAYMENT){
 			setPaymentStatus(paymentStatus.PENDING);
 		}
-	}
 	
-	public void updateStatusTest() {
-		LocalDateTime today = LocalDateTime.now();
-		LocalDateTime expirationDate = LocalDateTime.of(2022, 10, 17, 12, 22);
-		
-		long diffDays = today.until(expirationDate, ChronoUnit.MINUTES);
-		
-		if(diffDays < 0 && this.paymentStatus == paymentStatus.WAITINGPAYMENT){
-			setPaymentStatus(paymentStatus.PENDING);
-		}
 	}
 	
 
