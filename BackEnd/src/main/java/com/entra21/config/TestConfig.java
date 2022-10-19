@@ -208,8 +208,8 @@ public class TestConfig implements CommandLineRunner {
 		Booking bk6 = new Booking(null, c2, LocalDate.parse("2005-10-20"),
 				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
 				BookingStatus.FINISHED, null);
-		Booking bk3 = new Booking(null, c3, LocalDate.parse("2005-10-30"),
-				LocalDate.parse("2006-04-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+		Booking bk3 = new Booking(null, c3, LocalDate.parse("2024-10-30"),
+				LocalDate.parse("2024-04-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
 				BookingStatus.CANCELED, null);
 		Booking bk4 = new Booking(null, c2, LocalDate.parse("2006-04-30"),
 				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
@@ -218,7 +218,11 @@ public class TestConfig implements CommandLineRunner {
 				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
 				BookingStatus.PENDING, null);
 		
-		bookingRepository.saveAll(Arrays.asList(bk6, bk5, bk4, bk3, bk2));
+		Booking bk7 = new Booking(null, c3, LocalDate.parse("2023-10-20"),
+				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				BookingStatus.ACTIVE, null);
+		
+		bookingRepository.saveAll(Arrays.asList(bk6, bk5, bk4, bk3, bk2, bk7));
 		
 		RentalAddDTO r2 = new RentalAddDTO( bk1.getPickUpDate(), bk1.getDropOffDate(), 1400.0, RentalStatus.PENDING, RentalType.PERSONAL,  bk2.getId(), v2.getId());
 		rentalService.insert(r2);

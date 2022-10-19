@@ -2,6 +2,7 @@ package com.entra21.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -136,6 +137,15 @@ public class Booking implements Serializable{
 		this.rental = rental;
 	}
 	
-	
+	public void updateStatus() {
+		LocalDate today = LocalDate.now();
+		LocalDate pickUpDate = this.getPickUpDate();
+		
+		long diffDays = today.until(pickUpDate, ChronoUnit.DAYS);
+		
+		if(diffDays < 0){
+			setBookingStatus(BookingStatus.PENDING);
+		}
+	}
 	
 }
