@@ -41,7 +41,7 @@ export class CategoryListComponent implements OnInit {
   }
   edit(id: number) {
     console.log("clicked")
-    this.router.navigate(['update/' + id], { relativeTo: this.route.parent })
+    this.router.navigate(['create/' + id], { relativeTo: this.route.parent })
   }
 
 }

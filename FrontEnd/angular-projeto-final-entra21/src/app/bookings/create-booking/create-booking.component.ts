@@ -54,8 +54,8 @@ export class CreateBookingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.categoryService.list().subscribe((dados) => {
-      this.categories = dados;
+    this.categoryService.list().subscribe((data) => {
+      this.categories = data;
     })
     this.route.params.subscribe(params => {
       this.bookingId = params['id'];
@@ -77,33 +77,29 @@ export class CreateBookingComponent implements OnInit {
 
   getBooking() {
     this.bookingsService.getBookingById(this.bookingId).subscribe(
-      resultado => {
-        console.log(resultado)
+      result => {
+        console.log(result)
         this.bookingForm.patchValue({
-          id: resultado.id,
+          id: result.id,
           client: {
-            id: resultado.client.id,
-            name: resultado.client.name,
+            id: result.client.id,
+            name: result.client.name,
           },
-          pickUpDate: resultado.pickUpDate,
-          dropOffDate: resultado.dropOffDate,
-          bookingStatus: resultado.bookingStatus,
+          pickUpDate: result.pickUpDate,
+          dropOffDate: result.dropOffDate,
+          bookingStatus: result.bookingStatus,
           category: {
-            id: resultado.category.id,
-            name: resultado.category.name,
+            id: result.category.id,
+            name: result.category.name,
           },
-          dayPrice: resultado.dayPrice,
-          weekPrice: resultado.weekPrice,
+          dayPrice: result.dayPrice,
+          weekPrice: result.weekPrice,
         });
-        // if(this.bookingForm.value.bookingStatus) {
-        //   this.status = this.bookingForm.value.bookingStatus;
-        // }
-
         this.estimatedDate();
 
-        if (resultado.category.dayPrice && resultado.category.weekPrice) {
-          let estPrice = (this.difDays * (resultado.category.dayPrice)) +
-            (this.difWeeks * (resultado.category.weekPrice));
+        if (result.category.dayPrice && result.category.weekPrice) {
+          let estPrice = (this.difDays * (result.category.dayPrice)) +
+            (this.difWeeks * (result.category.weekPrice));
           this.bookingForm.patchValue({
             estimatedPrice: estPrice,
           })
@@ -114,11 +110,11 @@ export class CreateBookingComponent implements OnInit {
 
   getBookingClient() {
     this.clientService.getClientById(this.clientId).subscribe(
-      resultado => {
+      result => {
         this.bookingForm.patchValue({
           client: {
-            id: resultado.id,
-            name: resultado.name,
+            id: result.id,
+            name: result.name,
           },
         })
       }
@@ -147,8 +143,8 @@ export class CreateBookingComponent implements OnInit {
 
   searchCategory() {
     this.categoryService.list().subscribe(
-      resultado => {
-        this.categories = resultado;
+      result => {
+        this.categories = result;
       },
       erro => {
         //TODO evoluir para mostrar mensagem na tela
@@ -177,13 +173,6 @@ export class CreateBookingComponent implements OnInit {
     }
   }
 
-  // updatePickUpDate(event:any, date: Date){
-  //   if (event.isUserInput){
-  //     this.bookingForm.patchValue({
-  //       pickUpDate: date,
-  //     })
-  //   }
-  // }
   estimatedDate() {
     if (this.bookingForm.value.pickUpDate && this.bookingForm.value.dropOffDate) {
       const d1 = (Number(new Date(this.bookingForm.value.pickUpDate)));

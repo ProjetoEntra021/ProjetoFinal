@@ -15,4 +15,12 @@ export class CategoryService {
     return this.httpClient.get<Category[]>(this.API)
       .pipe(first());
   }
+
+  getCategoryById(id: number) {
+    return this.httpClient.get<Category>(this.API + '/' + id).pipe(first());
+  }
+
+  addCategory(record: Partial<Category>) {
+    return this.httpClient.post<Category>(this.API, record).pipe(first());
+  }
 }
