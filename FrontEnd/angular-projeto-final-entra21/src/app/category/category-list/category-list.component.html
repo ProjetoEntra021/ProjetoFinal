@@ -9,6 +9,10 @@
   <mat-card>
     <div id="mainTextHeader">
       <span>Listagem de Categorias</span>
+      <button class="botao" mat-raised-button color="primary" [routerLink]="['/main/category/create']">
+        Nova categoria
+      </button>
+
     </div>
     <section class="container">
       <mat-table [dataSource]="dataSource" class="mat-elevation-z8" #sort="matSort" matSort>

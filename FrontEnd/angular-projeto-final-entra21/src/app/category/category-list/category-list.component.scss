@@ -1,25 +1,3 @@
-.ACTIVE {
-  color: green;
-}
-
-.FINISHED {
-  color: blue;
-}
-
-.CANCELED {
-  color: red;
-}
-
-.PENDING {
-  color: yellow;
-}
-
-.status {
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 mat-cell {
   color: black;
@@ -65,14 +43,15 @@ mat-header-row {
 
 #mainTextHeader {
   width: 100%;
-  justify-content: flex-start;
   font-size: 20px;
   font-weight: bold;
-  text-align: left;
   // border: 1px solid red;
-  margin: auto;
   height: 50px;
   color: #00796b;
+}
+.botao{
+  // border: 1px solid red;
+  margin-left: 500px;
 }
 
 .caption {
@@ -133,3 +112,4 @@ mat-table {
 .mat-column-detalhe {
   justify-content: center;
 }
+

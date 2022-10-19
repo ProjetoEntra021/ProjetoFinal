@@ -6,11 +6,15 @@ import { CategoryRoutingModule } from './category-routing.module';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateCategoryComponent } from './create-category/create-category.component';
+import { CategoryDetailsComponent } from './category-details/category-details.component';
 
 
 @NgModule({
   declarations: [
-    CategoryListComponent
+    CategoryListComponent,
+    CreateCategoryComponent,
+    CategoryDetailsComponent
   ],
   imports: [
     CommonModule,

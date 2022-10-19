@@ -1,0 +1,51 @@
+<div id="mainContent">
+  <div id="header">
+    <a id="arrowBack" [routerLink]="['/main/category']">
+      <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
+    </a>
+  </div>
+  <mat-card id="cardForm">
+    <div id="cardHeader">
+      <p>Detalhes categoria</p>
+    </div>
+    <mat-card-content>
+      <div *ngIf="category$ | async as category">
+        <div class="formBlocks">
+          <div class="formLine" id="firstLine">
+            <div class="inputs">
+              <label>Categoria </label>
+              <input
+                readonly
+                matInput
+                readonly
+                value="{{ category.name }}"
+                type="text"
+              />
+            </div>
+            <div class="inputs">
+              <label>Valor diária </label>
+              <input
+                readonly
+                matInput
+                readonly
+                value="{{ category.dayPrice | currency }}"
+                type="text"
+              />
+            </div>
+
+            <div class="inputs">
+              <label>Valor semanal </label>
+              <input
+                readonly
+                matInput
+                readonly
+                value="{{ category.weekPrice | currency }}"
+                type="text"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
