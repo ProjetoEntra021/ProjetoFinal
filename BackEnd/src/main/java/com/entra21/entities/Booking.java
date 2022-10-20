@@ -17,38 +17,42 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-public class Booking implements Serializable{
+public class Booking implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@ManyToOne
-	@JsonIgnoreProperties({"bookings", "contacts", "addresses"})
+	@JsonIgnoreProperties({ "bookings", "contacts", "addresses" })
 	private Client client;
-	
+
 	private LocalDate pickUpDate;
-	
+
 	private LocalDate dropOffDate;
-	
+
 	private Double dayPrice;
-	
+
 	private Double weekPrice;
-	
+
+	private Double previewPrice;
+
 	@ManyToOne
 	private Category category;
-	
+
 	private Integer bookingStatus;
-	
+
 	@OneToOne
 	@JsonIgnoreProperties("booking")
 	private Rental rental;
-	
-	public Booking() {}
 
-	public Booking(Long id, Client client, LocalDate pickUpDate, LocalDate dropOffDate, Double dayPrice, Double weekPrice,
+	public Booking() {
+	}
+
+	public Booking(Long id, Client client, LocalDate pickUpDate, LocalDate dropOffDate, Double dayPrice,
+			Double weekPrice, Double previewPrice,
 			Category category, BookingStatus bookingStatus, Rental rental) {
 		super();
 		this.id = id;
@@ -60,6 +64,7 @@ public class Booking implements Serializable{
 		this.category = category;
 		setBookingStatus(bookingStatus);
 		this.rental = rental;
+		this.previewPrice = previewPrice;
 	}
 
 	public Long getId() {
@@ -70,7 +75,7 @@ public class Booking implements Serializable{
 		this.id = id;
 	}
 
-	//@JsonIgnore
+	// @JsonIgnore
 	public Client getClient() {
 		return client;
 	}
@@ -111,7 +116,7 @@ public class Booking implements Serializable{
 		this.weekPrice = weekPrice;
 	}
 
-   //@JsonIgnore
+	// @JsonIgnore
 	public Category getCategory() {
 		return category;
 	}
@@ -136,16 +141,16 @@ public class Booking implements Serializable{
 	public void setRental(Rental rental) {
 		this.rental = rental;
 	}
-	
+
 	public void updateStatus() {
 		LocalDate today = LocalDate.now();
 		LocalDate pickUpDate = this.getPickUpDate();
-		
+
 		long diffDays = today.until(pickUpDate, ChronoUnit.DAYS);
-		
-		if(diffDays < 0){
+
+		if (diffDays < 0) {
 			setBookingStatus(BookingStatus.PENDING);
 		}
 	}
-	
+
 }

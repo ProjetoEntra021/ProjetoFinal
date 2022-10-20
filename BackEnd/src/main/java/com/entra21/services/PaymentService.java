@@ -1,6 +1,5 @@
 package com.entra21.services;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,13 +8,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.entra21.entities.Payment;
-import com.entra21.entities.Vehicle;
-import com.entra21.entities.VehicleRevenue;
+import com.entra21.entities.Rental;
 import com.entra21.entities.enums.PaymentStatus;
+import com.entra21.entities.enums.RentalStatus;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.PaymentRepository;
-import com.entra21.repositories.VehicleRepository;
-import com.entra21.repositories.VehicleRevenueRepository;
 
 @Service
 public class PaymentService {
@@ -24,13 +21,10 @@ public class PaymentService {
 	private PaymentRepository paymentRepository;
 	
 	@Autowired
-	private VehicleRevenueRepository revenueRepository;
-
-	@Autowired
-	private VehicleRepository vehicleRepository;
+	private RentalService rentalService;
 	
 	@Autowired
-	private RentalService rentalService;
+	private VehicleService vehicleService;
 	
 	public List<Payment> findAll() {
 		return paymentRepository.findAll();
@@ -58,11 +52,14 @@ public class PaymentService {
 	public Payment confirmPayment(Long id) {
 		Payment entity = paymentRepository.getReferenceById(id);
 		entity.setPaymentStatus(PaymentStatus.PAID);
-		Long vehicleId = entity.getRental().getVehicle().getId();
-		Vehicle vh = vehicleRepository.findById(vehicleId).get();
-		VehicleRevenue vr = new VehicleRevenue(null, "Pagamento de locação", LocalDate.now(), entity.getPaymentValue(), vh);
-		revenueRepository.save(vr);
-		rentalService.checkRentalFinishStatus(entity.getRental());
+		Rental paymentRental = entity.getRental();
+		
+		vehicleService.addVehicleRevenue(paymentRental, entity.getPaymentValue());
+		
+		if(paymentRental.getRentalStatus() != RentalStatus.CANCELED) {
+			rentalService.checkActiveOrPendingOrFinished(paymentRental);
+		}
+		
 		return paymentRepository.save(entity);
 	}
 	
@@ -78,11 +75,14 @@ public class PaymentService {
 	}
 	
 	@Scheduled(cron="0 0 0 * * *")
-	public void updatePaymentStatus() {
+	public void dailyUpdatePaymentStatus() {
 		List<Payment> payments = paymentRepository.findAll();
 		for(Payment payment : payments) {
 			payment.updateStatus();
 			paymentRepository.save(payment);
 		}
+		rentalService.dailyUpdateRentallStatus();
 	}
+	
+	
 }

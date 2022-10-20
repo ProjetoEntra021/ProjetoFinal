@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,15 +38,14 @@ public class Rental implements Serializable {
 	private Double totalValue;
 
 	@OneToOne
-	@JsonIgnoreProperties(value={"rental", "category"}, allowGetters= false)
+	@JsonIgnoreProperties(value = { "rental", "category" }, allowGetters = false)
 	private Booking booking;
 
 	@OneToOne
-	@JsonIgnoreProperties({ "chassi", "mileage", "renavam", "vehicleYear",
-			"vehicleStatus", "revenues", "expenses" })
-	private Vehicle vehicle;	
+	@JsonIgnoreProperties({ "chassi", "mileage", "renavam", "vehicleYear", "revenues", "expenses" })
+	private Vehicle vehicle;
 
-	@OneToMany(mappedBy = "rental", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "rental", cascade = CascadeType.ALL, fetch= FetchType.EAGER)
 	@JsonIgnoreProperties("rental")
 	private List<Payment> payments = new ArrayList<>();
 

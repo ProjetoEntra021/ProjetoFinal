@@ -32,16 +32,19 @@ export class CreateBookingComponent implements OnInit {
     }),
     dayPrice: 0,
     weekPrice: 0,
-    estimatedPrice: 0,
+    previewPrice: 0,
   })
 
   categories: Category[] = [];
+
+  rentalTypes = ["APP_DRIVER", "PERSONAL"]
 
   public bookingId!: number;
   public clientId!: number;
   public difDays!: number;
   public difWeeks!: number;
 
+  public selectedCategory!: Category;
 
   constructor(
     private categoryService: CategoryService,
@@ -72,7 +75,6 @@ export class CreateBookingComponent implements OnInit {
       })
     })
     this.searchCategory();
-    console.log(this.categories);
 
   }
 
@@ -93,18 +95,9 @@ export class CreateBookingComponent implements OnInit {
             id: result.category.id,
             name: result.category.name,
           },
-          dayPrice: result.dayPrice,
-          weekPrice: result.weekPrice,
-        });
-        this.estimatedDate();
 
-        if (result.category.dayPrice && result.category.weekPrice) {
-          let estPrice = (this.difDays * (result.category.dayPrice)) +
-            (this.difWeeks * (result.category.weekPrice));
-          this.bookingForm.patchValue({
-            estimatedPrice: estPrice,
-          })
-        }
+          previewPrice: result.previewPrice
+        });
       }
     )
   }
@@ -135,7 +128,7 @@ export class CreateBookingComponent implements OnInit {
     } else {
       this.snackBar.open('Reserva realizada com sucesso!', '', { duration: 3000 })
     }
-    this.router.navigate(['../main/bookings/details/' + id]), {relativeTo: this.route};
+    this.router.navigate(['../main/bookings/details/' + id]), { relativeTo: this.route };
   }
 
   private onError() {
@@ -155,21 +148,39 @@ export class CreateBookingComponent implements OnInit {
 
   }
 
-  updatePriceValue(event: any, id: number) {
+  getSelectedCategory(event: any, id: number) {
     if (event.isUserInput) {
-      let tempCat = {} as Category;
       for (let cat of this.categories) {
         if (cat.id == id) {
-          tempCat = cat;
+          this.selectedCategory = cat;
         }
       }
+    }
+    this.bookingForm.patchValue({
+      dayPrice: this.selectedCategory.dayPrice,
+      weekPrice: this.selectedCategory.weekPrice
+    })
+  }
+
+  updatePriceValue(event: any, type: string) {
+    if (event.isUserInput) {
       this.estimatedDate();
-      let estPrice = (this.difDays * (tempCat.dayPrice)) +
-        (this.difWeeks * (tempCat.weekPrice));
+
+      let estPrice: number = 0;
+
+      if (type == "APP_DRIVER") {
+        if (this.difDays % 7 == 0) {
+          estPrice = this.difWeeks * (this.selectedCategory.weekPrice);
+        } else {
+          console.log("Please, select full weeks!")
+        }
+
+      } else {
+        estPrice = this.difDays * (this.selectedCategory.dayPrice);
+      }
+
       this.bookingForm.patchValue({
-        dayPrice: tempCat.dayPrice,
-        weekPrice: tempCat.weekPrice,
-        estimatedPrice: estPrice,
+        previewPrice: estPrice
       })
     }
   }
@@ -181,13 +192,10 @@ export class CreateBookingComponent implements OnInit {
 
       const difDias = (d2 - d1) / (1000 * 60 * 60 * 24);
 
-      let days = difDias % 7;
-      let weeks = Math.trunc(difDias / 7);
+      this.difDays = difDias;
+      this.difWeeks = Math.trunc(difDias / 7);
 
-      this.difDays = days;
-      this.difWeeks = weeks;
     }
-    console.log(this.difDays, this.difWeeks);
   }
 
   back() {
@@ -198,6 +206,5 @@ export class CreateBookingComponent implements OnInit {
     this.router.navigate(['../rentals/' + id + '/add'], { relativeTo: this.route.parent })
   }
 }
-
 
 

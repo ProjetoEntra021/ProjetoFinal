@@ -11,22 +11,22 @@
       <div id="firstLine">
         <mat-card-content>
           <mat-card-subtitle>Cliente</mat-card-subtitle>
-          <input type="text" readonly name="name" [(ngModel)]="booking.client.name" />
+          <input type="text" readonly name="name" value="{{booking.client.name}}" />
         </mat-card-content>
       </div>
 
       <div id="secondLine">
         <mat-card-content>
           <mat-card-subtitle>Data de retirada:</mat-card-subtitle>
-          <input type="date" readonly name="booking.pickUpDate" [(ngModel)]="booking.pickUpDate" />
+          <input type="text" readonly name="booking.pickUpDate" value="{{booking.pickUpDate | date: 'dd/MM/YYYY'}}" />
         </mat-card-content>
         <mat-card-content>
           <mat-card-subtitle>Data de entrega:</mat-card-subtitle>
-          <input type="date" readonly name="booking.dropOffDate" [(ngModel)]="booking.dropOffDate" />
+          <input type="text" readonly name="booking.dropOffDate" value="{{booking.dropOffDate | date: 'dd/MM/YYYY'}}" />
         </mat-card-content>
         <mat-card-content>
           <mat-card-subtitle>Categoria:</mat-card-subtitle>
-          <input type="text" readonly name="booking.category" [(ngModel)]="booking.category.name" />
+          <input type="text" readonly name="booking.category" value="{{booking.category.name }}" />
         </mat-card-content>
       </div>
       <div id="thirdLine">
@@ -37,7 +37,7 @@
 
         <mat-card-content>
           <mat-card-subtitle>Valor:</mat-card-subtitle>
-          <input type="text" readonly name="estimatedPrice" />
+          <input type="text" readonly value="{{booking.previewPrice | currency }}" />
         </mat-card-content>
       </div>
 

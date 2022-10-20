@@ -10,15 +10,6 @@
 
       <mat-divider id="logoDivider"></mat-divider>
 
-      <!-- <mat-list-item id="listSearch">
-        <mat-form-field class="example-form-field" appearance="fill">
-          <mat-label>Pesquisar</mat-label>
-          <input matInput type="text" [(ngModel)]="value" />
-          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value = ''">
-            <mat-icon>search</mat-icon>
-          </button>
-        </mat-form-field>
-      </mat-list-item> -->
       <mat-divider></mat-divider>
 
       <mat-list-item>
@@ -61,7 +52,7 @@
 
       <mat-divider></mat-divider>
       <mat-list-item>
-        <button mat-button [routerLink]="['/home']">Sair</button>
+        <button mat-button (click)="logout()">Sair</button>
       </mat-list-item>
 
       <mat-divider></mat-divider>

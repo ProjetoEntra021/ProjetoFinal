@@ -55,13 +55,6 @@ fieldset {
   width: 90%;
 }
 
-input {
-  border: 0px;
-  height: 20px;
-  border-radius: 5px;
-  width: 100%;
-}
-
 label {
   // border: 1px solid black;
   width: 100%;
@@ -164,5 +157,12 @@ mat-radio-group {
 
 label {
   color: grey;
-  font-size: 0.9em;
+}
+
+input {
+  border: 0px;
+  height: 20px;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 1.1em;
 }

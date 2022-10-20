@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-home-login',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeLoginComponent implements OnInit {
 
-  constructor() { }
+  form = this.formBuilder.group({
+    username: '',
+    password: ''
+  })
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
   }
 
+  login() {
+
+    localStorage.setItem('username', this.form.value.username!);
+    this.router.navigate(['/main'])
+  }
 }
