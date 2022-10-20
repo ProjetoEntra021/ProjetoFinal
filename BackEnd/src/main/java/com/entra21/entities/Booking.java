@@ -141,6 +141,15 @@ public class Booking implements Serializable {
 	public void setRental(Rental rental) {
 		this.rental = rental;
 	}
+	
+
+	public Double getPreviewPrice() {
+		return previewPrice;
+	}
+
+	public void setPreviewPrice(Double previewPrice) {
+		this.previewPrice = previewPrice;
+	}
 
 	public void updateStatus() {
 		LocalDate today = LocalDate.now();
