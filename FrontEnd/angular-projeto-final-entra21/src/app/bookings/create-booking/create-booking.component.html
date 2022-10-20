@@ -1,3 +1,9 @@
+  <div id="header">
+    <a id="arrowBack" [routerLink]="['/main/bookings']">
+      <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
+    </a>
+
+  </div>
 <div id="mainContent">
   <mat-card id="cardForm">
     <div id="cardHeader"> {{bookingId ? 'Editar' : 'Nova'}} Reserva
@@ -69,15 +75,11 @@
           </div>
         </div>
         <mat-card-actions>
-          <button lass="formButton" mat-raised-button (click)="back()">
-            Cancelar
-          </button>
 
           <button class="formButton" mat-raised-button color="primary" (click)="onSubmit()">
             {{bookingId ? 'Atualizar' : 'Realizar Reserva'}}
           </button>
-
-          <button *ngIf="!bookingId" class="formButton" mat-raised-button color="secondary">
+          <button *ngIf="bookingId" class="formButton" mat-raised-button color="secondary" (click)="createRental(bookingId)">
             Realizar Locação
           </button>
         </mat-card-actions>

@@ -31,6 +31,9 @@ export class MainViewComponent implements OnInit {
   vehicleAdd() {
     this.router.navigate(['main/vehicles/add']);
   }
+  categoryList(){
+    this.router.navigate(['main/category'])
+  }
   vehicles() {
     this.router.navigate(['vehicles', ''], { relativeTo: this.route })
   }

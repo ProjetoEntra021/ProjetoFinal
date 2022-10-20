@@ -12,24 +12,30 @@
     </div>
     <section class="container">
       <mat-table [dataSource]="dataSource" class="mat-elevation-z8" #sort="matSort" matSort>
-        <!-- Position Column -->
-        <ng-container matColumnDef="bookingStatus">
+
+        <ng-container id= "bookinStatusColumn" matColumnDef="bookingStatus">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
           <mat-cell *matCellDef="let booking">
-            <mat-icon aria-hidden="false" aria-label="Example home icon" class="{{booking.bookingStatus}} status"
-                      fontIcon="circle"></mat-icon>
+            <mat-icon *ngIf="booking.bookingStatus == 'ACTIVE'" aria-hidden="false" aria-label="Example home icon" class="{{booking.bookingStatus}} status"
+           fontIcon="circle"></mat-icon>
+           <mat-icon *ngIf="booking.bookingStatus == 'FINISHED'" aria-hidden="false" aria-label="Example home icon" class="{{booking.bookingStatus}} status"
+           fontIcon="adjust"></mat-icon>
+           <mat-icon *ngIf="booking.bookingStatus == 'PENDING'" aria-hidden="false" aria-label="Example home icon" class="{{booking.bookingStatus}} status"
+           fontIcon="pause_circle"></mat-icon>
+           <mat-icon *ngIf="booking.bookingStatus == 'CANCELED'" aria-hidden="false" aria-label="Example home icon" class="{{booking.bookingStatus}} status"
+           fontIcon="cancel"></mat-icon>
           </mat-cell>
         </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="pickUpDate">
+
+        <ng-container id= "pickUpDateColumn" matColumnDef="pickUpDate">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Data Retirada </mat-header-cell>
           <mat-cell *matCellDef="let booking">
             {{ booking.pickUpDate | date: "dd/MM/YYYY" }}
           </mat-cell>
         </ng-container>
 
-        <!-- Name Column -->
+
         <ng-container matColumnDef="client.name">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </mat-header-cell>
           <mat-cell *matCellDef="let booking">
@@ -37,7 +43,7 @@
           </mat-cell>
         </ng-container>
 
-        <!-- Weight Column -->
+
         <ng-container matColumnDef="category.name">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Categoria </mat-header-cell>
           <mat-cell *matCellDef="let booking">
@@ -70,25 +76,25 @@
     </section>
   </mat-card>
   <footer>
-    <div id="rodapeLegenda">
-      <div class="legendaIndividual">
-        <mat-icon aria-hidden="false" aria-label="Ícone de legenda disponível" class="legenda ACTIVE" fontIcon="circle">
+    <div id="footerCaption">
+      <div class="singleCaption">
+        <mat-icon aria-hidden="false" aria-label="Ícone de legenda disponível" class="caption ACTIVE" fontIcon="circle">
         </mat-icon>
         <span>Ativa</span>
       </div>
-      <div class="legendaIndividual">
-        <mat-icon aria-hidden="false" aria-label="Ícone de legenda indisponível" class="legenda FINISHED"
-                  fontIcon="circle"></mat-icon>
+      <div class="singleCaption">
+        <mat-icon aria-hidden="false" aria-label="Ícone de legenda indisponível" class="caption FINISHED"
+                  fontIcon="adjust"></mat-icon>
         <span>Finalizada</span>
       </div>
-      <div class="legendaIndividual">
-        <mat-icon aria-hidden="false" aria-label="Ícone de legenda em menutenção" class="legenda PENDING"
-                  fontIcon="circle"></mat-icon>
+      <div class="singleCaption">
+        <mat-icon aria-hidden="false" aria-label="Ícone de legenda em menutenção" class="caption PENDING"
+                  fontIcon="pause_circle"></mat-icon>
         <span>Pendente</span>
       </div>
-      <div class="legendaIndividual">
-        <mat-icon aria-hidden="false" aria-label="Ícone de legenda desabilitado" class="legenda CANCELED"
-                  fontIcon="circle"></mat-icon>
+      <div class="singleCaption">
+        <mat-icon aria-hidden="false" aria-label="Ícone de legenda desabilitado" class="caption CANCELED"
+                  fontIcon="cancel"></mat-icon>
         <span>Cancelada</span>
       </div>
     </div>

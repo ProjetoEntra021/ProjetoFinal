@@ -26,4 +26,8 @@ export class BookingsService {
     return this.httpClient.post<Booking>(this.API, record).pipe(first());
   }
 
+  cancelBooking(id: number) {
+    return this.httpClient.patch<Booking>(this.API + '/' + id , undefined).pipe(first());
+  }
+
 }

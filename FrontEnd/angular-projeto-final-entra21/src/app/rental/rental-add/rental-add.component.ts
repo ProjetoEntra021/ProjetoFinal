@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { BookingsService } from '../../service/bookings.service';
 import { CategoryService } from '../../service/category.service';
@@ -51,6 +51,7 @@ export class RentalAddComponent implements OnInit {
     private route: ActivatedRoute,
     private bookingService: BookingsService,
     private location: Location,
+    private router: Router,
     private rentalService: RentalService,
     private snackBar: MatSnackBar
   ) { }
@@ -71,14 +72,14 @@ export class RentalAddComponent implements OnInit {
   onSubmit() {
     // console.log(this.form.value)
     this.rentalService.save(this.form.value).subscribe({
-      next: () => this.onSuccess(),
+      next: (rental) => this.onSuccess(rental.id!),
       error: () => this.onError()
     })
   }
 
-  private onSuccess() {
+  private onSuccess(id: number) {
     this.snackBar.open('Locação cadastrada com sucesso!', '', { duration: 3000 })
-    this.onCancel();
+    this.router.navigate(['../main/rentals/details/' + id]), {relativeTo: this.route};
   }
 
   private onError() {

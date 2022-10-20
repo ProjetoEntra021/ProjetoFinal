@@ -25,9 +25,6 @@ import { DetailsBookingComponent } from './details-booking/details-booking.compo
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-
-
-
   ]
 })
 export class BookingsModule { }

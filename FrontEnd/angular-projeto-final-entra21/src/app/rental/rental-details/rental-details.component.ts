@@ -61,13 +61,14 @@ export class RentalDetailsComponent implements OnInit {
   }
 
   private onSuccess() {
-    this.snackBar.open('Pagamento registrado com sucesso!', '', { duration: 3000 })
+    this.snackBar.open('Cancelamento efetuado com sucesso!', '', { duration: 3000 })
+    this.onCancel();
   }
 
   private onError() {
-    this.snackBar.open('Erro ao registrar pagamento.', '', { duration: 3000 })
+    this.snackBar.open('Erro ao cancelar Locação. Verifique Pendências.', '', { duration: 3000 })
   }
-  
+
 
   onCancel() {
     this.location.back();

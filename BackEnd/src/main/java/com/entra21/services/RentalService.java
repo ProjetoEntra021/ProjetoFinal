@@ -20,6 +20,7 @@ import com.entra21.entities.enums.RentalStatus;
 import com.entra21.entities.enums.RentalType;
 import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.exceptions.InvalidRentalPeriodException;
+import com.entra21.exceptions.PenddingPaymentsException;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.BookingRepository;
 import com.entra21.repositories.PaymentRepository;
@@ -91,12 +92,16 @@ public class RentalService {
 		// if it's delivered or not
 		entity.setRentalStatus(RentalStatus.CANCELED);
 		for (Payment p : entity.getPayments()) {
-			if (p.getExpirationDate().isAfter(hoje) && p.getPaymentStatus() == PaymentStatus.WAITINGPAYMENT) {
+			if (p.getPaymentStatus() == PaymentStatus.PENDING) {
+				entity.setRentalStatus(RentalStatus.PENDING);
+			} else if (p.getExpirationDate().isAfter(hoje) && p.getPaymentStatus() != PaymentStatus.PENDING) {
 				Payment obj = paymentRepository.getReferenceById(p.getId());
 				obj.setPaymentStatus(PaymentStatus.CANCELED);
 				paymentRepository.save(obj);
+				entity.setRentalStatus(RentalStatus.CANCELED);
 			}
 		}
+		entity.getVehicle().setVehicleStatus(VehicleStatus.AVAILABLE);
 		return rentalRepository.save(entity);
 	}
 
@@ -168,12 +173,11 @@ public class RentalService {
 
 	public void dailyUpdateRentallStatus() {
 		List<Rental> rentals = rentalRepository.findAll();
-		for(Rental rental : rentals) {
+		for (Rental rental : rentals) {
 			rental.getPayments();
 			checkActiveOrPendingOrFinished(rental);
 			rentalRepository.save(rental);
 		}
 	}
 
-	
 }

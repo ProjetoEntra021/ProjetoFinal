@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { BookingsService } from '../../service/bookings.service';
 import { CategoryService } from '../../service/category.service';
@@ -52,13 +52,14 @@ export class CreateBookingComponent implements OnInit {
     private clientService: ClientService,
     private formBuilder: NonNullableFormBuilder,
     private snackBar: MatSnackBar,
+    private router: Router,
     private route: ActivatedRoute,
     private location: Location,
   ) { }
 
   ngOnInit(): void {
-    this.categoryService.list().subscribe((dados) => {
-      this.categories = dados;
+    this.categoryService.list().subscribe((data) => {
+      this.categories = data;
     })
     this.route.params.subscribe(params => {
       this.bookingId = params['id'];
@@ -79,23 +80,23 @@ export class CreateBookingComponent implements OnInit {
 
   getBooking() {
     this.bookingsService.getBookingById(this.bookingId).subscribe(
-      resultado => {
-        // this.getSelectedCategory(event, resultado.category.id!);
+      result => {
+        console.log(result)
         this.bookingForm.patchValue({
-          id: resultado.id,
+          id: result.id,
           client: {
-            id: resultado.client.id,
-            name: resultado.client.name,
+            id: result.client.id,
+            name: result.client.name,
           },
-          pickUpDate: resultado.pickUpDate,
-          dropOffDate: resultado.dropOffDate,
-          bookingStatus: resultado.bookingStatus,
+          pickUpDate: result.pickUpDate,
+          dropOffDate: result.dropOffDate,
+          bookingStatus: result.bookingStatus,
           category: {
-            id: resultado.category.id,
-            name: resultado.category.name,
+            id: result.category.id,
+            name: result.category.name,
           },
 
-          previewPrice: resultado.previewPrice
+          previewPrice: result.previewPrice
         });
       }
     )
@@ -103,11 +104,11 @@ export class CreateBookingComponent implements OnInit {
 
   getBookingClient() {
     this.clientService.getClientById(this.clientId).subscribe(
-      resultado => {
+      result => {
         this.bookingForm.patchValue({
           client: {
-            id: resultado.id,
-            name: resultado.name,
+            id: result.id,
+            name: result.name,
           },
         })
       }
@@ -116,18 +117,18 @@ export class CreateBookingComponent implements OnInit {
 
   onSubmit() {
     this.bookingsService.addBooking(this.bookingForm.value).subscribe({
-      next: () => this.onSuccess(),
+      next: (booking) => this.onSuccess(booking.id),
       error: (e) => this.onError()
     });
   }
 
-  private onSuccess() {
+  private onSuccess(id: number) {
     if (this.bookingId) {
       this.snackBar.open('Reserva atualizada com sucesso!', '', { duration: 3000 })
     } else {
       this.snackBar.open('Reserva realizada com sucesso!', '', { duration: 3000 })
     }
-    this.back();
+    this.router.navigate(['../main/bookings/details/' + id]), { relativeTo: this.route };
   }
 
   private onError() {
@@ -136,8 +137,8 @@ export class CreateBookingComponent implements OnInit {
 
   searchCategory() {
     this.categoryService.list().subscribe(
-      resultado => {
-        this.categories = resultado;
+      result => {
+        this.categories = result;
       },
       erro => {
         //TODO evoluir para mostrar mensagem na tela
@@ -199,6 +200,10 @@ export class CreateBookingComponent implements OnInit {
 
   back() {
     this.location.back();
+  }
+
+  createRental(id: number) {
+    this.router.navigate(['../rentals/' + id + '/add'], { relativeTo: this.route.parent })
   }
 }
 

@@ -50,8 +50,27 @@ export class DetailsBookingComponent implements OnInit {
     this.router.navigate(['../rentals/' + id + '/add'], { relativeTo: this.route.parent })
   }
 
+  onSubmit(id:number) {
+    this.bookingService.cancelBooking(id).subscribe({
+      next: () => this.onSuccess(),
+      error: (e) => this.onError()
+    });;
+  }
+
+  private onSuccess() {
+    this.snackBar.open('Cancelamento efetuado com sucesso!', '', { duration: 3000 })
+    this.onCancel();
+  }
+
+  private onError() {
+    this.snackBar.open('Erro ao cancelar Reserva.', '', { duration: 3000 })
+  }
+
   onCancel() {
     this.location.back();
   }
 
+  refreshComponent() {
+    this.ngOnInit();
+  }
 }

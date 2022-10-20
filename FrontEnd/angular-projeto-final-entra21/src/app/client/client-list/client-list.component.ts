@@ -1,10 +1,11 @@
 import { MatDialog } from '@angular/material/dialog';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Location } from '@angular/common';
 import { Client } from '../../shared/model/client';
 import { ClientService } from '../../service/client.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-client-list',
@@ -16,7 +17,7 @@ export class ClientListComponent implements OnInit {
   readonly displayedColumns: string[] = ['id','name', 'cpf', 'actions'];
   dataSource!: MatTableDataSource<Client>;
 
-
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private clientService: ClientService,
@@ -26,7 +27,11 @@ export class ClientListComponent implements OnInit {
     private route: ActivatedRoute
   ) {
 
-    this.clientService.list().subscribe(dados => this.dataSource = new MatTableDataSource<Client>(dados));
+    this.clientService.list().subscribe((dados) => {
+      this.dataSource = new MatTableDataSource<Client>(dados),
+       this.dataSource.sort = this.sort;
+    });
+
   }
 
   ngOnInit(): void {
@@ -38,6 +43,11 @@ export class ClientListComponent implements OnInit {
   onSubmit() {
   return this.clientParam;
 
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource!.filter = filterValue.trim().toLowerCase();
   }
 
   edit(id: number) {

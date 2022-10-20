@@ -1,13 +1,20 @@
 #cardHeader {
   width: 100%;
   justify-content: flex-start;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   text-align: left;
-  margin: auto;
+  // border: 1px solid red;
   height: 50px;
   color: #00796b;
 }
+
+#cardHeader p {
+  border-bottom: 1px solid;
+  width: 100%;
+  padding: 0 0 10px 5px;
+}
+
 #arrowBack {
   margin-left: 0px;
   width: fit-content;
@@ -16,10 +23,6 @@
   align-items: center;
   border-radius: 10px;
   flex: 0;
-}
-a {
-  text-decoration: none;
-  color: white;
 }
 
 #header {
@@ -39,48 +42,50 @@ a {
   padding: 5px;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 #cardForm {
-  width: 90%;
+  width: 70%;
   height: fit-content;
   color: black;
   border: 1px solid black;
   margin-left: auto;
   margin-right: auto;
+  margin-top:0;
+
 }
 
 #mainContent {
-  width: 90%;
+  height: 90vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  // justify-content: center;
+  // align-items: center;
   gap: 0px;
-  margin-left: auto;
-  margin-right: auto;
-  /* margin: auto;*/
-}
-#firstLine {
-  display: grid;
-  grid-template-columns: 100%;
-}
-#secondLine {
-  display: grid;
-  grid-template-columns: auto 33% 33%;
-}
-
-#thirdLine {
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
 }
 
 .formBlocks {
   width: 100%;
   // border: 1px solid red;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-
+  gap: 10px;
+  flex-wrap: wrap;
   justify-content: center;
+  border-bottom: 1px solid #00796b;
+  margin-bottom: 0px;
+}
+
+.formField {
+  width: 100%;
+}
+
+input {
+  height: 20px;
+  border-radius: 5px;
+  width: 100%;
 }
 
 label {
@@ -91,16 +96,19 @@ label {
   gap: 5px;
 }
 
+select {
+  height: 26px;
+  border-radius: 5px;
+}
+
 mat-card-actions {
   width: 99%;
-  margin: auto;
   margin-top: 5px;
   height: fit-content;
   padding: 0px;
-  text-align: right;
+  text-align: end;
 }
 
-legend,
 input {
   color: black;
 }
@@ -116,7 +124,46 @@ mat-label {
 #formHeader {
   height: 50px;
   font-size: 20px;
-  margin: auto;
   border: 1px solid black;
   width: 100%;
+}
+
+div.ng-tns-c106-2 {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.formLines {
+  // border: 1px solid red;
+  width: 95%;
+  gap: 5px;
+}
+
+#firstLine {
+  display: grid;
+  grid-template-columns: 50% 25% 25%;
+}
+
+// #secondLine {
+//   display: grid;
+//   grid-template-columns: 25% 25% 25% 25%;
+//   margin-bottom: 10px;
+// }
+
+.ng-tns-c107-2 {
+  height: 20px;
+}
+
+mat-card-content {
+  height: 100%;
+  overflow: auto;
+}
+
+mat-select {
+  height: 19px;
+}
+
+#optionalForm {
+  display: flex;
+  gap: 5px;
 }

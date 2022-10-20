@@ -24,7 +24,7 @@
 
       <!-- Name Column -->
       <ng-container id="idColumn" matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Cód Cliente </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Cód Cliente</mat-header-cell>
         <mat-cell *matCellDef="let client">
           {{ client.id }}
         </mat-cell>
@@ -32,7 +32,7 @@
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Nome</mat-header-cell>
         <mat-cell *matCellDef="let client">
           {{ client.name }}
         </mat-cell>
@@ -41,7 +41,7 @@
 
       <!-- Weight Column -->
       <ng-container matColumnDef="cpf">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> CPF </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>CPF</mat-header-cell>
         <mat-cell *matCellDef="let client">
           {{ client.cpf | mask: '000.000.000-00 '}}
         </mat-cell>
@@ -49,7 +49,7 @@
 
 
       <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Opções </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Opções</mat-header-cell>
         <mat-cell *matCellDef="let client">
           <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu do Cliente">
             <mat-icon>more_vert</mat-icon>
