@@ -224,58 +224,58 @@ public class TestConfig implements CommandLineRunner {
 		contactRepository.saveAll(Arrays.asList(ct3, ct4, ct5));
 
 		Booking bk2 = new Booking(null, c2, LocalDate.parse("2005-10-20"),
-				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.ACTIVE, null);
 		Booking bk6 = new Booking(null, c2, LocalDate.parse("2022-03-13"),
-				LocalDate.parse("2022-07-13"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2022-07-13"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.FINISHED, null);
 		Booking bk3 = new Booking(null, c3, LocalDate.parse("2022-10-30"),
-				LocalDate.parse("2022-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2022-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.CANCELED, null);
 		Booking bk4 = new Booking(null, c3, LocalDate.parse("2022-10-22"),
-				LocalDate.parse("2022-11-22"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2022-11-22"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.PENDING, null);
 		Booking bk5 = new Booking(null, c3, LocalDate.parse("2022-10-20"),
-				LocalDate.parse("2022-12-27"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2022-12-27"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.PENDING, null);
 		Booking bk7 = new Booking(null, c4, LocalDate.parse("2022-11-20"),
-				LocalDate.parse("2023-11-20"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2023-11-20"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.ACTIVE, null);
 		Booking bk8 = new Booking(null, c4, LocalDate.parse("2022-10-30"),
-				LocalDate.parse("2023-03-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2023-03-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.ACTIVE, null);
 		Booking bk9 = new Booking(null, c5, LocalDate.parse("2005-10-20"),
-				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.FINISHED, null);
 		Booking bk10 = new Booking(null, c6, LocalDate.parse("2022-10-30"),
-				LocalDate.parse("2023-04-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2023-04-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.CANCELED, null);
 		Booking bk11 = new Booking(null, c7, LocalDate.parse("2022-10-20"),
-				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.PENDING, null);
 		Booking bk12 = new Booking(null, c8, LocalDate.parse("2022-10-20"),
-				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.PENDING, null);
 		Booking bk13 = new Booking(null, c9, LocalDate.parse("2023-01-20"),
-				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.ACTIVE, null);
 		Booking bk14 = new Booking(null, c9, LocalDate.parse("2022-10-30"),
-				LocalDate.parse("2022-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2022-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.ACTIVE, null);
 		Booking bk15 = new Booking(null, c9, LocalDate.parse("2023-02-20"),
-				LocalDate.parse("2023-10-20"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2023-10-20"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.FINISHED, null);
 		Booking bk16 = new Booking(null, c10, LocalDate.parse("2022-11-03"),
-				LocalDate.parse("2022-11-07"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2022-11-07"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.CANCELED, null);
 		Booking bk17 = new Booking(null, c11, LocalDate.parse("2022-10-14"),
-				LocalDate.parse("2022-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2022-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.PENDING, null);
 		Booking bk18 = new Booking(null, c11, LocalDate.parse("2022-10-20"),
-				LocalDate.parse("2022-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2022-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.PENDING, null);
 		Booking bk19 = new Booking(null, c12, LocalDate.parse("2023-02-20"),
-				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), cat1,
+				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.ACTIVE, null);
 
 		bookingRepository.saveAll(Arrays.asList(bk6, bk5, bk4, bk3, bk2, bk7, bk8, bk9, bk10, bk11, bk12, bk13, bk14,
