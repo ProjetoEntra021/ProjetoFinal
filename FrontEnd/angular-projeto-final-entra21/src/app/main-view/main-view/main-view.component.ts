@@ -61,4 +61,8 @@ export class MainViewComponent implements OnInit {
     }
   }
 
+  logout() {
+    localStorage.removeItem('username');
+    this.router.navigate(['/home']);
+  }
 }
