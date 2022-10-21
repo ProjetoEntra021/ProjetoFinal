@@ -4,7 +4,9 @@
 
 [Sobre](#sobre)
 
-[Diagrama de Classes](#diagrama-de-classes)
+[Diagrama de Classes UML](#diagrama-de-classes)
+
+[Diagrama Lógico BD](#diagrama-de-bd)
 
 [Funcionalidades](#funcionalidades)
 
@@ -18,9 +20,17 @@
 ## 🚘 Sobre  <a	name="sobre"></a>
  <p align="justify">O projeto "AlôCar - Sistema de gerenciamento de aluguel de veículos" foi realizado como conclusão do curso Entra21. Consiste em um sistema de gerenciamento de locação de veículos. Esse modelo foi criado com o  propósito de auxiliar as pequenas locadoras, que normalmente atendem a motoristas de aplicativo, a administrarem de maneira prática e organizada a sua frota, reservas e locações. </p>
 
+---
+## 📝 Diagrama de classes UML<a	name="diagrama-de-classes"></a>
+ <p align="justify">Esse é o diagrana inicial do projeto, alterações foram feitas durante a produção.</p>
+
+
+<img width="755" alt="Captura de Tela 2022-10-21 às 20 12 13" src="https://user-images.githubusercontent.com/102046212/197303837-a4cc5ad1-31b5-47c4-9202-754cc485c24e.png">
 
 ---
-## 📝 Diagrama de classes <a	name="diagrama-de-classes"></a>
+## 🗒️ Diagrama Lógico BD <a	name="diagrama-de-bd"></a>
+ <p align="justify">Esse é o diagrana inicial do projeto, alterações foram feitas durante a produção.</p>
+
 
 <img width="844" alt="diagrama de classes" src="https://user-images.githubusercontent.com/102046212/197194108-7e0aa9d2-159a-4225-b503-614ef1f4057d.png">
 
@@ -28,7 +38,7 @@
 ---
 ## 💻 Funcionalidades <a	name="funcionalidades"></a>
 
- <p align="justify"> As locadoras cadatrasdas poderão acessar a ferramenta, logando em nosso portal com seu usuário e senha.</p>
+ <p align="justify"> As locadoras cadastradas poderão acessar a ferramenta, logando em nosso portal com seu usuário e senha.</p>
  
  ![alocarLog](https://user-images.githubusercontent.com/102046212/197243517-61c42dcb-582e-4e16-9528-e9fb5a40b4c2.gif)
 

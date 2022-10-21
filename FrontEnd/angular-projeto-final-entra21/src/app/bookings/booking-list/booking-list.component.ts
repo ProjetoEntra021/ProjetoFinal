@@ -17,7 +17,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class BookingListComponent implements OnInit {
 
-  readonly displayedColumns: string[] = ['bookingStatus', 'pickUpDate', 'client.name', 'category.name', 'detalhe'];
+  readonly displayedColumns: string[] = ['bookingStatus', 'pickUpDate', 'clientName', 'categoryName', 'detalhe'];
 
   dataSource!: MatTableDataSource<Booking>;
 
@@ -31,6 +31,12 @@ export class BookingListComponent implements OnInit {
     private _liveAnnouncer: LiveAnnouncer
   ) {
     this.bookingsService.list().subscribe((data) => {
+
+      for (let booking of data) {
+        booking.categoryName = booking.category.name;
+        booking.clientName = booking.client.name;
+      }
+
       this.dataSource = new MatTableDataSource<Booking>(data),
       this.dataSource.sort = this.sort;
     }
