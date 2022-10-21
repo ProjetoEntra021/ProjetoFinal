@@ -4,7 +4,7 @@
 
 [Sobre](#sobre)
 
-[Diagrama de Classes](#diagrama-de-classes)
+[Diagrama de Classes UML](#diagrama-de-classes)
 
 [Diagrama Lógico BD](#diagrama-de-bd)
 
@@ -21,14 +21,14 @@
  <p align="justify">O projeto "AlôCar - Sistema de gerenciamento de aluguel de veículos" foi realizado como conclusão do curso Entra21. Consiste em um sistema de gerenciamento de locação de veículos. Esse modelo foi criado com o  propósito de auxiliar as pequenas locadoras, que normalmente atendem a motoristas de aplicativo, a administrarem de maneira prática e organizada a sua frota, reservas e locações. </p>
 
 ---
-## 📝 Diagrama de classes <a	name="diagrama-de-classes"></a>
+## 📝 Diagrama de classes UML<a	name="diagrama-de-classes"></a>
  <p align="justify">Esse é o diagrana inicial do projeto, alterações foram feitas durante a produção.</p>
 
 
 <img width="755" alt="Captura de Tela 2022-10-21 às 20 12 13" src="https://user-images.githubusercontent.com/102046212/197303837-a4cc5ad1-31b5-47c4-9202-754cc485c24e.png">
 
 ---
-## 🗒️ Diagrama da Lógico BD <a	name="diagrama-de-bd"></a>
+## 🗒️ Diagrama Lógico BD <a	name="diagrama-de-bd"></a>
  <p align="justify">Esse é o diagrana inicial do projeto, alterações foram feitas durante a produção.</p>
 
 
