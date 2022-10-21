@@ -13,5 +13,7 @@ export interface Booking {
   category: Partial<Category>,
   bookingStatus: string,
   rental: Rental
+  categoryName?: string,
+  clientName?: string
 }
 

@@ -111,49 +111,74 @@ public class TestConfig implements CommandLineRunner {
 
 		bookingRepository.save(bk1);
 
-		Vehicle v1 = new Vehicle(null, "Corsa", "ABC1234", "11222333333", 10000.00, "120983190", "2010", cat1,
+		Vehicle v1 = new Vehicle(null, "Corsa", "ABC1234", "11222333333", 10000.00, "120983190", "2020", cat1,
 				VehicleStatus.AVAILABLE);
 
-		Vehicle v2 = new Vehicle(null, "Sandero", "DEF5678", "11222333333", 10000.00, "120983190", "2011", cat1,
+		Vehicle v2 = new Vehicle(null, "Sandero", "DEF5678", "11222333333", 10000.00, "120983190", "2021", cat1,
 				VehicleStatus.AVAILABLE);
 
-		Vehicle v3 = new Vehicle(null, "Ka", "ABC1234", "11222333333", 10000.00, "120983190", "2012", cat1,
+		Vehicle v3 = new Vehicle(null, "Ka", "ABC1234", "11222333333", 10000.00, "120983190", "2022", cat1,
 				VehicleStatus.AVAILABLE);
 
-		Vehicle v4 = new Vehicle(null, "Kwid", "ABC1234", "11222333333", 10000.00, "120983190", "2013", cat3,
+		Vehicle v4 = new Vehicle(null, "Kwid", "ABC1234", "11222333333", 10000.00, "120983190", "2018", cat3,
 				VehicleStatus.AVAILABLE);
 
-		Vehicle v5 = new Vehicle(null, "Palio", "DEF5678", "11222333333", 10000.00, "120983190", "2014", cat1,
+		Vehicle v5 = new Vehicle(null, "Palio", "DEF5678", "11222333333", 10000.00, "120983190", "2019", cat1,
 				VehicleStatus.DISABLE);
 
-		Vehicle v6 = new Vehicle(null, "Vectra", "ABC1234", "11222333333", 10000.00, "120983190", "2009", cat2,
+		Vehicle v6 = new Vehicle(null, "Vectra", "ABC1234", "11222333333", 10000.00, "120983190", "2017", cat2,
 				VehicleStatus.UNAVAILABLE);
 
-		Vehicle v7 = new Vehicle(null, "Gol", "DEF5678", "11222333333", 10000.00, "120983190", "2010", cat1,
+		Vehicle v7 = new Vehicle(null, "Gol", "DEF5678", "11222333333", 10000.00, "120983190", "2016", cat1,
 				VehicleStatus.MAINTENANCE);
 
-		Vehicle v8 = new Vehicle(null, "Corsa", "ABC1234", "11222333333", 10000.00, "120983190", "2010", cat1,
+		Vehicle v8 = new Vehicle(null, "Corsa", "ABC1234", "11222333333", 10000.00, "120983190", "2018", cat1,
 				VehicleStatus.AVAILABLE);
 
-		Vehicle v9 = new Vehicle(null, "Sandero", "DEF5678", "11222333333", 10000.00, "120983190", "2010", cat1,
+		Vehicle v9 = new Vehicle(null, "Sandero", "DEF5678", "11222333333", 10000.00, "120983190", "2019", cat1,
 				VehicleStatus.AVAILABLE);
 
-		Vehicle v10 = new Vehicle(null, "Ka", "ABC1234", "11222333333", 10000.00, "120983190", "2010", cat1,
+		Vehicle v10 = new Vehicle(null, "Ka", "ABC1234", "11222333333", 10000.00, "120983190", "2019", cat1,
 				VehicleStatus.AVAILABLE);
 
-		Vehicle v11 = new Vehicle(null, "Kwid", "ABC1234", "11222333333", 10000.00, "120983190", "2010", cat1,
+		Vehicle v11 = new Vehicle(null, "Kwid", "ABC1234", "11222333333", 10000.00, "120983190", "2020", cat1,
 				VehicleStatus.AVAILABLE);
 
-		Vehicle v12 = new Vehicle(null, "Palio", "DEF5678", "11222333333", 10000.00, "120983190", "2010", cat1,
+		Vehicle v12 = new Vehicle(null, "Palio", "DEF5678", "11222333333", 10000.00, "120983190", "2020", cat1,
 				VehicleStatus.DISABLE);
 
-		Vehicle v13 = new Vehicle(null, "Vectra", "ABC1234", "11222333333", 10000.00, "120983190", "2010", cat1,
+		Vehicle v13 = new Vehicle(null, "Vectra", "ABC1234", "11222333333", 10000.00, "120983190", "2022", cat1,
 				VehicleStatus.UNAVAILABLE);
 
-		Vehicle v14 = new Vehicle(null, "Gol", "DEF5678", "11222333333", 10000.00, "120983190", "2010", cat1,
+		Vehicle v14 = new Vehicle(null, "Gol", "DEF5678", "11222333333", 10000.00, "120983190", "2019", cat1,
 				VehicleStatus.MAINTENANCE);
+		
+		Vehicle v15 = new Vehicle(null, "Cronos", "ABC1235", "11222333333", 10000.00, "120983190", "2018", cat2,
+                VehicleStatus.AVAILABLE);
 
-		vehicleRepository.saveAll(Arrays.asList(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14));
+        Vehicle v16 = new Vehicle(null, "Virtus", "DEF5678", "11222333333", 10000.00, "120983190", "2019", cat2,
+                VehicleStatus.DISABLE);
+
+        Vehicle v17 = new Vehicle(null, "Virtus", "ABC1234", "11222333333", 10000.00, "120983190", "2021", cat2,
+                VehicleStatus.UNAVAILABLE);
+
+        Vehicle v18 = new Vehicle(null, "Onix", "DEF5678", "11222333333", 10000.00, "120983190", "2017", cat2,
+                VehicleStatus.MAINTENANCE);
+       
+        Vehicle v19 = new Vehicle(null, "Grand Siena", "ABC1234", "11222333333", 10000.00, "120983190", "2019", cat2,
+                VehicleStatus.AVAILABLE);
+
+        Vehicle v20 = new Vehicle(null, "HB20S", "DEF5678", "11222333333", 10000.00, "120983190", "2019", cat2,
+                VehicleStatus.DISABLE);
+
+        Vehicle v21 = new Vehicle(null, "Azera Exclusive V6", "ABC1234", "11222333333", 10000.00, "120983190", "2020", cat3,
+                VehicleStatus.UNAVAILABLE);
+
+        Vehicle v22 = new Vehicle(null, "A200", "DEF5678", "11222333333", 10000.00, "120983190", "2019", cat3,
+                VehicleStatus.MAINTENANCE);
+
+		vehicleRepository.saveAll(Arrays.asList(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14,
+		        v15, v16, v17, v18, v19, v20, v21, v22));
 
 		VehicleExpense ve1 = new VehicleExpense(null, "Revisão 5000km", LocalDate.now(), 110.00, v1);
 
@@ -162,6 +187,8 @@ public class TestConfig implements CommandLineRunner {
 		VehicleExpense ve2 = new VehicleExpense(null, "Revisão 10000km", LocalDate.now(), 130.00, v1);
 
 		VehicleRevenue vr2 = new VehicleRevenue(null, "Aluguel 2 semanas", LocalDate.now(), 1000.00, v1);
+		
+		
 
 		vehicleERepository.saveAll(Arrays.asList(ve1, ve2));
 
