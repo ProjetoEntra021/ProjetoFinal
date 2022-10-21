@@ -42,7 +42,7 @@ public class Rental implements Serializable {
 	private Booking booking;
 
 	@OneToOne
-	@JsonIgnoreProperties({ "chassi", "mileage", "renavam", "vehicleYear", "revenues", "expenses" })
+	@JsonIgnoreProperties({ "chassi", "mileage", "renavam", "vehicleYear", "revenues", "expenses", "company" })
 	private Vehicle vehicle;
 
 	@OneToMany(mappedBy = "rental", cascade = CascadeType.ALL, fetch= FetchType.EAGER)

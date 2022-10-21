@@ -32,6 +32,12 @@ public class ClientController {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@GetMapping(value="company/{companyId}")
+	public ResponseEntity<List<Client>> findAllByCompany(@PathVariable Long companyId){
+		List<Client> list = service.findAllByCompany(companyId);
+		return ResponseEntity.ok().body(list);
+	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Client> findById(@PathVariable Long id){
 		Client obj = service.findById(id);

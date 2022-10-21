@@ -8,12 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.entra21.entities.Address;
 import com.entra21.entities.Booking;
 import com.entra21.entities.Category;
 import com.entra21.entities.Client;
+import com.entra21.entities.Company;
 import com.entra21.entities.Contact;
+import com.entra21.entities.User;
 import com.entra21.entities.Vehicle;
 import com.entra21.entities.VehicleExpense;
 import com.entra21.entities.VehicleRevenue;
@@ -28,9 +32,9 @@ import com.entra21.repositories.AddressRepository;
 import com.entra21.repositories.BookingRepository;
 import com.entra21.repositories.CategoryRepository;
 import com.entra21.repositories.ClientRepository;
+import com.entra21.repositories.CompanyRepository;
 import com.entra21.repositories.ContactRepository;
-import com.entra21.repositories.PaymentRepository;
-import com.entra21.repositories.RentalRepository;
+import com.entra21.repositories.UserRepository;
 import com.entra21.repositories.VehicleExpenseRepository;
 import com.entra21.repositories.VehicleRepository;
 import com.entra21.repositories.VehicleRevenueRepository;
@@ -61,8 +65,6 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private BookingRepository bookingRepository;
 
-	@Autowired
-	private RentalRepository rentalRepository;
 
 	@Autowired
 	private RentalService rentalService;
@@ -76,27 +78,23 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private VehicleRevenueRepository vehicleRRepository;
 
-	@Autowired
-	private PaymentRepository paymentRepository;
 
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private CompanyRepository companyRepository;
+
+	private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	
 	@Override
 	public void run(String... args) throws Exception {
 
-		// create test registration client Mateus
-		Client c1 = new Client(null, "Mateus Bruscato", "12312312312", "1233456",
-				LocalDate.parse("01/10/1999", formatter), GenderType.MASCULINO);
-
-		clientRepository.save(c1);
-
-		Address ad1 = new Address(null, "88040425", "Servidão Maria R", "Trinda", "Florianopolis", "SC", "186",
-				"Casa 163", c1);
-
-		addressRepository.save(ad1);
-
-		Contact ct1 = new Contact(null, ContactType.EMAIL, "mateus@gmail.com", c1);
-		Contact ct2 = new Contact(null, ContactType.PHONE, "48988765432", c1);
-
-		contactRepository.saveAll(Arrays.asList(ct1, ct2));
+		Company company1 = new Company(null, "Locadora do Jorge", "009312123");
+		
+		Company company2 = new Company(null, "Locadora do Pedro", "97741231093");
+		companyRepository.saveAll(Arrays.asList(company1, company2));
+	
 
 		Category cat1 = new Category(null, "Hatch-Back", 450.00, 70.00);
 
@@ -106,52 +104,49 @@ public class TestConfig implements CommandLineRunner {
 
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
-		Booking bk1 = new Booking(null, c1, LocalDate.parse("2022-10-05"), LocalDate.parse("2022-10-26"),
-				cat1.getDayPrice(), 1400.00, cat1.getWeekPrice(), cat1, BookingStatus.ACTIVE, null);
 
-		bookingRepository.save(bk1);
 
 		Vehicle v1 = new Vehicle(null, "Corsa", "ABC1234", "11222333333", 10000.00, "120983190", "2010", cat1,
-				VehicleStatus.AVAILABLE);
+				VehicleStatus.AVAILABLE, company1);
 
 		Vehicle v2 = new Vehicle(null, "Sandero", "DEF5678", "11222333333", 10000.00, "120983190", "2011", cat1,
-				VehicleStatus.AVAILABLE);
+				VehicleStatus.AVAILABLE,company1);
 
 		Vehicle v3 = new Vehicle(null, "Ka", "ABC1234", "11222333333", 10000.00, "120983190", "2012", cat1,
-				VehicleStatus.AVAILABLE);
+				VehicleStatus.AVAILABLE,company1);
 
 		Vehicle v4 = new Vehicle(null, "Kwid", "ABC1234", "11222333333", 10000.00, "120983190", "2013", cat3,
-				VehicleStatus.AVAILABLE);
+				VehicleStatus.AVAILABLE,company1);
 
 		Vehicle v5 = new Vehicle(null, "Palio", "DEF5678", "11222333333", 10000.00, "120983190", "2014", cat1,
-				VehicleStatus.DISABLE);
+				VehicleStatus.DISABLE,company1);
 
 		Vehicle v6 = new Vehicle(null, "Vectra", "ABC1234", "11222333333", 10000.00, "120983190", "2009", cat2,
-				VehicleStatus.UNAVAILABLE);
+				VehicleStatus.UNAVAILABLE,company1);
 
 		Vehicle v7 = new Vehicle(null, "Gol", "DEF5678", "11222333333", 10000.00, "120983190", "2010", cat1,
-				VehicleStatus.MAINTENANCE);
+				VehicleStatus.MAINTENANCE,company1);
 
 		Vehicle v8 = new Vehicle(null, "Corsa", "ABC1234", "11222333333", 10000.00, "120983190", "2010", cat1,
-				VehicleStatus.AVAILABLE);
+				VehicleStatus.AVAILABLE, company2);
 
 		Vehicle v9 = new Vehicle(null, "Sandero", "DEF5678", "11222333333", 10000.00, "120983190", "2010", cat1,
-				VehicleStatus.AVAILABLE);
+				VehicleStatus.AVAILABLE, company2);
 
 		Vehicle v10 = new Vehicle(null, "Ka", "ABC1234", "11222333333", 10000.00, "120983190", "2010", cat1,
-				VehicleStatus.AVAILABLE);
-
+				VehicleStatus.AVAILABLE, company2);
+		
 		Vehicle v11 = new Vehicle(null, "Kwid", "ABC1234", "11222333333", 10000.00, "120983190", "2010", cat1,
-				VehicleStatus.AVAILABLE);
+				VehicleStatus.AVAILABLE, company2);
 
 		Vehicle v12 = new Vehicle(null, "Palio", "DEF5678", "11222333333", 10000.00, "120983190", "2010", cat1,
-				VehicleStatus.DISABLE);
+				VehicleStatus.DISABLE, company2);
 
 		Vehicle v13 = new Vehicle(null, "Vectra", "ABC1234", "11222333333", 10000.00, "120983190", "2010", cat1,
-				VehicleStatus.UNAVAILABLE);
+				VehicleStatus.UNAVAILABLE, company2);
 
 		Vehicle v14 = new Vehicle(null, "Gol", "DEF5678", "11222333333", 10000.00, "120983190", "2010", cat1,
-				VehicleStatus.MAINTENANCE);
+				VehicleStatus.MAINTENANCE, company2);
 
 		vehicleRepository.saveAll(Arrays.asList(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14));
 
@@ -167,10 +162,6 @@ public class TestConfig implements CommandLineRunner {
 
 		vehicleRRepository.saveAll(Arrays.asList(vr1, vr2));
 
-		RentalAddDTO r1 = new RentalAddDTO(bk1.getPickUpDate(), bk1.getDropOffDate(), 1350.0, RentalStatus.PENDING,
-				RentalType.APP_DRIVER, bk1.getId(), v1.getId());
-		rentalService.insert(r1);
-
 		// Payment pay1 = new Payment(null, LocalDate.parse("15/11/2022", formatter),
 		// 700.00, 0.00, PaymentStatus.WAITINGPAYMENT, r1);
 		// Payment pay2 = new Payment(null, LocalDate.parse("15/12/2022", formatter),
@@ -181,47 +172,63 @@ public class TestConfig implements CommandLineRunner {
 		// paymentRepository.saveAll(Arrays.asList(pay1,pay2,pay3));
 
 		// create test registration client Pablo
+		
+		// create test registration client Mateus
+		Client c1 = new Client(null, "Mateus Bruscato", "12312312312", "1233456",
+				LocalDate.parse("01/10/1999", formatter), GenderType.MASCULINO, company1);
 		Client c2 = new Client(null, "Pablo Alexandre M Pamplona", "00443990905", "386985233",
-				LocalDate.parse("24/07/1980", formatter), GenderType.MASCULINO);
+				LocalDate.parse("24/07/1980", formatter), GenderType.MASCULINO, company1);
 		Client c3 = new Client(null, "Tatiani Pereira Rodrigues", "08856272278", "999392428",
-				LocalDate.parse("30/10/1995", formatter), GenderType.FEMININO);
+				LocalDate.parse("30/10/1995", formatter), GenderType.FEMININO, company1);
 		Client c4 = new Client(null, "Victor Woleck", "12345678987", "234567854",
-				LocalDate.parse("03/08/1998", formatter), GenderType.MASCULINO);
+				LocalDate.parse("03/08/1998", formatter), GenderType.MASCULINO, company1);
 		Client c5 = new Client(null, "Machado de Assis", "53647829304", "476395874",
-				LocalDate.parse("21/06/1839", formatter), GenderType.MASCULINO);
+				LocalDate.parse("21/06/1839", formatter), GenderType.MASCULINO, company1);
 		Client c6 = new Client(null, "Jorge Amado", "498374950684", "594038475",
-				LocalDate.parse("10/08/1912", formatter), GenderType.MASCULINO);
+				LocalDate.parse("10/08/1912", formatter), GenderType.MASCULINO, company1);
 		Client c7 = new Client(null, "Carlos Drummond de Andrade", "94857364758", "456347524",
-				LocalDate.parse("31/10/1902", formatter), GenderType.MASCULINO);
+				LocalDate.parse("31/10/1902", formatter), GenderType.MASCULINO, company1);
 		Client c8 = new Client(null, "Clarice Lispector", "46374829374", "8495637484",
-				LocalDate.parse("09/12/1977", formatter), GenderType.FEMININO);
+				LocalDate.parse("09/12/1977", formatter), GenderType.FEMININO, company2);
 		Client c9 = new Client(null, "Cecília Meireles", "3457239865", "47927384591",
-				LocalDate.parse("01/11/1901", formatter), GenderType.FEMININO);
+				LocalDate.parse("01/11/1901", formatter), GenderType.FEMININO, company2);
 		Client c10 = new Client(null, "Vinicius de Moraes", "403948726738", "849503728394",
-				LocalDate.parse("19/10/1913", formatter), GenderType.MASCULINO);
+				LocalDate.parse("19/10/1913", formatter), GenderType.MASCULINO, company2);
 		Client c11 = new Client(null, "Lygia Fagundes Telles", "53643429304", "476378874",
-				LocalDate.parse("19/04/1917", formatter), GenderType.FEMININO);
+				LocalDate.parse("19/04/1917", formatter), GenderType.FEMININO, company2);
 		Client c12 = new Client(null, "Moacyr Scliar", "498374950666", "594066475",
-				LocalDate.parse("23/03/1937", formatter), GenderType.MASCULINO);
+				LocalDate.parse("23/03/1937", formatter), GenderType.MASCULINO, company2);
 		Client c13 = new Client(null, "Conceição Evaristo", "94857364754", "456347526",
-				LocalDate.parse("30/10/1946", formatter), GenderType.FEMININO);
+				LocalDate.parse("30/10/1946", formatter), GenderType.FEMININO, company2);
 		Client c14 = new Client(null, "Lima Barreto", "46374829374", "8495637484",
-				LocalDate.parse("09/12/1881", formatter), GenderType.MASCULINO);
+				LocalDate.parse("09/12/1881", formatter), GenderType.MASCULINO, company2);
 		Client c15 = new Client(null, "Lygia Fagundes Teles ", "3457239095", "47927544591",
-				LocalDate.parse("01/11/1923", formatter), GenderType.FEMININO);
-		clientRepository.saveAll(Arrays.asList(c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15));
+				LocalDate.parse("01/11/1923", formatter), GenderType.FEMININO, company2);
+		clientRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15));
 
+		
+		Address ad1 = new Address(null, "88040425", "Servidão Maria R", "Trinda", "Florianopolis", "SC", "186",
+				"Casa 163", c1);
+
+		addressRepository.save(ad1);
+
+		
 		Address ad2 = new Address(null, "88095000", "Av Marinheiro Max Schramm", "Estreito", "Florianopolis", "SC",
 				"2428", "Bloco 4 Apto 301",
 				c2);
 
 		addressRepository.save(ad2);
 
+		Contact ct1 = new Contact(null, ContactType.EMAIL, "mateus@gmail.com", c1);
+		Contact ct2 = new Contact(null, ContactType.PHONE, "48988765432", c1);
 		Contact ct3 = new Contact(null, ContactType.EMAIL, "pablompamplona@gmail.com", c2);
 		Contact ct4 = new Contact(null, ContactType.PHONE, "48988328778", c2);
 		Contact ct5 = new Contact(null, ContactType.EMAIL, "rodriguespereiratatiani@gmail.com", c3);
 
-		contactRepository.saveAll(Arrays.asList(ct3, ct4, ct5));
+		contactRepository.saveAll(Arrays.asList(ct1, ct2 ,ct3, ct4, ct5));
+
+		Booking bk1 = new Booking(null, c1, LocalDate.parse("2022-10-05"), LocalDate.parse("2022-10-26"),
+				cat1.getDayPrice(), 1400.00, cat1.getWeekPrice(), cat1, BookingStatus.ACTIVE, null);
 
 		Booking bk2 = new Booking(null, c2, LocalDate.parse("2005-10-20"),
 				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
@@ -278,15 +285,28 @@ public class TestConfig implements CommandLineRunner {
 				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
 				BookingStatus.ACTIVE, null);
 
-		bookingRepository.saveAll(Arrays.asList(bk6, bk5, bk4, bk3, bk2, bk7, bk8, bk9, bk10, bk11, bk12, bk13, bk14,
+		bookingRepository.saveAll(Arrays.asList(bk1, bk2, bk6, bk5, bk4, bk3, bk2, bk7, bk8, bk9, bk10, bk11, bk12, bk13, bk14,
 				bk15, bk16, bk17, bk18, bk19));
 
+		RentalAddDTO r1 = new RentalAddDTO(bk1.getPickUpDate(), bk1.getDropOffDate(), 1350.0, RentalStatus.PENDING,
+				RentalType.APP_DRIVER, bk1.getId(), v1.getId());
+		rentalService.insert(r1);
+		
 		RentalAddDTO r2 = new RentalAddDTO(bk1.getPickUpDate(), bk1.getDropOffDate(), 1400.0, RentalStatus.PENDING,
 				RentalType.PERSONAL, bk2.getId(), v2.getId());
+		
 		rentalService.insert(r2);
 
 		paymentService.dailyUpdatePaymentStatus();
 
+		
+		String password1 = passwordEncoder.encode("jorge123");
+		User user1 = new User(null ,"jorgeLocadora", password1, company1);
+		
+		String password2 = passwordEncoder.encode("pedro123");
+		User user2 = new User(null ,"pedroLocadora", password2, company2);
+		
+		userRepository.saveAll(Arrays.asList(user1, user2));
 	}
 
 }

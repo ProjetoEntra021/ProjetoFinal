@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ResponseDTO } from '../../shared/model/dto/responseDTO';
+import { UserDTO } from '../../shared/model/dto/userDTO';
 
 @Component({
   selector: 'app-home-login',
@@ -15,15 +18,29 @@ export class HomeLoginComponent implements OnInit {
   })
   constructor(
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private httpClient: HttpClient
   ) { }
 
   ngOnInit(): void {
   }
 
   login() {
+    let user: UserDTO = {
+      username: this.form.value.username!,
+      password: this.form.value.password!
+    };
 
-    localStorage.setItem('username', this.form.value.username!);
-    this.router.navigate(['/main'])
+    this.httpClient.post<ResponseDTO>("/api/login", user).subscribe((response) => {
+      if (response) {
+        sessionStorage.setItem('token', response.sessionId);
+        this.router.navigate(['/main'])
+      } else {
+        alert("Authentication failed.")
+      }
+
+    });
+
   }
+
 }

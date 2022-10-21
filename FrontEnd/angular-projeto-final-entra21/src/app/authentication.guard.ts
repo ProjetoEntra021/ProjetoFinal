@@ -20,9 +20,9 @@ export class AuthenticationGuard implements CanActivate {
       return true;
     }
 
-    let tokenUsername = localStorage.getItem('username');
+    let token = sessionStorage.getItem('token');
 
-    if (!tokenUsername) {
+    if (!token) {
       return this.router.parseUrl('/home/login')
     }
     return true;

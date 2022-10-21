@@ -1,6 +1,7 @@
 package com.entra21.services;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +11,10 @@ import org.springframework.stereotype.Service;
 import com.entra21.entities.Rental;
 import com.entra21.entities.Vehicle;
 import com.entra21.entities.VehicleRevenue;
+import com.entra21.entities.dto.VehiclesListDTO;
+import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.exceptions.ResourceNotFoundException;
+import com.entra21.repositories.CompanyRepository;
 import com.entra21.repositories.VehicleRepository;
 import com.entra21.repositories.VehicleRevenueRepository;
 
@@ -22,10 +26,23 @@ public class VehicleService {
 	
 	@Autowired
 	private VehicleRevenueRepository revenueRepository;
+	
+	@Autowired
+	private CompanyRepository companyRepository;
 
 	public List<Vehicle> findAll() {
 		return vehicleRepository.findAll();
 	}
+	
+	public List<VehiclesListDTO> findAllByCopmany(Long CompanyId) {
+		List<Vehicle> vehicles = companyRepository.findById(CompanyId).get().getVehicles();
+		List<VehiclesListDTO> vehiclesDto = new ArrayList<>();
+		for(Vehicle vehicle : vehicles) {
+			vehiclesDto.add(new VehiclesListDTO(vehicle.getId(), vehicle.getVehicleModel(), vehicle.getLicensePlate(), vehicle.getVehicleYear(), vehicle.getCategory().getName(), vehicle.getVehicleStatus() , vehicle.getCompany().getId()));
+		}
+		return vehiclesDto;
+	}
+
 
 	public Vehicle findById(Long id) {
 		Optional<Vehicle> obj = vehicleRepository.findById(id);

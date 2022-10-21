@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Router, ActivatedRoute } from '@angular/router';
+import { VehiclesListDTO } from '../../shared/model/dto/vehiclesListDTO';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class VehicleListComponent implements OnInit, AfterViewInit {
 
   //vehicles$: Observable<Vehicle[]>;
 
-  dataSource!: MatTableDataSource<Vehicle>;
+  dataSource!: MatTableDataSource<VehiclesListDTO>;
 
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -34,9 +35,9 @@ export class VehicleListComponent implements OnInit, AfterViewInit {
     this.vehicleService.list().subscribe((dados) => {
       console.log(dados);
 
-      for (let vehicle of dados) {
-        vehicle.categoryName = vehicle.category.name;
-      }
+      // for (let vehicle of dados) {
+      //   vehicle.categoryName = vehicle.category.name;
+      // }
 
 
       this.dataSource = new MatTableDataSource(dados);

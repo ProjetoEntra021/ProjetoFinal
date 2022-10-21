@@ -30,7 +30,7 @@ public class Category implements Serializable{
 	private Double dayPrice;
 	
 	@OneToMany(mappedBy="category")
-	@JsonIgnoreProperties({"revenues", "expenses"})
+	@JsonIgnoreProperties({"revenues", "expenses", "company"})
 	private List<Vehicle> vehicles = new ArrayList<>();
 	
 	@OneToMany(mappedBy="category")

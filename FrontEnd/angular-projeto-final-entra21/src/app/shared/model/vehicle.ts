@@ -14,5 +14,5 @@ export interface Vehicle {
   vehicleStatus: string,
   revenues: VehicleRevenue[],
   expenses: VehicleExpense[],
-  categoryName?: string
+  categoryName?: string,
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.entra21.entities.Vehicle;
+import com.entra21.entities.dto.VehiclesListDTO;
 import com.entra21.services.VehicleService;
 
 @RestController
@@ -26,9 +27,9 @@ public class VehicleController {
 	private VehicleService service;
 	
 
-	@GetMapping
-	public ResponseEntity<List<Vehicle>> findAll(){
-		List<Vehicle> list = service.findAll();
+	@GetMapping(value = "/company/{companyId}")
+	public ResponseEntity<List<VehiclesListDTO>> findAll(@PathVariable Long companyId){
+		List<VehiclesListDTO> list = service.findAllByCopmany(companyId);
 		return ResponseEntity.ok().body(list);
 	}
 	

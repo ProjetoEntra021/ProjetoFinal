@@ -1,27 +1,20 @@
 package com.entra21.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.entra21.entities.enums.VehicleStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -33,6 +26,10 @@ public class Vehicle implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@ManyToOne
+	@JsonIgnoreProperties({"vehicles", "clients", "rentals", "bookings", "categories"})
+	private Company company;
 	
 	@NotNull
 	@NotEmpty
@@ -75,7 +72,7 @@ public class Vehicle implements Serializable {
 	public Vehicle() {}
 
 	public Vehicle(Long id, String vehicleModel,  String licensePlate, String chassi, Double mileage, String renavam, String vehicleYear,
-			Category category, VehicleStatus vehicleStatus) {
+			Category category, VehicleStatus vehicleStatus, Company company) {
 		super();
 		this.id = id;
 		this.vehicleModel = vehicleModel;
@@ -85,6 +82,7 @@ public class Vehicle implements Serializable {
 		this.vehicleYear = vehicleYear;
 		this.category = category;
 		this.renavam = renavam;
+		this.company = company;
 		setVehicleStatus(vehicleStatus);
 	}
 
@@ -168,6 +166,14 @@ public class Vehicle implements Serializable {
 
 	public List<VehicleExpense> getExpenses() {
 		return expenses;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 	
