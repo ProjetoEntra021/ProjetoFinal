@@ -1,0 +1,31 @@
+<mat-card class="rentalsDashboard">
+  <mat-card-title>Meus Negócios</mat-card-title>
+  <mat-card-content>
+    <div id="informationBlock">
+      <h2>Visão Geral</h2>
+      <div id="itensBlock">
+        <input matInput id="activeRentals" type="text" readonly name="activeRentals" value="28 locaçoes ativas">
+        <input matInput id="penddingRentals" type="text" readonly name="pendingRentals" value="02 clientes com pendências">
+        <input matInput id="expiredSoonRentals" type="text" readonly name="expiredSoonRentals" value="11 contratos a vencer em até 7 dias">
+      </div>
+    </div>
+    <div id="informationBlock">
+      <h2>Faturamento Previsto</h2>
+      <div id="itensBlock">
+        <input matInput id="paymentsNextWeek" type="text" readonly name="paymentsNextWeek" value="R$ 4.500,00 em até 7 dias">
+        <input matInput id="paymentsNextMonth" type="text" readonly name="paymentsNextMonth" value="R$ 16.500,00 em até 30 dias">
+        <input matInput id="rentalsNextExpired" type="text" readonly name="rentalsNextExpired" value="11 contratos a vencer em até 7 dias">
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-divider inset></mat-divider>
+  <mat-card-actions>
+    <div id="buttons">
+      <button color="primary" mat-raised-button>Acessar Clientes</button>
+    <button color="primary" mat-raised-button>Acessar Contratos</button>
+    </div>
+  </mat-card-actions>
+  <mat-card-footer>
+    <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+  </mat-card-footer>
+</mat-card>

@@ -1,0 +1,66 @@
+.vehicleDashboard{
+  margin: 20px;
+  height: auto;
+  font-size: 1.2em;
+}
+mat-card-title{
+  margin-top: 20px;
+  border-bottom: #00796b 1px solid;
+  padding-bottom: 5px;
+  color: #00796b;
+}
+input{
+  border: none;
+  display: block;
+  width: 100%;
+  font-size: 1.2em;
+  margin: 5px;
+  font-weight: bold;
+}
+#itensBlock{
+  border-left: #00796b 2px solid;
+  margin-left: 40px;
+}
+
+h2{
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #00796b;
+}
+
+#informationBlock{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+mat-card-content{
+  margin-bottom: 30px;
+}
+
+#buttons{
+  justify-content: flex-end;
+  height: 30px;
+}
+
+button {
+  float: right;
+}
+
+#totalVehicles {
+  color: blue;
+}
+
+#rentalVehicles {
+  color: rgb(228, 228, 11);
+}
+
+#maintenanceVehicle, #maintenanceExpense {
+  color: red;
+}
+
+#availableVehicles, #operationalResult {
+  color: green;
+}
+
+
+
