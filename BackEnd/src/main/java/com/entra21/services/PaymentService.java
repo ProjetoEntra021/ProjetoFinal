@@ -33,7 +33,7 @@ public class PaymentService {
 	private RentalService rentalService;
 	
 	@Autowired
-	private VehicleService vehicleService;
+	private VehicleRevenueService vehicleRevenueService;
 	
 	public List<Payment> findAll() {
 		return paymentRepository.findAll();
@@ -63,7 +63,7 @@ public class PaymentService {
 		entity.setPaymentStatus(PaymentStatus.PAID);
 		Rental paymentRental = entity.getRental();
 		
-		vehicleService.addVehicleRevenue(paymentRental, entity.getPaymentValue());
+		vehicleRevenueService.addVehicleRevenue(paymentRental, entity.getPaymentValue());
 		
 		if(paymentRental.getRentalStatus() != RentalStatus.CANCELED) {
 			rentalService.checkActiveOrPendingOrFinished(paymentRental);

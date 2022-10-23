@@ -28,7 +28,7 @@ public class VehicleService {
 	@Autowired
 	private PaymentService paymentService;
   
-  @Autowired
+	@Autowired
 	private VehicleRevenueRepository revenueRepository;
 
 
