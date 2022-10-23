@@ -43,7 +43,7 @@
           <div id="thirdLine">
             <mat-form-field formGroupName="category" class="formField" appearance="fill">
               <mat-label>Tipo de reserva :</mat-label>
-              <mat-select formControlName="id">
+              <mat-select>
                 <mat-option *ngFor="let type of rentalTypes" [value]="type"
                             (onSelectionChange)="updatePriceValue($event, type)">
                   {{type | rentalType}}
