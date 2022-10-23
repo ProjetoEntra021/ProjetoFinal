@@ -9,7 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.entra21.entities.Rental;
 import com.entra21.entities.Vehicle;
+
+import com.entra21.entities.VehicleExpense;
+import com.entra21.entities.dto.VehicleDashDTO;
+import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.entities.VehicleRevenue;
+
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.VehicleRepository;
 import com.entra21.repositories.VehicleRevenueRepository;
@@ -21,7 +26,11 @@ public class VehicleService {
 	private VehicleRepository vehicleRepository;
 	
 	@Autowired
+	private PaymentService paymentService;
+  
+  @Autowired
 	private VehicleRevenueRepository revenueRepository;
+
 
 	public List<Vehicle> findAll() {
 		return vehicleRepository.findAll();
@@ -55,6 +64,27 @@ public class VehicleService {
 		entity.setCategory(obj.getCategory());
 		entity.setVehicleModel(obj.getVehicleModel());
 	}
+
+
+	public VehicleDashDTO findData() {
+		List<Vehicle> vehicles = vehicleRepository.findAll();
+		LocalDate hoje = LocalDate.now();
+		VehicleDashDTO data = new VehicleDashDTO();
+		Double dataExpense = 0.0;
+		for (Vehicle v : vehicles) {
+			for (VehicleExpense expense : v.getExpenses()) {
+				if (expense.getDate().isAfter(hoje.minusMonths(1))) {
+					dataExpense += expense.getValue();
+				}	
+			}
+		}
+		data.setMonthExpense(dataExpense);
+		data.setMonthBilling(paymentService.totalPaymentsReceived());
+		data.setTotalPenddingPayments(paymentService.totalPenddingPayments());
+		data.setNextBilling(paymentService.nextPayments());
+		return data;
+	}
+
 	
 	public void addVehicleRevenue(Rental obj, Double paymentValue) {
 		Long vehicleId = obj.getVehicle().getId();
@@ -62,4 +92,5 @@ public class VehicleService {
 		VehicleRevenue vr = new VehicleRevenue(null, "Pagamento de locação", LocalDate.now(), paymentValue, vh);
 		revenueRepository.save(vr);
 	}
+
 }

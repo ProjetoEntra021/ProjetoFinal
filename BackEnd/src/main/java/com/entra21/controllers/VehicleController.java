@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.entra21.entities.Vehicle;
+import com.entra21.entities.dto.VehicleDashDTO;
 import com.entra21.services.VehicleService;
 
 @RestController
@@ -36,6 +37,13 @@ public class VehicleController {
 	public ResponseEntity<Vehicle> findById(@PathVariable Long id){
 		Vehicle obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
+	}
+	
+	@GetMapping(value = "/dash")
+	public ResponseEntity<VehicleDashDTO> findData() {
+		VehicleDashDTO data = service.findData();
+		return ResponseEntity.ok().body(data);
+		
 	}
 	
 	@PostMapping

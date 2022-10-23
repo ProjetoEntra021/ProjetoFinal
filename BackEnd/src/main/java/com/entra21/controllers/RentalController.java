@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.entra21.entities.Rental;
+import com.entra21.entities.dto.HeaderDashDTO;
 import com.entra21.entities.dto.RentalAddDTO;
 import com.entra21.services.RentalService;
 
@@ -38,6 +39,13 @@ public class RentalController {
 	public ResponseEntity<Rental> findById(@PathVariable Long id){
 		Rental obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
+	}
+	
+	@GetMapping(value = "/header")
+	public ResponseEntity<HeaderDashDTO> getHeaderData() {
+		HeaderDashDTO obj = service.getHeaderData();
+		return ResponseEntity.ok().body(obj);
+		
 	}
 	
 	@PostMapping

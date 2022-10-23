@@ -1,11 +1,16 @@
+#fullDashboard {
+  margin: 30px;
+  background-color: rgba(255, 255, 255, 0.685);
+  border-radius: 5px;
+  height: 85%;
+
+}
+
 #mainDashboard {
-  width: 90%;
+  width: 100%;
   margin: auto;
-  margin-top: 40px;
   display: grid;
   grid-template-columns: 50% 50%;
   height: 550px;
   font-size: 1.2em;
-
-
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first, tap } from 'rxjs';
 import { Vehicle } from '../shared/model/vehicle';
+import { VehicleDashDTO } from '../shared/model/dto/vehicleDashDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,9 @@ export class VehicleService {
 
   update(record: Partial<Vehicle>) {
     return this.httpClient.put<Partial<Vehicle>>(this.API + '/' + record.id, record).pipe(first());
+  }
+
+  getData() {
+    return this.httpClient.get<VehicleDashDTO>(this.API + '/dash').pipe(tap(data => console.log(data)), first());
   }
 }

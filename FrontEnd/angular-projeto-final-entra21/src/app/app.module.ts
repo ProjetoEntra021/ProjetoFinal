@@ -24,6 +24,7 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
     AppComponent,
 
 
+
   ],
   imports: [
     BrowserModule,

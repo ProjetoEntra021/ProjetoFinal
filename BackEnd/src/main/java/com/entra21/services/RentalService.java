@@ -14,13 +14,13 @@ import com.entra21.entities.Booking;
 import com.entra21.entities.Payment;
 import com.entra21.entities.Rental;
 import com.entra21.entities.Vehicle;
+import com.entra21.entities.dto.HeaderDashDTO;
 import com.entra21.entities.dto.RentalAddDTO;
 import com.entra21.entities.enums.PaymentStatus;
 import com.entra21.entities.enums.RentalStatus;
 import com.entra21.entities.enums.RentalType;
 import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.exceptions.InvalidRentalPeriodException;
-import com.entra21.exceptions.PenddingPaymentsException;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.BookingRepository;
 import com.entra21.repositories.PaymentRepository;
@@ -41,6 +41,8 @@ public class RentalService {
 
 	@Autowired
 	private PaymentRepository paymentRepository;
+	
+	
 
 	public List<Rental> findAll() {
 		return rentalRepository.findAll();
@@ -178,6 +180,53 @@ public class RentalService {
 			checkActiveOrPendingOrFinished(rental);
 			rentalRepository.save(rental);
 		}
+	}
+	
+	public Integer totalActiveRentals() {
+		List<Rental> list = rentalRepository.findAll();
+		int qtdActiveRentals = 0;
+		for(Rental r : list) {
+			if(r.getRentalStatus() == RentalStatus.ACTIVE) {
+				qtdActiveRentals++;
+			}
+		}
+		return qtdActiveRentals;	
+	}
+	
+	public Integer totalToExpiredRentals() {
+		List<Rental> list = rentalRepository.findAll();
+		int totalToExpiredRentals = 0;
+		LocalDate hoje = LocalDate.now();
+		for (Rental r : list) {
+			if(r.getDropOffDate().isAfter(hoje) && r.getDropOffDate().isBefore(hoje.plusWeeks(1))) {
+				totalToExpiredRentals++;
+			}
+		}
+		return totalToExpiredRentals;
+		
+	}
+
+	public HeaderDashDTO getHeaderData() {
+		HeaderDashDTO headerData = new HeaderDashDTO();
+		List<Vehicle> vList = vehicleRepository.findAll();
+		int qtdAvailableVehicles = 0;
+		for(Vehicle v : vList) {
+			if (v.getVehicleStatus() == VehicleStatus.AVAILABLE) {
+				qtdAvailableVehicles++;
+			}
+		}
+		headerData.setTotalAvailableVehicles(qtdAvailableVehicles);
+		headerData.setTotalActiveRentals(totalActiveRentals());
+		List<Payment> pList = paymentRepository.findAll();
+		int totalQtdPenddingPayments = 0;
+		for (Payment p : pList) {
+			if (p.getPaymentStatus() == PaymentStatus.PENDING) {
+				totalQtdPenddingPayments++;
+			}
+		}
+		headerData.setTotalQtdPenddingPayments(totalQtdPenddingPayments);
+		headerData.setTotalToExpiredRentals(totalToExpiredRentals());
+		return headerData;
 	}
 
 }
