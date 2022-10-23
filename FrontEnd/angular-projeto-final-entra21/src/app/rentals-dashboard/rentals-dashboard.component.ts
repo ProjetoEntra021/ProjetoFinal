@@ -1,4 +1,7 @@
+import { PaymentService } from './../service/payment.service';
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { paymentDashDTO } from '../shared/model/dto/paymentDashDTO';
 
 @Component({
   selector: 'app-rentals-dashboard',
@@ -7,7 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RentalsDashboardComponent implements OnInit {
 
-  constructor() { }
+  readonly displayedColumns: string[] = ['client','expirationDate', 'paymentValue'];
+  dataSource!: MatTableDataSource<paymentDashDTO>;
+
+  constructor(
+    private paymentService: PaymentService
+  ) {
+
+    this.paymentService.list().subscribe((dados) => {
+      this.dataSource = new MatTableDataSource<paymentDashDTO>(dados);
+    });
+  }
 
   ngOnInit(): void {
   }

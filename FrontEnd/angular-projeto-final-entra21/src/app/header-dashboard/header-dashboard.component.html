@@ -1,0 +1,31 @@
+<div id="headerDashboard">
+  <mat-card class="headerItem" *ngIf="headerDashDTO$ | async as headerDashDTO">
+    <div id="titleGroup">
+      <input type="text" [(ngModel)] = "headerDashDTO.totalAvailableVehicles"  id="title">
+      <img src="../../../assets/safety-car.png">
+    </div>
+    <span id="labelInput">Veículos disponíveis}}</span>
+  </mat-card>
+  <mat-card class="headerItem" *ngIf="headerDashDTO$ | async as headerDashDTO">
+    <div id="titleGroup">
+      <input type="text" [(ngModel)] = "headerDashDTO.totalActiveRentals" id="title">
+      <img src="../../../assets/authentication.png">
+    </div>
+    <span id="labelInput">Locações ativas</span>
+  </mat-card>
+  <mat-card class="headerItem" *ngIf="headerDashDTO$ | async as headerDashDTO">
+    <div id="titleGroup">
+      <input id="paymentsDelayed" [(ngModel)] = "headerDashDTO.totalQtdPenddingPayments" id="title">
+      <img id="money" src="../../../assets/money.png">
+    </div>
+    <span id="labelInput">Contratos em atraso</span>
+  </mat-card>
+
+  <mat-card class="headerItem" *ngIf="headerDashDTO$ | async as headerDashDTO">
+    <div id="titleGroup">
+      <input id="toExpiredRentals" [(ngModel)] = "headerDashDTO.totalToExpiredRentals" id="title">
+      <img id="money" src="../../../assets/cooperation.png">
+    </div>
+    <span id="labelInput">Contratos a vencer</span>
+  </mat-card>
+</div>

@@ -1,5 +1,6 @@
 package com.entra21.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.entra21.entities.Vehicle;
+import com.entra21.entities.VehicleExpense;
+import com.entra21.entities.dto.VehicleDashDTO;
+import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.VehicleRepository;
 
@@ -15,6 +19,9 @@ public class VehicleService {
 
 	@Autowired
 	private VehicleRepository vehicleRepository;
+	
+	@Autowired
+	private PaymentService paymentService;
 
 	public List<Vehicle> findAll() {
 		return vehicleRepository.findAll();
@@ -47,5 +54,36 @@ public class VehicleService {
 		entity.setVehicleStatus(obj.getVehicleStatus());
 		entity.setCategory(obj.getCategory());
 		entity.setVehicleModel(obj.getVehicleModel());
+	}
+
+	public VehicleDashDTO findData() {
+		List<Vehicle> vehicles = vehicleRepository.findAll();
+		LocalDate hoje = LocalDate.now();
+		VehicleDashDTO data = new VehicleDashDTO();
+		Double dataExpense = 0.0;
+		for (Vehicle v : vehicles) {
+			for (VehicleExpense expense : v.getExpenses()) {
+				if (expense.getDate().isAfter(hoje.minusMonths(1))) {
+					dataExpense += expense.getValue();
+				}	
+			}
+		}
+		data.setMonthExpense(dataExpense);
+		data.setMonthBilling(paymentService.totalPaymentsReceived());
+		data.setTotalPenddingPayments(paymentService.totalPenddingPayments());
+		data.setNextBilling(paymentService.nextPayments());
+		return data;
+	}
+	
+	public Integer totalAvailableVehicles() {
+		List<Vehicle> list = vehicleRepository.findAll();
+		int qtdAvailableVehicles = 0;
+		for(Vehicle v : list) {
+			if (v.getVehicleStatus() == VehicleStatus.AVAILABLE) {
+				qtdAvailableVehicles++;
+			}
+		}
+		return qtdAvailableVehicles;
+		
 	}
 }

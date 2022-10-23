@@ -20,7 +20,10 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.entra21.entities.enums.VehicleStatus;
+import com.entra21.services.VehicleService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -71,6 +74,8 @@ public class Vehicle implements Serializable {
 	
 	@OneToMany(mappedBy="vehicle")
 	private List<VehicleExpense> expenses = new ArrayList<>();
+	
+	
 
 	public Vehicle() {}
 
@@ -169,7 +174,11 @@ public class Vehicle implements Serializable {
 	public List<VehicleExpense> getExpenses() {
 		return expenses;
 	}
-
 	
+	public Integer totalAvailableVehicles() {
+		VehicleService service = new VehicleService();
+		return service.totalAvailableVehicles();
+
+	}
 	
 }

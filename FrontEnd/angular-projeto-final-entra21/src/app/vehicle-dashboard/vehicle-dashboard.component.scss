@@ -3,64 +3,88 @@
   height: auto;
   font-size: 1.2em;
 }
-mat-card-title{
-  margin-top: 20px;
-  border-bottom: #00796b 1px solid;
-  padding-bottom: 5px;
-  color: #00796b;
+mat-card {
+  padding: 0;
+  padding-bottom: 15px;
+  height: 200px;
 }
-input{
+
+
+#titleBox {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 10px;
+  background-color: #455a64;
+  margin: 0;
+}
+mat-card-title {
+  color: #ffffff;
+}
+// input{
+//   font-size: 1.2em;
+//   margin: 5px;
+//   font-weight: bold;
+
+// }
+#itensBlock{
+  margin: 20px;
+}
+
+#monthBillingBox, #nextBillingBox, #monthExpenseBox, #totalPenddingPaymentsBox {
+  padding-top: 5px;
+  margin: 5px;
+}
+label {
+  padding-top: 5px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 0;
+  color: #ffffff;
+}
+#monthBilling, #nextBilling, #monthExpense, #totalPenddingPayments {
+  margin-right: 5px;
+  margin-top: 0;
+  padding-bottom: 5px;
+  margin-left: auto;
+  width: auto;
+  // border: 1px solid red;
   border: none;
   display: block;
-  width: 100%;
-  font-size: 1.2em;
-  margin: 5px;
-  font-weight: bold;
-}
-#itensBlock{
-  border-left: #00796b 2px solid;
-  margin-left: 40px;
+  text-align: right;
+  color: #ffffff;
+  font-size: 1.3em;
+  font-weight: 500;
 }
 
-h2{
-  margin-top: 40px;
-  margin-bottom: 20px;
-  color: #00796b;
+#monthBillingBox, #monthBilling {
+  background-color: rgb(28, 28, 190);
 }
-
-#informationBlock{
-  margin-top: 20px;
-  margin-bottom: 20px;
+#nextBillingBox, #nextBilling {
+  background-color: rgb(29, 122, 29);
+}
+#monthExpenseBox, #monthExpense {
+  background-color: rgb(212, 212, 41);
+}
+#totalPenddingPaymentsBox, #totalPenddingPayments {
+  background-color: rgb(190, 27, 27);
 }
 
 mat-card-content{
   margin-bottom: 30px;
+  height: 225px;
 }
 
 #buttons{
   justify-content: flex-end;
   height: 30px;
+  margin-right: 20px;
+  padding-bottom: 5px;
 }
 
 button {
   float: right;
 }
 
-#totalVehicles {
-  color: blue;
-}
-
-#rentalVehicles {
-  color: rgb(228, 228, 11);
-}
-
-#maintenanceVehicle, #maintenanceExpense {
-  color: red;
-}
-
-#availableVehicles, #operationalResult {
-  color: green;
-}
 
 
 

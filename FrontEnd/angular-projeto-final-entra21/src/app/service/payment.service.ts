@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Payment } from '../shared/model/payment';
 import { first } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { paymentDashDTO } from '../shared/model/dto/paymentDashDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,9 @@ export class PaymentService {
 
   confirmPayment(id: number) {
     return this.httpClient.patch<Payment>(this.API + '/' + id, undefined).pipe(tap((data) => console.log(data)), first());
+  }
+
+  list() {
+    return this.httpClient.get<paymentDashDTO[]>(this.API + '/dash').pipe(tap(data => console.log(data)), first());
   }
 }

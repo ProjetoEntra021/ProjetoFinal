@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,13 +13,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.entra21.entities.enums.PaymentStatus;
+import com.entra21.repositories.PaymentRepository;
+import com.entra21.services.PaymentService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 
 @Entity
 public class Payment implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -122,6 +128,15 @@ public class Payment implements Serializable{
 			setPaymentStatus(paymentStatus.PENDING);
 		}
 	}
+	
+	public Integer totalQtdPenddingPayments() {
+		PaymentService service = new PaymentService();
+		return service.totalQtdPenddingPayments();
+		
+	}
+	
+	
+	
 	
 
 }
