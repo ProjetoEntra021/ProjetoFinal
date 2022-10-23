@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -92,21 +90,23 @@ public class RentalService {
 	public Rental cancelRental(Long id) {
 		LocalDate hoje = LocalDate.now();
 		Rental entity = rentalRepository.getReferenceById(id);
+		// Check if there's a payment pending, but need to have a status from vehicle,
+		// if it's delivered or not
+		entity.setRentalStatus(RentalStatus.CANCELED);
 		for (Payment p : entity.getPayments()) {
 			if (p.getPaymentStatus() == PaymentStatus.PENDING) {
-				entity.setRentalStatus(RentalStatus.PENDING);			
-			}
-			else if (p.getExpirationDate().isAfter(hoje) && p.getPaymentStatus() != PaymentStatus.PENDING) {
+				entity.setRentalStatus(RentalStatus.PENDING);
+			} else if (p.getExpirationDate().isAfter(hoje) && p.getPaymentStatus() != PaymentStatus.PENDING) {
 				Payment obj = paymentRepository.getReferenceById(p.getId());
 				obj.setPaymentStatus(PaymentStatus.CANCELED);
 				paymentRepository.save(obj);
-				entity.setRentalStatus(RentalStatus.CANCELED);		
+				entity.setRentalStatus(RentalStatus.CANCELED);
 			}
 		}
 		entity.getVehicle().setVehicleStatus(VehicleStatus.AVAILABLE);
 		return rentalRepository.save(entity);
 	}
-	
+
 	private void updateData(Rental entity, Rental obj) {
 		entity.setPickUpDate(obj.getPickUpDate());
 		entity.setDropOffDate(obj.getDropOffDate());
@@ -136,29 +136,49 @@ public class RentalService {
 	}
 
 	private void createPersonalPayment(Rental obj) {
-		Payment payment = new Payment(null, obj.getPickUpDate(), obj.getTotalValue(), 0.0,
-				PaymentStatus.WAITINGPAYMENT, obj);
+		Payment payment = new Payment(null, obj.getPickUpDate(), obj.getTotalValue(), 0.0, PaymentStatus.WAITINGPAYMENT,
+				obj);
 		obj.getPayments().add(payment);
 
 	}
 
-	public void checkRentalFinishStatus(Rental obj) {
-		List<Payment> payments = obj.getPayments();
-		Collections.sort(payments, new Comparator<Payment>() {
-			public int compare(Payment p1, Payment p2) {
-				return p1.getExpirationDate().compareTo(p2.getExpirationDate());
-			}
-		});
-		for (Payment payment : payments) {
-			if (payment.getPaymentStatus() != PaymentStatus.PAID) {
+	public void checkActiveOrPendingOrFinished(Rental obj) {
+		// Rental is not canceled by previous implementation
+
+		// Check if it's PENDING
+		boolean isPaid = true;
+		for (Payment payment : obj.getPayments()) {
+			if (payment.getPaymentStatus() == PaymentStatus.PENDING) {
+				obj.setRentalStatus(RentalStatus.PENDING);
+				rentalRepository.save(obj);
 				return;
-			} else {
-				long diffDays = LocalDate.now().until(obj.getDropOffDate(), ChronoUnit.DAYS);
-				if (diffDays < 0) {
-					obj.setRentalStatus(RentalStatus.FINISHED);
-					obj.getVehicle().setVehicleStatus(VehicleStatus.AVAILABLE);
-				}
 			}
+			if (payment.getPaymentStatus() != PaymentStatus.PAID) {
+				isPaid = false;
+			}
+		}
+
+		// If not PENDING, check if it's ACTIVE OR FINISHED
+		if (isPaid == true) {
+			// Need to check if vehicle was delivered or not
+			long diffDays = LocalDate.now().until(obj.getDropOffDate(), ChronoUnit.DAYS);
+			if (diffDays < 0) {
+				obj.setRentalStatus(RentalStatus.FINISHED);
+				obj.getVehicle().setVehicleStatus(VehicleStatus.AVAILABLE);
+			}
+		} else {
+			obj.setRentalStatus(RentalStatus.ACTIVE);
+		}
+
+		rentalRepository.save(obj);
+	}
+
+	public void dailyUpdateRentallStatus() {
+		List<Rental> rentals = rentalRepository.findAll();
+		for (Rental rental : rentals) {
+			rental.getPayments();
+			checkActiveOrPendingOrFinished(rental);
+			rentalRepository.save(rental);
 		}
 	}
 	
@@ -208,4 +228,5 @@ public class RentalService {
 		headerData.setTotalToExpiredRentals(totalToExpiredRentals());
 		return headerData;
 	}
+
 }

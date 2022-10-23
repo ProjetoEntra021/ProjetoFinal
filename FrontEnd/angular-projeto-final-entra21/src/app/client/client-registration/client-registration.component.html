@@ -36,8 +36,8 @@
 
             <mat-form-field class="formField" appearance="fill">
               <mat-label>CPF: </mat-label>
-              <input matInput id="cpf" formControlName="cpf" type="text"
-                mask="000.000.000-00" placeholder="Digite o CPF do cliente" />
+              <input matInput id="cpf" formControlName="cpf" type="text" mask="000.000.000-00"
+                     placeholder="Digite o CPF do cliente" />
             </mat-form-field>
 
             <mat-form-field class="formField" appearance="fill">
@@ -51,7 +51,8 @@
               <div id="thirdLine">
                 <mat-form-field class="formField" appearance="fill">
                   <mat-label>CEP: </mat-label>
-                  <input matInput id="cep" formControlName="cep" type="text" mask="00000-000" placeholder="Digite o CEP" />
+                  <input (focusout)="consultaViaCep(cep.value)" #cep matInput id="cep" formControlName="cep" type="text"
+                         mask="00000-000" placeholder="Digite o CEP" />
                 </mat-form-field>
 
                 <mat-form-field class="formField" appearance="fill">
@@ -94,8 +95,7 @@
                 <div formGroupName=0>
                   <mat-form-field class="formField" appearance="fill">
                     <mat-label>E-mail:</mat-label>
-                    <input matInput id="email" formControlName="description" type="email"
-                           />
+                    <input matInput id="email" formControlName="description" type="email" />
                   </mat-form-field>
                 </div>
               </div>
@@ -103,8 +103,8 @@
                 <div formGroupName=1>
                   <mat-form-field class="formField" appearance="fill">
                     <mat-label>Telefone: </mat-label>
-                    <input matInput id="phone" formControlName="description" type="text"
-                        prefix="+55 " mask="(00) 00000-0000" placeholder="Informe um telefone válido" />
+                    <input matInput id="phone" formControlName="description" type="text" prefix="+55 "
+                           mask="(00) 0000-0000" placeholder="Informe um telefone válido" />
                   </mat-form-field>
                 </div>
               </div>

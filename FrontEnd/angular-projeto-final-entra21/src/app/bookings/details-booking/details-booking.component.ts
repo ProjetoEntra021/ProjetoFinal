@@ -37,15 +37,6 @@ export class DetailsBookingComponent implements OnInit {
 
       if (this.bookingId) {
         this.booking$ = this.bookingService.getBookingById(this.bookingId);
-        //   resultado => {
-        //     if (resultado) {
-        //       this.booking = resultado;
-        //     }
-        //     else {
-        //       this.snackBar.open('Erro ao consultar reserva.', '', { duration: 3000 })
-        //     }
-        //   }
-        // )
       }
     }
     )
