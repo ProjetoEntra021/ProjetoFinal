@@ -129,17 +129,7 @@ public class PaymentService {
 		}
 		return totalPenddingPayments;
 	}
-	public Integer totalQtdPenddingPayments() {
-		List<Payment> list = paymentRepository.findAll();
-		int totalQtdPenddingPayments = 0;
-		for (Payment p : list) {
-			if (p.getPaymentStatus() == PaymentStatus.PENDING) {
-				totalQtdPenddingPayments++;
-			}
-		}
-		return totalQtdPenddingPayments;
-		
-	}
+
 	
 	public Double nextPayments() {
 		LocalDate hoje = LocalDate.now();

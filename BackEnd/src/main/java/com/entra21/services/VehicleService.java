@@ -74,16 +74,5 @@ public class VehicleService {
 		data.setNextBilling(paymentService.nextPayments());
 		return data;
 	}
-	
-	public Integer totalAvailableVehicles() {
-		List<Vehicle> list = vehicleRepository.findAll();
-		int qtdAvailableVehicles = 0;
-		for(Vehicle v : list) {
-			if (v.getVehicleStatus() == VehicleStatus.AVAILABLE) {
-				qtdAvailableVehicles++;
-			}
-		}
-		return qtdAvailableVehicles;
-		
-	}
+
 }

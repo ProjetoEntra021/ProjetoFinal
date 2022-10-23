@@ -129,11 +129,7 @@ public class Payment implements Serializable{
 		}
 	}
 	
-	public Integer totalQtdPenddingPayments() {
-		PaymentService service = new PaymentService();
-		return service.totalQtdPenddingPayments();
-		
-	}
+
 	
 	
 	

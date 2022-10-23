@@ -53,12 +53,12 @@ public class HeaderDashDTO implements Serializable {
 	}
 
 
-	public Integer getTotalPenddingPayments() {
+	public Integer getTotalQtdPenddingPayments() {
 		return totalQtdPenddingPayments;
 	}
 
 
-	public void setTotalPenddingPayments(Integer totalQtdPenddingPayments) {
+	public void setTotalQtdPenddingPayments(Integer totalQtdPenddingPayments) {
 		this.totalQtdPenddingPayments = totalQtdPenddingPayments;
 	}
 

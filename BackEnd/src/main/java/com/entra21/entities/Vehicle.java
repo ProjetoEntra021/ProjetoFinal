@@ -175,10 +175,6 @@ public class Vehicle implements Serializable {
 		return expenses;
 	}
 	
-	public Integer totalAvailableVehicles() {
-		VehicleService service = new VehicleService();
-		return service.totalAvailableVehicles();
-
-	}
+	
 	
 }

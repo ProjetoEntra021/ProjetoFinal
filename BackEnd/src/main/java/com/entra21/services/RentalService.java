@@ -1,7 +1,6 @@
 package com.entra21.services;
 
 import java.time.LocalDate;
-import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PatchMapping;
 
 import com.entra21.entities.Booking;
 import com.entra21.entities.Payment;
@@ -25,7 +23,6 @@ import com.entra21.entities.enums.RentalStatus;
 import com.entra21.entities.enums.RentalType;
 import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.exceptions.InvalidRentalPeriodException;
-import com.entra21.exceptions.PenddingPaymentsException;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.BookingRepository;
 import com.entra21.repositories.PaymentRepository;
@@ -46,6 +43,7 @@ public class RentalService {
 
 	@Autowired
 	private PaymentRepository paymentRepository;
+	
 	
 
 	public List<Rental> findAll() {
@@ -189,12 +187,24 @@ public class RentalService {
 	}
 
 	public HeaderDashDTO getHeaderData() {
-		Vehicle v = new Vehicle();
-		Payment p = new Payment();
 		HeaderDashDTO headerData = new HeaderDashDTO();
-		headerData.setTotalAvailableVehicles(v.totalAvailableVehicles());
+		List<Vehicle> vList = vehicleRepository.findAll();
+		int qtdAvailableVehicles = 0;
+		for(Vehicle v : vList) {
+			if (v.getVehicleStatus() == VehicleStatus.AVAILABLE) {
+				qtdAvailableVehicles++;
+			}
+		}
+		headerData.setTotalAvailableVehicles(qtdAvailableVehicles);
 		headerData.setTotalActiveRentals(totalActiveRentals());
-		headerData.setTotalPenddingPayments(p.totalQtdPenddingPayments());
+		List<Payment> pList = paymentRepository.findAll();
+		int totalQtdPenddingPayments = 0;
+		for (Payment p : pList) {
+			if (p.getPaymentStatus() == PaymentStatus.PENDING) {
+				totalQtdPenddingPayments++;
+			}
+		}
+		headerData.setTotalQtdPenddingPayments(totalQtdPenddingPayments);
 		headerData.setTotalToExpiredRentals(totalToExpiredRentals());
 		return headerData;
 	}
