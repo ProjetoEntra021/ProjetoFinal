@@ -17,7 +17,7 @@ import { VehiclesListDTO } from '../../shared/model/dto/vehiclesListDTO';
 })
 export class VehicleListComponent implements OnInit, AfterViewInit {
 
-  readonly displayedColumns: string[] = ['status', 'categoryName', 'licensePlate', 'vehicleModel', 'vehicleYear', 'actions'];
+  readonly displayedColumns: string[] = ['vehicleStatus', 'categoryName', 'licensePlate', 'vehicleModel', 'vehicleYear', 'actions'];
 
   //vehicles$: Observable<Vehicle[]>;
 

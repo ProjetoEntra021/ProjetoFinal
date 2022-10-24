@@ -21,7 +21,7 @@ import { Payment } from '../../shared/model/payment';
 })
 export class RentalListComponent implements OnInit {
 
-  readonly displayedColumns: string[] = ['status', 'rentalType', 'pickUpDate', 'dropOffDate', 'totalValue', 'vehicleModel', 'actions'];
+  readonly displayedColumns: string[] = ['rentalStatus', 'rentalType', 'pickUpDate', 'dropOffDate', 'totalValue', 'vehicleModel', 'actions'];
 
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
 
