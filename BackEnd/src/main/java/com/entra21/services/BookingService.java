@@ -1,6 +1,5 @@
 package com.entra21.services;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,14 +8,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.entra21.entities.Booking;
-import com.entra21.entities.Payment;
-import com.entra21.entities.Rental;
 import com.entra21.entities.enums.BookingStatus;
-import com.entra21.entities.enums.PaymentStatus;
-import com.entra21.entities.enums.RentalStatus;
-import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.BookingRepository;
+import com.entra21.repositories.CompanyRepository;
 
 @Service
 public class BookingService {
@@ -24,10 +19,17 @@ public class BookingService {
 	@Autowired
 	private BookingRepository bookingRepository;
 
+	@Autowired
+	private CompanyRepository companyRepository;
+	
 	public List<Booking> findAll() {
 		return bookingRepository.findAll();
 	}
 
+	public List<Booking> findAllByCompany(Long id) {
+		return companyRepository.findById(id).get().getBookings();
+	}
+	
 	public Booking findById(Long id) {
 		Optional<Booking> obj = bookingRepository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));

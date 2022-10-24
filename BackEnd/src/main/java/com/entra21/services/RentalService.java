@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.entra21.entities.Booking;
+import com.entra21.entities.Company;
 import com.entra21.entities.Payment;
 import com.entra21.entities.Rental;
 import com.entra21.entities.Vehicle;
@@ -20,9 +21,9 @@ import com.entra21.entities.enums.RentalStatus;
 import com.entra21.entities.enums.RentalType;
 import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.exceptions.InvalidRentalPeriodException;
-import com.entra21.exceptions.PenddingPaymentsException;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.BookingRepository;
+import com.entra21.repositories.CompanyRepository;
 import com.entra21.repositories.PaymentRepository;
 import com.entra21.repositories.RentalRepository;
 import com.entra21.repositories.VehicleRepository;
@@ -41,11 +42,19 @@ public class RentalService {
 
 	@Autowired
 	private PaymentRepository paymentRepository;
+	
+	@Autowired
+	private CompanyRepository companyRepository;
+
 
 	public List<Rental> findAll() {
 		return rentalRepository.findAll();
 	}
 
+	public List<Rental> findAllByCompany(Long id) {
+		return companyRepository.findById(id).get().getRentals();
+	}
+	
 	public Rental findById(Long id) {
 		Optional<Rental> obj = rentalRepository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
@@ -54,9 +63,10 @@ public class RentalService {
 	public Rental insert(RentalAddDTO obj) {
 		Vehicle ve = vehicleRepository.findById(obj.getVehicleId()).get();
 		Booking bo = bookingRepository.findById(obj.getBookingId()).get();
-
+		Company co = companyRepository.findById(obj.getCompanyId()).get();
+				
 		Rental objRental = new Rental(0L, obj.getRentalType(), obj.getPickUpDate(), obj.getDropOffDate(),
-				RentalStatus.ACTIVE, obj.getTotalValue(), bo, ve, new ArrayList<Payment>(), null);
+				RentalStatus.ACTIVE, obj.getTotalValue(), bo, ve, new ArrayList<Payment>(), null, co);
 
 		if (objRental.getRentalType() == RentalType.APP_DRIVER) {
 			if (calculateRentalPeriod(objRental).getDays() % 7 == 0) {

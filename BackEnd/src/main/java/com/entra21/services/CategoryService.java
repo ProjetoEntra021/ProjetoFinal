@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.entra21.entities.Category;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.CategoryRepository;
+import com.entra21.repositories.CompanyRepository;
 
 @Service	
 public class CategoryService {
@@ -16,10 +17,17 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
+	@Autowired
+	private CompanyRepository companyRepository;
+	
 	public List<Category> findAll() {
 		return categoryRepository.findAll();
 	}
 
+	public List<Category> findAllByCompany(Long id) {
+		return companyRepository.findById(id).get().getCategories();
+	}
+	
 	public Category findById(Long id) {
 		Optional<Category> obj = categoryRepository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));

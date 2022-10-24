@@ -96,13 +96,19 @@ public class TestConfig implements CommandLineRunner {
 		companyRepository.saveAll(Arrays.asList(company1, company2));
 	
 
-		Category cat1 = new Category(null, "Hatch-Back", 450.00, 70.00);
+		Category cat1 = new Category(null, "Hatch-Back", 450.00, 70.00, company1);
 
-		Category cat2 = new Category(null, "Sedã", 550.00, 90.00);
+		Category cat2 = new Category(null, "Sedã", 550.00, 90.00, company1);
 
-		Category cat3 = new Category(null, "Sedã Luxo", 700.00, 110.00);
+		Category cat3 = new Category(null, "Sedã Luxo", 700.00, 110.00, company1);
 
-		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+		Category cat4 = new Category(null, "Hatch-Back", 500.00, 80.00, company2);
+
+		Category cat5 = new Category(null, "Sedã", 600.00, 100.00, company2);
+
+		Category cat6 = new Category(null, "Sedã Luxo", 750.00, 120.00, company2);
+		
+		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6));
 
 
 
@@ -228,72 +234,72 @@ public class TestConfig implements CommandLineRunner {
 		contactRepository.saveAll(Arrays.asList(ct1, ct2 ,ct3, ct4, ct5));
 
 		Booking bk1 = new Booking(null, c1, LocalDate.parse("2022-10-05"), LocalDate.parse("2022-10-26"),
-				cat1.getDayPrice(), 1400.00, cat1.getWeekPrice(), cat1, BookingStatus.ACTIVE, null);
+				cat1.getDayPrice(), 1400.00, cat1.getWeekPrice(), cat1, BookingStatus.ACTIVE, null, company1);
 
 		Booking bk2 = new Booking(null, c2, LocalDate.parse("2005-10-20"),
 				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.ACTIVE, null);
+				BookingStatus.ACTIVE, null, company1);
 		Booking bk6 = new Booking(null, c2, LocalDate.parse("2022-03-13"),
 				LocalDate.parse("2022-07-13"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.FINISHED, null);
+				BookingStatus.FINISHED, null, company1);
 		Booking bk3 = new Booking(null, c3, LocalDate.parse("2022-10-30"),
 				LocalDate.parse("2022-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.CANCELED, null);
+				BookingStatus.CANCELED, null, company1);
 		Booking bk4 = new Booking(null, c3, LocalDate.parse("2022-10-22"),
 				LocalDate.parse("2022-11-22"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.PENDING, null);
+				BookingStatus.PENDING, null, company1);
 		Booking bk5 = new Booking(null, c3, LocalDate.parse("2022-10-20"),
 				LocalDate.parse("2022-12-27"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.PENDING, null);
+				BookingStatus.PENDING, null, company1);
 		Booking bk7 = new Booking(null, c4, LocalDate.parse("2022-11-20"),
 				LocalDate.parse("2023-11-20"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.ACTIVE, null);
+				BookingStatus.ACTIVE, null, company1);
 		Booking bk8 = new Booking(null, c4, LocalDate.parse("2022-10-30"),
 				LocalDate.parse("2023-03-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.ACTIVE, null);
+				BookingStatus.ACTIVE, null, company1);
 		Booking bk9 = new Booking(null, c5, LocalDate.parse("2005-10-20"),
 				LocalDate.parse("2005-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.FINISHED, null);
+				BookingStatus.FINISHED, null, company1);
 		Booking bk10 = new Booking(null, c6, LocalDate.parse("2022-10-30"),
 				LocalDate.parse("2023-04-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.CANCELED, null);
+				BookingStatus.CANCELED, null, company1);
 		Booking bk11 = new Booking(null, c7, LocalDate.parse("2022-10-20"),
 				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.PENDING, null);
+				BookingStatus.PENDING, null, company1);
 		Booking bk12 = new Booking(null, c8, LocalDate.parse("2022-10-20"),
 				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.PENDING, null);
+				BookingStatus.PENDING, null, company2);
 		Booking bk13 = new Booking(null, c9, LocalDate.parse("2023-01-20"),
 				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.ACTIVE, null);
+				BookingStatus.ACTIVE, null, company2);
 		Booking bk14 = new Booking(null, c9, LocalDate.parse("2022-10-30"),
 				LocalDate.parse("2022-12-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.ACTIVE, null);
+				BookingStatus.ACTIVE, null, company2);
 		Booking bk15 = new Booking(null, c9, LocalDate.parse("2023-02-20"),
 				LocalDate.parse("2023-10-20"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.FINISHED, null);
+				BookingStatus.FINISHED, null, company2);
 		Booking bk16 = new Booking(null, c10, LocalDate.parse("2022-11-03"),
 				LocalDate.parse("2022-11-07"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.CANCELED, null);
+				BookingStatus.CANCELED, null, company2);
 		Booking bk17 = new Booking(null, c11, LocalDate.parse("2022-10-14"),
 				LocalDate.parse("2022-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.PENDING, null);
+				BookingStatus.PENDING, null, company2);
 		Booking bk18 = new Booking(null, c11, LocalDate.parse("2022-10-20"),
 				LocalDate.parse("2022-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.PENDING, null);
+				BookingStatus.PENDING, null, company2);
 		Booking bk19 = new Booking(null, c12, LocalDate.parse("2023-02-20"),
 				LocalDate.parse("2023-10-30"), cat1.getDayPrice(), cat1.getWeekPrice(), 0.0, cat1,
-				BookingStatus.ACTIVE, null);
+				BookingStatus.ACTIVE, null, company2);
 
 		bookingRepository.saveAll(Arrays.asList(bk1, bk2, bk6, bk5, bk4, bk3, bk2, bk7, bk8, bk9, bk10, bk11, bk12, bk13, bk14,
 				bk15, bk16, bk17, bk18, bk19));
 
 		RentalAddDTO r1 = new RentalAddDTO(bk1.getPickUpDate(), bk1.getDropOffDate(), 1350.0, RentalStatus.PENDING,
-				RentalType.APP_DRIVER, bk1.getId(), v1.getId());
+				RentalType.APP_DRIVER, bk1.getId(), v1.getId(), company1.getId());
 		rentalService.insert(r1);
 		
-		RentalAddDTO r2 = new RentalAddDTO(bk1.getPickUpDate(), bk1.getDropOffDate(), 1400.0, RentalStatus.PENDING,
-				RentalType.PERSONAL, bk2.getId(), v2.getId());
+		RentalAddDTO r2 = new RentalAddDTO(bk2.getPickUpDate(), bk2.getDropOffDate(), 1400.0, RentalStatus.PENDING,
+				RentalType.PERSONAL, bk2.getId(), v2.getId(), company1.getId());
 		
 		rentalService.insert(r2);
 

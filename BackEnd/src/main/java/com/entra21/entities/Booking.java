@@ -29,6 +29,10 @@ public class Booking implements Serializable {
 	@JsonIgnoreProperties({ "bookings", "contacts", "addresses" })
 	private Client client;
 
+	@ManyToOne
+	@JsonIgnoreProperties({"vehicles", "clients", "rentals", "bookings", "categories", "companyUsers"})
+	private Company company;
+	
 	private LocalDate pickUpDate;
 
 	private LocalDate dropOffDate;
@@ -40,6 +44,7 @@ public class Booking implements Serializable {
 	private Double previewPrice;
 
 	@ManyToOne
+	@JsonIgnoreProperties("bookings")
 	private Category category;
 
 	private Integer bookingStatus;
@@ -53,7 +58,7 @@ public class Booking implements Serializable {
 
 	public Booking(Long id, Client client, LocalDate pickUpDate, LocalDate dropOffDate, Double dayPrice,
 			Double weekPrice, Double previewPrice,
-			Category category, BookingStatus bookingStatus, Rental rental) {
+			Category category, BookingStatus bookingStatus, Rental rental, Company company) {
 		super();
 		this.id = id;
 		this.client = client;
@@ -65,6 +70,7 @@ public class Booking implements Serializable {
 		setBookingStatus(bookingStatus);
 		this.rental = rental;
 		this.previewPrice = previewPrice;
+		this.company = company;
 	}
 
 	public Long getId() {
@@ -150,6 +156,11 @@ public class Booking implements Serializable {
 	public void setPreviewPrice(Double previewPrice) {
 		this.previewPrice = previewPrice;
 	}
+
+	public Company getCompany() {
+		return company;
+	}
+
 
 	public void updateStatus() {
 		LocalDate today = LocalDate.now();

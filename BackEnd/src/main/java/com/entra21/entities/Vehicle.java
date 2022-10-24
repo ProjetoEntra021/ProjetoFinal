@@ -15,6 +15,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.entra21.entities.enums.VehicleStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -28,7 +29,7 @@ public class Vehicle implements Serializable {
 	private Long id;
 	
 	@ManyToOne
-	@JsonIgnoreProperties({"vehicles", "clients", "rentals", "bookings", "categories"})
+	@JsonIgnoreProperties({"vehicles", "clients", "rentals", "bookings", "categories", "companyUsers"})
 	private Company company;
 	
 	@NotNull
@@ -64,9 +65,11 @@ public class Vehicle implements Serializable {
 	private Integer vehicleStatus;
 	
 	@OneToMany(mappedBy="vehicle")
+	@JsonIgnoreProperties("vehicle")
 	private List<VehicleRevenue> revenues = new ArrayList<>();
 	
 	@OneToMany(mappedBy="vehicle")
+	@JsonIgnoreProperties("vehicle")
 	private List<VehicleExpense> expenses = new ArrayList<>();
 
 	public Vehicle() {}
@@ -167,7 +170,7 @@ public class Vehicle implements Serializable {
 	public List<VehicleExpense> getExpenses() {
 		return expenses;
 	}
-
+	
 	public Company getCompany() {
 		return company;
 	}

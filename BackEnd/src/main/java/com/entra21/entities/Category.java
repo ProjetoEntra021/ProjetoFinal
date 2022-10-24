@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,18 +35,24 @@ public class Category implements Serializable{
 	private List<Vehicle> vehicles = new ArrayList<>();
 	
 	@OneToMany(mappedBy="category")
+	@JsonIgnoreProperties("category")
 	private List<Booking> bookings = new ArrayList<>();
+	
+	@ManyToOne
+	@JsonIgnoreProperties({"clients", "vehicles", "users", "categories"})
+	private Company company;
 	
 	public Category() {
 		
 	}
 
-	public Category(Long id, String name, Double weekPrice, Double dayPrice) {
+	public Category(Long id, String name, Double weekPrice, Double dayPrice, Company company) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.weekPrice = weekPrice;
 		this.dayPrice = dayPrice;
+		this.company = company;
 	}
 
 	public Long getId() {

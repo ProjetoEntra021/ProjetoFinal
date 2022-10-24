@@ -35,10 +35,7 @@ public class Client implements Serializable{
 	private LocalDate birthDate;
 	
 	private GenderType gender;
-	
-	@ManyToOne
-	@JsonIgnoreProperties({"clients", "vehicles", "users"})
-	private Company company;
+
 	
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Address> addresses = new ArrayList<>();
@@ -48,6 +45,10 @@ public class Client implements Serializable{
 	
 	@OneToMany(mappedBy = "client")
 	private List<Booking> bookings = new ArrayList<>();
+	
+	@ManyToOne
+	@JsonIgnoreProperties({"clients", "vehicles", "users"})
+	private Company company;
 	
 	public Client() {}
 	

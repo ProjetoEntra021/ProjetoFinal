@@ -1,6 +1,7 @@
 import { Category } from "./category";
 import { Rental } from './rental';
 import { Client } from './client';
+import { Company } from './company';
 
 export interface Booking {
   id: number,
@@ -12,6 +13,7 @@ export interface Booking {
   previewPrice: number,
   category: Partial<Category>,
   bookingStatus: string,
-  rental: Rental
+  rental: Rental,
+  company: Company | Partial<Company>,
 }
 

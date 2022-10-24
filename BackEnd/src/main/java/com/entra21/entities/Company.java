@@ -19,7 +19,7 @@ public class Company implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String name;
@@ -37,17 +37,17 @@ public class Company implements Serializable{
 	@JsonIgnoreProperties("company")
 	private List<Client> clients = new ArrayList<>();
 	
-//	@OneToMany(mappedBy = "company")
-//	@JsonIgnoreProperties("company")
-//	private List<Rental> rentals= new ArrayList<>();
+	@OneToMany(mappedBy = "company")
+	@JsonIgnoreProperties("company")
+	private List<Rental> rentals= new ArrayList<>();
 	
-//	@OneToMany(mappedBy = "company")
-//	@JsonIgnoreProperties("company")
-//	private List<Booking> bookings = new ArrayList<>();
+	@OneToMany(mappedBy = "company")
+	@JsonIgnoreProperties("company")
+	private List<Booking> bookings = new ArrayList<>();
 	
-//	@OneToMany(mappedBy = "company")
-//	@JsonIgnoreProperties("company")
-//	private List<Category> categories = new ArrayList<>();
+	@OneToMany(mappedBy = "company")
+	@JsonIgnoreProperties("company")
+	private List<Category> categories = new ArrayList<>();
 	
 	public Company() {
 		super();
@@ -92,6 +92,7 @@ public class Company implements Serializable{
 	}
 
 
+	@JsonIgnore
 	public List<User> getUsers() {
 		return companyUsers;
 	}
@@ -101,12 +102,7 @@ public class Company implements Serializable{
 		return vehicles;
 	}
 
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
+	@JsonIgnore
 	public List<User> getCompanyUsers() {
 		return companyUsers;
 	}
@@ -116,6 +112,19 @@ public class Company implements Serializable{
 		return clients;
 	}
 
+	@JsonIgnore
+	public List<Booking> getBookings() {
+		return bookings;
+	}
 
+	@JsonIgnore
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	@JsonIgnore
+	public List<Rental> getRentals() {
+		return rentals;
+	}
 
 }

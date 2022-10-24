@@ -33,6 +33,9 @@ export class CreateBookingComponent implements OnInit {
     dayPrice: 0,
     weekPrice: 0,
     previewPrice: 0,
+    company: this.formBuilder.group({
+      id: Number(sessionStorage.getItem('token'))
+    })
   })
 
   categories: Category[] = [];
@@ -116,6 +119,7 @@ export class CreateBookingComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.bookingForm.value)
     this.bookingsService.addBooking(this.bookingForm.value).subscribe({
       next: (booking) => this.onSuccess(booking.id),
       error: (e) => this.onError()

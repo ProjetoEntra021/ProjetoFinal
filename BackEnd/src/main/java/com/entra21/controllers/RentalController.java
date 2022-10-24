@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.entra21.entities.Booking;
 import com.entra21.entities.Rental;
 import com.entra21.entities.dto.RentalAddDTO;
 import com.entra21.services.RentalService;
@@ -31,6 +32,12 @@ public class RentalController {
 	@GetMapping
 	public ResponseEntity<List<Rental>> findAll(){
 		List<Rental> list = service.findAll();
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping(value="company/{companyId}")
+	public ResponseEntity<List<Rental>> findAllByCompany(@PathVariable Long companyId){
+		List<Rental> list = service.findAllByCompany(companyId);
 		return ResponseEntity.ok().body(list);
 	}
 	

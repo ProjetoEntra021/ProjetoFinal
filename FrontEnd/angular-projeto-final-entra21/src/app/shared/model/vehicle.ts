@@ -1,6 +1,7 @@
 import { Category } from "./category";
 import { VehicleRevenue } from './vehicleRevenue';
 import { VehicleExpense } from './vehicleExpense';
+import { Company } from './company';
 
 export interface Vehicle {
   id: number,
@@ -15,4 +16,5 @@ export interface Vehicle {
   revenues: VehicleRevenue[],
   expenses: VehicleExpense[],
   categoryName?: string,
+  company: Company | Partial<Company>
 }

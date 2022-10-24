@@ -9,12 +9,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BookingsService {
 
-  private readonly API = 'api/bookings/';
+  private readonly API = 'api/bookings';
 
   constructor(private httpClient: HttpClient) { }
 
   list() {
-    return this.httpClient.get<Booking[]>(this.API)
+    return this.httpClient.get<Booking[]>(this.API + '/company/' + sessionStorage.getItem('token'))
       .pipe(tap(data => console.log(data)),
         first());
   }
@@ -27,7 +27,7 @@ export class BookingsService {
   }
 
   cancelBooking(id: number) {
-    return this.httpClient.patch<Booking>(this.API + '/' + id , undefined).pipe(first());
+    return this.httpClient.patch<Booking>(this.API + '/' + id, undefined).pipe(first());
   }
 
 }

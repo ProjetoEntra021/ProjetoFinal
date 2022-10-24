@@ -28,6 +28,7 @@ export class RentalAddComponent implements OnInit {
 
     bookingId: [<number | undefined>(undefined)],
     vehicleId: [<number | undefined>(undefined), Validators.required],
+    companyId: Number(sessionStorage.getItem('token'))
   })
 
   optionalForm = this.formBuilder.group({
@@ -79,7 +80,7 @@ export class RentalAddComponent implements OnInit {
 
   private onSuccess(id: number) {
     this.snackBar.open('Locação cadastrada com sucesso!', '', { duration: 3000 })
-    this.router.navigate(['../main/rentals/details/' + id]), {relativeTo: this.route};
+    this.router.navigate(['../main/rentals/details/' + id]), { relativeTo: this.route };
   }
 
   private onError() {
