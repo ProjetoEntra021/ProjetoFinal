@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.entra21.entities.Client;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.ClientRepository;
+import com.entra21.repositories.CompanyRepository;
 
 @Service
 public class ClientService {
@@ -16,10 +17,17 @@ public class ClientService {
 	@Autowired
 	private ClientRepository clientRepository;
 
+	@Autowired
+	private CompanyRepository companyRepository;
+	
 	public List<Client> findAll() {
 		return clientRepository.findAll();
 	}
 
+	public List<Client> findAllByCompany(Long id) {
+		return companyRepository.findById(id).get().getClients();
+	}
+	
 	public Client findById(Long id) {
 		Optional<Client> obj = clientRepository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));

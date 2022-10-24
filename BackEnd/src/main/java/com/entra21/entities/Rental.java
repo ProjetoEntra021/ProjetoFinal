@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -42,7 +43,7 @@ public class Rental implements Serializable {
 	private Booking booking;
 
 	@OneToOne
-	@JsonIgnoreProperties({ "chassi", "mileage", "renavam", "vehicleYear", "revenues", "expenses" })
+	@JsonIgnoreProperties({ "chassi", "mileage", "renavam", "vehicleYear", "revenues", "expenses", "company" })
 	private Vehicle vehicle;
 
 	@OneToMany(mappedBy = "rental", cascade = CascadeType.ALL, fetch= FetchType.EAGER)
@@ -53,12 +54,16 @@ public class Rental implements Serializable {
 	@JsonIgnoreProperties("rental")
 	private Receipt receipt;
 
+	@ManyToOne
+	@JsonIgnoreProperties({"clients", "vehicles", "users"})
+	private Company company;
+	
 	public Rental() {
 	}
 
 	public Rental(Long id, RentalType rentalType, LocalDate pickUpDate, LocalDate dropOffDate,
 			RentalStatus rentalStatus, Double totalValue, Booking booking, Vehicle vehicle, List<Payment> payments,
-			Receipt receipt) {
+			Receipt receipt, Company company) {
 		super();
 		this.id = id;
 		this.rentalType = rentalType;
@@ -70,6 +75,7 @@ public class Rental implements Serializable {
 		this.vehicle = vehicle;
 		this.payments = payments;
 		this.receipt = receipt;
+		this.company = company;
 	}
 
 	public Long getId() {
@@ -152,4 +158,9 @@ public class Rental implements Serializable {
 		this.payments = payments;
 	}
 
+	public Company getCompany() {
+		return company;
+	}
+
+	
 }

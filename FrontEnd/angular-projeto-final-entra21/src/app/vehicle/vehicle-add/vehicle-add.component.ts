@@ -7,6 +7,7 @@ import { Category } from 'src/app/shared/model/category';
 import { CategoryService } from '../../service/category.service';
 import { VehicleService } from '../../service/vehicle.service';
 import { ActivatedRoute } from '@angular/router';
+import { Company } from '../../shared/model/company';
 
 @Component({
   selector: 'app-vehicle-add',
@@ -27,6 +28,9 @@ export class VehicleAddComponent implements OnInit {
     category: this.formBuilder.group({
       id: 0,
       name: ''
+    }),
+    company: this.formBuilder.group({
+      id: Number(sessionStorage.getItem('token'))
     })
   })
 

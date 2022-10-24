@@ -8,20 +8,23 @@
       <div id="itensBlock">
         <div id="monthBillingBox">
           <label for="monthBilling">Faturamento últimos 30 dias:</label>
-          <input matInput id="monthBilling"  type="text" readonly
-           name="monthBilling" [(ngModel)] = "vehicleDashDTO.monthBilling" >
+          <input matInput id="monthBilling" type="text" readonly name="monthBilling"
+                 value="{{ vehicleDashDTO.monthBilling | currency}}">
         </div>
         <div id="nextBillingBox">
           <label for="nextBilling">Faturamento previsto em até 7 dias:</label>
-          <input matInput id="nextBilling" type="text" readonly name="nextBilling" [(ngModel)] = "vehicleDashDTO.nextBilling">
+          <input matInput id="nextBilling" type="text" readonly name="nextBilling"
+                 value="{{ vehicleDashDTO.nextBilling }} ">
         </div>
         <div id="monthExpenseBox">
           <label for="monthExpense">Despesa manutenção últimos 30 dias:</label>
-          <input matInput id="monthExpense" type="text" readonly name="monthExpense" [(ngModel)] = "vehicleDashDTO.monthExpense">
+          <input matInput id="monthExpense" type="text" readonly name="monthExpense"
+                 value="{{ vehicleDashDTO.monthExpense | currency }}">
         </div>
         <div id="totalPenddingPaymentsBox">
           <label for="totalPenddingPayments">Total recebimentos em atraso:</label>
-          <input matInput id="totalPenddingPayments" type="text" readonly name="totalPenddingPayments" [(ngModel)] = "vehicleDashDTO.totalPenddingPayments">
+          <input matInput id="totalPenddingPayments" type="text" readonly name="totalPenddingPayments"
+                 value="{{ vehicleDashDTO.totalPenddingPayments | currency }}">
         </div>
       </div>
     </div>

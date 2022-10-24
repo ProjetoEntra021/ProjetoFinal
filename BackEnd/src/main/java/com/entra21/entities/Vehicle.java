@@ -1,20 +1,14 @@
 package com.entra21.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
@@ -30,57 +24,62 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class Vehicle implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	@ManyToOne
+	@JsonIgnoreProperties({ "vehicles", "clients", "rentals", "bookings", "categories", "companyUsers" })
+	private Company company;
+
 	@NotNull
 	@NotEmpty
 	private String vehicleModel;
 
 	@NotNull
 	@NotEmpty
-	@Column(length=7)
+	@Column(length = 7)
 	private String licensePlate;
 
 	@NotNull
 	@NotEmpty
 	private String chassi;
-	
+
 	private Double mileage;
-	
+
 	@NotNull
 	@NotEmpty
-	private String  renavam;
-	
+	private String renavam;
+
 	@NotNull
 	@NotEmpty
 	private String vehicleYear;
 
-	//Not possible adding @NotEmpty annotation
+	// Not possible adding @NotEmpty annotation
 	@ManyToOne
 	@JsonIgnoreProperties("vehicles")
 	private Category category;
-	
-	//Not possible adding @NotEmpty annotation
+
+	// Not possible adding @NotEmpty annotation
 	@NotNull
 	private Integer vehicleStatus;
-	
-	@OneToMany(mappedBy="vehicle")
+
+	@OneToMany(mappedBy = "vehicle")
+	@JsonIgnoreProperties("vehicle")
 	private List<VehicleRevenue> revenues = new ArrayList<>();
-	
-	@OneToMany(mappedBy="vehicle")
+
+	@OneToMany(mappedBy = "vehicle")
+	@JsonIgnoreProperties("vehicle")
 	private List<VehicleExpense> expenses = new ArrayList<>();
-	
-	
 
-	public Vehicle() {}
+	public Vehicle() {
+	}
 
-	public Vehicle(Long id, String vehicleModel,  String licensePlate, String chassi, Double mileage, String renavam, String vehicleYear,
-			Category category, VehicleStatus vehicleStatus) {
+	public Vehicle(Long id, String vehicleModel, String licensePlate, String chassi, Double mileage, String renavam,
+			String vehicleYear,
+			Category category, VehicleStatus vehicleStatus, Company company) {
 		super();
 		this.id = id;
 		this.vehicleModel = vehicleModel;
@@ -90,6 +89,7 @@ public class Vehicle implements Serializable {
 		this.vehicleYear = vehicleYear;
 		this.category = category;
 		this.renavam = renavam;
+		this.company = company;
 		setVehicleStatus(vehicleStatus);
 	}
 
@@ -100,7 +100,6 @@ public class Vehicle implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getVehicleModel() {
 		return vehicleModel;
@@ -125,7 +124,7 @@ public class Vehicle implements Serializable {
 	public void setChassi(String chassi) {
 		this.chassi = chassi;
 	}
-	
+
 	public String getRenavam() {
 		return renavam;
 	}
@@ -150,7 +149,7 @@ public class Vehicle implements Serializable {
 		this.vehicleYear = vehicleYear;
 	}
 
-//	@JsonIgnore
+	// @JsonIgnore
 	public Category getCategory() {
 		return category;
 	}
@@ -174,7 +173,13 @@ public class Vehicle implements Serializable {
 	public List<VehicleExpense> getExpenses() {
 		return expenses;
 	}
-	
-	
-	
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
 }

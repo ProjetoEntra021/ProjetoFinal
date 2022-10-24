@@ -14,7 +14,7 @@ export class ClientService {
   constructor(private httpClient: HttpClient) { }
 
   list() {
-    return this.httpClient.get<Client[]>(this.API)
+    return this.httpClient.get<Client[]>(this.API + "/company/" + sessionStorage.getItem('token'))
       .pipe(tap(data => console.log(data)),
         first());
   }

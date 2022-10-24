@@ -24,12 +24,14 @@ public class RentalAddDTO implements Serializable {
 	
 	private Long bookingId;
 	
+	private Long companyId;
+	
 	public RentalAddDTO() {
 		super();
 	}
 
 	public RentalAddDTO(LocalDate pickUpDate, LocalDate dropOffDate, Double totalValue, RentalStatus rentalStatus,
-			RentalType rentalType, Long vehicleId, Long bookingId) {
+			RentalType rentalType, Long vehicleId, Long bookingId, Long companyId) {
 		super();
 		this.pickUpDate = pickUpDate;
 		this.dropOffDate = dropOffDate;
@@ -38,6 +40,7 @@ public class RentalAddDTO implements Serializable {
 		this.rentalType = rentalType;
 		this.vehicleId = vehicleId;
 		this.bookingId = bookingId;
+		this.companyId = companyId;
 	}
 
 	public LocalDate getPickUpDate() {
@@ -95,5 +98,14 @@ public class RentalAddDTO implements Serializable {
 	public void setBookingId(Long bookingId) {
 		this.bookingId = bookingId;
 	}
+
+	public Long getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
+	}
+	
 	
 }

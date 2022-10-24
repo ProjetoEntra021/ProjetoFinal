@@ -10,10 +10,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.entra21.entities.enums.GenderType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Client implements Serializable{
@@ -33,6 +35,7 @@ public class Client implements Serializable{
 	private LocalDate birthDate;
 	
 	private GenderType gender;
+
 	
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Address> addresses = new ArrayList<>();
@@ -43,9 +46,13 @@ public class Client implements Serializable{
 	@OneToMany(mappedBy = "client")
 	private List<Booking> bookings = new ArrayList<>();
 	
+	@ManyToOne
+	@JsonIgnoreProperties({"clients", "vehicles", "users"})
+	private Company company;
+	
 	public Client() {}
 	
-	public Client(Long id, String name, String cpf, String cnh, LocalDate birthDate, GenderType gender) {
+	public Client(Long id, String name, String cpf, String cnh, LocalDate birthDate, GenderType gender, Company company) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -53,7 +60,7 @@ public class Client implements Serializable{
 		this.cnh = cnh;
 		this.birthDate = birthDate;
 		this.gender = gender;
-		
+		this.company = company;
 	}
 
 
@@ -119,9 +126,13 @@ public class Client implements Serializable{
 		return bookings;
 	}
 
+	public Company getCompany() {
+		return company;
+	}
 
-	
-
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 	
 
 }

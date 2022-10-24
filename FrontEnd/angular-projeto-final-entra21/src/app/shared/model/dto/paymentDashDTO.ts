@@ -1,6 +1,7 @@
 export interface paymentDashDTO {
-  rentalId?: number;
-  client: string;
-  expirationDate: Date;
-  paymentValue: number;
+  rentalId?: number,
+  client: string,
+  expirationDate: Date,
+  paymentValue: number,
+  companyId: number
 }

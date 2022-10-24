@@ -1,67 +1,74 @@
 package com.entra21.entities;
 
-
-import java.util.UUID;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-import javax.persistence.Table;
-
-
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "users")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class User {
 
-  @Id
-  @GeneratedValue
-  private UUID id;
-  
-  private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	@Column(nullable = false)
+	private String username;
+	
+	@Column(nullable = false)
+	private String password;
+	
+	@ManyToOne
+	@JsonIgnoreProperties({"companyUsers", "vehicles", "clients"})
+	private Company company;
+	
+	public User() {
+		super();
+	}
 
-  private String username;
+	public User(Long id, String username, String password, Company company) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.company = company;
+	}
 
-  private String password;
+	public Long getId() {
+		return id;
+	}
 
-  public UUID getId() {
-	return id;
-}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-public void setId(UUID id) {
-	this.id = id;
-}
+	public String getUsername() {
+		return username;
+	}
 
-public String getName() {
-	return name;
-}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-public void setName(String name) {
-	this.name = name;
-}
+	public String getPassword() {
+		return password;
+	}
 
-public String getUsername() {
-	return username;
-}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-public void setUsername(String username) {
-	this.username = username;
-}
+	public Company getCompany() {
+		return company;
+	}
 
-public String getPassword() {
-	return password;
-}
-
-public void setPassword(String password) {
-	this.password = password;
-}
-
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+	
+	
 }

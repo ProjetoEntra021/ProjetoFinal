@@ -5,5 +5,6 @@ export interface RentalAddDTO {
   rentalType: string,
   totalValue: number,
   bookingId: number,
-  vehicleId: number
+  vehicleId: number,
+  companyId: number
 }

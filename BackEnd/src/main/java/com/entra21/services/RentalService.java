@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.entra21.entities.Booking;
+import com.entra21.entities.Company;
 import com.entra21.entities.Payment;
 import com.entra21.entities.Rental;
 import com.entra21.entities.Vehicle;
@@ -23,6 +24,7 @@ import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.exceptions.InvalidRentalPeriodException;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.BookingRepository;
+import com.entra21.repositories.CompanyRepository;
 import com.entra21.repositories.PaymentRepository;
 import com.entra21.repositories.RentalRepository;
 import com.entra21.repositories.VehicleRepository;
@@ -41,11 +43,16 @@ public class RentalService {
 
 	@Autowired
 	private PaymentRepository paymentRepository;
-	
-	
+
+	@Autowired
+	private CompanyRepository companyRepository;
 
 	public List<Rental> findAll() {
 		return rentalRepository.findAll();
+	}
+
+	public List<Rental> findAllByCompany(Long id) {
+		return companyRepository.findById(id).get().getRentals();
 	}
 
 	public Rental findById(Long id) {
@@ -56,9 +63,10 @@ public class RentalService {
 	public Rental insert(RentalAddDTO obj) {
 		Vehicle ve = vehicleRepository.findById(obj.getVehicleId()).get();
 		Booking bo = bookingRepository.findById(obj.getBookingId()).get();
+		Company co = companyRepository.findById(obj.getCompanyId()).get();
 
 		Rental objRental = new Rental(0L, obj.getRentalType(), obj.getPickUpDate(), obj.getDropOffDate(),
-				RentalStatus.ACTIVE, obj.getTotalValue(), bo, ve, new ArrayList<Payment>(), null);
+				RentalStatus.ACTIVE, obj.getTotalValue(), bo, ve, new ArrayList<Payment>(), null, co);
 
 		if (objRental.getRentalType() == RentalType.APP_DRIVER) {
 			if (calculateRentalPeriod(objRental).getDays() % 7 == 0) {
@@ -130,6 +138,7 @@ public class RentalService {
 		for (int i = 0; i < totalPayments; i++) {
 			payment = new Payment(null, obj.getPickUpDate().plusWeeks(i), paymentValue, 0.0,
 					PaymentStatus.WAITINGPAYMENT, obj);
+			payment.updateStatus();
 			obj.getPayments().add(payment);
 		}
 
@@ -170,7 +179,7 @@ public class RentalService {
 			obj.setRentalStatus(RentalStatus.ACTIVE);
 		}
 
-		rentalRepository.save(obj);
+
 	}
 
 	public void dailyUpdateRentallStatus() {
@@ -181,46 +190,52 @@ public class RentalService {
 			rentalRepository.save(rental);
 		}
 	}
-	
-	public Integer totalActiveRentals() {
-		List<Rental> list = rentalRepository.findAll();
+
+	public void updateRentallStatus(Rental rental) {
+		rental.getPayments();
+		checkActiveOrPendingOrFinished(rental);
+		rentalRepository.save(rental);
+	}
+
+	public Integer totalActiveRentals(Long companyId) {
+		List<Rental> list = companyRepository.findById(companyId).get().getRentals();
 		int qtdActiveRentals = 0;
 		LocalDate hoje = LocalDate.now();
-		for(Rental r : list) {
-			if(r.getDropOffDate().isAfter(hoje)) {
-				if(r.getRentalStatus() == RentalStatus.ACTIVE || r.getRentalStatus() == RentalStatus.PENDING) {
+		for (Rental r : list) {
+			if (r.getDropOffDate().isAfter(hoje)) {
+				if (r.getRentalStatus() == RentalStatus.ACTIVE || r.getRentalStatus() == RentalStatus.PENDING) {
 					qtdActiveRentals++;
 				}
-			}	
+			}
 		}
-		return qtdActiveRentals;	
+		return qtdActiveRentals;
 	}
-	
-	public Integer totalToExpiredRentals() {
-		List<Rental> list = rentalRepository.findAll();
+
+	public Integer totalToExpiredRentals(Long companyId) {
+		List<Rental> list = companyRepository.findById(companyId).get().getRentals();
 		int totalToExpiredRentals = 0;
 		LocalDate hoje = LocalDate.now();
 		for (Rental r : list) {
-			if(r.getDropOffDate().isAfter(hoje) && r.getDropOffDate().isBefore(hoje.plusWeeks(1))) {
+			if (r.getDropOffDate().isAfter(hoje) && r.getDropOffDate().isBefore(hoje.plusWeeks(1))) {
 				totalToExpiredRentals++;
 			}
 		}
 		return totalToExpiredRentals;
-		
+
 	}
 
-	public HeaderDashDTO getHeaderData() {
+	public HeaderDashDTO getHeaderData(Long companyId) {
 		HeaderDashDTO headerData = new HeaderDashDTO();
-		List<Vehicle> vList = vehicleRepository.findAll();
+		List<Vehicle> vList = companyRepository.findById(companyId).get().getVehicles();
 		int qtdAvailableVehicles = 0;
-		for(Vehicle v : vList) {
+		for (Vehicle v : vList) {
 			if (v.getVehicleStatus() == VehicleStatus.AVAILABLE) {
 				qtdAvailableVehicles++;
 			}
 		}
 		headerData.setTotalAvailableVehicles(qtdAvailableVehicles);
-		headerData.setTotalActiveRentals(totalActiveRentals());
-		List<Payment> pList = paymentRepository.findAll();
+		headerData.setTotalActiveRentals(totalActiveRentals(companyId));
+		List<Payment> pList = getAllCompanyPayments(companyId);
 		int totalQtdPenddingPayments = 0;
 		for (Payment p : pList) {
 			if (p.getPaymentStatus() == PaymentStatus.PENDING) {
@@ -228,8 +243,16 @@ public class RentalService {
 			}
 		}
 		headerData.setTotalQtdPenddingPayments(totalQtdPenddingPayments);
-		headerData.setTotalToExpiredRentals(totalToExpiredRentals());
+		headerData.setTotalToExpiredRentals(totalToExpiredRentals(companyId));
 		return headerData;
 	}
 
+	private List<Payment> getAllCompanyPayments(Long companyId) {
+		List<Rental> rentals = companyRepository.findById(companyId).get().getRentals();
+		List<Payment> payments = new ArrayList<>();
+		for (Rental rental : rentals) {
+			payments.addAll(rental.getPayments());
+		}
+		return payments;
+	}
 }

@@ -19,11 +19,11 @@ export class PaymentService {
     return this.httpClient.patch<Payment>(this.API + '/' + id, undefined).pipe(tap((data) => console.log(data)), first());
   }
 
-  list() {
-    return this.httpClient.get<paymentDashDTO[]>(this.API + '/rigthboard').pipe(tap(data => console.log(data)), first());
+  list(companyId: number) {
+    return this.httpClient.post<paymentDashDTO[]>(this.API + '/rigthboard', companyId).pipe(tap(data => console.log(data)), first());
   }
 
-  getData() {
-    return this.httpClient.get<VehicleDashDTO>(this.API + '/leftboard').pipe(tap(data => console.log(data)), first());
+  getData(companyId: number) {
+    return this.httpClient.post<VehicleDashDTO>(this.API + '/leftboard', companyId).pipe(tap(data => console.log(data)), first());
   }
 }

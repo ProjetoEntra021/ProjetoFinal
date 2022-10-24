@@ -15,7 +15,7 @@ export class RentalService {
   constructor(private httpClient: HttpClient) { }
 
   list() {
-    return this.httpClient.get<Rental[]>(this.API).pipe(first());
+    return this.httpClient.get<Rental[]>(this.API + '/company/' + sessionStorage.getItem('token')).pipe(first());
   }
 
   save(record: Partial<RentalAddDTO>) {
@@ -27,10 +27,10 @@ export class RentalService {
   }
 
   cancelRental(id: number) {
-    return this.httpClient.patch<Rental>(this.API + '/' + id , undefined).pipe(first())
+    return this.httpClient.patch<Rental>(this.API + '/' + id, undefined).pipe(first())
   }
 
-  getHeaderData() {
-    return this.httpClient.get<HeaderDashDTO>(this.API + '/header').pipe(tap(data => console.log(data)), first());
+  getHeaderData(companyId: number) {
+    return this.httpClient.post<HeaderDashDTO>(this.API + '/header', companyId).pipe(tap(data => console.log(data)), first());
   }
 }

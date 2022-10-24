@@ -22,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		
 	User existsUser = userRepository.findByUsername(username);	
 		
-		if (existsUser != null) {
+		if (existsUser == null) {
 			throw new Error("User does not exists!");
 		}
 		return UserPrincipal.create(existsUser);

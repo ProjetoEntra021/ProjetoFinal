@@ -31,7 +31,7 @@ export class MainViewComponent implements OnInit {
   vehicleAdd() {
     this.router.navigate(['main/vehicles/add']);
   }
-  categoryList(){
+  categoryList() {
     this.router.navigate(['main/category'])
   }
   vehicles() {
@@ -65,7 +65,7 @@ export class MainViewComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('username');
+    sessionStorage.removeItem('token');
     this.router.navigate(['/home']);
   }
 }

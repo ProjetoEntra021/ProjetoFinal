@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first, tap } from 'rxjs';
 import { Vehicle } from '../shared/model/vehicle';
+import { VehiclesListDTO } from '../shared/model/dto/vehiclesListDTO';
 import { VehicleDashDTO } from '../shared/model/dto/vehicleDashDTO';
 
 @Injectable({
@@ -14,7 +15,7 @@ export class VehicleService {
   constructor(private httpClient: HttpClient) { }
 
   list() {
-    return this.httpClient.get<Vehicle[]>(this.API)
+    return this.httpClient.get<VehiclesListDTO[]>(this.API + "/company/" + sessionStorage.getItem('token'))
       .pipe(tap(data => console.log(data)),
         first());
   }

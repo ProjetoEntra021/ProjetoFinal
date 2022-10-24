@@ -35,15 +35,21 @@ public class RentalController {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@GetMapping(value="company/{companyId}")
+	public ResponseEntity<List<Rental>> findAllByCompany(@PathVariable Long companyId){
+		List<Rental> list = service.findAllByCompany(companyId);
+		return ResponseEntity.ok().body(list);
+	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Rental> findById(@PathVariable Long id){
 		Rental obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@GetMapping(value = "/header")
-	public ResponseEntity<HeaderDashDTO> getHeaderData() {
-		HeaderDashDTO obj = service.getHeaderData();
+	@PostMapping(value = "/header")
+	public ResponseEntity<HeaderDashDTO> getHeaderData(@RequestBody Long companyId) {
+		HeaderDashDTO obj = service.getHeaderData(companyId);
 		return ResponseEntity.ok().body(obj);
 		
 	}
@@ -51,6 +57,7 @@ public class RentalController {
 	@PostMapping
 	public ResponseEntity<Rental> insert(@RequestBody RentalAddDTO obj){
 		Rental objRental = service.insert(obj);
+		service.checkActiveOrPendingOrFinished(objRental);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objRental.getId()).toUri();
 		return ResponseEntity.created(uri).body(objRental);
 	}

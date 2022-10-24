@@ -7,12 +7,12 @@ import { Category } from '../shared/model/category';
   providedIn: 'root'
 })
 export class CategoryService {
-  private readonly API = 'api/categories/';
+  private readonly API = 'api/categories';
 
   constructor(private httpClient: HttpClient) { }
 
   list() {
-    return this.httpClient.get<Category[]>(this.API)
+    return this.httpClient.get<Category[]>(this.API + "/company/" + sessionStorage.getItem('token'))
       .pipe(first());
   }
 

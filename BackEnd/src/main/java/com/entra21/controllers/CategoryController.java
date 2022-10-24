@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.entra21.entities.Category;
+import com.entra21.entities.Client;
 import com.entra21.services.CategoryService;
 
 @RestController
@@ -30,6 +31,13 @@ public class CategoryController {
 		List<Category> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
+	
+	@GetMapping(value="company/{companyId}")
+	public ResponseEntity<List<Category>> findAllByCompany(@PathVariable Long companyId){
+		List<Category> list = service.findAllByCompany(companyId);
+		return ResponseEntity.ok().body(list);
+	}
+	
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Category> findById(@PathVariable Long id){
