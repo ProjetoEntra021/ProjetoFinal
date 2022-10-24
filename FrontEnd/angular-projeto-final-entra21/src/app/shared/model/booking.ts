@@ -15,5 +15,7 @@ export interface Booking {
   bookingStatus: string,
   rental: Rental,
   company: Company | Partial<Company>,
+  categoryName?: string,
+  clientName?: string
 }
 

@@ -10,9 +10,14 @@ import org.springframework.stereotype.Service;
 
 import com.entra21.entities.Rental;
 import com.entra21.entities.Vehicle;
+
+import com.entra21.entities.VehicleExpense;
+import com.entra21.entities.dto.VehicleDashDTO;
+import com.entra21.entities.enums.VehicleStatus;
 import com.entra21.entities.VehicleRevenue;
 import com.entra21.entities.dto.VehiclesListDTO;
 import com.entra21.entities.enums.VehicleStatus;
+
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.CompanyRepository;
 import com.entra21.repositories.VehicleRepository;
@@ -23,26 +28,27 @@ public class VehicleService {
 
 	@Autowired
 	private VehicleRepository vehicleRepository;
-	
+
 	@Autowired
 	private VehicleRevenueRepository revenueRepository;
-	
+
 	@Autowired
 	private CompanyRepository companyRepository;
 
 	public List<Vehicle> findAll() {
 		return vehicleRepository.findAll();
 	}
-	
+
 	public List<VehiclesListDTO> findAllByCopmany(Long CompanyId) {
 		List<Vehicle> vehicles = companyRepository.findById(CompanyId).get().getVehicles();
 		List<VehiclesListDTO> vehiclesDto = new ArrayList<>();
-		for(Vehicle vehicle : vehicles) {
-			vehiclesDto.add(new VehiclesListDTO(vehicle.getId(), vehicle.getVehicleModel(), vehicle.getLicensePlate(), vehicle.getVehicleYear(), vehicle.getCategory().getName(), vehicle.getVehicleStatus() , vehicle.getCompany().getId()));
+		for (Vehicle vehicle : vehicles) {
+			vehiclesDto.add(new VehiclesListDTO(vehicle.getId(), vehicle.getVehicleModel(), vehicle.getLicensePlate(),
+					vehicle.getVehicleYear(), vehicle.getCategory().getName(), vehicle.getVehicleStatus(),
+					vehicle.getCompany().getId()));
 		}
 		return vehiclesDto;
 	}
-
 
 	public Vehicle findById(Long id) {
 		Optional<Vehicle> obj = vehicleRepository.findById(id);
@@ -72,11 +78,12 @@ public class VehicleService {
 		entity.setCategory(obj.getCategory());
 		entity.setVehicleModel(obj.getVehicleModel());
 	}
-	
+
 	public void addVehicleRevenue(Rental obj, Double paymentValue) {
 		Long vehicleId = obj.getVehicle().getId();
 		Vehicle vh = vehicleRepository.findById(vehicleId).get();
 		VehicleRevenue vr = new VehicleRevenue(null, "Pagamento de locação", LocalDate.now(), paymentValue, vh);
 		revenueRepository.save(vr);
 	}
+
 }

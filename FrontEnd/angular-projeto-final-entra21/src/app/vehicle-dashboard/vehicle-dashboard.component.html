@@ -1,0 +1,35 @@
+<mat-card class="vehicleDashboard">
+  <div id="titleBox">
+    <mat-card-title>Visão Geral</mat-card-title>
+  </div>
+
+  <mat-card-content *ngIf="vehicleDashDTO$ | async as vehicleDashDTO">
+    <div id="informationBlock">
+      <div id="itensBlock">
+        <div id="monthBillingBox">
+          <label for="monthBilling">Faturamento últimos 30 dias:</label>
+          <input matInput id="monthBilling"  type="text" readonly
+           name="monthBilling" [(ngModel)] = "vehicleDashDTO.monthBilling" >
+        </div>
+        <div id="nextBillingBox">
+          <label for="nextBilling">Faturamento previsto em até 7 dias:</label>
+          <input matInput id="nextBilling" type="text" readonly name="nextBilling" [(ngModel)] = "vehicleDashDTO.nextBilling">
+        </div>
+        <div id="monthExpenseBox">
+          <label for="monthExpense">Despesa manutenção últimos 30 dias:</label>
+          <input matInput id="monthExpense" type="text" readonly name="monthExpense" [(ngModel)] = "vehicleDashDTO.monthExpense">
+        </div>
+        <div id="totalPenddingPaymentsBox">
+          <label for="totalPenddingPayments">Total recebimentos em atraso:</label>
+          <input matInput id="totalPenddingPayments" type="text" readonly name="totalPenddingPayments" [(ngModel)] = "vehicleDashDTO.totalPenddingPayments">
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-divider inset></mat-divider>
+  <mat-card-actions>
+    <div id="buttons">
+      <button color="primary" mat-raised-button (click)="goVehicles()">Acessar Veículos</button>
+    </div>
+  </mat-card-actions>
+</mat-card>

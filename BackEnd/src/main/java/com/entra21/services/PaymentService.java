@@ -1,5 +1,8 @@
 package com.entra21.services;
 
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,11 +11,19 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.entra21.entities.Payment;
+
+import com.entra21.entities.Vehicle;
+import com.entra21.entities.VehicleExpense;
+import com.entra21.entities.VehicleRevenue;
+import com.entra21.entities.dto.PaymentDashDTO;
+import com.entra21.entities.dto.VehicleDashDTO;
 import com.entra21.entities.Rental;
+
 import com.entra21.entities.enums.PaymentStatus;
 import com.entra21.entities.enums.RentalStatus;
 import com.entra21.exceptions.ResourceNotFoundException;
 import com.entra21.repositories.PaymentRepository;
+import com.entra21.repositories.VehicleRepository;
 
 @Service
 public class PaymentService {
@@ -24,7 +35,10 @@ public class PaymentService {
 	private RentalService rentalService;
 	
 	@Autowired
-	private VehicleService vehicleService;
+	private VehicleRepository vehicleRepository;
+	
+	@Autowired
+	private VehicleRevenueService vehicleRevenueService;
 	
 	public List<Payment> findAll() {
 		return paymentRepository.findAll();
@@ -54,7 +68,7 @@ public class PaymentService {
 		entity.setPaymentStatus(PaymentStatus.PAID);
 		Rental paymentRental = entity.getRental();
 		
-		vehicleService.addVehicleRevenue(paymentRental, entity.getPaymentValue());
+		vehicleRevenueService.addVehicleRevenue(paymentRental, entity.getPaymentValue());
 		
 		if(paymentRental.getRentalStatus() != RentalStatus.CANCELED) {
 			rentalService.checkActiveOrPendingOrFinished(paymentRental);
@@ -83,6 +97,80 @@ public class PaymentService {
 		}
 		rentalService.dailyUpdateRentallStatus();
 	}
+
+	public List<PaymentDashDTO> findList() {
+		PaymentDashDTO paymentDto;
+		LocalDate hoje = LocalDate.now();
+		List<PaymentDashDTO> list = new ArrayList<>();
+		List<Payment> payments = paymentRepository.findAll();
+		for(Payment payment : payments) {
+			if (payment.getPaymentStatus() == PaymentStatus.PENDING) {
+				paymentDto = new PaymentDashDTO();
+				paymentDto.setClient(payment.getRental().getBooking().getClient().getName());
+				paymentDto.setExpirationDate(payment.getExpirationDate());
+				paymentDto.setPaymentValue(payment.getPaymentValue());
+				paymentDto.setRentalId(payment.getRental().getId());
+				list.add(paymentDto);	
+			}
+		}
+		return list;
+	}
 	
+	public Double totalPaymentsReceived() {
+		LocalDate hoje = LocalDate.now();
+		Double paymentsReceived = 0.0;
+		List<Payment> list = paymentRepository.findAll();
+		for (Payment p : list) {
+			if (p.getExpirationDate().isAfter(hoje.minusMonths(1)) && p.getPaymentStatus() == PaymentStatus.PAID) {
+				paymentsReceived += p.getPaymentValue();
+			}
+		}
+ 		return paymentsReceived;	
+	}
 	
+	public Double totalPenddingPayments() {
+		LocalDate hoje = LocalDate.now();
+		Double totalPenddingPayments = 0.0;
+		List<Payment> list = paymentRepository.findAll();
+		for (Payment p : list) {
+			if (p.getPaymentStatus() == PaymentStatus.PENDING) {
+				totalPenddingPayments += p.getPaymentValue();
+			}
+		}
+		return totalPenddingPayments;
+	}
+
+	
+	public Double nextPayments() {
+		LocalDate hoje = LocalDate.now();
+		Double nextPayments = 0.0;
+		List<Payment> list = paymentRepository.findAll();
+		for (Payment p : list) {
+			if (p.getExpirationDate().isBefore(hoje.minusDays(7)) && p.getPaymentStatus() == PaymentStatus.WAITINGPAYMENT) {
+				nextPayments += p.getPaymentValue();
+			}
+		}
+		return nextPayments;
+		
+	}
+	
+	public VehicleDashDTO findData() {
+		List<Vehicle> vehicles = vehicleRepository.findAll();
+		LocalDate hoje = LocalDate.now();
+		VehicleDashDTO data = new VehicleDashDTO();
+		Double dataExpense = 0.0;
+		for (Vehicle v : vehicles) {
+			for (VehicleExpense expense : v.getExpenses()) {
+				if (expense.getDate().isAfter(hoje.minusMonths(1))) {
+					dataExpense += expense.getValue();
+				}	
+			}
+		}
+		data.setMonthExpense(dataExpense);
+		data.setMonthBilling(totalPaymentsReceived());
+		data.setTotalPenddingPayments(totalPenddingPayments());
+		data.setNextBilling(nextPayments());
+		return data;
+	}
+
 }

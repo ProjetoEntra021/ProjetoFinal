@@ -12,11 +12,11 @@
 }
 
 .PENDING {
-  color: yellow;
+  color: #ecdc46;
 }
 
 .status {
-  font-size: 14px;
+  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -176,7 +176,6 @@ mat-table {
 
 .mat-column-client-name {
   overflow: hidden;
-  justify-content: center;
 }
 
 .mat-column-category-name,

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RentalAddDTO } from '../shared/model/dto/rentalAddDTO';
-import { first } from 'rxjs/operators';
+import { first, tap } from 'rxjs';
 import { Rental } from '../shared/model/rental';
+import { HeaderDashDTO } from '../shared/model/dto/headerDashDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,9 @@ export class RentalService {
 
   cancelRental(id: number) {
     return this.httpClient.patch<Rental>(this.API + '/' + id, undefined).pipe(first())
+  }
+
+  getHeaderData() {
+    return this.httpClient.get<HeaderDashDTO>(this.API + '/header').pipe(tap(data => console.log(data)), first());
   }
 }

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.entra21.entities.Payment;
+import com.entra21.entities.dto.PaymentDashDTO;
+import com.entra21.entities.dto.VehicleDashDTO;
 import com.entra21.services.PaymentService;
 
 @RestController
@@ -31,6 +33,20 @@ public class PaymentController {
 	public ResponseEntity<List<Payment>> findAll(){
 		List<Payment> list = service.findAll();
 		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping(value = "/rigthboard")
+	public ResponseEntity<List<PaymentDashDTO>> findList() {
+		List<PaymentDashDTO> list = service.findList();
+		return ResponseEntity.ok().body(list);
+		
+	}
+	
+	@GetMapping(value = "/leftboard")
+	public ResponseEntity<VehicleDashDTO> findData() {
+		VehicleDashDTO data = service.findData();
+		return ResponseEntity.ok().body(data);
+		
 	}
 	
 	@GetMapping(value = "/{id}")

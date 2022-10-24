@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { first, tap } from 'rxjs';
 import { Vehicle } from '../shared/model/vehicle';
 import { VehiclesListDTO } from '../shared/model/dto/vehiclesListDTO';
+import { VehicleDashDTO } from '../shared/model/dto/vehicleDashDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -31,4 +32,6 @@ export class VehicleService {
   update(record: Partial<Vehicle>) {
     return this.httpClient.put<Partial<Vehicle>>(this.API + '/' + record.id, record).pipe(first());
   }
+
+
 }
