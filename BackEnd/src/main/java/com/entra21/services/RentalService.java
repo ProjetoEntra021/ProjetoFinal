@@ -185,10 +185,13 @@ public class RentalService {
 	public Integer totalActiveRentals() {
 		List<Rental> list = rentalRepository.findAll();
 		int qtdActiveRentals = 0;
+		LocalDate hoje = LocalDate.now();
 		for(Rental r : list) {
-			if(r.getRentalStatus() == RentalStatus.ACTIVE) {
-				qtdActiveRentals++;
-			}
+			if(r.getDropOffDate().isAfter(hoje)) {
+				if(r.getRentalStatus() == RentalStatus.ACTIVE || r.getRentalStatus() == RentalStatus.PENDING) {
+					qtdActiveRentals++;
+				}
+			}	
 		}
 		return qtdActiveRentals;	
 	}

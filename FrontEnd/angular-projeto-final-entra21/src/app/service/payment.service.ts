@@ -4,6 +4,7 @@ import { Payment } from '../shared/model/payment';
 import { first } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { paymentDashDTO } from '../shared/model/dto/paymentDashDTO';
+import { VehicleDashDTO } from '../shared/model/dto/vehicleDashDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class PaymentService {
   }
 
   list() {
-    return this.httpClient.get<paymentDashDTO[]>(this.API + '/dash').pipe(tap(data => console.log(data)), first());
+    return this.httpClient.get<paymentDashDTO[]>(this.API + '/rigthboard').pipe(tap(data => console.log(data)), first());
+  }
+
+  getData() {
+    return this.httpClient.get<VehicleDashDTO>(this.API + '/leftboard').pipe(tap(data => console.log(data)), first());
   }
 }
