@@ -108,71 +108,70 @@ public class TestConfig implements CommandLineRunner {
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6));
 
 		Vehicle v1 = new Vehicle(null, "Corsa", "LXE9446", "24696979285", 10000.00, "70741781280", "2020", cat1,
-				VehicleStatus.AVAILABLE);
+				VehicleStatus.AVAILABLE, company1);
 
 		Vehicle v2 = new Vehicle(null, "Sandero", "MLB8850", "21314092991", 10000.00, "92133184317", "2021", cat1,
-				VehicleStatus.AVAILABLE);
+				VehicleStatus.AVAILABLE, company1);
 
 		Vehicle v3 = new Vehicle(null, "Ka", "MFT6466", "25935026492", 10000.00, "76710426801", "2022", cat1,
-				VehicleStatus.AVAILABLE);
+				VehicleStatus.AVAILABLE, company1);
 
 		Vehicle v4 = new Vehicle(null, "Kwid", "LYY1868", "41001452871", 10000.00, "97975210273", "2018", cat3,
 				VehicleStatus.AVAILABLE, company1);
 
 		Vehicle v5 = new Vehicle(null, "Palio", "MFS6847", "21396710891", 10000.00, "62369002407", "2019", cat1,
-				VehicleStatus.DISABLE);
+				VehicleStatus.DISABLE, company1);
 
 		Vehicle v6 = new Vehicle(null, "Vectra", "LWV9173", "68166657819", 10000.00, "06236821066", "2017", cat2,
-				VehicleStatus.UNAVAILABLE);
+				VehicleStatus.UNAVAILABLE, company1);
 
 		Vehicle v7 = new Vehicle(null, "Gol", "MAA4331", "83495378698", 10000.00, "80215152415", "2016", cat1,
-				VehicleStatus.MAINTENANCE);
+				VehicleStatus.MAINTENANCE, company1);
 
 		Vehicle v8 = new Vehicle(null, "Corsa", "LXX3836", "38734852600", 10000.00, "68705136859", "2018", cat1,
-				VehicleStatus.AVAILABLE);
+				VehicleStatus.AVAILABLE, company1);
 
 		Vehicle v9 = new Vehicle(null, "Sandero", "MES7643", "09099488799", 10000.00, "90308275883", "2019", cat1,
-				VehicleStatus.AVAILABLE);
+				VehicleStatus.AVAILABLE, company1);
 
 		Vehicle v10 = new Vehicle(null, "Ka", "LWV8655", "90703795471", 10000.00, "49732711404", "2019", cat1,
-				VehicleStatus.AVAILABLE);
+				VehicleStatus.AVAILABLE, company1);
 
-		Vehicle v11 = new Vehicle(null, "Kwid", "LYY4017", "51024308588", 10000.00, "00238215881", "2020", cat1,
-				VehicleStatus.AVAILABLE);
+		Vehicle v11 = new Vehicle(null, "Kwid", "LYY4017", "51024308588", 10000.00, "00238215881", "2020", cat4,
+				VehicleStatus.AVAILABLE, company1);
 
-		Vehicle v12 = new Vehicle(null, "Palio", "MMK2101", "06927352348", 10000.00, "86391449483", "2020", cat1,
-				VehicleStatus.DISABLE);
+		Vehicle v12 = new Vehicle(null, "Palio", "MMK2101", "06927352348", 10000.00, "86391449483", "2020", cat4,
+				VehicleStatus.DISABLE, company2);
 
-		Vehicle v13 = new Vehicle(null, "Vectra", "MCK5963", "07779019751", 10000.00, "73403735853", "2022", cat1,
-				VehicleStatus.UNAVAILABLE);
+		Vehicle v13 = new Vehicle(null, "Vectra", "MCK5963", "07779019751", 10000.00, "73403735853", "2022", cat4,
+				VehicleStatus.UNAVAILABLE, company2);
 
-		Vehicle v14 = new Vehicle(null, "Gol", "MGU0119", "36982630329", 10000.00, "11441406438", "2019", cat1,
-				VehicleStatus.MAINTENANCE);
+		Vehicle v14 = new Vehicle(null, "Gol", "MGU0119", "36982630329", 10000.00, "11441406438", "2019", cat4,
+				VehicleStatus.MAINTENANCE, company2);
 
-		Vehicle v15 = new Vehicle(null, "Cronos", "MEP8332", "96304471907", 10000.00, "99972027458", "2018", cat2,
-				VehicleStatus.AVAILABLE);
+		Vehicle v15 = new Vehicle(null, "Cronos", "MEP8332", "96304471907", 10000.00, "99972027458", "2018", cat5,
+				VehicleStatus.AVAILABLE, company2);
 
-		Vehicle v16 = new Vehicle(null, "Virtus", "MDJ3645", "21450621334", 10000.00, "78044143792", "2019", cat2,
-				VehicleStatus.DISABLE);
+		Vehicle v16 = new Vehicle(null, "Virtus", "MDJ3645", "21450621334", 10000.00, "78044143792", "2019", cat5,
+				VehicleStatus.DISABLE, company2);
 
-		Vehicle v17 = new Vehicle(null, "Virtus", "MLK6568", "58377177628", 10000.00, "14669417327", "2021", cat2,
-				VehicleStatus.UNAVAILABLE);
+		Vehicle v17 = new Vehicle(null, "Virtus", "MLK6568", "58377177628", 10000.00, "14669417327", "2021", cat5,
+				VehicleStatus.UNAVAILABLE, company2);
 
-		Vehicle v18 = new Vehicle(null, "Onix", "LZH5511", "41595141355", 10000.00, "38461743415", "2017", cat2,
-				VehicleStatus.MAINTENANCE);
+		Vehicle v18 = new Vehicle(null, "Onix", "LZH5511", "41595141355", 10000.00, "38461743415", "2017", cat5,
+				VehicleStatus.MAINTENANCE, company2);
 
-		Vehicle v19 = new Vehicle(null, "Grand Siena", "MBR0133", "22866406774", 10000.00, "00847957543", "2019", cat2,
-				VehicleStatus.AVAILABLE);
+		Vehicle v19 = new Vehicle(null, "Grand Siena", "MBR0133", "22866406774", 10000.00, "00847957543", "2019", cat5,
+				VehicleStatus.AVAILABLE, company2);
 
-		Vehicle v20 = new Vehicle(null, "HB20S", "LWR7262", "93655615198", 10000.00, "58279053667", "2019", cat2,
-				VehicleStatus.DISABLE);
+		Vehicle v20 = new Vehicle(null, "HB20S", "LWR7262", "93655615198", 10000.00, "58279053667", "2019", cat5,
+				VehicleStatus.DISABLE, company2);
 
 		Vehicle v21 = new Vehicle(null, "Azera Exclusive V6", "MMB5510", "51575561268", 10000.00, "40674712896", "2020",
-				cat3,
-				VehicleStatus.UNAVAILABLE);
+				cat6, VehicleStatus.UNAVAILABLE, company2);
 
-		Vehicle v22 = new Vehicle(null, "A200", "MBS6233", "09436803174", 10000.00, "64649034712", "2019", cat3,
-				VehicleStatus.MAINTENANCE);
+		Vehicle v22 = new Vehicle(null, "A200", "MBS6233", "09436803174", 10000.00, "64649034712", "2019", cat6,
+				VehicleStatus.MAINTENANCE, company2);
 
 		vehicleRepository.saveAll(Arrays.asList(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14,
 				v15, v16, v17, v18, v19, v20, v21, v22));
@@ -189,45 +188,37 @@ public class TestConfig implements CommandLineRunner {
 
 		vehicleRRepository.saveAll(Arrays.asList(vr1, vr2));
 
-		// Payment pay1 = new Payment(null, LocalDate.parse("15/11/2022", formatter),
-		// 700.00, 0.00, PaymentStatus.WAITINGPAYMENT, r1);
-		// Payment pay2 = new Payment(null, LocalDate.parse("15/12/2022", formatter),
-		// 700.00, 0.00, PaymentStatus.WAITINGPAYMENT, r1);
-		// Payment pay3 = new Payment(null, LocalDate.parse("15/01/2023", formatter),
-		// 700.00, 0.00, PaymentStatus.WAITINGPAYMENT, r1);
-		//
-		// paymentRepository.saveAll(Arrays.asList(pay1,pay2,pay3));
-
-		// create test registration client Pablo
+		Client c1 = new Client(null, "Mateus Bruscato", "57930504930", "22579564924",
+				LocalDate.parse("01/10/1999", formatter), GenderType.MASCULINO, company1);
 		Client c2 = new Client(null, "Pablo Alexandre M Pamplona", "24066019943", "54732759400",
-				LocalDate.parse("24/07/1980", formatter), GenderType.MASCULINO);
+				LocalDate.parse("24/07/1980", formatter), GenderType.MASCULINO, company1);
 		Client c3 = new Client(null, "Tatiani Pereira Rodrigues", "02889793974", "13036097905",
-				LocalDate.parse("30/10/1995", formatter), GenderType.FEMININO);
+				LocalDate.parse("30/10/1995", formatter), GenderType.FEMININO, company1);
 		Client c4 = new Client(null, "Victor Woleck", "89125375989", "26853219973",
-				LocalDate.parse("03/08/1998", formatter), GenderType.MASCULINO);
+				LocalDate.parse("03/08/1998", formatter), GenderType.MASCULINO, company1);
 		Client c5 = new Client(null, "Machado de Assis", "02616067943", "35647143254",
-				LocalDate.parse("21/06/1839", formatter), GenderType.MASCULINO);
+				LocalDate.parse("21/06/1839", formatter), GenderType.MASCULINO, company1);
 		Client c6 = new Client(null, "Jorge Amado", "46023254918", "98034459903",
-				LocalDate.parse("10/08/1912", formatter), GenderType.MASCULINO);
+				LocalDate.parse("10/08/1912", formatter), GenderType.MASCULINO, company1);
 		Client c7 = new Client(null, "Carlos Drummond de Andrade", "31299470947", "07292959714",
-				LocalDate.parse("31/10/1902", formatter), GenderType.MASCULINO);
+				LocalDate.parse("31/10/1902", formatter), GenderType.MASCULINO, company1);
 		Client c8 = new Client(null, "Clarice Lispector", "16945992993", "63376766209",
-				LocalDate.parse("09/12/1977", formatter), GenderType.FEMININO);
+				LocalDate.parse("09/12/1977", formatter), GenderType.FEMININO, company2);
 		Client c9 = new Client(null, "Cecília Meireles", "91323213929", "66006115720",
-				LocalDate.parse("01/11/1901", formatter), GenderType.FEMININO);
+				LocalDate.parse("01/11/1901", formatter), GenderType.FEMININO, company2);
 		Client c10 = new Client(null, "Vinicius de Moraes", "54680362901", "47220510534",
-				LocalDate.parse("19/10/1913", formatter), GenderType.MASCULINO);
+				LocalDate.parse("19/10/1913", formatter), GenderType.MASCULINO, company2);
 		Client c11 = new Client(null, "Lygia Fagundes Telles", "41981919996", "05517472580",
-				LocalDate.parse("19/04/1917", formatter), GenderType.FEMININO);
+				LocalDate.parse("19/04/1917", formatter), GenderType.FEMININO, company2);
 		Client c12 = new Client(null, "Moacyr Scliar", "23421224978", "44751013955",
-				LocalDate.parse("23/03/1937", formatter), GenderType.MASCULINO);
+				LocalDate.parse("23/03/1937", formatter), GenderType.MASCULINO, company2);
 		Client c13 = new Client(null, "Conceição Evaristo", "72092369962", "35485409593",
-				LocalDate.parse("30/10/1946", formatter), GenderType.FEMININO);
+				LocalDate.parse("30/10/1946", formatter), GenderType.FEMININO, company2);
 		Client c14 = new Client(null, "Lima Barreto", "03419615906", "22001336178",
-				LocalDate.parse("09/12/1881", formatter), GenderType.MASCULINO);
+				LocalDate.parse("09/12/1881", formatter), GenderType.MASCULINO, company2);
 		Client c15 = new Client(null, "Lygia Fagundes Teles ", "91561538990", "28047346343",
-				LocalDate.parse("01/11/1923", formatter), GenderType.FEMININO);
-		clientRepository.saveAll(Arrays.asList(c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15));
+				LocalDate.parse("01/11/1923", formatter), GenderType.FEMININO, company2);
+		clientRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15));
 
 		Address ad2 = new Address(null, "88095000", "Av Marinheiro Max Schramm", "Estreito", "Florianopolis", "SC",
 				"2428", "Bloco 4 Apto 301",

@@ -35,16 +35,16 @@ public class PaymentController {
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@GetMapping(value = "/rigthboard")
-	public ResponseEntity<List<PaymentDashDTO>> findList() {
-		List<PaymentDashDTO> list = service.findList();
+	@PostMapping(value = "/rigthboard")
+	public ResponseEntity<List<PaymentDashDTO>> findList(@RequestBody Long companyId) {
+		List<PaymentDashDTO> list = service.findList(companyId);
 		return ResponseEntity.ok().body(list);
 		
 	}
 	
-	@GetMapping(value = "/leftboard")
-	public ResponseEntity<VehicleDashDTO> findData() {
-		VehicleDashDTO data = service.findData();
+	@PostMapping(value = "/leftboard")
+	public ResponseEntity<VehicleDashDTO> findData(@RequestBody Long companyId) {
+		VehicleDashDTO data = service.findData(companyId);
 		return ResponseEntity.ok().body(data);
 		
 	}

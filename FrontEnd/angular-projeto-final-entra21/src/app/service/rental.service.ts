@@ -30,7 +30,7 @@ export class RentalService {
     return this.httpClient.patch<Rental>(this.API + '/' + id, undefined).pipe(first())
   }
 
-  getHeaderData() {
-    return this.httpClient.get<HeaderDashDTO>(this.API + '/header').pipe(tap(data => console.log(data)), first());
+  getHeaderData(companyId: number) {
+    return this.httpClient.post<HeaderDashDTO>(this.API + '/header', companyId).pipe(tap(data => console.log(data)), first());
   }
 }

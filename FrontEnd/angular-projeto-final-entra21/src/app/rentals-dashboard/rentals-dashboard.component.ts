@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class RentalsDashboardComponent implements OnInit {
 
-  readonly displayedColumns: string[] = ['client','expirationDate', 'paymentValue'];
+  readonly displayedColumns: string[] = ['client', 'expirationDate', 'paymentValue'];
   dataSource!: MatTableDataSource<paymentDashDTO>;
 
   constructor(
@@ -20,7 +20,7 @@ export class RentalsDashboardComponent implements OnInit {
     private route: ActivatedRoute
   ) {
 
-    this.paymentService.list().subscribe((dados) => {
+    this.paymentService.list(Number(sessionStorage.getItem('token'))).subscribe((dados) => {
       this.dataSource = new MatTableDataSource<paymentDashDTO>(dados);
     });
   }
@@ -29,10 +29,10 @@ export class RentalsDashboardComponent implements OnInit {
   }
 
   goRentals() {
-    this.router.navigate(['../main/rentals']), {relativeTo: this.route};
+    this.router.navigate(['../main/rentals']), { relativeTo: this.route };
   }
 
   goThisRental(id: number) {
-    this.router.navigate(['../main/rentals/details/' + id]), {relativeTo: this.route};
+    this.router.navigate(['../main/rentals/details/' + id]), { relativeTo: this.route };
   }
 }

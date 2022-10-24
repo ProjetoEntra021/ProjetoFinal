@@ -11,19 +11,17 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.entra21.entities.Payment;
-
+import com.entra21.entities.Rental;
 import com.entra21.entities.Vehicle;
 import com.entra21.entities.VehicleExpense;
-import com.entra21.entities.VehicleRevenue;
 import com.entra21.entities.dto.PaymentDashDTO;
 import com.entra21.entities.dto.VehicleDashDTO;
-import com.entra21.entities.Rental;
-
 import com.entra21.entities.enums.PaymentStatus;
 import com.entra21.entities.enums.RentalStatus;
 import com.entra21.exceptions.ResourceNotFoundException;
+import com.entra21.repositories.CompanyRepository;
 import com.entra21.repositories.PaymentRepository;
-import com.entra21.repositories.VehicleRepository;
+import com.entra21.repositories.RentalRepository;
 
 @Service
 public class PaymentService {
@@ -35,10 +33,14 @@ public class PaymentService {
 	private RentalService rentalService;
 	
 	@Autowired
-	private VehicleRepository vehicleRepository;
+	private RentalRepository rentalRepository;
 	
 	@Autowired
 	private VehicleRevenueService vehicleRevenueService;
+	
+	@Autowired
+	private CompanyRepository companyRepository;
+
 	
 	public List<Payment> findAll() {
 		return paymentRepository.findAll();
@@ -93,16 +95,17 @@ public class PaymentService {
 		List<Payment> payments = paymentRepository.findAll();
 		for(Payment payment : payments) {
 			payment.updateStatus();
-			paymentRepository.save(payment);
 		}
+		paymentRepository.saveAll(payments);
 		rentalService.dailyUpdateRentallStatus();
 	}
+	
 
-	public List<PaymentDashDTO> findList() {
+	public List<PaymentDashDTO> findList(Long companyId) {
 		PaymentDashDTO paymentDto;
 		LocalDate hoje = LocalDate.now();
 		List<PaymentDashDTO> list = new ArrayList<>();
-		List<Payment> payments = paymentRepository.findAll();
+		List<Payment> payments = getAllCompanyPayments(companyId);
 		for(Payment payment : payments) {
 			if (payment.getPaymentStatus() == PaymentStatus.PENDING) {
 				paymentDto = new PaymentDashDTO();
@@ -128,10 +131,10 @@ public class PaymentService {
  		return paymentsReceived;	
 	}
 	
-	public Double totalPenddingPayments() {
+	public Double totalPenddingPayments(Long companyId) {
 		LocalDate hoje = LocalDate.now();
 		Double totalPenddingPayments = 0.0;
-		List<Payment> list = paymentRepository.findAll();
+		List<Payment> list = getAllCompanyPayments(companyId);
 		for (Payment p : list) {
 			if (p.getPaymentStatus() == PaymentStatus.PENDING) {
 				totalPenddingPayments += p.getPaymentValue();
@@ -154,8 +157,8 @@ public class PaymentService {
 		
 	}
 	
-	public VehicleDashDTO findData() {
-		List<Vehicle> vehicles = vehicleRepository.findAll();
+	public VehicleDashDTO findData(Long companyId) {
+		List<Vehicle> vehicles = companyRepository.findById(companyId).get().getVehicles();
 		LocalDate hoje = LocalDate.now();
 		VehicleDashDTO data = new VehicleDashDTO();
 		Double dataExpense = 0.0;
@@ -168,9 +171,17 @@ public class PaymentService {
 		}
 		data.setMonthExpense(dataExpense);
 		data.setMonthBilling(totalPaymentsReceived());
-		data.setTotalPenddingPayments(totalPenddingPayments());
+		data.setTotalPenddingPayments(totalPenddingPayments(companyId));
 		data.setNextBilling(nextPayments());
 		return data;
 	}
 
+	private List<Payment> getAllCompanyPayments(Long CompanyId){
+		List<Rental> rentals = companyRepository.findById(CompanyId).get().getRentals();
+		List<Payment> payments = new ArrayList<>();
+		for(Rental rental : rentals) {
+			payments.addAll(rental.getPayments());
+		}
+		return payments;
+	}
 }

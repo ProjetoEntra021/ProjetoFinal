@@ -17,18 +17,20 @@ public class VehicleDashDTO implements Serializable {
 	
 	private Double totalPenddingPayments;
 	
+	private Long companyId;
 	
 	public VehicleDashDTO() {
 		super();
 	}
 
 
-	public VehicleDashDTO(Double monthBilling, Double nextBilling, Double monthExpense, Double totalPenddingPayments) {
+	public VehicleDashDTO(Double monthBilling, Double nextBilling, Double monthExpense, Double totalPenddingPayments, Long companyId) {
 		super();
 		this.monthBilling = monthBilling;
 		this.nextBilling = nextBilling;
 		this.monthExpense = monthExpense;
 		this.totalPenddingPayments = totalPenddingPayments;
+		this.companyId = companyId;
 	}
 
 
@@ -70,14 +72,16 @@ public class VehicleDashDTO implements Serializable {
 	public void setTotalPenddingPayments(Double totalPenddingPayments) {
 		this.totalPenddingPayments = totalPenddingPayments;
 	}
-	
-	
 
 
+	public Long getCompanyId() {
+		return companyId;
+	}
 
-	
 
-	
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
+	}
 
 
 }

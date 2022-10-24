@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.entra21.entities.Booking;
 import com.entra21.entities.Rental;
 import com.entra21.entities.dto.HeaderDashDTO;
 import com.entra21.entities.dto.RentalAddDTO;
@@ -48,9 +47,9 @@ public class RentalController {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@GetMapping(value = "/header")
-	public ResponseEntity<HeaderDashDTO> getHeaderData() {
-		HeaderDashDTO obj = service.getHeaderData();
+	@PostMapping(value = "/header")
+	public ResponseEntity<HeaderDashDTO> getHeaderData(@RequestBody Long companyId) {
+		HeaderDashDTO obj = service.getHeaderData(companyId);
 		return ResponseEntity.ok().body(obj);
 		
 	}
@@ -58,6 +57,7 @@ public class RentalController {
 	@PostMapping
 	public ResponseEntity<Rental> insert(@RequestBody RentalAddDTO obj){
 		Rental objRental = service.insert(obj);
+		service.checkActiveOrPendingOrFinished(objRental);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objRental.getId()).toUri();
 		return ResponseEntity.created(uri).body(objRental);
 	}

@@ -1,4 +1,4 @@
-.vehicleDashboard{
+.vehicleDashboard {
   margin: 20px;
   height: auto;
   font-size: 1.2em;
@@ -8,7 +8,6 @@ mat-card {
   padding-bottom: 15px;
   height: 200px;
 }
-
 
 #titleBox {
   border-top-left-radius: 4px;
@@ -26,11 +25,14 @@ mat-card-title {
 //   font-weight: bold;
 
 // }
-#itensBlock{
+#itensBlock {
   margin: 20px;
 }
 
-#monthBillingBox, #nextBillingBox, #monthExpenseBox, #totalPenddingPaymentsBox {
+#monthBillingBox,
+#nextBillingBox,
+#monthExpenseBox,
+#totalPenddingPaymentsBox {
   padding-top: 5px;
   margin: 5px;
 }
@@ -39,9 +41,12 @@ label {
   margin-top: 5px;
   margin-left: 5px;
   margin-bottom: 0;
-  color: #ffffff;
+  color: black;
 }
-#monthBilling, #nextBilling, #monthExpense, #totalPenddingPayments {
+#monthBilling,
+#nextBilling,
+#monthExpense,
+#totalPenddingPayments {
   margin-right: 5px;
   margin-top: 0;
   padding-bottom: 5px;
@@ -51,30 +56,49 @@ label {
   border: none;
   display: block;
   text-align: right;
-  color: #ffffff;
+  color: black;
   font-size: 1.3em;
   font-weight: 500;
 }
 
-#monthBillingBox, #monthBilling {
-  background-color: rgb(28, 28, 190);
-}
-#nextBillingBox, #nextBilling {
-  background-color: rgb(29, 122, 29);
-}
-#monthExpenseBox, #monthExpense {
-  background-color: rgb(212, 212, 41);
-}
-#totalPenddingPaymentsBox, #totalPenddingPayments {
-  background-color: rgb(190, 27, 27);
+#monthBillingBox {
+  background-color: rgb(28, 28, 190, 0.7);
 }
 
-mat-card-content{
+#monthBilling {
+  background-color: rgb(28, 28, 190, 0.02);
+}
+
+#nextBillingBox {
+  background-color: rgb(29, 122, 29, 0.7);
+}
+
+#nextBilling {
+  background-color: rgb(29, 122, 29, 0.02);
+}
+
+#monthExpenseBox {
+  background-color: rgb(212, 212, 41, 0.8);
+}
+
+#monthExpense {
+  background-color: rgb(212, 212, 41, 0.02);
+}
+
+#totalPenddingPaymentsBox {
+  background-color: rgb(190, 27, 27, 0.8);
+}
+
+#totalPenddingPayments {
+  background-color: rgb(190, 27, 27, 0.02);
+}
+
+mat-card-content {
   margin-bottom: 30px;
   height: 225px;
 }
 
-#buttons{
+#buttons {
   justify-content: flex-end;
   height: 30px;
   margin-right: 20px;
@@ -84,7 +108,3 @@ mat-card-content{
 button {
   float: right;
 }
-
-
-
-

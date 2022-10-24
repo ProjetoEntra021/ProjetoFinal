@@ -1,29 +1,32 @@
-<div id="headerDashboard">
-  <mat-card class="headerItem" *ngIf="headerDashDTO$ | async as headerDashDTO">
+<div id="headerDashboard" *ngIf="headerDashDTO$ | async as headerDashDTO">
+  <mat-card class="headerItem">
     <div id="titleGroup">
-      <input type="text" readonly name="totalAvailableVehicles" [(ngModel)] = "headerDashDTO.totalAvailableVehicles"  id="title">
+      <input type="text" readonly name="totalAvailableVehicles" value="{{ headerDashDTO.totalAvailableVehicles }}"
+             id="title">
       <img src="../../../assets/safety-car.png">
     </div>
     <span id="labelInput">Veículos disponíveis</span>
   </mat-card>
-  <mat-card class="headerItem" *ngIf="headerDashDTO$ | async as headerDashDTO">
+  <mat-card class="headerItem">
     <div id="titleGroup">
-      <input type="text" readonly name="totalActiveRentals" [(ngModel)] = "headerDashDTO.totalActiveRentals" id="title">
+      <input type="text" readonly name="totalActiveRentals" value="{{ headerDashDTO.totalActiveRentals }}" id="title">
       <img src="../../../assets/authentication.png">
     </div>
     <span id="labelInput">Locações ativas</span>
   </mat-card>
-  <mat-card class="headerItem" *ngIf="headerDashDTO$ | async as headerDashDTO">
+  <mat-card class="headerItem">
     <div id="titleGroup">
-      <input id="paymentsDelayed" readonly name="totalQtdPenddingPayments" [(ngModel)] = "headerDashDTO.totalQtdPenddingPayments" id="title">
+      <input id="paymentsDelayed" readonly name="totalQtdPenddingPayments"
+             value="{{ headerDashDTO.totalQtdPenddingPayments }}" id="title">
       <img id="money" src="../../../assets/money.png">
     </div>
     <span id="labelInput">Parcelas pendentes</span>
   </mat-card>
 
-  <mat-card class="headerItem" *ngIf="headerDashDTO$ | async as headerDashDTO">
+  <mat-card class="headerItem">
     <div id="titleGroup">
-      <input id="toExpiredRentals" name="totalToExpiredRentals" readonly [(ngModel)] = "headerDashDTO.totalToExpiredRentals" id="title">
+      <input id="toExpiredRentals" name="totalToExpiredRentals" readonly
+             value="{{ headerDashDTO.totalToExpiredRentals }}" id="title">
       <img id="money" src="../../../assets/cooperation.png">
     </div>
     <span id="labelInput">Contratos a vencer</span>

@@ -23,12 +23,12 @@ export class VehicleDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.vehicleDashDTO$ = this.paymentService.getData();
+    this.vehicleDashDTO$ = this.paymentService.getData(Number(sessionStorage.getItem('token')));
 
   }
 
   goVehicles() {
-    this.router.navigate(['../main/vehicles/list']), {relativeTo: this.route};
+    this.router.navigate(['../main/vehicles/list']), { relativeTo: this.route };
   }
 
 

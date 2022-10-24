@@ -17,7 +17,7 @@ export class HeaderDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.headerDashDTO$ = this.rentalService.getHeaderData();
+    this.headerDashDTO$ = this.rentalService.getHeaderData(Number(sessionStorage.getItem('token')));
   }
 
 }

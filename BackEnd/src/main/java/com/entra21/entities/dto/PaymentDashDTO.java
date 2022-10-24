@@ -17,18 +17,20 @@ public class PaymentDashDTO implements Serializable {
 	
 	private Long rentalId;
 	
+	private Long companyId;
 	
 	public PaymentDashDTO() {
 		super();
 	}
 
 
-	public PaymentDashDTO(String client, LocalDate expirationDate, Double paymentValue, Long rentalId) {
+	public PaymentDashDTO(String client, LocalDate expirationDate, Double paymentValue, Long rentalId, Long companyId) {
 		super();
 		this.client = client;
 		this.expirationDate = expirationDate;
 		this.paymentValue = paymentValue;
 		this.rentalId = rentalId;
+		this.companyId = companyId;
 	}
 
 
@@ -70,10 +72,11 @@ public class PaymentDashDTO implements Serializable {
 	public void setRentalId(Long rentalId) {
 		this.rentalId = rentalId;
 	}
-	
-	
 
-	
+
+	public Long getCompanyId() {
+		return companyId;
+	}
 
 
 }
