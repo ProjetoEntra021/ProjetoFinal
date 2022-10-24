@@ -16,7 +16,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class VehicleListComponent implements OnInit, AfterViewInit {
 
-  readonly displayedColumns: string[] = ['status', 'categoryName', 'licensePlate', 'vehicleModel', 'vehicleYear', 'actions'];
+  readonly displayedColumns: string[] = ['vehicleStatus', 'categoryName', 'licensePlate', 'vehicleModel', 'vehicleYear', 'actions'];
 
   //vehicles$: Observable<Vehicle[]>;
 

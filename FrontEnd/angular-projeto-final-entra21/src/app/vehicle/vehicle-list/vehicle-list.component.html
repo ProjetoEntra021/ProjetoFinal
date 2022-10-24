@@ -1,6 +1,5 @@
 <div id="mainContent">
   <div id="header">
-
     <div id="searchVehicle">
       <div id="arrowBack">
         <a [routerLink]="['/main/vehicles']">
@@ -9,10 +8,14 @@
       </div>
       <div id="inputSearch">
         <span> Buscar </span>
-        <input (keyup)="applyFilter($event)" placeholder="Ex. Corsa" #input class="clientSearchParamInput" />
+        <input
+          (keyup)="applyFilter($event)"
+          placeholder="Ex. Corsa"
+          #input
+          class="clientSearchParamInput"
+        />
       </div>
     </div>
-
   </div>
   <mat-card>
     <div id="mainTextHeader">
@@ -21,13 +24,39 @@
     <section class="container">
       <mat-card-content>
         <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
-          <ng-container matColumnDef="status">
+          <ng-container matColumnDef="vehicleStatus">
             <mat-header-cell *matHeaderCellDef mat-sort-header>
               Status
             </mat-header-cell>
             <mat-cell *matCellDef="let vehicle">
-              <mat-icon aria-hidden="false" aria-label="Example home icon" class="{{ vehicle.vehicleStatus }} status"
-                        fontIcon="circle"></mat-icon>
+              <mat-icon
+                *ngIf="vehicle.vehicleStatus == 'AVAILABLE'"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                class="{{ vehicle.vehicleStatus }} status"
+                fontIcon="circle"
+              ></mat-icon>
+              <mat-icon
+                *ngIf="vehicle.vehicleStatus == 'MAINTENANCE'"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                class="{{ vehicle.vehicleStatus }} status"
+                fontIcon="adjust"
+              ></mat-icon>
+              <mat-icon
+                *ngIf="vehicle.vehicleStatus == 'UNAVAILABLE'"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                class="{{ vehicle.vehicleStatus }} status"
+                fontIcon="pause_circle"
+              ></mat-icon>
+              <mat-icon
+                *ngIf="vehicle.vehicleStatus == 'DISABLE'"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                class="{{ vehicle.vehicleStatus }} status"
+                fontIcon="cancel"
+              ></mat-icon>
             </mat-cell>
           </ng-container>
 
@@ -72,7 +101,11 @@
               Opções
             </mat-header-cell>
             <mat-cell *matCellDef="let vehicle">
-              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu do veículo">
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Menu do veículo"
+              >
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
@@ -88,7 +121,9 @@
             </mat-cell>
           </ng-container>
 
-          <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+          <mat-header-row
+            *matHeaderRowDef="displayedColumns; sticky: true"
+          ></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
           <!-- Row shown when there is no matching data. -->
@@ -97,7 +132,6 @@
               No data matching the filter "{{ input.value }}"
             </td>
           </tr>
-
         </mat-table>
       </mat-card-content>
     </section>
@@ -106,26 +140,42 @@
   <footer>
     <div id="footerCaption">
       <div class="singleCaption">
-        <mat-icon aria-hidden="false" aria-label="Ícone de legenda disponível" class="caption AVAILABLE"
-                  fontIcon="circle"></mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Ícone de legenda disponível"
+          class="caption AVAILABLE"
+          fontIcon="circle"
+        ></mat-icon>
         <span>Disponível</span>
       </div>
 
       <div class="singleCaption">
-        <mat-icon aria-hidden="false" aria-label="Ícone de legenda indisponível" class="caption UNAVAILABLE"
-                  fontIcon="circle"></mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Ícone de legenda indisponível"
+          class="caption UNAVAILABLE"
+          fontIcon="pause_circle"
+        ></mat-icon>
         <span>Indisponível</span>
       </div>
 
       <div class="singleCaption">
-        <mat-icon aria-hidden="false" aria-label="Ícone de legenda em menutenção" class="caption MAINTENANCE"
-                  fontIcon="circle"></mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Ícone de legenda em menutenção"
+          class="caption MAINTENANCE"
+          fontIcon="adjust"
+        ></mat-icon>
         <span>Em manutenção</span>
       </div>
 
       <div class="singleCaption">
-        <mat-icon aria-hidden="false" aria-label="Ícone de legenda desabilitado" class="caption DISABLE"
-                  fontIcon="circle"></mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Ícone de legenda desabilitado"
+          class="caption DISABLE"
+          fontIcon="cancel"
+        ></mat-icon>
         <span>Desabilitado</span>
       </div>
     </div>

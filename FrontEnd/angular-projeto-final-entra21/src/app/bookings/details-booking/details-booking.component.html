@@ -1,10 +1,11 @@
-<div id="mainContent">
-  <div id="header">
-    <a id="arrowBack" [routerLink]="['/main/bookings']">
-      <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
-    </a>
+<div id="header">
+  <a id="arrowBack" [routerLink]="['/main/bookings']">
+    <mat-icon id="arrowBackIcon">arrow_back</mat-icon>
+  </a>
 
-  </div>
+</div>
+<div id="mainContent">
+
   <mat-card *ngIf="booking$ | async as booking;" id="booking-card">
     <h1>Reserva de {{ booking.client.name }}</h1>
     <mat-card-content>

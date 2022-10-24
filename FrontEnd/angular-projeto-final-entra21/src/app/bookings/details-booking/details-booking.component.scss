@@ -30,6 +30,16 @@ a {
   margin-right: auto;
 }
 
+#mainContent {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  gap: 0px;
+  margin-top: 10%;
+}
+
 #arrowBackIcon {
   display: flex;
   border: 1px solid black;

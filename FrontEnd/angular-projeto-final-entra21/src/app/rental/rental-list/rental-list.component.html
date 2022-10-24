@@ -1,6 +1,5 @@
 <div id="mainContent">
   <div id="header">
-
     <div id="searchVehicle">
       <div id="arrowBack">
         <a [routerLink]="['/main']">
@@ -9,10 +8,14 @@
       </div>
       <div id="inputSearch">
         <span> Buscar </span>
-        <input (keyup)="applyFilter($event)" placeholder="Ex. Corsa" #input class="clientSearchParamInput" />
+        <input
+          (keyup)="applyFilter($event)"
+          placeholder="Ex. Corsa"
+          #input
+          class="clientSearchParamInput"
+        />
       </div>
     </div>
-
   </div>
   <mat-card>
     <div id="mainTextHeader">
@@ -20,14 +23,45 @@
     </div>
     <section class="container">
       <mat-card-content>
-        <mat-table matSort [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
-          <ng-container matColumnDef="status">
+        <mat-table
+          matSort
+          [dataSource]="dataSource"
+          multiTemplateDataRows
+          class="mat-elevation-z8"
+        >
+          <ng-container matColumnDef="rentalStatus">
             <mat-header-cell *matHeaderCellDef mat-sort-header>
               Status
             </mat-header-cell>
             <mat-cell *matCellDef="let rental">
-              <mat-icon aria-hidden="false" aria-label="Example home icon" class="{{ rental.rentalStatus }} status"
-                        fontIcon="circle"></mat-icon>
+              <mat-icon
+                *ngIf="rental.rentalStatus == 'ACTIVE'"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                class="{{ rental.rentalStatus }} status"
+                fontIcon="circle"
+              ></mat-icon>
+              <mat-icon
+                *ngIf="rental.rentalStatus == 'FINISHED'"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                class="{{ rental.rentalStatus }} status"
+                fontIcon="adjust"
+              ></mat-icon>
+              <mat-icon
+                *ngIf="rental.rentalStatus == 'PENDING'"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                class="{{ rental.rentalStatus}} status"
+                fontIcon="pause_circle"
+              ></mat-icon>
+              <mat-icon
+                *ngIf="rental.rentalStatus == 'CANCELED'"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                class="{{ rental.rentalStatus}} status"
+                fontIcon="cancel"
+              ></mat-icon>
             </mat-cell>
           </ng-container>
 
@@ -45,7 +79,7 @@
               Data inicial
             </mat-header-cell>
             <mat-cell *matCellDef="let rental">
-              {{ rental.pickUpDate | date: 'dd/MM/YYYY' }}
+              {{ rental.pickUpDate | date: "dd/MM/YYYY" }}
             </mat-cell>
           </ng-container>
 
@@ -54,7 +88,7 @@
               Data final
             </mat-header-cell>
             <mat-cell *matCellDef="let rental">
-              {{ rental.dropOffDate | date: 'dd/MM/YYYY'}}
+              {{ rental.dropOffDate | date: "dd/MM/YYYY" }}
             </mat-cell>
           </ng-container>
 
@@ -72,16 +106,19 @@
               Modelo veículo
             </mat-header-cell>
             <mat-cell *matCellDef="let rental">
-              {{ rental.vehicle.vehicleModel }} - {{rental.vehicle.licensePlate}}
+              {{ rental.vehicle.vehicleModel }} -
+              {{ rental.vehicle.licensePlate }}
             </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="actions">
-            <mat-header-cell *matHeaderCellDef>
-              Opções
-            </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Opções </mat-header-cell>
             <mat-cell *matCellDef="let rental">
-              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu do veículo">
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Menu do veículo"
+              >
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
@@ -94,30 +131,62 @@
           </ng-container>
 
           <ng-container matColumnDef="expand">
-            <mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef aria-label="row actions"
+              >&nbsp;</mat-header-cell
+            >
             <mat-cell *matCellDef="let rental">
-              <button mat-icon-button aria-label="expand row"
-                      (click)="(expandedRental = expandedRental === rental ? null : rental); $event.stopPropagation()">
-                <mat-icon *ngIf="expandedRental !== rental">keyboard_arrow_down</mat-icon>
-                <mat-icon *ngIf="expandedRental === rental">keyboard_arrow_up</mat-icon>
+              <button
+                mat-icon-button
+                aria-label="expand row"
+                (click)="
+                  expandedRental = expandedRental === rental ? null : rental;
+                  $event.stopPropagation()
+                "
+              >
+                <mat-icon *ngIf="expandedRental !== rental"
+                  >keyboard_arrow_down</mat-icon
+                >
+                <mat-icon *ngIf="expandedRental === rental"
+                  >keyboard_arrow_up</mat-icon
+                >
               </button>
             </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="expandedDetail">
-            <mat-cell id="expandedCell" *matCellDef="let rental" [attr.colspan]="1">
-              <div class="example-element-detail" [@detailExpand]="rental == expandedRental ? 'expanded' : 'collapsed'">
-                <app-payments-list (add)="refreshComponent()" [payments]="rental.payments"></app-payments-list>
+            <mat-cell
+              id="expandedCell"
+              *matCellDef="let rental"
+              [attr.colspan]="1"
+            >
+              <div
+                class="example-element-detail"
+                [@detailExpand]="
+                  rental == expandedRental ? 'expanded' : 'collapsed'
+                "
+              >
+                <app-payments-list
+                  (add)="refreshComponent()"
+                  [payments]="rental.payments"
+                ></app-payments-list>
               </div>
             </mat-cell>
           </ng-container>
 
-          <mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand; sticky: true"></mat-header-row>
-          <mat-row *matRowDef="let rental; columns: columnsToDisplayWithExpand;" class="example-element-row"
-                   [class.example-expanded-row]="expandedRental === rental"
-                   (click)="expandedRental = expandedRental === rental ? null : rental">
+          <mat-header-row
+            *matHeaderRowDef="columnsToDisplayWithExpand; sticky: true"
+          ></mat-header-row>
+          <mat-row
+            *matRowDef="let rental; columns: columnsToDisplayWithExpand"
+            class="example-element-row"
+            [class.example-expanded-row]="expandedRental === rental"
+            (click)="expandedRental = expandedRental === rental ? null : rental"
+          >
           </mat-row>
-          <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row">
+          <mat-row
+            *matRowDef="let row; columns: ['expandedDetail']"
+            class="example-detail-row"
+          >
           </mat-row>
 
           <!-- Row shown when there is no matching data. -->
@@ -126,7 +195,6 @@
               No data matching the filter "{{ input.value }}"
             </td>
           </tr>
-
         </mat-table>
       </mat-card-content>
     </section>
@@ -135,26 +203,43 @@
   <footer>
     <div id="footerCaption">
       <div class="captionSingle">
-        <mat-icon aria-hidden="false" aria-label="Ícone de legenda disponível" class="caption ACTIVE" fontIcon="circle">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Ícone de legenda disponível"
+          class="caption ACTIVE"
+          fontIcon="circle"
+        >
         </mat-icon>
         <span>Ativa</span>
       </div>
 
       <div class="captionSingle">
-        <mat-icon aria-hidden="false" aria-label="Ícone de legenda indisponível" class="caption FINISHED"
-                  fontIcon="circle"></mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Ícone de legenda indisponível"
+          class="caption FINISHED"
+          fontIcon="adjust"
+        ></mat-icon>
         <span>Concluída</span>
       </div>
 
       <div class="captionSingle">
-        <mat-icon aria-hidden="false" aria-label="Ícone de legenda em menutenção" class="caption PENDING"
-                  fontIcon="circle"></mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Ícone de legenda em menutenção"
+          class="caption PENDING"
+          fontIcon="pause_circle"
+        ></mat-icon>
         <span>Pendente</span>
       </div>
 
       <div class="captionSingle">
-        <mat-icon aria-hidden="false" aria-label="Ícone de legenda desabilitado" class="caption CANCELED"
-                  fontIcon="circle"></mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Ícone de legenda desabilitado"
+          class="caption CANCELED"
+          fontIcon="cancel"
+        ></mat-icon>
         <span>Cancelada</span>
       </div>
     </div>
