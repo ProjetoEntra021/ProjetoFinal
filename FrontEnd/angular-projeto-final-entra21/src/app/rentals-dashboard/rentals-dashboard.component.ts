@@ -31,4 +31,8 @@ export class RentalsDashboardComponent implements OnInit {
   goRentals() {
     this.router.navigate(['../main/rentals']), {relativeTo: this.route};
   }
+
+  goThisRental(id: number) {
+    this.router.navigate(['../main/rentals/details/' + id]), {relativeTo: this.route};
+  }
 }

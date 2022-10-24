@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { VehicleService } from '../service/vehicle.service';
 import { VehicleDashDTO } from '../shared/model/dto/vehicleDashDTO';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PaymentService } from '../service/payment.service';
 
 @Component({
   selector: 'app-vehicle-dashboard',
@@ -15,14 +16,14 @@ export class VehicleDashboardComponent implements OnInit {
   public vehicleDashDTO$?: Observable<VehicleDashDTO>;
 
   constructor(
-    private vehicleService: VehicleService,
+    private paymentService: PaymentService,
     private router: Router,
     private route: ActivatedRoute
 
   ) { }
 
   ngOnInit(): void {
-    this.vehicleDashDTO$ = this.vehicleService.getData();
+    this.vehicleDashDTO$ = this.paymentService.getData();
 
   }
 

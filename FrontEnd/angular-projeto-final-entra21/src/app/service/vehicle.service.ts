@@ -32,7 +32,5 @@ export class VehicleService {
     return this.httpClient.put<Partial<Vehicle>>(this.API + '/' + record.id, record).pipe(first());
   }
 
-  getData() {
-    return this.httpClient.get<VehicleDashDTO>(this.API + '/dash').pipe(tap(data => console.log(data)), first());
-  }
+
 }

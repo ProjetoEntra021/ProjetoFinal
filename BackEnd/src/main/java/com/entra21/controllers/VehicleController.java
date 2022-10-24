@@ -39,13 +39,6 @@ public class VehicleController {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@GetMapping(value = "/dash")
-	public ResponseEntity<VehicleDashDTO> findData() {
-		VehicleDashDTO data = service.findData();
-		return ResponseEntity.ok().body(data);
-		
-	}
-	
 	@PostMapping
 	public ResponseEntity<Vehicle> insert(@RequestBody Vehicle obj){
 		obj = service.insert(obj);

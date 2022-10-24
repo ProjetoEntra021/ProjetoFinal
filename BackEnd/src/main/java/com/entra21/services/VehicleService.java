@@ -25,8 +25,7 @@ public class VehicleService {
 	@Autowired
 	private VehicleRepository vehicleRepository;
 	
-	@Autowired
-	private PaymentService paymentService;
+
   
 	@Autowired
 	private VehicleRevenueRepository revenueRepository;
@@ -63,26 +62,6 @@ public class VehicleService {
 		entity.setVehicleStatus(obj.getVehicleStatus());
 		entity.setCategory(obj.getCategory());
 		entity.setVehicleModel(obj.getVehicleModel());
-	}
-
-
-	public VehicleDashDTO findData() {
-		List<Vehicle> vehicles = vehicleRepository.findAll();
-		LocalDate hoje = LocalDate.now();
-		VehicleDashDTO data = new VehicleDashDTO();
-		Double dataExpense = 0.0;
-		for (Vehicle v : vehicles) {
-			for (VehicleExpense expense : v.getExpenses()) {
-				if (expense.getDate().isAfter(hoje.minusMonths(1))) {
-					dataExpense += expense.getValue();
-				}	
-			}
-		}
-		data.setMonthExpense(dataExpense);
-		data.setMonthBilling(paymentService.totalPaymentsReceived());
-		data.setTotalPenddingPayments(paymentService.totalPenddingPayments());
-		data.setNextBilling(paymentService.nextPayments());
-		return data;
 	}
 
 	
